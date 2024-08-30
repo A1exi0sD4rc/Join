@@ -1,0 +1,12 @@
+.navbar {
+  background-color: #2a3647;
+  height: 1024px;
+  width: 232px;
+  position: fixed;
+  top: 0;
+}
+
+.header {
+  height: 96px;
+  width: 1440px;
+}
