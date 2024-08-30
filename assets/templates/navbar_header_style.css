@@ -4,9 +4,9 @@ body {
   font-family: inter;
 }
 
-.navbar {
+.sidebar {
   background-color: #2a3647;
-  height: 1024px;
+  height: 100vh;
   width: 232px;
   position: fixed;
   top: 0;
@@ -14,9 +14,13 @@ body {
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
-  background-color: aqua;
+  background-color: white;
   height: 96px;
-  width: 1440px;
+  width: 100vw;
+  padding: 0px 40px 0px 120px;
   box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.1);
 }
