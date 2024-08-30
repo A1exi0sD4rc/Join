@@ -1,0 +1,27 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.legal_notice_span {
+  color: #29abe2;
+}
+
+.legal_notice_h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.legal_notice_p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.legal_notice_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#legal_notice {
+  max-width: 1920px;
+}
