@@ -1,12 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: inter;
+}
+
 .navbar {
   background-color: #2a3647;
   height: 1024px;
   width: 232px;
   position: fixed;
   top: 0;
+  font-family: inter;
 }
 
 .header {
+  position: fixed;
+  background-color: aqua;
   height: 96px;
   width: 1440px;
+  box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.1);
 }

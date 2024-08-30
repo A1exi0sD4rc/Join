@@ -3,18 +3,21 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
+a {
+  all: unset;
+}
 
 button {
   all: unset;
 }
 
 #legal_notice {
-  max-width: 1920px;
+  max-width: 1440px;
   background-color: #f6f7f8;
 }
 
 .legal_notice_content {
-  padding-left: 96px;
+  padding-left: 328px;
   padding-top: 110px;
 }
 
