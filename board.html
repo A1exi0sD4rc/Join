@@ -6,8 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles/board.css">
     <link rel="stylesheet" href="styles/board.css">
@@ -21,26 +19,30 @@
 <body>
 
     <div class="board_header">
-        <div>
+
             <h1>Board</h1>
-        </div>
+
         <div class="search_add_task">
-            <input type="text" placeholder="find task"> <button class="add_task_btn">Add Task +</button>
+            <div class="input_div">
+            <input class="search_task_input" type="search" placeholder="Find Task">
+            <div class="search_icon_div"></div>
+            </div>
+            <div class="add_task_btn"><div>Add Task +</div></div>
         </div>
     </div>
 
-    <div class="board_categorys">
-        <div>To do</div>
-        <div>In progress</div>
-        <div> Await feetback</div>
-        <div>Done</div>
-    </div>
+        <div class="board_categorys">
+            <div class="category_topics">To do<div class="plus_btn">+</div></div>
+            <div class="category_topics">In progress<div class="plus_btn">+</div></div>
+            <div class="category_topics">Await feetback<div class="plus_btn">+</div></div>
+            <div class="category_topics">Done</div>
+        </div>
 
     <div class="task_slots">
-        <div class="to_do_tasks"></div>
-        <div class="in_progress_tasks"></div>
-        <div class="await_tasks"></div>
-        <div class="done_tasks"></div>
+        <div class="slots"></div>
+        <div class="slots"></div>
+        <div class="slots"></div>
+        <div class="slots"></div>
     </div>
 
 </body>
