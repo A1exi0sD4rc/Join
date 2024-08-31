@@ -55,7 +55,7 @@ body {
 }
 
 .sidebar_links_center :hover {
-  background-color: aqua;
+  background-color: #2a3d59;
 }
 
 .sidebar_links_bottom {
@@ -93,5 +93,5 @@ table {
 .text-cell {
   text-align: left; /* Text linksbündig in der rechten Spalte */
   padding-left: 10px; /* Abstand zwischen Bild und Text */
-  width: 150px;
+  width: 80px;
 }
