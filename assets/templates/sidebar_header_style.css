@@ -33,10 +33,11 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   padding-bottom: 235px;
   color: #cdcdcd;
   width: 100%;
+  font-size: 16px;
 }
 
 .sidebar_links_center img {
@@ -52,6 +53,10 @@ body {
 
 .sidebar_links_center :hover {
   background-color: #2a3d59;
+}
+
+.sidebar_links_center a:target {
+  background-color: beige;
 }
 
 .sidebar_links_bottom {
@@ -71,9 +76,14 @@ body {
   font-weight: 600;
 }
 
+.sidebar_links_bottom a:target {
+  background-color: beige;
+}
+
 table {
   margin: 0 auto; /* Zentriert die Tabelle horizontal im Link */
   width: auto;
+  height: 46px;
 }
 
 .img-cell {
@@ -85,4 +95,9 @@ table {
   text-align: left; /* Text linksbündig in der rechten Spalte */
   padding-left: 6px; /* Abstand zwischen Bild und Text */
   width: 80px;
+}
+
+.sidebar_current_link {
+  background-color: beige;
+  pointer-events: none; /* Optional: Deaktiviert den Hover-Effekt */
 }
