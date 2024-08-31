@@ -33,8 +33,8 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 24px;
-  padding-bottom: 324px;
+  gap: 8px;
+  padding-bottom: 235px;
   color: #cdcdcd;
   width: 100%;
 }
@@ -46,11 +46,7 @@ body {
 
 .sidebar_links_center a {
   width: 100%;
-  gap: 12px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   text-align: center;
 }
 
@@ -75,11 +71,6 @@ body {
   font-weight: 600;
 }
 
-a {
-  display: block;
-  margin: 10px 0; /* Abstand zwischen den Links */
-}
-
 table {
   margin: 0 auto; /* Zentriert die Tabelle horizontal im Link */
   width: auto;
@@ -92,6 +83,6 @@ table {
 
 .text-cell {
   text-align: left; /* Text linksbündig in der rechten Spalte */
-  padding-left: 10px; /* Abstand zwischen Bild und Text */
+  padding-left: 6px; /* Abstand zwischen Bild und Text */
   width: 80px;
 }
