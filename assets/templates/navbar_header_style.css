@@ -33,9 +33,10 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 15px;
-  width: 100%;
+  gap: 24px;
+  padding-bottom: 324px;
   color: #cdcdcd;
+  width: 100%;
 }
 
 .sidebar_links_center img {
@@ -44,13 +45,31 @@ body {
 }
 
 .sidebar_links_center a {
-  padding-bottom: 5px;
+  width: 100%;
   gap: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+}
+
+.sidebar_links_center :hover {
+  background-color: aqua;
 }
 
 .sidebar_links_bottom {
+  font-size: 16px;
+  display: flex;
+  gap: 18px;
+  flex-direction: column;
   color: #a8a8a8;
+}
+.sidebar_links_bottom a {
+  width: 120px;
+}
+
+.sidebar_links_bottom a:hover {
+  cursor: pointer;
+  color: #29abe2;
+  font-weight: 700;
 }
