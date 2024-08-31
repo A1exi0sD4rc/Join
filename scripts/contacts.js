@@ -4,6 +4,7 @@ let contacts = [];
 async function init() {
     await getContacts();
     render();
+    renderContacts();
 }
 
 
@@ -61,5 +62,5 @@ function render() {
 
 
 function renderContacts() {
-    
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
 }
