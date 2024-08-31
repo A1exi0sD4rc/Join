@@ -13,13 +13,13 @@ body {
   position: absolute;
   top: 345px;
   left: 583px;
-  animation: moveDiv 1s forwards;
+  animation: moveDiv 1.3s forwards;
 }
 
 .starting-screen img {
   width: 274px;
   height: 334.07px;
-  animation: resizeImg 1s forwards;
+  animation: resizeImg 1.8s forwards;
 }
 
 .content {
@@ -50,8 +50,7 @@ body {
 
 .error-position {
   position: absolute;
-  font-family: "Poppins" !important;
-  left: 20px;
+  left: 10px;
   top: 60px;
   color: #ff8190;
   font-size: 12px;
