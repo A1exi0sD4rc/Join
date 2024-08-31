@@ -51,6 +51,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  text-align: center;
 }
 
 .sidebar_links_center :hover {
@@ -71,5 +72,26 @@ body {
 .sidebar_links_bottom a:hover {
   cursor: pointer;
   color: #29abe2;
-  font-weight: 700;
+  font-weight: 600;
+}
+
+a {
+  display: block;
+  margin: 10px 0; /* Abstand zwischen den Links */
+}
+
+table {
+  margin: 0 auto; /* Zentriert die Tabelle horizontal im Link */
+  width: auto;
+}
+
+.img-cell {
+  text-align: center; /* Bild mittig in der Zelle */
+  vertical-align: middle; /* Vertikale Ausrichtung des Bildes in der Zelle */
+}
+
+.text-cell {
+  text-align: left; /* Text linksbündig in der rechten Spalte */
+  padding-left: 10px; /* Abstand zwischen Bild und Text */
+  width: 150px;
 }
