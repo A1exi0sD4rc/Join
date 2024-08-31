@@ -67,7 +67,7 @@ button {
   justify-content: space-between;
 }
 
-.legal_notice_button {
+.back_to_last_page_btn {
   /* position: fixed;
   top: 225px;
   left: 1207px; */
@@ -78,14 +78,14 @@ button {
   width: 32px;
 }
 
-.legal_notice_button:hover {
+.back_to_last_page_btn:hover {
   transform: scale(1.09);
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.03);
   border-radius: 50%;
 }
 
-.legal_notice_img {
+.back_to_last_page_arrow {
   height: 21px;
   width: 20px;
 }

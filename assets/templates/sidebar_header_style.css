@@ -73,11 +73,11 @@ body {
   display: flex;
   width: 100%;
   align-items: center;
-  height: 46px;
+  height: 38px;
 }
 .links_bottom_container a {
   text-align: center;
-  margin-left: 49px;
+  margin-left: 60px;
 }
 
 .sidebar_links_bottom a:hover {
