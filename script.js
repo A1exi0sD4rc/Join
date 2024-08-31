@@ -28,4 +28,22 @@ function includeHTML() {
       return;
     }
   }
+  highlightActiveLink();
+}
+
+// Funktion, die den aktuellen Link hervorhebt
+function highlightActiveLink() {
+  // Holen der aktuellen URL
+  const currentUrl = window.location.href;
+
+  // Alle Links im Navigationsbereich
+  const links = document.querySelectorAll(".sidebar a");
+
+  links.forEach((link) => {
+    // Vergleichen des href des Links mit der aktuellen URL
+    if (link.href === currentUrl) {
+      // Füge die Klasse hinzu, wenn die URLs übereinstimmen
+      link.classList.add("sidebar_current_link");
+    }
+  });
 }
