@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "inter", sans-serif;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a3647;
+  width: 232px;
+  position: fixed;
+  top: 0;
+  padding: 64px 0;
+  height: calc(100vh - 128px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-color: white;
+  height: 96px;
+  width: 100vw;
+  padding: 0px 40px 0px 120px;
+  box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar_links_center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 235px;
+  color: #cdcdcd;
+  width: 100%;
+  font-size: 16px;
+}
+
+.sidebar_links_center img {
+  height: 30px;
+  width: 30px;
+}
+
+.sidebar_links_center a {
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar_links_center :hover {
+  background-color: #2a3d59;
+}
+
+.sidebar_links_center a:target {
+  background-color: beige;
+}
+
+.sidebar_links_bottom {
+  width: 100%;
+  align-items: center;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  color: #a8a8a8;
+}
+
+.links_bottom_container {
+  justify-content: start;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 38px;
+}
+.links_bottom_container a {
+  text-align: center;
+  margin-left: 60px;
+}
+
+.sidebar_links_bottom a:hover {
+  cursor: pointer;
+  color: #29abe2;
+  font-weight: 600;
+}
+
+.sidebar_links_bottom a:target {
+  background-color: beige;
+}
+
+table {
+  margin: 0 auto; /* Zentriert die Tabelle horizontal im Link */
+  width: auto;
+  height: 46px;
+}
+
+.img-cell {
+  text-align: center; /* Bild mittig in der Zelle */
+  vertical-align: middle; /* Vertikale Ausrichtung des Bildes in der Zelle */
+}
+
+.text-cell {
+  text-align: left; /* Text linksbündig in der rechten Spalte */
+  padding-left: 6px; /* Abstand zwischen Bild und Text */
+  width: 80px;
+}
+
+.sidebar_current_link {
+  background-color: #091931;
+  pointer-events: none; /* Optional: Deaktiviert den Hover-Effekt */
+}
