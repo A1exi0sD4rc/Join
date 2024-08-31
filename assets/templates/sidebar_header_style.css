@@ -60,14 +60,24 @@ body {
 }
 
 .sidebar_links_bottom {
+  width: 100%;
+  align-items: center;
   font-size: 16px;
   display: flex;
-  gap: 18px;
   flex-direction: column;
   color: #a8a8a8;
 }
-.sidebar_links_bottom a {
-  width: 120px;
+
+.links_bottom_container {
+  justify-content: start;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 46px;
+}
+.links_bottom_container a {
+  text-align: center;
+  margin-left: 49px;
 }
 
 .sidebar_links_bottom a:hover {
@@ -98,6 +108,6 @@ table {
 }
 
 .sidebar_current_link {
-  background-color: beige;
+  background-color: #091931;
   pointer-events: none; /* Optional: Deaktiviert den Hover-Effekt */
 }

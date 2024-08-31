@@ -31,19 +31,44 @@ function includeHTML() {
   highlightActiveLink();
 }
 
-// Funktion, die den aktuellen Link hervorhebt
+/**
+ * Highlights the active link or container based on the current URL.
+ */
 function highlightActiveLink() {
-  // Holen der aktuellen URL
   const currentUrl = window.location.href;
 
-  // Alle Links im Navigationsbereich
-  const links = document.querySelectorAll(".sidebar a");
+  highlightSidebarLinks(currentUrl);
+  highlightBottomContainers(currentUrl);
+}
 
-  links.forEach((link) => {
-    // Vergleichen des href des Links mit der aktuellen URL
-    if (link.href === currentUrl) {
-      // Füge die Klasse hinzu, wenn die URLs übereinstimmen
-      link.classList.add("sidebar_current_link");
+/**
+ * Highlights links within the .sidebar_links_center container if their href matches the current URL.
+ *
+ * @param {string} currentUrl - The current URL to compare against the href attributes of links.
+ */
+function highlightSidebarLinks(currentUrl) {
+  const sidebarLinksContainer = document.querySelector(".sidebar_links_center");
+  if (sidebarLinksContainer) {
+    const sidebarLinks = sidebarLinksContainer.querySelectorAll("a");
+    sidebarLinks.forEach((link) => {
+      if (link.href === currentUrl) {
+        link.classList.add("sidebar_current_link");
+      }
+    });
+  }
+}
+
+/**
+ * Highlights the container within .links_bottom_container if its contained link's href matches the current URL.
+ *
+ * @param {string} currentUrl - The current URL to compare against the href attributes of links.
+ */
+function highlightBottomContainers(currentUrl) {
+  const bottomContainers = document.querySelectorAll(".links_bottom_container");
+  bottomContainers.forEach((container) => {
+    const link = container.querySelector("a");
+    if (link && link.href === currentUrl) {
+      container.classList.add("sidebar_current_link");
     }
   });
 }

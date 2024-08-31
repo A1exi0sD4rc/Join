@@ -20,7 +20,7 @@ button {
   display: flex;
 }
 
-#legal_notice {
+.legal_notice_section {
   height: 100vh;
   background-color: #f6f7f8;
 }
