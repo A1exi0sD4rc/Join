@@ -1,49 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/board.css" />
+    <link rel="stylesheet" href="assets/fonts.css" />
+    <link rel="stylesheet" href="styles/taskcardsmall.css" />
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/board.js"></script>
+    <script src="scripts/bordrender.js"></script>
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="styles/board.css">
-  <!-- <link rel="stylesheet" href="assets/fonts.css"> -->
-  <link rel="stylesheet" href="styles/taskcardsmall.css">
+    <title>Board</title>
+  </head>
 
-  <script src="scripts/board.js"></script>
-  <script src="scripts/bordrender.js"></script>
+  <body onload="updateHTML()">
+    <div class="board_header">
+      <h1>Board</h1>
 
-  <title>Board</title>
-
-</head>
-
-<body onload="updateHTML()">
-
-  <div class="board_header">
-
-    <h1>Board</h1>
-
-    <div class="search_add_task">
-      <div class="input_div"><input class="search_task_input" type="search" placeholder="Find Task"><div class="search_icon_div"></div></div>
-      <div class="add_task_btn"><div>Add Task +</div></div>
+      <div class="search_add_task">
+        <div class="input_div">
+          <input
+            class="search_task_input"
+            type="search"
+            placeholder="Find Task"
+          />
+          <div class="search_icon_div"></div>
+        </div>
+        <div class="add_task_btn"><div>Add Task +</div></div>
+      </div>
     </div>
-  </div>
 
-  <div class="board_categorys">
-    <div class="category_topics">To do<div class="plus_btn">+</div></div>
-    <div class="category_topics">In progress<div class="plus_btn">+</div></div>
-    <div class="category_topics">Await feedback<div class="plus_btn">+</div></div>
-    <div class="category_topics">Done</div>
-  </div>
+    <div class="board_categorys">
+      <div class="category_topics">
+        To do
+        <div class="plus_btn">+</div>
+      </div>
+      <div class="category_topics">
+        In progress
+        <div class="plus_btn">+</div>
+      </div>
+      <div class="category_topics">
+        Await feedback
+        <div class="plus_btn">+</div>
+      </div>
+      <div class="category_topics">Done</div>
+    </div>
 
-  <div class="task_slots">
-    <div class="slots" id="small_card_todo" ondrop="moveTo('todo')" ondragover="allowDrop(event)"></div>
-    <div class="slots" id="small_card_progress" ondrop="moveTo('progress')" ondragover="allowDrop(event)"></div>
-    <div class="slots" id="small_card_await" ondrop="moveTo('await')" ondragover="allowDrop(event)"></div>
-    <div class="slots" id="small_card_done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
-  </div>
-
-</body>
-
+    <div class="task_slots">
+      <div
+        class="slots"
+        id="small_card_todo"
+        ondrop="moveTo('todo')"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="slots"
+        id="small_card_progress"
+        ondrop="moveTo('progress')"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="slots"
+        id="small_card_await"
+        ondrop="moveTo('await')"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="slots"
+        id="small_card_done"
+        ondrop="moveTo('done')"
+        ondragover="allowDrop(event)"
+      ></div>
+    </div>
+  </body>
 </html>
