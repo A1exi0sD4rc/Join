@@ -1,26 +1,67 @@
-<div class="sidebar">
-  <div><img src="assets/img/logo_join_big.svg" alt="join_logo" /></div>
+<div>
+  <img
+    src="assets/img/logo_join_big.svg"
+    alt="join_logo"
+    class="sidebar_join_logo"
+  />
+</div>
 
-  <div class="sidebar_links_center">
-    <a href="#">
-      <img src="assets/img/icon_summery.svg" alt="summary_Icon" />
-      <div>Summary</div></a
-    >
-    <a href="#"
-      ><img src="assets/img/icon_addTask.svg" alt="addTask_Icon" />
-      <div>Add Task</div></a
-    >
-    <a href="#"
-      ><img src="assets/img/icon_board.svg" alt="board_Icon" />
-      <div>Board</div></a
-    >
-    <a href="#"
-      ><img src="assets/img/icon_contacts.svg" alt="Contacts_Icon" />
-      <div>Contacts</div></a
+<div class="sidebar_links_center">
+  <a href="../../summary.html" class="sidebar_link_active">
+    <table>
+      <tr>
+        <td class="img-cell">
+          <img src="assets/img/icon_summery.svg" alt="summary_Icon" />
+        </td>
+        <td class="text-cell">Summary</td>
+      </tr>
+    </table>
+  </a>
+  <a href="../../add_task.html">
+    <table>
+      <tr>
+        <td class="img-cell">
+          <img src="assets/img/icon_addTask.svg" alt="addTask_Icon" />
+        </td>
+        <td class="text-cell">Add Task</td>
+      </tr>
+    </table>
+  </a>
+  <a href="../../board.html">
+    <table>
+      <tr>
+        <td class="img-cell">
+          <img src="assets/img/icon_board.svg" alt="board_Icon" />
+        </td>
+        <td class="text-cell">Board</td>
+      </tr>
+    </table>
+  </a>
+  <a href="../../contacts.html">
+    <table>
+      <tr>
+        <td class="img-cell">
+          <img src="assets/img/icon_contacts.svg" alt="contacts_Icon" />
+        </td>
+        <td class="text-cell">Contacts</td>
+      </tr>
+    </table>
+  </a>
+</div>
+
+<div class="sidebar_links_bottom">
+  <div class="links_bottom_container" id="privacy_policy">
+    <a
+      href="../../privacy_policy.html"
+      onclick="saveCurrentPageAndNavigate('../../privacy_policy.html')"
+      >Privacy Policy</a
     >
   </div>
-  <div class="sidebar_links_bottom">
-    <a href="#"><div>Privacy Policy</div></a>
-    <a href="../../legal_notice.html"><div>Legal notice</div></a>
+  <div class="links_bottom_container" id="legal_notice">
+    <a
+      href="../../legal_notice.html"
+      onclick="saveCurrentPageAndNavigate('../../legal_notice.html')"
+      >Legal notice</a
+    >
   </div>
 </div>

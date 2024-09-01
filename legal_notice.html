@@ -3,30 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="legal_notice_style.css" />
-    <link rel="stylesheet" href="assets/templates/navbar_header_style.css" />
+    <link rel="stylesheet" href="ln_pp_hp_style.css" />
+    <link rel="stylesheet" href="assets/templates/sidebar_header_style.css" />
     <link rel="stylesheet" href="assets/fonts.css" />
     <script src="script.js"></script>
+
     <title>JOIN Legal Notice</title>
   </head>
   <body onload="includeHTML()">
-    <section w3-include-html="./assets/templates/header.html"></section>
-    <section w3-include-html="./assets/templates/sidebar.html"></section>
-    <section id="legal_notice">
+    <section
+      w3-include-html="./assets/templates/header.html"
+      class="header"
+    ></section>
+    <section
+      w3-include-html="./assets/templates/sidebar.html"
+      class="sidebar"
+    ></section>
+    <section class="legal_notice_section">
       <div class="legal_notice_content">
         <header class="legal_notice_headline">
           <h1 class="legal_notice_h1">Legal Notice</h1>
-          <button class="legal_notice_button">
+          <button class="back_to_last_page_btn" onclick="goBack()">
             <img
-              class="legal_notice_img"
+              class="back_to_last_page_arrow"
               src="./assets/img/backarrow.svg"
               alt="arrow_backToLastPage"
             />
           </button>
         </header>
         <h2 class="legal_notice_h2">Imprint</h2>
-        <ul>
-          <li>Judith Lenz, Alessandro..., Vincent ... , Marco ...</li>
+        <ul class="legal_notice_ul">
+          <li>
+            Judith Lenz, Alessandro Argenziano, Vincent Görner, Marco Marrocu
+          </li>
           <li>Oskar-Schindler-Str. 82</li>
           <li>86157 Augsburg</li>
         </ul>
