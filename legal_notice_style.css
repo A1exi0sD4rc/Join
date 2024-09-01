@@ -39,6 +39,10 @@ button {
   color: #29abe2;
 }
 
+.legal_notice_ul {
+  padding-left: 24px;
+}
+
 .legal_notice_h1 {
   margin: 100px 0 25px 0;
   font-weight: 700;
@@ -46,6 +50,7 @@ button {
 }
 
 .legal_notice_h2 {
+  margin: 0 0 16px 0;
   font-size: 27px;
   font-weight: 700;
 }
@@ -59,7 +64,7 @@ button {
 .legal_notice_p {
   font-size: 16px;
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .legal_notice_headline {
