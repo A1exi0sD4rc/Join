@@ -35,9 +35,33 @@ button {
   -ms-overflow-style: none;
   scrollbar-width: none;
   background-color: #f6f7f8;
-  max-width: 1440px;
-  padding-left: 328px;
-  padding-top: 110px;
+  max-width: 1014px;
+  padding: 206px 97px 0 328px;
+}
+
+.privacy_policy_section {
+  padding-bottom: 10px;
+  background-color: #f6f7f8;
+}
+
+.privacy_policy_content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: #f6f7f8;
+  max-width: 1014px;
+  padding: 206px 97px 0 328px;
+}
+
+.privacy_policy_h1 {
+  margin: 100px 0 25px 0;
+  font-weight: 700;
+  font-size: 61px;
+}
+
+.privacy_policy_headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .legal_notice_span {
