@@ -16,6 +16,12 @@ button {
   all: unset;
 }
 
+.header_headline {
+  font-size: 20px;
+  height: 24px;
+  width: 320px;
+}
+
 .sidebar_with_content {
   display: flex;
 }
@@ -32,7 +38,6 @@ button {
   max-width: 1440px;
   padding-left: 328px;
   padding-top: 110px;
-  padding-right: 100px;
 }
 
 .legal_notice_span {

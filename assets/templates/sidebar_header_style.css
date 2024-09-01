@@ -25,8 +25,17 @@ body {
   background-color: white;
   height: 96px;
   width: 100vw;
-  padding: 0px 40px 0px 120px;
-  box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.1);
+  padding: 0px 40px 0px 348px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2), 0px 5px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.header_content {
+  padding-right: 25px;
+  width: 1440px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sidebar_join_logo {
