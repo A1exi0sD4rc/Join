@@ -6,37 +6,32 @@ body {
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: white;
-  width: calc(100vw - 252px);
-  padding: 36px 20px 36px 348px;
+  height: 96px;
+  width: 100%;
   position: fixed;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2), 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header_wrapper {
+  width: 100%;
+  max-width: 1440px;
 }
 
 .header_content {
-  max-width: 1440px;
-  display: flex;
-  align-items: center;
-}
-
-.header_Icons_right {
-  display: flex;
-}
-
-/* .header_content {
-  box-sizing: border-box;
+  width: calc(100% - 368px);
+  max-width: 1072px;
+  padding-left: 348px;
+  padding-right: 20px;
   justify-content: space-between;
+  display: flex;
   align-items: center;
-  position: fixed;
-  height: 96px;
-  max-width: 1014px;
-  padding: 0px 40px 0px 348px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2), 0px 5px 10px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  padding-right: 25px;
-  width: 1440px;
-} */
+}
+
+.header_icons_right {
+  display: flex;
+}
 
 .sidebar {
   display: flex;
@@ -45,10 +40,10 @@ body {
   align-items: center;
   background-color: #2a3647;
   width: 232px;
+  height: calc(100vh - 128px);
   position: fixed;
   top: 0;
   padding: 64px 0;
-  height: calc(100vh - 128px);
 }
 
 .sidebar_join_logo {
