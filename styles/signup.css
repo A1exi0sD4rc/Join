@@ -109,7 +109,7 @@ h1 {
 
 .error-position {
   position: absolute;
-  font-family: "Poppins" !important;
+  font-family: "Inter", sans-serif;
   left: 20px;
   top: 60px;
   color: #ff8190;
@@ -119,7 +119,7 @@ h1 {
 
 .error-checkbox {
   position: absolute;
-  font-family: "Poppins" !important;
+  font-family: "Inter", sans-serif;
   left: 20px;
   top: 30px;
   color: #ff8190;
@@ -313,7 +313,7 @@ input[type="password"]::-ms-clear {
 
 .wrong-password {
   margin-top: -22px;
-  font-family: "Poppins" !important;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 14.4px;
