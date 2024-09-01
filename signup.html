@@ -16,5 +16,120 @@
     <div class="logo-signup">
       <img class="logo-image" src="./assets/img/logo_black.svg" alt="" />
     </div>
+    <div class="signup-window">
+      <div class="arrow-container" id="backArrow">
+        <img src="./assets/img/backarrow.svg" />
+      </div>
+      <div class="h1-blueline">
+        <h1>Sign Up</h1>
+        <div class="blue-underline"></div>
+      </div>
+      <form id="signupForm" class="signup-form" novalidate>
+        <div class="input-container">
+          <div class="signup-container">
+            <input
+              type="text"
+              class="signup-input"
+              placeholder="First and Last Name"
+              id="name"
+              name="name"
+              autocomplete="none"
+              required
+            />
+            <img src="./assets/img/person.svg" class="password-img" />
+            <div class="error-position"></div>
+          </div>
+
+          <div class="signup-container">
+            <input
+              class="signup-input"
+              type="text"
+              id="email"
+              placeholder="Email"
+              name="email"
+              autocomplete="none"
+              required
+            /><img class="mail-img" src="./assets/img/mail.svg" />
+            <div class="error-position"></div>
+          </div>
+
+          <div class="signup-container">
+            <input
+              class="signup-input"
+              onclick="changeImageSignup()"
+              type="password"
+              id="password"
+              placeholder="Password"
+              name="password"
+              required
+            /><img
+              class="password-img"
+              onclick="signupToggle()"
+              id="toggle_button"
+              src="./assets/img/lock.svg"
+            />
+            <div class="error-position"></div>
+          </div>
+
+          <div class="signup-container" id="confirm-container">
+            <input
+              class="signup-input"
+              onclick="changeImageSignupConfirm()"
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              required
+            />
+            <div class="password-image-container"></div>
+            <img
+              onclick="signupToggleConfirm()"
+              class="password-img"
+              id="toggle_button_confirm"
+              src="./assets/img/lock.svg"
+              alt=""
+            />
+            <div class="error-position"></div>
+          </div>
+          <div class="wrong-password" id="wrongPasswordContainer"></div>
+        </div>
+
+        <div class="checkbox-container">
+          <div class="check-box">
+            <img
+              id="acceptPolicy"
+              src="./assets/img/checkbox.png"
+              alt="Checkbox"
+              style="cursor: pointer"
+              onclick="toggleCheckboxImage()"
+            />
+          </div>
+          <label for="acceptPolicy"
+            >I accept the
+            <a href="./privacy_policy_nologin.html">Privacy Policy</a></label
+          >
+          <div class="error-checkbox"></div>
+        </div>
+        <div class="flex-center">
+          <button
+            class="btn pdng1524 heigt48 width128"
+            type="submit"
+            id="signupButton"
+          >
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="links-container">
+      <a href="./privacy_policy_nologin.html">Privacy Policy</a>
+      <a href="./legal_notice_nologin.html">Legal notice</a>
+  </div>
+  <div id="successMessage">You Signed Up successfully</div>
+  </div>
+
+  <script src="./scripts/toggle.js"></script>
+    <script type="module" src="./scripts/signup.js"></script>
   </body>
 </html>
