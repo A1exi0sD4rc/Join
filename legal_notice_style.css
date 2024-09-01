@@ -21,7 +21,7 @@ button {
 }
 
 .legal_notice_section {
-  height: 100vh;
+  padding-bottom: 10px;
   background-color: #f6f7f8;
 }
 
@@ -40,6 +40,7 @@ button {
 }
 
 .legal_notice_h1 {
+  margin: 100px 0 25px 0;
   font-weight: 700;
   font-size: 61px;
 }
@@ -76,6 +77,7 @@ button {
   justify-content: center;
   height: 32px;
   width: 32px;
+  margin: 100px 0 25px 0;
 }
 
 .back_to_last_page_btn:hover {
