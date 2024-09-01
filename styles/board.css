@@ -37,12 +37,13 @@ body {
     padding: 3px;
     gap: 10px;
     cursor: pointer;
+    transition: 100ms;
 }
 
 .plus_btn:hover{
     color: #29ABE2;
     border-color: #29ABE2;
-
+    animation: ease-in-out;
 }
 
 .search_add_task {
@@ -65,9 +66,13 @@ body {
     padding: 8px 16px;
     font-size: 20px;
     font-weight: 400;
+    transition: 100ms;
+}
 
-    background-image: url();
-    background-repeat: no-repeat;
+.search_task_input:focus {
+    border-color: #29ABE2;
+    outline: none;
+    animation: ease-in-out;
 }
 
 ::placeholder {
