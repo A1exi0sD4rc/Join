@@ -32,7 +32,6 @@ function render() {
     `;
     document.getElementById("contacts-div").innerHTML = "";
     document.getElementById("contacts-div").innerHTML += /*html*/ `
-        <div class="contacts-overview-bar"></div>
         <div class="contacts-new-contact-div">
             <button class="contacts-new-contact-btn">
                 Add new contact <img src="./assets/img/contacts_new_contact.svg">
@@ -61,7 +60,10 @@ function renderContacts() {
             <div class="contacts-seperatore-horizontal"></div>
             <div class="contacts-overview-contact">
                 <div class="contacts-initials">
-                    ${getInitials(contacts[c]['name'])}
+                    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="21" cy="21" r="20" fill="#FF7A00" stroke="white" stroke-width="2"/>
+                        <text x="21" y="24" text-anchor="middle" font-family="Arial" font-size="12" fill="white">${getInitials(contacts[c]['name'])}</text>
+                    </svg>
                 </div>
                 <div class="contacts-name-email">
                     ${contacts[c]['name']}<br>
