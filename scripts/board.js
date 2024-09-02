@@ -64,6 +64,11 @@ const artColors = {
 
 let draggedTo;
 
+function init(){
+    updateHTML();
+    changeArtBackground();
+}
+
 
 function updateHTML() {
     let todo = tasks.filter(x => x['category'] == 'todo');

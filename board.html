@@ -2,21 +2,22 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="styles/board.css" />
-  <!-- <link rel="stylesheet" href="assets/fonts.css" /> -->
-  <link rel="stylesheet" href="styles/taskcardsmall.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/board.css">
+  <!-- <link rel="stylesheet" href="assets/fonts.css"> -->
+  <link rel="stylesheet" href="styles/taskcardsmall.css">
 
   <script src="scripts/board.js"></script>
   <script src="scripts/boardrender.js"></script>
+  <script src="scripts/searchborder.js"></script>
 
   <title>Board</title>
 </head>
 
-<body onload="updateHTML(), changeArtBackground()">
+<body onload="init()">
 
 
   <div class="board_header">
@@ -24,8 +25,18 @@
     <h1>Board</h1>
 
     <div class="search_add_task">
-      <div class="input_div"><input class="search_task_input" type="search" placeholder="Find Task"><div class="search_icon_div"></div></div>
-      <div class="add_task_btn"><div>Add Task +</div></div>
+
+      <div class="input_div">
+        <input class="search_task_input" type="search" placeholder="Find Task">
+        <div class="search_icon_div">
+          <div class="search_ico"><img src="assets/img/search.svg"></div>
+        </div>
+      </div>
+
+      <div class="add_task_btn">
+        <div>Add Task +</div>
+      </div>
+
     </div>
 
   </div>
