@@ -1,7 +1,7 @@
 body {
   margin: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif !important;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -71,7 +71,8 @@ h1 {
 .signup-input {
   border: none;
   outline: none;
-  font-family: "inter";
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
   width: 380px;
   height: 23px;
 }
@@ -110,7 +111,7 @@ h1 {
 .error-position {
   position: absolute;
   font-family: "Inter", sans-serif;
-  left: 20px;
+  left: 10px;
   top: 60px;
   color: #ff8190;
   font-size: 12px;
