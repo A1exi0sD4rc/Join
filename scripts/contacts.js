@@ -66,8 +66,10 @@ function renderContacts() {
                     </svg>
                 </div>
                 <div class="contacts-name-email">
-                    ${contacts[c]['name']}<br>
-                    ${contacts[c]['email']}
+                    <div class="contacts-center">
+                        ${contacts[c]['name']}<br>
+                        <a href="mailto:${contacts[c]['email']}">${contacts[c]['email']}</a> 
+                    </div>
                 </div>
             </div>
         `;

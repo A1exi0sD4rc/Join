@@ -72,10 +72,10 @@ body {
 }
 
 .contacts-overview-category {
-    width: 352px;
-    height: 58px;
-    padding: 17px 36px;
-    margin-left: 36px;
+    min-width: 352px;
+    height: 24px;
+    margin: 17px 36px;
+    padding-left: 70px;
     gap: 8px;
     display: flex;
     align-items: center;
@@ -91,9 +91,17 @@ body {
 .contacts-overview-contact {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 352px;
     height: 78px;
-    padding: 15px 24px;
+    padding-left: 40px;
+    margin: 15px 24px;
+    cursor: pointer;
+}
+
+.contacts-overview-contact:hover {
+    background-color: #f6f7f8;
+    border-radius: 10px;
 }
 
 .contacts-initials {
@@ -101,8 +109,23 @@ body {
 }
 
 .contacts-name-email {
-    margin-right: 100px;
-    font-size: 12px;
+    display: flex;
+    justify-content: flex-start;
+    width: 260px;   
+}
+
+.contacts-center {
+    display: flex;
+    flex-direction: column;
+    height: 48px;
+    gap: 5px;
+    font-size: 20px;
+}
+
+.contacts-center a {
+    color: #29ABE2;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 
