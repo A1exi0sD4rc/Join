@@ -28,17 +28,19 @@ async function getContacts() {
 function render() {
     document.getElementById("contacts-site").innerHTML = "";
     document.getElementById("contacts-site").innerHTML += /*html*/ `
-        <div id="contacts-div" class="contacts-container"></div>  
-    `;
-    document.getElementById("contacts-site").innerHTML += /*html*/ `
-    <div id="contacts-details"></div>
+        <div id="contacts-div" class="contacts-container"></div>
     `;
     document.getElementById("contacts-div").innerHTML = "";
     document.getElementById("contacts-div").innerHTML += /*html*/ `
+        <div class="contacts-overview-bar"></div>
+        <div class="contacts-new-contact-div">
+            <button class="contacts-new-contact-btn">
+                Add new contact <img src="./assets/img/contacts_new_contact.svg">
+            </button>
+        </div>
         <div id="contacts-overview" class="contacts-overview"></div>
     `;
-    document.getElementById("contacts-details").innerHTML = "";
-    document.getElementById("contacts-details").innerHTML += /*html*/ `
+    document.getElementById("contacts-site").innerHTML += /*html*/ `
         <div class="contacts-headline">
             <h1>Contacts</h1>
             <div class="contacts-seperator-vertikal"></div>
@@ -50,11 +52,6 @@ function render() {
 
 function renderContacts() {
     document.getElementById('contacts-overview').innerHTML = '';
-    document.getElementById('contacts-overview').innerHTML += /*html*/`
-        <button class="contacts-new-contact-btn">
-            Add new contact <img src="./assets/img/contacts_new_contact.svg">
-        </button>
-    `;
     document.getElementById('contacts-overview').innerHTML += /*html*/`
         <div class="contacts-overview-space"></div>
     `;

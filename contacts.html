@@ -7,11 +7,16 @@
     <title>Contacts</title>
     <link rel="stylesheet" href="contacts.css">
     <!-- <link rel="stylesheet" href="./assets/fonts.css"> -->
+    <link rel="stylesheet" href="assets/templates/sidebar_header_style.css" />
+    <link rel="stylesheet" href="ln_pp_hp_style.css" />
     <script src="./scripts/contacts.js"></script>
+    <script src="script.js"></script>
 </head>
 
-<body onload="init()">
-    <div id="contacts-site"></div>
+<body onload="includeHTML()">
+    <section w3-include-html="./assets/templates/header.html" class="header"></section>
+    <section w3-include-html="./assets/templates/sidebar.html" class="sidebar"></section>
+    <div id="contacts-site" class="contacts-content"></div>
 </body>
 
 </html>

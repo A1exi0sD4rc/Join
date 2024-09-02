@@ -6,28 +6,43 @@ body {
     background-color: #f6f7f8;
 }
 
+
+/* site content */
+
+.contacts-content {
+    position: relative;
+    top: 96px;
+    left: 232px;
+}
+
 /* overview */
 
 .contacts-container {
-    width: 35%;
-    height: 90%;
+    width: 456px;
+    height: 823px;
+    background-color: #FFFFFF;
+    box-shadow: 4px 0px 6px 0px #00000014;
+    
+    overflow-y: scroll;
+}
+
+.contacts-new-contact-div {
+    position: fixed;
+    width: 456px;
+    height: 101px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-color: white;
 }
 
 .contacts-new-contact-btn {
-    position: fixed;
-    width: 280px;
-    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 0;
-    margin: 16px 0;
+    width: 352px;
+    height: 56px;
     border-radius: 10px;
-    border: none;
+    border: 1px;
     gap: 16px;
     font-size: 16px;
     font-weight: 700;
@@ -44,24 +59,37 @@ body {
     background-color: #29ABE2;
 }
 
+.contacts-overview-bar {
+    width: 24px;
+    height: 823px;
+    position: fixed;
+    left: 664px;
+    background-color: black;
+}
+
 .contacts-overview {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: scroll;
-    height: fit-content;
-    padding: 32px 24px
+    padding: 32px 24px;    
+}
+
+.contacts-overview::-webkit-scrollbar {
+    display: none;
 }
 
 .contacts-overview-space {
     width: 352px;
-    height: 56px;
+    min-height: 56px;
 }
 
 .contacts-overview-category {
     width: 352px;
     height: 58px;
     padding: 17px 36px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
 }
 
 .contacts-seperatore-horizontal {
