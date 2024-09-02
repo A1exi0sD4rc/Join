@@ -18,7 +18,7 @@ let tasks = [
         prio: '',
         category: 'await',
         subtasks: '',
-        id: 0
+        id: 1
     },
 
     {
@@ -29,31 +29,38 @@ let tasks = [
         prio: '',
         category: 'progress',
         subtasks: '',
-        id: 1
+        id: 2
     },
 
     {
-        art: 'User Story',
+        art: 'Technical Task',
         title: 'Bestellapp',
         description: 'Clone einer bekannten Bestllapp.',
         assigned: '',
         prio: '',
         category: 'done',
         subtasks: '',
-        id: 2
+        id: 3
     },
 
     {
-        art: 'User Story',
+        art: 'Technical Task',
         title: 'Join Board',
         description: 'Task Board erstellen.',
         assigned: '',
         prio: '',
         category: 'progress',
         subtasks: '',
-        id: 3
+        id: 4
     },
 ];
+
+
+const artColors = {
+    'Technical Task': '#1FD7C1',
+    'User Story': '#0038FF',
+};
+
 
 let draggedTo;
 
@@ -64,6 +71,7 @@ function updateHTML() {
     for (let index = 0; index < todo.length; index++) {
         const elementToDo = todo[index];
         document.getElementById('small_card_todo').innerHTML += renderTaskCardToDo(elementToDo);
+        changeArtBackground(`art_small_${elementToDo.id}`);
     }
 
 
@@ -72,6 +80,7 @@ function updateHTML() {
     for (let index = 0; index < progress.length; index++) {
         const elementProgress = progress[index];
         document.getElementById('small_card_progress').innerHTML += renderTaskCardToDo(elementProgress);
+        changeArtBackground(`art_small_${elementProgress.id}`);
     }
 
 
@@ -80,6 +89,7 @@ function updateHTML() {
     for (let index = 0; index < await.length; index++) {
         const elementAwait = await[index];
         document.getElementById('small_card_await').innerHTML += renderTaskCardAwait(elementAwait);
+        changeArtBackground(`art_small_${elementAwait.id}`);
     }
 
 
@@ -88,6 +98,15 @@ function updateHTML() {
     for (let index = 0; index < done.length; index++) {
         const elementDone = done[index];
         document.getElementById('small_card_done').innerHTML += renderTaskCardAwait(elementDone);
+        changeArtBackground(`art_small_${elementDone.id}`);
+    }
+}
+
+
+function changeArtBackground(id) {
+    const toChangeBg = document.getElementById(id);
+    if (toChangeBg) {
+        toChangeBg.style.backgroundColor = artColors[toChangeBg.textContent.trim()];
     }
 }
 

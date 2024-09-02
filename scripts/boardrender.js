@@ -4,7 +4,7 @@ function renderTaskCardToDo(elementToDo) {
             
         <div class="task_card_small_content">
 
-                <div class="art_task_small"><div class="art_small" id="art_small">${elementToDo['art']}</div></div>
+                <div class="art_task_small"><div class="art_small" id="art_small_${elementToDo['id']}">${elementToDo['art']}</div></div>
 
                 <div class="title_desc_small_div">
                   <div class="title_small" id="">${elementToDo['title']}</div>
@@ -33,7 +33,7 @@ function renderTaskCardProgress(elementProgress) {
         <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementProgress['id']})">
             <div class="task_card_small_content">
             
-                <div class="art_task_small"><div class="art_small" id="art_small">${elementProgress['art']}</div></div>
+                <div class="art_task_small"><div class="art_small" id="art_small_${elementProgress['id']}">${elementProgress['art']}</div></div>
 
                 <div class="title_desc_small_div">
                   <div class="title_small" id="">${elementProgress['title']}</div>
@@ -61,7 +61,7 @@ function renderTaskCardAwait(elementAwait) {
         <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementAwait['id']})">
             <div class="task_card_small_content">
             
-                <div class="art_task_small"><div class="art_small" id="art_small">${elementAwait['art']}</div></div>
+                <div class="art_task_small"><div class="art_small" id="art_small_${elementAwait['id']}">${elementAwait['art']}</div></div>
 
                 <div class="title_desc_small_div">
                   <div class="title_small" id="">${elementAwait['title']}</div>
@@ -89,11 +89,11 @@ function renderTaskCardDone(elementDone) {
         <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementDone['id']})">
             <div class="task_card_small_content">
             
-                <div class="art_task_small"><div class="art_small" id="art_small"></div></div>
+                <div class="art_task_small"><div class="art_small" id="art_small_${elementDone['id']}">${elementDone['id']}</div></div>
 
                 <div class="title_desc_small_div">
-                  <div class="title_small" id=""></div>
-                  <div class="description_small" id=""></div>
+                  <div class="title_small" id="">${elementDone['id']}</div>
+                  <div class="description_small" id="">${elementDone['id']}</div>
                 </div>
 
                 <div class="sub_amount_small">
