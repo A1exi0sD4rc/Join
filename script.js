@@ -120,18 +120,3 @@ function toggleMenu() {
     userContent.style.display = "block";
   }
 }
-
-/* <div id="user-logo"
-onclick="toggleMenu()"
-class="header-user-name"></div>
-
-
-<div class="user-content" id="user-content">
-<a onclick="goToLegalNotice()" href="#">Legal Notice</a>
-<a onclick="goToPrivacyPolicy()" href="#">Privacy Policy</a>
-<a onclick="logOut()" href="index.html">Log Out</a>
-</div> */
-
-// generateInitials() in summary.js aufrufen! zb.
-// async function summaryInit() {
-// generateInitials(); }

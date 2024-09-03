@@ -314,3 +314,7 @@ function guestLogin(event) {
   goToSummary();
   sessionStorage.setItem("userName", "Guest");
 }
+
+function goToSummary() {
+  window.location.href = "summary.html";
+}
