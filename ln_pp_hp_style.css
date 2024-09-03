@@ -12,6 +12,12 @@ a {
   all: unset;
 }
 
+p {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
 button {
   all: unset;
 }
@@ -67,16 +73,10 @@ button {
   padding: 0;
 }
 
-p {
-  font-size: 16px;
-  margin-top: 0;
-  margin-bottom: 18px;
-}
-
 .back_to_last_page_btn {
-  /* position: fixed;
+  position: fixed;
   top: 225px;
-  left: 1207px; */
+  left: calc(min(1307px, 100% - 133px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,13 +88,13 @@ p {
 .back_to_last_page_btn img {
   width: 21px;
   height: 21px;
-  padding: 6px;
+  padding: 3px;
 }
 
 .back_to_last_page_btn img:hover {
   transform: scale(1.09);
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgb(238, 238, 238);
   border-radius: 50%;
 }
 
@@ -103,16 +103,15 @@ ol {
   counter-reset: section;
 }
 
-li {
+/* .hp_li {
   counter-increment: section;
   position: relative;
   margin-bottom: 10px;
 }
 
-li::before {
+.hp_li ::before {
   content: counter(section) ".";
   position: absolute;
-  left: -2em; /* Verschiebt die Nummerierung nach links */
-  font-size: 2em; /* Größe der Zahlen */
-  font-weight: bold; /* Fettgedruckte Zahlen */
-}
+  left:  /* Verschiebt die Nummerierung nach links */
+font-size: 2em; /* Größe der Zahlen */
+font-weight: bold; /* Fettgedruckte Zahlen */
