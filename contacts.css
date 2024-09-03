@@ -28,11 +28,12 @@ body {
 
 .contacts-new-contact-div {
     position: fixed;
-    width: 456px;
+    width: 436px;
     height: 101px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #FFFFFF;
 }
 
 .contacts-new-contact-btn {

@@ -12,14 +12,19 @@ a {
   all: unset;
 }
 
+p {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
 button {
   all: unset;
 }
 
-.header_headline {
+h3 {
   font-size: 20px;
-  height: 24px;
-  width: 320px;
+  margin: 0;
 }
 
 .sidebar_with_content {
@@ -55,6 +60,7 @@ button {
 
 .legal_notice_span {
   color: #29abe2;
+  line-height: 19.2px;
 }
 
 .legal_notice_ul {
@@ -62,7 +68,8 @@ button {
 }
 
 .legal_notice_h2 {
-  margin: 0 0 16px 0;
+  margin: 0 0 24px 0;
+  padding-top: 8px;
   font-size: 27px;
   font-weight: 700;
 }
@@ -73,16 +80,10 @@ button {
   padding: 0;
 }
 
-p {
-  font-size: 16px;
-  margin-top: 0;
-  margin-bottom: 18px;
-}
-
 .back_to_last_page_btn {
-  /* position: fixed;
+  position: fixed;
   top: 225px;
-  left: 1207px; */
+  left: calc(min(1307px, 100% - 133px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,12 +95,32 @@ p {
 .back_to_last_page_btn img {
   width: 21px;
   height: 21px;
-  padding: 6px;
+  padding: 3px;
 }
 
 .back_to_last_page_btn img:hover {
   transform: scale(1.09);
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgb(238, 238, 238);
   border-radius: 50%;
+}
+
+ol {
+  list-style: none; /* Entfernt die Standard-Nummerierung */
+  counter-reset: section;
+  margin: 16px 0px 16px 0;
+}
+
+.hp_li {
+  padding-left: 19px;
+  counter-increment: section;
+  position: relative;
+}
+
+.hp_li::before {
+  content: counter(section) ".";
+  position: absolute;
+  left: -41px; /* Verschiebt die Nummerierung nach links */
+  font-size: 27px; /* Größe der Zahlen */
+  font-weight: bold; /* Fettgedruckte Zahlen */
 }

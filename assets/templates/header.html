@@ -2,8 +2,20 @@
   <div class="header_content">
     <div class="header_headline">Kanban Project Management Tool</div>
     <div class="header_icons_right">
-      <div>help</div>
-      <div>User Icon</div>
+      <img src="../img/help.svg" alt="help_icon" />
+      <div>
+        <div
+          id="user-logo"
+          onclick="toggleMenu()"
+          class="header-user-name"
+        ></div>
+
+        <div class="user-content" id="user-content">
+          <a onclick="goToLegalNotice()" href="#">Legal Notice</a>
+          <a onclick="goToPrivacyPolicy()" href="#">Privacy Policy</a>
+          <a onclick="logOut()" href="index.html">Log Out</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

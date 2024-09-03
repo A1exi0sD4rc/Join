@@ -78,3 +78,46 @@ function highlightBottomContainers(currentUrl) {
 function goBack() {
   window.history.back();
 }
+
+/**
+ * Generate initials for the top right corner in the header section.
+ */
+function generateInitials() {
+  let content = document.getElementById("user-logo");
+  let userName = sessionStorage.getItem("userName");
+
+  content.innerHTML = "";
+
+  if (userName) {
+    let nameParts = userName.split(" ");
+    if (nameParts.length >= 2) {
+      let initials = nameParts[0][0] + nameParts[1][0];
+      content.innerHTML = initials;
+    } else if (nameParts.length === 1) {
+      let initials = nameParts[0][0];
+      content.innerHTML = initials;
+    } else {
+      content.innerHTML = "G";
+    }
+  } else {
+    content.innerHTML = "G";
+  }
+}
+
+/**
+ * Brings the user back to the login.html page. Goes in the dropdown menu when you click on the user icon.
+ */
+function logOut() {
+  if (sessionStorage.getItem("userName")) {
+    sessionStorage.removeItem("userName");
+  }
+}
+
+function toggleMenu() {
+  const userContent = document.getElementById("user-content");
+  if (userContent.style.display === "block") {
+    userContent.style.display = "none";
+  } else {
+    userContent.style.display = "block";
+  }
+}

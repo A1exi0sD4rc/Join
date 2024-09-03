@@ -58,7 +58,7 @@ function renderContacts() {
         document.getElementById('contacts-overview').innerHTML += /*html*/`
             <div class="contacts-overview-category">${contacts[c]['name'].charAt(0)}</div>
             <div class="contacts-seperatore-horizontal"></div>
-            <div class="contacts-overview-contact">
+            <div id="${c}" class="contacts-overview-contact">
                 <div class="contacts-initials">
                     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="21" cy="21" r="20" fill="#FF7A00" stroke="white" stroke-width="2"/>
