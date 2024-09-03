@@ -8,6 +8,11 @@ body {
     background-color: #F6F7F8;
 }
 
+.board_content{
+    padding-left: 232px;
+    padding-top: 96px;
+}
+
 .board_header {
     height: 232px;
     width: 1208px;
@@ -146,7 +151,6 @@ body {
 
 .task_slots {
     width: 1208px;
-    height: 100vh;
     gap: 26px;
     display: flex;
     flex-direction: row;

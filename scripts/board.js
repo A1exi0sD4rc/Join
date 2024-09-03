@@ -72,6 +72,7 @@ let draggedTo;
 
 
 function initBoardJs() {
+    includeHTML();
     updateHtmlTodo();
     updateHtmlProgress();
     updateHtmlAwait();
@@ -130,7 +131,6 @@ function updateHtmlDone() {
 
 function changeArtBackground(id) {
     const toChangeBg = document.getElementById(id);
-
     if (toChangeBg) {
         toChangeBg.style.backgroundColor = artColors[toChangeBg.textContent.trim()];
     }
@@ -140,7 +140,6 @@ function changeArtBackground(id) {
 function addPrioImg(tasks) {
     const prioimg = prios[tasks.prio];
     const prio_small = document.getElementById(`prio_small_${tasks.id}`);
-    
     if (prioimg) {
         prio_small.innerHTML = `<img src="${prioimg}">`;
     }
