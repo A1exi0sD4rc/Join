@@ -15,11 +15,16 @@ a {
 p {
   font-size: 16px;
   margin-top: 0;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 button {
   all: unset;
+}
+
+h3 {
+  font-size: 20px;
+  margin: 0;
 }
 
 .sidebar_with_content {
@@ -55,6 +60,7 @@ button {
 
 .legal_notice_span {
   color: #29abe2;
+  line-height: 19.2px;
 }
 
 .legal_notice_ul {
@@ -62,7 +68,8 @@ button {
 }
 
 .legal_notice_h2 {
-  margin: 0 0 16px 0;
+  margin: 0 0 24px 0;
+  padding-top: 8px;
   font-size: 27px;
   font-weight: 700;
 }
@@ -101,17 +108,19 @@ button {
 ol {
   list-style: none; /* Entfernt die Standard-Nummerierung */
   counter-reset: section;
+  margin: 16px 0px 16px 0;
 }
 
-/* .hp_li {
+.hp_li {
+  padding-left: 19px;
   counter-increment: section;
   position: relative;
-  margin-bottom: 10px;
 }
 
-.hp_li ::before {
+.hp_li::before {
   content: counter(section) ".";
   position: absolute;
-  left:  /* Verschiebt die Nummerierung nach links */
-font-size: 2em; /* Größe der Zahlen */
-font-weight: bold; /* Fettgedruckte Zahlen */
+  left: -41px; /* Verschiebt die Nummerierung nach links */
+  font-size: 27px; /* Größe der Zahlen */
+  font-weight: bold; /* Fettgedruckte Zahlen */
+}
