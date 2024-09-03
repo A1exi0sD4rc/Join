@@ -1,0 +1,118 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "inter", sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  all: unset;
+}
+
+button {
+  all: unset;
+}
+
+.sidebar_with_content {
+  display: flex;
+}
+
+.ln_pp_hp_section {
+  padding-bottom: 10px;
+  background-color: #f6f7f8;
+}
+
+.ln_pp_hp_content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  max-width: 1014px;
+  padding: 206px 97px 0 328px;
+}
+
+.ln_pp_hp_h1 {
+  margin: 0 0 0 0;
+  font-weight: 700;
+  font-size: 61px;
+  width: 420px;
+}
+
+.ln_pp_hp_headline {
+  height: 73px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 32px;
+}
+
+.legal_notice_span {
+  color: #29abe2;
+}
+
+.legal_notice_ul {
+  padding-left: 24px;
+}
+
+.legal_notice_h2 {
+  margin: 0 0 16px 0;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.legal_notice_h3 {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.back_to_last_page_btn {
+  /* position: fixed;
+  top: 225px;
+  left: 1207px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 37px;
+  width: 37px;
+  margin: 0 0 0 0;
+}
+
+.back_to_last_page_btn img {
+  width: 21px;
+  height: 21px;
+  padding: 6px;
+}
+
+.back_to_last_page_btn img:hover {
+  transform: scale(1.09);
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 50%;
+}
+
+ol {
+  list-style: none; /* Entfernt die Standard-Nummerierung */
+  counter-reset: section;
+}
+
+li {
+  counter-increment: section;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+li::before {
+  content: counter(section) ".";
+  position: absolute;
+  left: -2em; /* Verschiebt die Nummerierung nach links */
+  font-size: 2em; /* Größe der Zahlen */
+  font-weight: bold; /* Fettgedruckte Zahlen */
+}

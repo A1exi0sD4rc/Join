@@ -29,6 +29,7 @@ function includeHTML() {
     }
   }
   highlightActiveLink();
+  init();
 }
 
 /**

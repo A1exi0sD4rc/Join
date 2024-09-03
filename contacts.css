@@ -4,32 +4,46 @@ body {
     margin: 0;
     font-family: "Inter", system-ui;
     background-color: #f6f7f8;
-    width: 100vw;
-    height: 100vh;
+}
+
+
+/* site content */
+
+.contacts-content {
+    position: relative;
+    top: 96px;
+    left: 232px;
 }
 
 /* overview */
 
 .contacts-container {
-    width: 35%;
-    height: 90%;
+    width: 456px;
+    height: 823px;
+    background-color: #FFFFFF;
+    box-shadow: 4px 0px 6px 0px #00000014;
+    
+    overflow-y: scroll;
+}
+
+.contacts-new-contact-div {
+    position: fixed;
+    width: 436px;
+    height: 101px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 .contacts-new-contact-btn {
-    position: fixed;
-    width: 280px;
-    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 0;
-    margin: 16px 0;
+    width: 352px;
+    height: 56px;
     border-radius: 10px;
-    border: none;
+    border: 1px;
     gap: 16px;
     font-size: 16px;
     font-weight: 700;
@@ -50,17 +64,78 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: scroll;
-    height: fit-content;
+    padding: 32px 24px;    
+}
+
+.contacts-overview-space {
+    width: 352px;
+    min-height: 56px;
+}
+
+.contacts-overview-category {
+    min-width: 352px;
+    height: 24px;
+    margin: 17px 36px;
+    padding-left: 70px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.contacts-seperatore-horizontal {
+    width: 352px;
+    height: 1px;
+    background-color: lightgray;
+    margin: 8px 0;
+}
+
+.contacts-overview-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 352px;
+    height: 78px;
+    padding-left: 40px;
+    margin: 15px 24px;
+    cursor: pointer;
+}
+
+.contacts-overview-contact:hover {
+    background-color: #f6f7f8;
+    border-radius: 10px;
+}
+
+.contacts-initials {
+    font-size: 12px;
+}
+
+.contacts-name-email {
+    display: flex;
+    justify-content: flex-start;
+    width: 260px;   
+}
+
+.contacts-center {
+    display: flex;
+    flex-direction: column;
+    height: 48px;
+    gap: 5px;
+    font-size: 20px;
+}
+
+.contacts-center a {
+    color: #29ABE2;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 
-/* contact */
+/* contact details */
 
 .contacts-headline {
     position: absolute;
-    top: 60px;
-    right: 80px;
+    top: 100px;
+    left: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +149,7 @@ body {
     font-weight: 700;
 }
 
-.contacts-seperator {
+.contacts-seperator-vertikal {
     width: 2px;
     height: 80%;
     background-color: #29ABE2;
