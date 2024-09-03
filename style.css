@@ -1,14 +1,14 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-body{
-    font-family: "Inter",sans-serif;
+body {
+  font-family: "Inter", sans-serif;
 }
 
-h1{
-    font-size: 61px;
-    font-weight: 700;
+h1 {
+  font-size: 61px;
+  font-weight: 700;
 }
