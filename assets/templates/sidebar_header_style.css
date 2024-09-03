@@ -32,6 +32,16 @@ body {
 .header_icons_right {
   display: flex;
 }
+.header_help_icon {
+  width: 20px;
+  height: 20px;
+  padding: 12px;
+}
+
+.header_help_icon :hover {
+  cursor: pointer;
+  transform: scale(1.09);
+}
 
 .sidebar {
   display: flex;
