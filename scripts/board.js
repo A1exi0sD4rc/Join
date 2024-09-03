@@ -139,8 +139,8 @@ function changeArtBackground(id) {
 
 
 function addPrioImg(task) {
-    const prioimg = prios[task.prio];
-    const prioDiv = document.getElementById(`prio_small_${task.id}`);
+    const prioimg = prios[tasks.prio];
+    const prioDiv = document.getElementById(`prio_small_${tasks.id}`);
     
     if (prioimg) {
         prioDiv.innerHTML = `<img src="${prioimg}">`;
