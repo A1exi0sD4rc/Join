@@ -1,5 +1,5 @@
 function renderTaskCardToDo(elementToDo) {
-    return `
+  return `
         <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementToDo['id']})">
             
         <div class="task_card_small_content">
@@ -29,7 +29,7 @@ function renderTaskCardToDo(elementToDo) {
 
 
 function renderTaskCardProgress(elementProgress) {
-    return `
+  return `
         <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementProgress['id']})">
             <div class="task_card_small_content">
             
@@ -57,7 +57,7 @@ function renderTaskCardProgress(elementProgress) {
 
 
 function renderTaskCardAwait(elementAwait) {
-    return `
+  return `
         <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementAwait['id']})">
             <div class="task_card_small_content">
             
@@ -85,7 +85,7 @@ function renderTaskCardAwait(elementAwait) {
 
 
 function renderTaskCardDone(elementDone) {
-    return `
+  return `
         <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementDone['id']})">
             <div class="task_card_small_content">
             

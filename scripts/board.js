@@ -64,13 +64,17 @@ const artColors = {
 
 let draggedTo;
 
-function init(){
-    updateHTML();
+
+function initBoardJs() {
+    updateHtmlTodo();
+    updateHtmlProgress();
+    updateHtmlAwait();
+    updateHtmlDone();
     changeArtBackground();
 }
 
 
-function updateHTML() {
+function updateHtmlTodo() {
     let todo = tasks.filter(x => x['category'] == 'todo');
     document.getElementById('small_card_todo').innerHTML = '';
     for (let index = 0; index < todo.length; index++) {
@@ -78,8 +82,10 @@ function updateHTML() {
         document.getElementById('small_card_todo').innerHTML += renderTaskCardToDo(elementToDo);
         changeArtBackground(`art_small_${elementToDo.id}`);
     }
+}
 
 
+function updateHtmlProgress() {
     let progress = tasks.filter(x => x['category'] == 'progress');
     document.getElementById('small_card_progress').innerHTML = '';
     for (let index = 0; index < progress.length; index++) {
@@ -87,8 +93,10 @@ function updateHTML() {
         document.getElementById('small_card_progress').innerHTML += renderTaskCardToDo(elementProgress);
         changeArtBackground(`art_small_${elementProgress.id}`);
     }
+}
 
 
+function updateHtmlAwait() {
     let await = tasks.filter(x => x['category'] == 'await');
     document.getElementById('small_card_await').innerHTML = '';
     for (let index = 0; index < await.length; index++) {
@@ -96,8 +104,10 @@ function updateHTML() {
         document.getElementById('small_card_await').innerHTML += renderTaskCardAwait(elementAwait);
         changeArtBackground(`art_small_${elementAwait.id}`);
     }
+}
 
 
+function updateHtmlDone() {
     let done = tasks.filter(x => x['category'] == 'done');
     document.getElementById('small_card_done').innerHTML = '';
     for (let index = 0; index < done.length; index++) {
@@ -128,5 +138,8 @@ function allowDrop(ev) {
 
 function moveTo(category) {
     tasks[draggedTo]['category'] = category;
-    updateHTML();
+    updateHtmlTodo();
+    updateHtmlProgress();
+    updateHtmlAwait();
+    updateHtmlDone();
 }

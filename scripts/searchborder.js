@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const inputDiv = document.querySelector('.input_div');
     const inputField = document.querySelector('.search_task_input');
-    
+
     inputField.addEventListener('focus', () => {
         inputDiv.classList.remove('default-border');
         inputDiv.classList.add('focused-border');
