@@ -29,7 +29,6 @@ function includeHTML() {
     }
   }
   highlightActiveLink();
-  init();
 }
 
 /**

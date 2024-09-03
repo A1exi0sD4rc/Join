@@ -2,6 +2,7 @@ let contacts = [];
 
 
 async function init() {
+    includeHTML();
     await getContacts();
     render();
     renderContacts();
