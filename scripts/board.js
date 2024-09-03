@@ -77,7 +77,6 @@ function initBoardJs() {
     updateHtmlAwait();
     updateHtmlDone();
     changeArtBackground();
-    addPrioImg();
 }
 
 
@@ -138,12 +137,12 @@ function changeArtBackground(id) {
 }
 
 
-function addPrioImg(task) {
+function addPrioImg(tasks) {
     const prioimg = prios[tasks.prio];
-    const prioDiv = document.getElementById(`prio_small_${tasks.id}`);
+    const prio_small = document.getElementById(`prio_small_${tasks.id}`);
     
     if (prioimg) {
-        prioDiv.innerHTML = `<img src="${prioimg}">`;
+        prio_small.innerHTML = `<img src="${prioimg}">`;
     }
 }
 

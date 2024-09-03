@@ -7,6 +7,7 @@
     background-color: #ffffff;
     box-shadow: 0px 0px 10px 3px #00000014;
     margin-top: 16px;
+    cursor: pointer;
 }
 
 .task_card_small_content {
@@ -61,7 +62,7 @@
     height: 16px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
