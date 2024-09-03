@@ -97,3 +97,22 @@ p {
   background-color: rgba(0, 0, 0, 0.03);
   border-radius: 50%;
 }
+
+ol {
+  list-style: none; /* Entfernt die Standard-Nummerierung */
+  counter-reset: section;
+}
+
+li {
+  counter-increment: section;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+li::before {
+  content: counter(section) ".";
+  position: absolute;
+  left: -2em; /* Verschiebt die Nummerierung nach links */
+  font-size: 2em; /* Größe der Zahlen */
+  font-weight: bold; /* Fettgedruckte Zahlen */
+}
