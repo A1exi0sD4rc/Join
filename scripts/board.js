@@ -4,7 +4,7 @@ let tasks = [
         title: 'font.css',
         description: 'font.css verursacht Fehler.',
         assigned: '',
-        prio: '',
+        prio: 'low',
         category: 'todo',
         subtasks: '',
         id: 0
@@ -15,7 +15,7 @@ let tasks = [
         title: 'Join aktuell',
         description: 'Zwichenstand von Mentoren.',
         assigned: '',
-        prio: '',
+        prio: 'low',
         category: 'await',
         subtasks: '',
         id: 1
@@ -26,7 +26,7 @@ let tasks = [
         title: 'Join Contacts',
         description: 'Contacts Seite erstellen.',
         assigned: '',
-        prio: '',
+        prio: 'med',
         category: 'progress',
         subtasks: '',
         id: 2
@@ -37,7 +37,7 @@ let tasks = [
         title: 'Bestellapp',
         description: 'Clone einer bekannten Bestllapp.',
         assigned: '',
-        prio: '',
+        prio: 'high',
         category: 'done',
         subtasks: '',
         id: 3
@@ -48,7 +48,7 @@ let tasks = [
         title: 'Join Board',
         description: 'Task Board erstellen.',
         assigned: '',
-        prio: '',
+        prio: 'high',
         category: 'progress',
         subtasks: '',
         id: 4
@@ -61,6 +61,12 @@ const artColors = {
     'User Story': '#0038FF',
 };
 
+const prios = {
+    'low': 'assets/img/Prio_low.svg',
+    'med': 'assets/img/Prio_med.svg',
+    'high': 'assets/img/Prio_high.svg',
+}
+
 
 let draggedTo;
 
@@ -71,6 +77,7 @@ function initBoardJs() {
     updateHtmlAwait();
     updateHtmlDone();
     changeArtBackground();
+    addPrioImg();
 }
 
 
@@ -81,6 +88,7 @@ function updateHtmlTodo() {
         const elementToDo = todo[index];
         document.getElementById('small_card_todo').innerHTML += renderTaskCardToDo(elementToDo);
         changeArtBackground(`art_small_${elementToDo.id}`);
+        addPrioImg(elementToDo);
     }
 }
 
@@ -92,6 +100,7 @@ function updateHtmlProgress() {
         const elementProgress = progress[index];
         document.getElementById('small_card_progress').innerHTML += renderTaskCardToDo(elementProgress);
         changeArtBackground(`art_small_${elementProgress.id}`);
+        addPrioImg(elementProgress);
     }
 }
 
@@ -103,6 +112,7 @@ function updateHtmlAwait() {
         const elementAwait = await[index];
         document.getElementById('small_card_await').innerHTML += renderTaskCardAwait(elementAwait);
         changeArtBackground(`art_small_${elementAwait.id}`);
+        addPrioImg(elementAwait);
     }
 }
 
@@ -114,14 +124,26 @@ function updateHtmlDone() {
         const elementDone = done[index];
         document.getElementById('small_card_done').innerHTML += renderTaskCardAwait(elementDone);
         changeArtBackground(`art_small_${elementDone.id}`);
+        addPrioImg(elementDone);
     }
 }
 
 
 function changeArtBackground(id) {
     const toChangeBg = document.getElementById(id);
+
     if (toChangeBg) {
         toChangeBg.style.backgroundColor = artColors[toChangeBg.textContent.trim()];
+    }
+}
+
+
+function addPrioImg(task) {
+    const prioimg = prios[task.prio];
+    const prioDiv = document.getElementById(`prio_small_${task.id}`);
+    
+    if (prioimg) {
+        prioDiv.innerHTML = `<img src="${prioimg}">`;
     }
 }
 

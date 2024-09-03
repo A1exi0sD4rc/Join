@@ -18,7 +18,7 @@ function renderTaskCardToDo(elementToDo) {
 
                 <div class="assigned_prio_small">
                   <div class="assigned_small" id=""></div>
-                  <div class="prio_small" ID="prio_small"></div>
+                  <div class="prio_small" ID="prio_small_${elementToDo['id']}"></div>
                 </div> 
 
             </div>
@@ -47,7 +47,7 @@ function renderTaskCardProgress(elementProgress) {
 
                 <div class="assigned_prio_small">
                   <div class="assigned_small" id=""></div>
-                  <div class="prio_small" ID="prio_small"></div>
+                  <div class="prio_small" ID="prio_small_${elementProgress['id']}"></div>
                 </div>
 
             </div>
@@ -75,7 +75,7 @@ function renderTaskCardAwait(elementAwait) {
 
                 <div class="assigned_prio_small">
                   <div class="assigned_small" id=""></div>
-                  <div class="prio_small" ID="prio_small"></div>
+                  <div class="prio_small" ID="prio_small_${elementAwait['id']}"></div>
                 </div>
 
             </div>
@@ -103,7 +103,7 @@ function renderTaskCardDone(elementDone) {
 
                 <div class="assigned_prio_small">
                   <div class="assigned_small" id=""></div>
-                  <div class="prio_small" ID="prio_small"></div>
+                  <div class="prio_small" ID="prio_small_${elementDone['id']}"></div>
                 </div>
 
             </div>             

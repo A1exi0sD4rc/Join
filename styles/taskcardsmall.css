@@ -87,6 +87,9 @@
     width: 220px;
     height: 32px;
     justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .assigned_small {
