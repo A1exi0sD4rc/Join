@@ -25,16 +25,29 @@
 
 .header_icons_right {
   display: flex;
+  align-items: center;
 }
 .header_help_icon {
   width: 20px;
   height: 20px;
-  padding: 12px;
 }
 
-.header_help_icon :hover {
+.header_help_icon_container:hover .header_help_icon {
+  width: 24px;
+  height: 24px;
+}
+
+.header_help_icon_container {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.header_help_icon_container:hover {
   cursor: pointer;
-  transform: scale(1.09);
 }
 
 .sidebar {
