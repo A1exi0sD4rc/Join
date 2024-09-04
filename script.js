@@ -84,8 +84,8 @@ function goBack() {
  */
 function generateInitials() {
   let content = document.getElementById("user-logo");
-  let userName = sessionStorage.getItem("userName");
 
+  let userName = sessionStorage.getItem("userName");
   content.innerHTML = "";
 
   if (userName) {
@@ -102,6 +102,20 @@ function generateInitials() {
   } else {
     content.innerHTML = "G";
   }
+}
+
+/**
+ * Ensures that the includeHTML is fully loaded before attempting to access user-logo.
+ */
+function waitForUserLogo() {
+  const interval = setInterval(() => {
+    const userLogo = document.getElementById("user-logo");
+
+    if (userLogo) {
+      clearInterval(interval);
+      summaryInit();
+    }
+  }, 100);
 }
 
 /**
