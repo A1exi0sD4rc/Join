@@ -4,9 +4,9 @@ body {
   font-family: "inter", sans-serif;
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
   display: none;
-}
+} */
 
 a {
   all: unset;
@@ -37,8 +37,6 @@ h3 {
 }
 
 .ln_pp_hp_content {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
   max-width: 1014px;
   padding: 206px 97px 0 328px;
 }
