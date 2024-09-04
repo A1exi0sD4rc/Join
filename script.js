@@ -106,13 +106,13 @@ function generateInitials() {
 /**
  * Ensures that the includeHTML is fully loaded before attempting to access user-logo.
  */
-function waitForUserLogo() {
+function awaitGenerateInitials() {
   const interval = setInterval(() => {
     const userLogo = document.getElementById("user-logo");
 
     if (userLogo) {
       clearInterval(interval);
-      summaryInit();
+      generateInitials();
     }
   }, 100);
 }
