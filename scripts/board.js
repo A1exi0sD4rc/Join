@@ -146,16 +146,31 @@ function addPrioImg(tasks) {
 }
 
 
+/**
+ * startDrag(id) assigns the value of id to the variable draggedTo, to follow the element being dragged in a drag and drop operation.
+ *  
+ * @param {number} id - The id provides a unique identifier for the object.
+ */
 function startDrag(id) {
     draggedTo = id;
 }
 
 
+/**
+ * enables dropping elements onto the target div
+ * 
+ * @param {event} ev - the event object, which contains information about the event and allows manipulation of the default behavior associated with it
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 
+/**
+ * changes the category of the task being dragged to the new category.
+ * 
+ * @param {string} category - used to update the category of a specific task in the tasks array.
+ */
 function moveTo(category) {
     tasks[draggedTo]['category'] = category;
     updateHtmlTodo();
@@ -163,3 +178,38 @@ function moveTo(category) {
     updateHtmlAwait();
     updateHtmlDone();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* in progress
+function filterTasks() {
+    const searchTerm = document.getElementById('search_input').value.toLowerCase();
+    ['todo', 'progress', 'await', 'done'].forEach(cat => {
+        document.getElementById(`small_card_${cat}`).innerHTML = '';
+        tasks.filter(task => 
+            (task.category === cat) && 
+            [task.title, task.description, task.prio, task.art]
+            .some(field => field.toLowerCase().includes(searchTerm))
+        ).forEach(task => {
+            document.getElementById(`small_card_${cat}`).innerHTML += 
+                cat === 'todo' || cat === 'progress' ? renderTaskCardToDo(task) : renderTaskCardAwait(task);
+            changeArtBackground(`art_small_${task.id}`);
+            addPrioImg(task);
+        });
+    });
+}
+*/
