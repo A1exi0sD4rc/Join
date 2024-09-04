@@ -1,4 +1,5 @@
 let contacts = [];
+let contactSelected = false;
 
 
 async function init() {
@@ -46,6 +47,7 @@ function render() {
             <div class="contacts-seperator-vertikal"></div>
             <h2>Better with a team</h2>
         </div>
+        <div id="contact-details" class="contacts-contact-details"></div>  
     `;
 }
 
@@ -54,22 +56,25 @@ function renderContacts() {
     let clusteredContacts = loadNameCluster();
 
     document.getElementById('contacts-overview').innerHTML = '';
-    document.getElementById('contacts-overview').innerHTML += /*html*/`
+    document.getElementById('contacts-overview').innerHTML += /*html*/ `
         <div class="contacts-overview-space"></div>
     `;
 
     for (let letter in clusteredContacts) {
-        document.getElementById('contacts-overview').innerHTML += /*html*/`
+        document.getElementById('contacts-overview').innerHTML += /*html*/ `
             <div class="contacts-overview-category">${letter}</div>
             <div class="contacts-seperatore-horizontal"></div>
         `;
-        clusteredContacts[letter].forEach((contact, index) => {
-            document.getElementById('contacts-overview').innerHTML += /*html*/`
-                <div id="${index}" class="contacts-overview-contact" onclick="openDetails()">
+
+        clusteredContacts[letter].forEach(contact => {
+            let originalIndex = contacts.indexOf(contact);
+
+            document.getElementById('contacts-overview').innerHTML += /*html*/ `
+                <div id="${originalIndex}" class="contacts-overview-contact contacts-overview-contact-unselected" onclick="contactDetails(${originalIndex})">
                     <div class="contacts-initials">
                         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="21" cy="21" r="20" fill="#FF7A00" stroke="white" stroke-width="2"/>
-                            <text x="21" y="24" text-anchor="middle" font-family="Arial" font-size="12" fill="white">${getInitials(contact.name)}</text>
+                            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${getInitials(contact.name)}</text>
                         </svg>
                     </div>
                     <div class="contacts-name-email">
@@ -107,4 +112,28 @@ function getInitials(name) {
     return name.split(' ')
         .map(word => word.charAt(0))
         .join('');
+}
+
+function contactDetails(i) {
+    if (contactSelected == false) {
+        document.getElementById(`${i}`).classList.toggle('contacts-overview-contact-selected');
+        document.getElementById(`${i}`).classList.toggle('contacts-overview-contact-unselected');
+        contactSelected = true;
+    }
+
+    document.getElementById('contact-details').innerHTML = '';
+    document.getElementById('contact-details').innerHTML += /*html*/ `
+        <div class="contacts-contact-logo-name">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="60" fill="#FF7A00"/>
+                <text x="60" y="73" text-anchor="middle" font-size="47" fill="white">${getInitials(contacts[i]['name'])}</text>
+            </svg>
+            <div class="contacts-contact-details-h-edit-delete">
+                <h2>${contacts[i]['name']}</h2>
+                <div class="contacts-contact-details-btn-div">
+                    <button class="contacts-contact-details-edit-btn" onclick="editContact()">Edit</button><button class="contacts-contact-details-delete-btn" onclick="deleteContact()">Delete</button>
+                </div>
+            </div>
+        </div>  
+    `;
 }
