@@ -4,6 +4,7 @@ body {
     margin: 0;
     font-family: "Inter", system-ui;
     background-color: #f6f7f8;
+    max-width: 1440px;
 }
 
 
@@ -13,8 +14,9 @@ body {
     position: relative;
     top: 96px;
     left: 232px;
-    max-width: 1440px;
+    max-width: 1100px;
 }
+
 
 /* overview */
 
@@ -65,7 +67,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 32px 24px;    
+    padding: 32px 24px;
 }
 
 .contacts-overview-space {
@@ -96,12 +98,23 @@ body {
     align-items: center;
     width: 352px;
     height: 78px;
+    border-radius: 10px;
     padding-left: 40px;
     margin: 15px 24px;
     cursor: pointer;
 }
 
-.contacts-overview-contact:hover {
+.contacts-overview-contact-unselected {
+    background-color: white;
+    color: black;
+}
+
+.contacts-overview-contact-selected {
+    background-color: #2A3647;
+    color: white;
+}
+
+.contacts-overview-contact-unselected:hover {
     background-color: #f6f7f8;
     border-radius: 10px;
 }
@@ -113,7 +126,7 @@ body {
 .contacts-name-email {
     display: flex;
     justify-content: flex-start;
-    width: 260px;   
+    width: 260px;
 }
 
 .contacts-center {
@@ -131,7 +144,7 @@ body {
 }
 
 
-/* contact details */
+/* contact headline */
 
 .contacts-headline {
     position: absolute;
@@ -162,4 +175,71 @@ body {
     font-weight: 400;
     font-size: 27px;
     margin: 0;
+}
+
+
+/* contact details */
+
+.contacts-contact-details {
+    width: 461px;
+    height: 364px;
+    position: fixed;
+    top: 311px;
+    left: 750px;
+    gap: 21px;
+}
+
+.contacts-contact-logo-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contacts-contact-details-btn-div {
+    display: flex;
+    align-items: center;
+}
+
+.contacts-contact-details-h-edit-delete h2 {
+    min-height: 56px;
+    font-size: 47px;
+    margin: 0;
+}
+
+.contacts-contact-details-h-edit-delete button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 24px;
+    margin-top: 8px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.contacts-contact-details-h-edit-delete button:hover {
+    color: #29ABE2;
+    font-weight: 700;
+}
+
+.contacts-contact-details-edit-btn {
+    width: 60px;
+    background-image: url("./assets/img/contacts_pen.svg");
+    background-size: 24px;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+}
+
+.contacts-contact-details-edit-btn:hover {
+    background-image: url("./assets/img/contacts_pen_hover.svg");
+}
+
+.contacts-contact-details-delete-btn {
+    width: 80px;
+    background-image: url("./assets/img/contacts_bin.svg");
+    background-size: 24px;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+}
+
+.contacts-contact-details-delete-btn:hover {
+    background-image: url("./assets/img/contacts_bin_hover.svg");
 }
