@@ -2,6 +2,7 @@ let contacts = [];
 
 
 async function init() {
+    includeHTML();
     await getContacts();
     render();
     renderContacts();
@@ -50,30 +51,55 @@ function render() {
 
 
 function renderContacts() {
+    let clusteredContacts = loadNameCluster();
+
     document.getElementById('contacts-overview').innerHTML = '';
     document.getElementById('contacts-overview').innerHTML += /*html*/`
         <div class="contacts-overview-space"></div>
     `;
-    for (let c = 0; c < contacts.length; c++) {
+
+    for (let letter in clusteredContacts) {
         document.getElementById('contacts-overview').innerHTML += /*html*/`
-            <div class="contacts-overview-category">${contacts[c]['name'].charAt(0)}</div>
+            <div class="contacts-overview-category">${letter}</div>
             <div class="contacts-seperatore-horizontal"></div>
-            <div id="${c}" class="contacts-overview-contact">
-                <div class="contacts-initials">
-                    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="21" cy="21" r="20" fill="#FF7A00" stroke="white" stroke-width="2"/>
-                        <text x="21" y="24" text-anchor="middle" font-family="Arial" font-size="12" fill="white">${getInitials(contacts[c]['name'])}</text>
-                    </svg>
-                </div>
-                <div class="contacts-name-email">
-                    <div class="contacts-center">
-                        ${contacts[c]['name']}<br>
-                        <a href="mailto:${contacts[c]['email']}">${contacts[c]['email']}</a> 
+        `;
+        clusteredContacts[letter].forEach((contact, index) => {
+            document.getElementById('contacts-overview').innerHTML += /*html*/`
+                <div id="${index}" class="contacts-overview-contact" onclick="openDetails()">
+                    <div class="contacts-initials">
+                        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="21" cy="21" r="20" fill="#FF7A00" stroke="white" stroke-width="2"/>
+                            <text x="21" y="24" text-anchor="middle" font-family="Arial" font-size="12" fill="white">${getInitials(contact.name)}</text>
+                        </svg>
+                    </div>
+                    <div class="contacts-name-email">
+                        <div class="contacts-center">
+                            ${contact.name}<br>
+                            <a href="mailto:${contact.email}">${contact.email}</a> 
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
+        });
     }
+}
+
+
+function loadNameCluster() {
+    let nameClusters = {};
+
+    contacts.forEach(contact => {
+        let firstLetter = contact.name.charAt(0).toUpperCase();
+        if (!nameClusters[firstLetter]) {
+            nameClusters[firstLetter] = [];
+        }
+        nameClusters[firstLetter].push(contact);
+    });
+    for (let key in nameClusters) {
+        nameClusters[key].sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    return nameClusters;
 }
 
 

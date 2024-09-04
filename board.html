@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
   <meta charset="UTF-8">
@@ -7,19 +7,27 @@
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="styles/board.css">
-  <!-- <link rel="stylesheet" href="assets/fonts.css"> -->
+  <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="styles/taskcardsmall.css">
+  <link rel="stylesheet" href="assets/templates/sidebar_header_style.css">
+  <link rel="stylesheet" href="ln_pp_hp_style.css">
 
+  <script src="script.js"></script>
   <script src="scripts/board.js"></script>
   <script src="scripts/boardrender.js"></script>
   <script src="scripts/searchborder.js"></script>
 
+
   <title>Board</title>
 </head>
 
-<body onload="init()">
+<body onload="initBoardJs()">
 
+<section w3-include-html="./assets/templates/header.html" class="header"></section>
+<section w3-include-html="./assets/templates/sidebar.html" class="sidebar"></section>
 
+<div class="board_content">
+  
   <div class="board_header">
 
     <h1>Board</h1>
@@ -57,6 +65,8 @@
     <div class="slots" id="small_card_await" ondrop="moveTo('await')" ondragover="allowDrop(event)"></div>
     <div class="slots" id="small_card_done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
   </div>
+
+</div>
 
 </body>
 
