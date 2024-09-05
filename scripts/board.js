@@ -71,6 +71,9 @@ const prios = {
 let draggedTo;
 
 
+/**
+ * 
+ */
 function initBoardJs() {
     includeHTML();
     updateHtmlTodo();
@@ -81,6 +84,9 @@ function initBoardJs() {
 }
 
 
+/**
+ * filters tasks marked as "todo" and dynamically updates the section with task cards including their background-color and priority img.
+ */
 function updateHtmlTodo() {
     let todo = tasks.filter(x => x['category'] == 'todo');
     document.getElementById('small_card_todo').innerHTML = '';
@@ -93,6 +99,9 @@ function updateHtmlTodo() {
 }
 
 
+/**
+ * filters tasks marked as "progress" and dynamically updates the section with task cards including their background-color and priority img.
+ */
 function updateHtmlProgress() {
     let progress = tasks.filter(x => x['category'] == 'progress');
     document.getElementById('small_card_progress').innerHTML = '';
@@ -105,6 +114,9 @@ function updateHtmlProgress() {
 }
 
 
+/**
+ * filters tasks marked as "await" and dynamically updates the section with task cards including their background-color and priority img.
+ */
 function updateHtmlAwait() {
     let await = tasks.filter(x => x['category'] == 'await');
     document.getElementById('small_card_await').innerHTML = '';
@@ -116,7 +128,9 @@ function updateHtmlAwait() {
     }
 }
 
-
+/**
+ * filters tasks marked as "done" and dynamically updates the section with task cards including their background-color and priority img.
+ */
 function updateHtmlDone() {
     let done = tasks.filter(x => x['category'] == 'done');
     document.getElementById('small_card_done').innerHTML = '';
@@ -129,6 +143,11 @@ function updateHtmlDone() {
 }
 
 
+/**
+ * changes the background-color of a div depending on his catergory/textContent
+ * 
+ * @param {number} id - The id provides a unique identifier for the object.
+ */
 function changeArtBackground(id) {
     const toChangeBg = document.getElementById(id);
     if (toChangeBg) {
@@ -137,6 +156,11 @@ function changeArtBackground(id) {
 }
 
 
+/**
+ * adds a specific priority Icon/img to the task card.
+ * 
+ * @param {object} tasks - 
+ */
 function addPrioImg(tasks) {
     const prioimg = prios[tasks.prio];
     const prio_small = document.getElementById(`prio_small_${tasks.id}`);
@@ -180,36 +204,22 @@ function moveTo(category) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* in progress
+/**
+ * filters tasks based on the search input and updates the task sections.
+ */
 function filterTasks() {
-    const searchTerm = document.getElementById('search_input').value.toLowerCase();
-    ['todo', 'progress', 'await', 'done'].forEach(cat => {
-        document.getElementById(`small_card_${cat}`).innerHTML = '';
-        tasks.filter(task => 
-            (task.category === cat) && 
-            [task.title, task.description, task.prio, task.art]
-            .some(field => field.toLowerCase().includes(searchTerm))
-        ).forEach(task => {
-            document.getElementById(`small_card_${cat}`).innerHTML += 
-                cat === 'todo' || cat === 'progress' ? renderTaskCardToDo(task) : renderTaskCardAwait(task);
-            changeArtBackground(`art_small_${task.id}`);
-            addPrioImg(task);
+    const searchValue = document.querySelector('.search_task_input').value.toLowerCase();
+    document.getElementById('small_card_todo').innerHTML = '';
+    document.getElementById('small_card_progress').innerHTML = '';
+    document.getElementById('small_card_await').innerHTML = '';
+    document.getElementById('small_card_done').innerHTML = '';
+    tasks.filter(task => task.title.toLowerCase().includes(searchValue) || task.description.toLowerCase().includes(searchValue))
+        .forEach(task => {
+            const categoryElement = document.getElementById(`small_card_${task.category}`);
+            if (categoryElement) {
+                categoryElement.innerHTML += renderTaskCardToDo(task);
+                changeArtBackground(`art_small_${task.id}`);
+                addPrioImg(task);
+            }
         });
-    });
 }
-*/
