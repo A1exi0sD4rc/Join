@@ -198,13 +198,16 @@ table {
 #regular_addTask_link,
 #responsive_board_link,
 #responsive_addTasks_link,
-#regular_board_link {
+#regular_board_link,
+#responsive_header_join_logo,
+#header_headline {
   display: none;
 }
 
 @media (min-width: 921px) {
   #regular_board_link,
-  #regular_addTask_link {
+  #regular_addTask_link,
+  #header_headline {
     display: block;
   }
 }
@@ -213,6 +216,11 @@ table {
   #responsive_board_link,
   #responsive_addTasks_link {
     display: flex;
+  }
+  #responsive_header_join_logo {
+    display: block;
+    height: 39px;
+    width: 32px;
   }
 
   .sidebar {
