@@ -195,7 +195,26 @@ table {
   background-color: #2a3d59;
 }
 
+#regular_addTask_link,
+#responsive_board_link,
+#responsive_addTasks_link,
+#regular_board_link {
+  display: none;
+}
+
+@media (min-width: 921px) {
+  #regular_board_link,
+  #regular_addTask_link {
+    display: block;
+  }
+}
+
 @media (max-width: 920px) {
+  #responsive_board_link,
+  #responsive_addTasks_link {
+    display: flex;
+  }
+
   .sidebar {
     bottom: 0;
     width: 100%;
@@ -224,15 +243,15 @@ table {
   }
 
   .sidebar_links_center img {
-    height: 22px;
-    width: 22px;
+    height: 24px;
+    width: 24px;
   }
 
   .sidebar_links_center a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 76px;
+    width: 80px;
     height: 76px;
     border-radius: 14px;
   }
