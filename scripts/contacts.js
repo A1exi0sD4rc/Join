@@ -1,5 +1,5 @@
 let contacts = [];
-let contactSelected = false;
+let lastSelected;
 
 
 async function init() {
@@ -29,8 +29,21 @@ async function getContacts() {
 
 function render() {
     document.getElementById("contacts-site").innerHTML = "";
+    document.getElementById("contacts-site").innerHTML = /*html*/`
+        <div id="contacts-add-edit-bg" class="contacts-add-edit-bg d-none">    
+            <div id="contacts-add-edit" class="contacts-add-edit-div"></div>  
+        </div>
+    `;
     document.getElementById("contacts-site").innerHTML += /*html*/ `
         <div id="contacts-div" class="contacts-container"></div>
+    `;
+    document.getElementById("contacts-site").innerHTML += /*html*/ `
+        <div class="contacts-headline">
+            <h1>Contacts</h1>
+            <div class="contacts-seperator-vertikal"></div>
+            <h2>Better with a team</h2>
+        </div>
+        <div id="contact-details" class="contacts-contact-details"></div>  
     `;
     document.getElementById("contacts-div").innerHTML = "";
     document.getElementById("contacts-div").innerHTML += /*html*/ `
@@ -40,14 +53,6 @@ function render() {
             </button>
         </div>
         <div id="contacts-overview" class="contacts-overview"></div>
-    `;
-    document.getElementById("contacts-site").innerHTML += /*html*/ `
-        <div class="contacts-headline">
-            <h1>Contacts</h1>
-            <div class="contacts-seperator-vertikal"></div>
-            <h2>Better with a team</h2>
-        </div>
-        <div id="contact-details" class="contacts-contact-details"></div>  
     `;
 }
 
@@ -59,6 +64,7 @@ function renderContacts() {
     document.getElementById('contacts-overview').innerHTML += /*html*/ `
         <div class="contacts-overview-space"></div>
     `;
+    
 
     for (let letter in clusteredContacts) {
         document.getElementById('contacts-overview').innerHTML += /*html*/ `
@@ -70,7 +76,7 @@ function renderContacts() {
             let originalIndex = contacts.indexOf(contact);
 
             document.getElementById('contacts-overview').innerHTML += /*html*/ `
-                <div id="${originalIndex}" class="contacts-overview-contact contacts-overview-contact-unselected" onclick="contactDetails(${originalIndex})">
+                <div id="${originalIndex}" class="contacts-overview-contact contacts-overview-contact-unselected" onclick="renderContactDetails(${originalIndex})">
                     <div class="contacts-initials">
                         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="21" cy="21" r="20" fill="#FF7A00" stroke="white" stroke-width="2"/>
@@ -80,7 +86,7 @@ function renderContacts() {
                     <div class="contacts-name-email">
                         <div class="contacts-center">
                             ${contact.name}<br>
-                            <a href="mailto:${contact.email}">${contact.email}</a> 
+                            <a href="#">${contact.email}</a> 
                         </div>
                     </div>
                 </div>
@@ -114,12 +120,9 @@ function getInitials(name) {
         .join('');
 }
 
-function contactDetails(i) {
-    if (contactSelected == false) {
-        document.getElementById(`${i}`).classList.toggle('contacts-overview-contact-selected');
-        document.getElementById(`${i}`).classList.toggle('contacts-overview-contact-unselected');
-        contactSelected = true;
-    }
+
+function renderContactDetails(i) {
+    toggleDetailClasses(i);
 
     document.getElementById('contact-details').innerHTML = '';
     document.getElementById('contact-details').innerHTML += /*html*/ `
@@ -131,9 +134,60 @@ function contactDetails(i) {
             <div class="contacts-contact-details-h-edit-delete">
                 <h2>${contacts[i]['name']}</h2>
                 <div class="contacts-contact-details-btn-div">
-                    <button class="contacts-contact-details-edit-btn" onclick="editContact()">Edit</button><button class="contacts-contact-details-delete-btn" onclick="deleteContact()">Delete</button>
+                    <button class="contacts-contact-details-edit-btn" onclick="editContact(${i})">Edit</button><button class="contacts-contact-details-delete-btn" onclick="deleteContact(${i})">Delete</button>
                 </div>
             </div>
         </div>  
+        <div class="contacts-details-info-hl">
+            Contact Information
+        </div>
+        <div class="contacts-details-info">
+            <b>Email</b>
+            <a href="mailto:${contacts[i]['email']}">${contacts[i]['email']}</a>
+            <b>Phone</b>
+            ${contacts[i]['number']}
+        </div>
+    `;
+}
+
+
+function toggleDetailClasses(i) {
+    if (lastSelected === undefined) {
+        document.getElementById(`${i}`).classList.toggle('contacts-overview-contact-selected');
+        document.getElementById(`${i}`).classList.toggle('contacts-overview-contact-unselected');
+        lastSelected = i;
+    } else {
+        document.getElementById(`${lastSelected}`).classList.toggle('contacts-overview-contact-selected');
+        document.getElementById(`${lastSelected}`).classList.toggle('contacts-overview-contact-unselected');
+        document.getElementById(`${i}`).classList.toggle('contacts-overview-contact-selected');
+        document.getElementById(`${i}`).classList.toggle('contacts-overview-contact-unselected');
+        lastSelected = i;
+    }
+}
+
+
+function editContact(i) {
+    toggleVisiblility();
+    renderEditContact(i);
+}
+
+
+function toggleVisiblility() {
+    document.getElementById('contacts-add-edit-bg').classList.toggle('d-none');
+    // setTimeout(divFlyIn(),1000);
+}
+
+
+function divFlyIn() {
+    document.getElementById('contacts-add-edit').classList.toggle('contacts-translateX')
+}
+
+
+function renderEditContact(i) {
+    document.getElementById('contacts-add-edit').innerHTML = '';
+    document.getElementById('contacts-add-edit').innerHTML += /*html*/`
+        <div class="contacts-edit-title">
+            <img src="./assets/img/logo_white.svg">
+        </div>   
     `;
 }

@@ -7,6 +7,10 @@ body {
     max-width: 1440px;
 }
 
+.d-none {
+    display: none;
+}
+
 
 /* site content */
 
@@ -116,7 +120,6 @@ body {
 
 .contacts-overview-contact-unselected:hover {
     background-color: #f6f7f8;
-    border-radius: 10px;
 }
 
 .contacts-initials {
@@ -181,7 +184,6 @@ body {
 /* contact details */
 
 .contacts-contact-details {
-    width: 461px;
     height: 364px;
     position: fixed;
     top: 311px;
@@ -197,6 +199,13 @@ body {
 .contacts-contact-details-btn-div {
     display: flex;
     align-items: center;
+}
+
+.contacts-contact-details-h-edit-delete {
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .contacts-contact-details-h-edit-delete h2 {
@@ -242,4 +251,62 @@ body {
 
 .contacts-contact-details-delete-btn:hover {
     background-image: url("./assets/img/contacts_bin_hover.svg");
+}
+
+.contacts-details-info-hl {
+    width: 207px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.contacts-details-info {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.contacts-details-info a {
+    color: #29ABE2;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+/* contact add / edit */
+
+.contacts-add-edit-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: #b8b9ba5d;
+}
+
+.contacts-add-edit-div {
+    position: sticky;
+    top: 200px;
+    left: 150px;
+    z-index: 2;
+    transform: translateX(-200%);
+    transition: all 125ms ease-in-out;
+    width: 1220px;
+    height: 590px;
+    border-radius: 10px;
+}
+
+.contacts-translateX {
+    transform: translateX(0%) !important;
+}
+
+.contacts-edit-title {
+    width: 453px;
+    height: 100%;
+    background-color: #2A3647;
 }
