@@ -109,12 +109,23 @@ function generateInitials() {
 function awaitGenerateInitials() {
   const interval = setInterval(() => {
     const userLogo = document.getElementById("user-logo");
+    const helpUser = document.querySelector(".header_help_icon_container");
+    const sidebarUser = document.querySelector(".sidebar_links_center");
 
     if (userLogo) {
       clearInterval(interval);
-      generateInitials();
+      const userName = sessionStorage.getItem("userName");
+
+      if (!userName) {
+        userLogo.style.display = "none";
+        helpUser.style.display = "none";
+        sidebarUser.style.display = "none";
+      } else {
+        generateInitials();
+        userLogo.style.display = "flex";
+      }
     }
-  }, 100);
+  }, 10);
 }
 
 /**
