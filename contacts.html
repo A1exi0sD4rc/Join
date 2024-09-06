@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacts</title>
-    <link rel="stylesheet" href="contacts.css">
-    <link rel="stylesheet" href="./assets/fonts.css">
+    <link rel="stylesheet" href="contacts.css" />
+    <link rel="stylesheet" href="./assets/fonts.css" />
     <link rel="stylesheet" href="assets/templates/sidebar_header_style.css" />
     <link rel="stylesheet" href="ln_pp_hp_style.css" />
     <script src="./scripts/contacts.js"></script>
     <script src="script.js"></script>
-</head>
+  </head>
 
-<body onload="init()">
-    <section w3-include-html="./assets/templates/header.html" class="header"></section>
-    <section w3-include-html="./assets/templates/sidebar.html" class="sidebar"></section>
+  <body onload="init(); awaitGenerateInitials()">
+    <section
+      w3-include-html="./assets/templates/header.html"
+      class="header"
+    ></section>
+    <section
+      w3-include-html="./assets/templates/sidebar.html"
+      class="sidebar"
+    ></section>
     <div id="contacts-site" class="contacts-content"></div>
-</body>
-
+  </body>
 </html>

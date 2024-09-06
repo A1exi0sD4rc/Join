@@ -118,8 +118,8 @@ function awaitGenerateInitials() {
 
       if (!userName) {
         userLogo.style.display = "none";
-        helpUser.style.display = "none";
-        sidebarUser.style.display = "none";
+        if (helpUser) helpUser.style.display = "none";
+        if (sidebarUser) sidebarUser.style.display = "none";
       } else {
         generateInitials();
         userLogo.style.display = "flex";
