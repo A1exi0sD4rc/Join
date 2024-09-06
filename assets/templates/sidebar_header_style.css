@@ -198,3 +198,70 @@ table {
 .user-content a:hover {
   background-color: #2a3d59;
 }
+
+@media (max-width: 920px) {
+  .sidebar {
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: unset;
+  }
+
+  .sidebar_join_logo_container {
+    display: none;
+  }
+
+  .sidebar_links_center {
+    flex-direction: row;
+    margin-bottom: 0;
+    margin: 0 10px 0 10px;
+    /* evtl. hier statt margin padding rechts/links verwenden, je nachdem wie sich die scrollbar verhält, wenn ich sie ausblende am Ende.
+    margin bottom muss drin bleiben! */
+    height: 100%;
+    gap: 4px;
+  }
+
+  .sidebar_links_center img {
+    height: 22px;
+    width: 22px;
+  }
+
+  .sidebar_links_center a {
+    display: flex;
+    justify-content: center;
+  }
+
+  table {
+    margin: 0;
+  }
+
+  tr {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .text-cell {
+    font-size: 14px;
+    text-align: unset;
+    padding-left: 0;
+    width: unset;
+  }
+
+  .sidebar_links_bottom {
+    display: none;
+  }
+
+  .header {
+    height: 80px;
+  }
+
+  .header_content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .header_help_icon_container {
+    display: none;
+  }
+}

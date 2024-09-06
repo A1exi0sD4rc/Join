@@ -121,3 +121,24 @@ ol {
   font-size: 27px; /* Größe der Zahlen */
   font-weight: bold; /* Fettgedruckte Zahlen */
 }
+
+@media (max-width: 920px) {
+  .ln_pp_hp_content {
+    padding: 128px 16px 0 16px;
+  }
+
+  .ln_pp_hp_h1 {
+    font-size: 47px;
+  }
+  .legal_notice_h2 {
+    font-size: 27px;
+  }
+
+  .back_to_last_page_btn {
+    position: unset;
+  }
+
+  .ln_pp_hp_section {
+    padding-bottom: 80px;
+  }
+}
