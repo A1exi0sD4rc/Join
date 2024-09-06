@@ -51,7 +51,9 @@ function render() {
                 Add new contact <img src="./assets/img/contacts_new_contact.svg">
             </button>
         </div>
-        <div id="contacts-overview" class="contacts-overview"></div>
+        <div id="contacts-overview" class="contacts-overview">
+            
+        </div>
     `;
 }
 
