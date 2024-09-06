@@ -30,9 +30,8 @@ async function getContacts() {
 function render() {
     document.getElementById("contacts-site").innerHTML = "";
     document.getElementById("contacts-site").innerHTML = /*html*/`
-        <div id="contacts-add-edit-bg" class="contacts-add-edit-bg d-none">    
-            <div id="contacts-add-edit" class="contacts-add-edit-div"></div>  
-        </div>
+        <div id="contacts-add-edit-bg" class="contacts-add-edit-bg d-none" onclick="toggleVisiblility()"></div>
+        <div id="contacts-add-edit" class="contacts-add-edit-div"></div> 
     `;
     document.getElementById("contacts-site").innerHTML += /*html*/ `
         <div id="contacts-div" class="contacts-container"></div>
@@ -64,7 +63,7 @@ function renderContacts() {
     document.getElementById('contacts-overview').innerHTML += /*html*/ `
         <div class="contacts-overview-space"></div>
     `;
-    
+
 
     for (let letter in clusteredContacts) {
         document.getElementById('contacts-overview').innerHTML += /*html*/ `
@@ -174,12 +173,7 @@ function editContact(i) {
 
 function toggleVisiblility() {
     document.getElementById('contacts-add-edit-bg').classList.toggle('d-none');
-    // setTimeout(divFlyIn(),1000);
-}
-
-
-function divFlyIn() {
-    document.getElementById('contacts-add-edit').classList.toggle('contacts-translateX')
+    document.getElementById('contacts-add-edit').classList.toggle('contacts-translateX');
 }
 
 
@@ -188,6 +182,15 @@ function renderEditContact(i) {
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
         <div class="contacts-edit-title">
             <img src="./assets/img/logo_white.svg">
+            <div class="contacts-edit-title-h1">
+                <h1>Edit contact</h1>
+                <svg width="94" height="3" viewBox="0 0 94 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M92 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
         </div>   
+    `;
+    document.getElementById('contacts-add-edit').innerHTML += /*html*/`
+        <div class="contacts-edit-input"></div>
     `;
 }
