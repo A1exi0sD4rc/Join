@@ -1,3 +1,7 @@
+function init_ll_pp_hp() {
+  includeHTML();
+}
+
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
   /* Loop through a collection of all HTML elements: */
@@ -143,5 +147,17 @@ function toggleMenu() {
     userContent.style.display = "none";
   } else {
     userContent.style.display = "block";
+  }
+}
+
+/**
+ * Hides the 'header_help_icon_container' div when the help link is clicked.
+ * This function is called on clicking the help link and does not prevent
+ * the default navigation to help.html.
+ */
+function hideHelpDiv() {
+  const headerHpIcon = document.querySelector(".header_help_icon_container");
+  if (headerHpIcon) {
+    headerHpIcon.style.display = "none";
   }
 }
