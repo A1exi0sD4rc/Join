@@ -193,6 +193,23 @@ function renderEditContact(i) {
         </div>   
     `;
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
-        <div class="contacts-edit-input"></div>
+        <div class="contacts-edit-section">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="60" fill="#FF7A00"/>
+                <text x="60" y="73" text-anchor="middle" font-size="47" fill="white">${getInitials(contacts[i]['name'])}</text>
+            </svg>
+            <div class="contacts-edit-input-btn">
+                <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility()"></button>
+                <div class="contacts-edit-input">
+                    <input class="contacts-edit-name" type="text" value="${contacts[i]['name']}">
+                    <input class="contacts-edit-email" type="text" value="${contacts[i]['email']}">
+                    <input class="contacts-edit-number" type="text" value="${contacts[i]['number']}">
+                </div>
+                <div>
+                    <button class="contacts-edit-delete-btn">Delete</button>
+                    <button class="contacts-edit-save-btn">Save <img src="./assets/img/check.svg"></button>
+                </div>
+            </div>
+        </div>
     `;
 }

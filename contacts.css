@@ -292,7 +292,7 @@ body {
 .contacts-add-edit-div {
     position: absolute;
     top: 70px;
-    left: -115px;
+    left: -115px; /* change to 10 % */
     z-index: 3;
     transform: translateX(+200%);
     transition: all 125ms ease-in-out;
@@ -300,6 +300,7 @@ body {
     height: 590px;
     background-color: white;
     border-radius: 30px;
+    display: flex;
 }
 
 .contacts-translateX {
@@ -335,6 +336,103 @@ body {
     margin: 0;
 }
 
+.contacts-edit-section {
+    display: flex;
+    margin-bottom: 100px;
+    padding: 50px;
+}
+
+.contacts-edit-section svg {
+    margin-left: 50px;
+    margin-right: 75px;
+    margin-top: 150px;
+}
+
+.contacts-edit-input-btn {
+    max-width: 422px;
+}
+
+.contacts-add-edit-close-btn {
+    width: 32px;
+    height: 32px;
+    margin-left: 390px;
+    background-image: url("./assets/img/close.svg");
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    cursor: pointer;
+    border-radius: 56px;
+    margin-bottom: 60px;
+}
+
+.contacts-add-edit-close-btn:hover {
+    background-color: #e8e8e8;
+}
+
 .contacts-edit-input {
-    
+    display: flex;
+    flex-direction: column;
+    height: 215px;
+    gap: 32px;
+    margin-bottom: 30px;
+}
+
+.contacts-edit-input input {
+    width: 376px;
+    max-height: 50px;
+    border-radius: 10px;
+    padding: 13px 21px;
+    border: solid 1px #e8e8e8;
+    font-size: 20px;
+    font-weight: 400;
+    outline-color: #29ABE2;
+}
+
+.contacts-edit-delete-btn {
+    padding: 15px 24px;
+    border-radius: 8px;
+    border: solid 1px #2A3647;
+    transition: all 150ms ease-in-out;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.contacts-edit-delete-btn:hover {
+    color: #29ABE2;
+    border: solid 1px #29ABE2;
+    box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.3); 
+}
+
+.contacts-edit-save-btn {
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #2A3647;
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
+}
+
+.contacts-edit-save-btn:hover {
+    background-color: #29ABE2;
+}
+
+.contacts-edit-name {
+    background-image: url("./assets/img/person.svg");
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: 95% 50%;
+}
+
+.contacts-edit-email {
+    background-image: url("./assets/img/mail.svg");
+    background-repeat: no-repeat;
+    background-size: 35px;
+    background-position: 97% 50%;
+}
+
+.contacts-edit-number {
+    background-image: url("./assets/img/phone.svg");
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position: 95% 50%;
 }
