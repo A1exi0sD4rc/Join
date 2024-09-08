@@ -1,6 +1,6 @@
 function renderTaskCardToDo(elementToDo) {
   return `
-        <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementToDo['id']})">
+        <div onclick="showBigTask()" class="task_card_small" draggable="true" ondragstart="startDrag(${elementToDo['id']})">
             
         <div class="task_card_small_content">
 
@@ -30,7 +30,7 @@ function renderTaskCardToDo(elementToDo) {
 
 function renderTaskCardProgress(elementProgress) {
   return `
-        <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementProgress['id']})">
+        <div onclick="showBigTask()" class="task_card_small" draggable="true" ondragstart="startDrag(${elementProgress['id']})">
             <div class="task_card_small_content">
             
                 <div class="art_task_small"><div class="art_small" id="art_small_${elementProgress['id']}">${elementProgress['art']}</div></div>
@@ -58,7 +58,7 @@ function renderTaskCardProgress(elementProgress) {
 
 function renderTaskCardAwait(elementAwait) {
   return `
-        <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementAwait['id']})">
+        <div onclick="showBigTask()" class="task_card_small" draggable="true" ondragstart="startDrag(${elementAwait['id']})">
             <div class="task_card_small_content">
             
                 <div class="art_task_small"><div class="art_small" id="art_small_${elementAwait['id']}">${elementAwait['art']}</div></div>
@@ -86,7 +86,7 @@ function renderTaskCardAwait(elementAwait) {
 
 function renderTaskCardDone(elementDone) {
   return `
-        <div class="task_card_small" draggable="true" ondragstart="startDrag(${elementDone['id']})">
+        <div onclick="showBigTask()" class="task_card_small" draggable="true" ondragstart="startDrag(${elementDone['id']})">
             <div class="task_card_small_content">
             
                 <div class="art_task_small"><div class="art_small" id="art_small_${elementDone['id']}">${elementDone['id']}</div></div>
@@ -109,4 +109,52 @@ function renderTaskCardDone(elementDone) {
             </div>             
         </div>
     `;
+}
+
+function renderBigTaskCard(bigelement) {
+  return `
+    <div id="big_card" class="big_card">
+
+      <div class="big_card_art_close">
+        <div class="big_art" id="big_art_${bigelement['id']}">${bigelement['art']}</div>
+        <div class="big_card_close" onclick="hideBigTask()"><img src="assets/img/close.svg"></div>
+      </div>
+
+      <div class="title_big">${bigelement['title']}</div>
+      <div class="big_description" id="big_description_${bigelement['description']}">${bigelement['description']}</div>
+
+      <div class="big_due" id="big_due">
+        <div class="big_due_date_txt" id="big_due_date_txt">Due date:</div>
+        <div class="big_due_date" id="big_due_date"></div>
+      </div>
+
+      <div class="big_prio">
+        <div class="big_prio_txt" id="big_prio_txt">Priority</div>
+        <div class="big_prio_img" id="pig_prio_img_${bigelement['id']}"></div>
+      </div>
+
+      <div class="big_assigned">
+        <div class="big_assigned_txt">Assigned To:</div>
+        <div class="big_assigned_user"></div>
+      </div>
+
+      <div class="big_subs">
+        <div class="big_subs_txt">Subtasks</div>
+        <div></div>
+      </div>
+
+      <div class="big_del_edit">
+        <div class="big_del">
+          <div class="big_del_icon"><img class="big_del_icon" src="assets/img/delete.svg"></div>
+          <div class="big_del_txt">Delete</div>
+        </div>
+        <img src="assets/img/line.svg">
+        <div class="big_edit">
+          <div class="big_edit_icon_div"><img class="big_edit_icon" src="assets/img/edit.svg"></div>
+          <div class="big_edit_txt">Edit</div>
+        </div>
+      </div>
+
+    </div>
+  `;
 }

@@ -88,8 +88,7 @@ function updateHtmlTodo() {
     document.getElementById("small_card_todo").innerHTML = "";
     for (let index = 0; index < todo.length; index++) {
         const elementToDo = todo[index];
-        document.getElementById("small_card_todo").innerHTML +=
-            renderTaskCardToDo(elementToDo);
+        document.getElementById("small_card_todo").innerHTML += renderTaskCardToDo(elementToDo);
         changeArtBackground(`art_small_${elementToDo.id}`);
         addPrioImg(elementToDo);
     }
@@ -104,8 +103,7 @@ function updateHtmlProgress() {
     document.getElementById("small_card_progress").innerHTML = "";
     for (let index = 0; index < progress.length; index++) {
         const elementProgress = progress[index];
-        document.getElementById("small_card_progress").innerHTML +=
-            renderTaskCardToDo(elementProgress);
+        document.getElementById("small_card_progress").innerHTML += renderTaskCardToDo(elementProgress);
         changeArtBackground(`art_small_${elementProgress.id}`);
         addPrioImg(elementProgress);
     }
@@ -120,8 +118,7 @@ function updateHtmlAwait() {
     document.getElementById("small_card_await").innerHTML = "";
     for (let index = 0; index < await.length; index++) {
         const elementAwait = await[index];
-        document.getElementById("small_card_await").innerHTML +=
-            renderTaskCardAwait(elementAwait);
+        document.getElementById("small_card_await").innerHTML += renderTaskCardAwait(elementAwait);
         changeArtBackground(`art_small_${elementAwait.id}`);
         addPrioImg(elementAwait);
     }
@@ -136,8 +133,7 @@ function updateHtmlDone() {
     document.getElementById("small_card_done").innerHTML = "";
     for (let index = 0; index < done.length; index++) {
         const elementDone = done[index];
-        document.getElementById("small_card_done").innerHTML +=
-            renderTaskCardAwait(elementDone);
+        document.getElementById("small_card_done").innerHTML += renderTaskCardAwait(elementDone);
         changeArtBackground(`art_small_${elementDone.id}`);
         addPrioImg(elementDone);
     }
@@ -232,4 +228,21 @@ function clearAndFilterTasks(searchValue) {
             addPrioImg(task);
         }
     });
+}
+
+
+function showBigTask() {
+    document.getElementById('big_card_bg').classList.remove('d_none');
+    for (let index = 0; index < tasks.length; index++) {
+        const bigelement = tasks[index];
+        document.getElementById("big_card_bg").innerHTML = "";
+        document.getElementById('big_card_bg').innerHTML += renderBigTaskCard(bigelement);
+        addPrioImg(bigelement);
+    }
+}
+
+
+function hideBigTask() {
+    document.getElementById('big_card_bg').classList.add('d_none');
+    document.getElementById('big_card_bg').innerHTML = '';
 }

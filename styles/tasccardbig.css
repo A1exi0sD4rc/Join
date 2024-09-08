@@ -1,0 +1,141 @@
+.big_card_bg {
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.big_card {
+    width: 525px;
+    height: 800px;
+    border-radius: 30px;
+    padding: 48px, 40px, 48px, 40px;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    top: -3975px;
+    left: 729px;
+}
+
+.d_none {
+    display: none;
+}
+
+.big_card_art_close{
+    width: 445px;
+    height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.big_art{
+    width: 164px;
+    height: 36px;
+    border-radius: 8px;
+    padding: 4px, 24px, 4px, 24px;
+    gap: 10px;
+}
+
+.big_card_close{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.title_big{
+    width: 445px;
+    height: 219px;
+    font-size: 61px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.big_description{
+    width: 445px;
+    height: 24px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.big_due,
+.big_prio,
+.big_assigned,
+.big_subs{
+    display: flex;
+    flex-direction: row;
+    width: 445px;
+    height: 24px;
+    gap: 25px;
+}
+
+.big_del_txt,
+.big_edit_txt{
+    font-size: 16px;
+    font-weight: 400;
+    color: #2A3647;
+}
+
+.big_del_edit{
+    width: 159px;
+    height: 24px;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+}
+
+.big_del{
+    width: 81px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.big_edit{
+    width: 62px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.big_del_txt{
+    width: 49px;
+    height: 19px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.big_edit_txt{
+    width: 30px;
+    height: 19px;
+}
+
+.big_del_icon_div,
+.big_edit_icon_div{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.big_edit_icon,
+.big_del_icon{
+    width: 18.28px;
+    height: 18.28px;
+}
