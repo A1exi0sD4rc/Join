@@ -1,6 +1,6 @@
 function renderTaskCardToDo(elementToDo) {
   return `
-        <div onclick="showBigTask()" class="task_card_small" draggable="true" ondragstart="startDrag(${elementToDo['id']})">
+        <div onclick="showBigTask(${elementToDo['id']})" class="task_card_small" draggable="true" ondragstart="startDrag(${elementToDo['id']})">
             
         <div class="task_card_small_content">
 
@@ -30,7 +30,7 @@ function renderTaskCardToDo(elementToDo) {
 
 function renderTaskCardProgress(elementProgress) {
   return `
-        <div onclick="showBigTask()" class="task_card_small" draggable="true" ondragstart="startDrag(${elementProgress['id']})">
+        <div onclick="showBigTask(${elementProgress['id']}))" class="task_card_small" draggable="true" ondragstart="startDrag(${elementProgress['id']})">
             <div class="task_card_small_content">
             
                 <div class="art_task_small"><div class="art_small" id="art_small_${elementProgress['id']}">${elementProgress['art']}</div></div>
@@ -58,7 +58,7 @@ function renderTaskCardProgress(elementProgress) {
 
 function renderTaskCardAwait(elementAwait) {
   return `
-        <div onclick="showBigTask()" class="task_card_small" draggable="true" ondragstart="startDrag(${elementAwait['id']})">
+        <div onclick="showBigTask(${elementAwait['id']})" class="task_card_small" draggable="true" ondragstart="startDrag(${elementAwait['id']})">
             <div class="task_card_small_content">
             
                 <div class="art_task_small"><div class="art_small" id="art_small_${elementAwait['id']}">${elementAwait['art']}</div></div>
@@ -86,7 +86,7 @@ function renderTaskCardAwait(elementAwait) {
 
 function renderTaskCardDone(elementDone) {
   return `
-        <div onclick="showBigTask()" class="task_card_small" draggable="true" ondragstart="startDrag(${elementDone['id']})">
+        <div onclick="showBigTask(${elementDone['id']})" class="task_card_small" draggable="true" ondragstart="startDrag(${elementDone['id']})">
             <div class="task_card_small_content">
             
                 <div class="art_task_small"><div class="art_small" id="art_small_${elementDone['id']}">${elementDone['id']}</div></div>
@@ -129,8 +129,8 @@ function renderBigTaskCard(bigelement) {
       </div>
 
       <div class="big_prio">
-        <div class="big_prio_txt" id="big_prio_txt">Priority</div>
-        <div class="big_prio_img" id="pig_prio_img_${bigelement['id']}"></div>
+        <div class="big_prio_txt" id="big_prio_txt">Priority:</div>
+        <div class="big_prio_img" id="big_prio_img_${bigelement['id']}"> ${bigelement['prio']}</div>
       </div>
 
       <div class="big_assigned">
