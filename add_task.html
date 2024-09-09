@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/img/logo_white.svg" />
+    <link rel="stylesheet" href="ln_pp_hp_style.css" />
+    <link rel="stylesheet" href="assets/templates/sidebar_header_style.css" />
+    <link rel="stylesheet" href="./assets/fonts.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/add_task.css" />
+    <script src="script.js"></script>
+    <script src="./scripts/summary.js"></script>
+    <title>JOIN Add Task</title>
+  </head>
+  <body onload="includeHTML()">
+    <section
+      w3-include-html="./assets/templates/header.html"
+      class="header"
+    ></section>
+    <section
+      w3-include-html="./assets/templates/sidebar.html"
+      class="sidebar"
+    ></section>
+    <section class="add_task_content">
+      <h1 class="add_task_h1">Add Task</h1>
+      <div class="add_task_form_section">
+        <div class="add_task_form_left"></div>
+        <div class="add_task_seperator"></div>
+        <div class="add_task_form_right"></div>
+      </div>
+      <div class="add_task_bottom_section"></div>
+    </section>
+  </body>
+</html>

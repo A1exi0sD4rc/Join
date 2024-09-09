@@ -1,0 +1,40 @@
+.add_task_content {
+  padding-top: 206px;
+  padding-left: 328px;
+}
+
+.add_task_h1 {
+  height: 73px;
+  width: 278px;
+  margin-bottom: 48px;
+}
+
+.add_task_form_section {
+  display: flex;
+}
+
+.add_task_form_left {
+  height: 376px;
+  width: 440px;
+  background-color: brown;
+  margin-right: 47.5px;
+}
+
+.add_task_seperator {
+  height: 424px;
+  width: 1px;
+  background-color: #d1d1d1;
+  margin-right: 47.5px;
+}
+
+.add_task_form_right {
+  height: 416px;
+  width: 440px;
+  background-color: bisque;
+}
+
+.add_task_bottom_section {
+  width: 976px;
+  height: 56px;
+  background-color: aquamarine;
+}
