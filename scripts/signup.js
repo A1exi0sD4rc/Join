@@ -138,61 +138,87 @@ function isValidEmail(email) {
 function validateInputs() {
   let isValid = true;
 
+  if (!validateNameField()) isValid = false;
+  if (!validateEmailField()) isValid = false;
+  if (!validatePasswordField()) isValid = false;
+  if (!validateConfirmPasswordField()) isValid = false;
+  if (!validateCheckboxField()) isValid = false;
+
+  return isValid;
+}
+
+function validateNameField() {
   const nameValue = name.value.trim();
-  const emailValue = email.value.trim();
-  const passwordValue = password.value.trim();
-  const confirmPasswordValue = confirmPassword.value.trim();
-  const checkboxDiv = document.querySelector(".check-box");
-  const isCheckboxChecked = checkboxDiv.dataset.checked === "true";
 
   if (nameValue === "") {
     setError(name, "Name is required.");
-    isValid = false;
+    return false;
   } else if (!validateName(nameValue)) {
     setError(name, "First and last name are required.");
-    isValid = false;
+    return false;
   } else {
     setSuccess(name);
+    return true;
   }
+}
+
+function validateEmailField() {
+  const emailValue = email.value.trim();
 
   if (emailValue === "") {
     setError(email, "Email is required.");
-    isValid = false;
+    return false;
   } else if (!isValidEmail(emailValue)) {
     setError(email, "Provide a valid email address.");
-    isValid = false;
+    return false;
   } else {
     setSuccess(email);
+    return true;
   }
+}
+
+function validatePasswordField() {
+  const passwordValue = password.value.trim();
 
   if (passwordValue === "") {
     setError(password, "Password is required.");
-    isValid = false;
+    return false;
   } else if (passwordValue.length < 8) {
     setError(password, "Password must be at least 8 characters.");
-    isValid = false;
+    return false;
   } else {
     setSuccess(password);
+    return true;
   }
+}
+
+function validateConfirmPasswordField() {
+  const confirmPasswordValue = confirmPassword.value.trim();
+  const passwordValue = password.value.trim();
 
   if (confirmPasswordValue === "") {
     setError(confirmPassword, "Please confirm your password.");
-    isValid = false;
+    return false;
   } else if (confirmPasswordValue !== passwordValue) {
     setError(confirmPassword, "Passwords do not match.");
-    isValid = false;
+    return false;
   } else {
     setSuccess(confirmPassword);
+    return true;
   }
+}
+
+function validateCheckboxField() {
+  const checkboxDiv = document.querySelector(".check-box");
+  const isCheckboxChecked = checkboxDiv.dataset.checked === "true";
 
   if (!isCheckboxChecked) {
     setError(checkboxDiv, "You must accept the Privacy Policy.");
-    isValid = false;
+    return false;
   } else {
     setSuccess(checkboxDiv);
+    return true;
   }
-
-  return isValid;
 }
 
 /**

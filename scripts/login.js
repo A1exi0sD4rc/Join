@@ -123,55 +123,92 @@ async function validateInputs() {
 
   let isValid = true;
 
-  if (!validateEmailProvided(email, emailValue)) {
-    isValid = false;
-  }
+  isValid = validateEmail(email, emailValue) && isValid;
+  isValid = validatePassword(password, passwordValue, emailValue) && isValid;
 
-  if (!validatePasswordProvided(password, passwordValue, emailValue)) {
-    isValid = false;
-  }
+  isValid = await validateEmailAndCredentials(
+    email,
+    password,
+    emailValue,
+    passwordValue,
+    isValid
+  );
 
+  return isValid;
+}
+
+async function validateEmailAndCredentials(
+  email,
+  password,
+  emailValue,
+  passwordValue,
+  isValid
+) {
   if (isValid && emailValue !== "" && isValidEmail(emailValue)) {
-    if (
-      !(await validateUserCredentials(
+    return (
+      (await checkUserCredentials(
         email,
         password,
         emailValue,
         passwordValue
-      ))
-    ) {
-      isValid = false;
-    }
+      )) && isValid
+    );
   }
-
   return isValid;
+}
+
+function validateEmail(emailElement, emailValue) {
+  return (
+    validateEmailProvided(emailElement, emailValue) &&
+    validateEmailFormat(emailElement, emailValue)
+  );
 }
 
 function validateEmailProvided(emailElement, emailValue) {
   if (emailValue === "") {
     setError(emailElement, "Email is required.");
     return false;
-  } else if (!isValidEmail(emailValue)) {
+  }
+  return true;
+}
+
+function validateEmailFormat(emailElement, emailValue) {
+  if (!isValidEmail(emailValue)) {
     setError(emailElement, "Please provide a valid email address.");
     return false;
-  } else {
-    setSuccess(emailElement);
-    return true;
   }
+  setSuccess(emailElement);
+  return true;
+}
+
+function validatePassword(passwordElement, passwordValue, emailValue) {
+  return validatePasswordProvided(passwordElement, passwordValue, emailValue);
 }
 
 function validatePasswordProvided(passwordElement, passwordValue, emailValue) {
   if (passwordValue === "") {
-    if (emailValue !== "") {
-      setError(passwordElement, "Provide the password.");
-    } else {
-      setError(passwordElement, "Password is required.");
-    }
+    const errorMessage =
+      emailValue !== "" ? "Provide the password." : "Password is required.";
+    setError(passwordElement, errorMessage);
     return false;
   } else {
     setSuccess(passwordElement);
     return true;
   }
+}
+
+async function checkUserCredentials(
+  emailElement,
+  passwordElement,
+  emailValue,
+  passwordValue
+) {
+  return await validateUserCredentials(
+    emailElement,
+    passwordElement,
+    emailValue,
+    passwordValue
+  );
 }
 
 async function validateUserCredentials(
@@ -181,6 +218,10 @@ async function validateUserCredentials(
   passwordValue
 ) {
   const result = await validateUser(emailValue, passwordValue);
+  return handleValidationResult(emailElement, passwordElement, result);
+}
+
+function handleValidationResult(emailElement, passwordElement, result) {
   if (!result.exists) {
     setError(emailElement, "User does not exist.");
     return false;
@@ -223,30 +264,45 @@ function isValidEmail(email) {
 function login(event) {
   event.preventDefault();
 
-  validateInputs().then((isValid) => {
+  validateLogin().then((isValid) => {
     if (isValid) {
-      const email = document.getElementById("loginEmail").value.trim();
-      const password = document.getElementById("loginPassword").value.trim();
-
-      if (localStorage.getItem("rememberMe") === "true") {
-        storeCredentials(email, password);
-      }
-
-      validateUser(email, password)
-        .then((result) => {
-          if (result.isAuthenticated) {
-            handleSuccess(result.name);
-          } else {
-            showError("Incorrect email or password.");
-          }
-        })
-        .catch(() =>
-          showError(
-            "Error while trying to authenticate. Please try again later."
-          )
-        );
+      const { email, password } = getLoginCredentials();
+      handleRememberMe(email, password);
+      authenticateUser(email, password);
     }
   });
+}
+
+async function validateLogin() {
+  return await validateInputs();
+}
+
+function getLoginCredentials() {
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+  return { email, password };
+}
+
+function handleRememberMe(email, password) {
+  if (localStorage.getItem("rememberMe") === "true") {
+    storeCredentials(email, password);
+  }
+}
+
+function authenticateUser(email, password) {
+  validateUser(email, password)
+    .then((result) => handleAuthenticationResult(result))
+    .catch(() =>
+      showError("Error while trying to authenticate. Please try again later.")
+    );
+}
+
+function handleAuthenticationResult(result) {
+  if (result.isAuthenticated) {
+    handleSuccess(result.name);
+  } else {
+    showError("Incorrect email or password.");
+  }
 }
 
 function showError(message) {
@@ -263,29 +319,46 @@ function showError(message) {
  */
 async function validateUser(email, password) {
   const usersRef = ref(database, "users");
-  return get(usersRef)
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        const users = snapshot.val();
-        for (let key in users) {
-          if (users[key].email === email) {
-            if (users[key].password === password) {
-              return {
-                exists: true,
-                isAuthenticated: true,
-                name: users[key].name,
-              };
-            } else {
-              return { exists: true, isAuthenticated: false };
-            }
-          }
-        }
-      }
-      return { exists: false, isAuthenticated: false };
-    })
-    .catch(() => {
-      return { exists: false, isAuthenticated: false };
-    });
+  return fetchUsers(usersRef)
+    .then((users) => findUserByEmail(users, email, password))
+    .catch(() => handleValidationError());
+}
+
+function fetchUsers(usersRef) {
+  return get(usersRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      return snapshot.val();
+    }
+    return null;
+  });
+}
+
+function findUserByEmail(users, email, password) {
+  if (!users) return { exists: false, isAuthenticated: false };
+
+  for (let key in users) {
+    if (users[key].email === email) {
+      return validatePasswordMatch(users[key], password);
+    }
+  }
+
+  return { exists: false, isAuthenticated: false };
+}
+
+function validatePasswordMatch(user, password) {
+  if (user.password === password) {
+    return {
+      exists: true,
+      isAuthenticated: true,
+      name: user.name,
+    };
+  } else {
+    return { exists: true, isAuthenticated: false };
+  }
+}
+
+function handleValidationError() {
+  return { exists: false, isAuthenticated: false };
 }
 
 /**
