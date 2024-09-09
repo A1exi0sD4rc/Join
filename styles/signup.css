@@ -255,7 +255,7 @@ a {
 }
 
 .links-container a {
-  width: 123px;
+  margin: 0 5px;
   text-decoration: none;
   font-weight: 400;
   font-size: 16px;
@@ -267,6 +267,7 @@ a {
 .links-container a:hover {
   color: #29abe2;
   font-weight: 700;
+  font-size: 17px;
 }
 
 .h1-blueline {

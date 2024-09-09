@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="./assets/img/logo_white.svg" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles/summary.css" />
     <link rel="stylesheet" href="ln_pp_hp_style.css" />
     <link rel="stylesheet" href="assets/templates/sidebar_header_style.css" />
     <link rel="stylesheet" href="assets/fonts.css" />
@@ -15,7 +16,7 @@
     <script src="./scripts/add_task.js"></script>
     <script src="./scripts/contacts.js"></script>
 
-    <title>JOIN Summary</title>
+    <title>Summary</title>
   </head>
   <body onload="summaryInit()">
     <section
@@ -26,5 +27,107 @@
       w3-include-html="./assets/templates/sidebar.html"
       class="sidebar"
     ></section>
+
+    <div class="summary-main-container">
+      <div id="animationScreen" class="animation-screen"></div>
+      <div class="summary-card-container">
+        <div class="headline-summary">
+          <div class="summary-title-container">
+            <h1 class="title-contact">Join</h1>
+            <div class="seperator"></div>
+            <p>Key Metrics at a Glance</p>
+            <div class="mobile-seperator"></div>
+          </div>
+        </div>
+        <div class="summary-card-medium-container">
+          <a onclick="goToBoard()" href="#" class="summary-card">
+            <div class="icon-container">
+              <div class="summary-icons-container">
+                <img
+                  class="summary-icons"
+                  src="./assets/img/edit_summary.svg"
+                />
+              </div>
+              <div class="text-container">
+                <span class="number-container" id="toDoCount">4</span>
+
+                <span>To-do</span>
+              </div>
+            </div>
+          </a>
+          <a onclick="goToBoard()" href="#" class="summary-card">
+            <div class="icon-container">
+              <div class="summary-icons-container">
+                <img class="summary-icons" src="./assets/img/click.svg" />
+              </div>
+              <div class="text-container">
+                <span class="number-container" id="doneCount">2</span>
+
+                <span>Done</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="summary-card-big-container">
+          <a onclick="goToBoard()" href="#" class="summary-card-big">
+            <div class="icon-container">
+              <div class="big-card-icons">
+                <img
+                  class="summary-icons-urgent"
+                  src="./assets/img/urgent.svg"
+                />
+              </div>
+              <div class="text-container">
+                <span class="number-container" id="urgentCount">1</span>
+
+                <span>Urgent</span>
+              </div>
+            </div>
+            <div class="seperator-big-card"></div>
+            <div class="text-container-big-card">
+              <span class="date-text" id="upcomingDate"
+                >Don't forget to Pull :D</span
+              >
+              <span class="deadline-text">Upcoming Deadline</span>
+            </div>
+          </a>
+        </div>
+        <div class="summary-card-small-container">
+          <a onclick="goToBoard()" href="#" class="summary-card-small">
+            <div>
+              <div class="text-container">
+                <span class="number-container" id="allTasks">6</span>
+
+                <span class="text">Tasks in Board</span>
+              </div>
+            </div>
+          </a>
+
+          <a onclick="goToBoard()" href="#" class="summary-card-small">
+            <div>
+              <div class="text-container">
+                <span class="number-container" id="inProgressCount">1</span>
+
+                <span class="text">Tasks in Progress</span>
+              </div>
+            </div>
+          </a>
+
+          <a onclick="goToBoard()" href="#" class="summary-card-small">
+            <div>
+              <div class="text-container">
+                <span class="number-container" id="awaitFeedbackCount">2</span>
+
+                <span class="text">Awaiting Feedback</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="greeting-container" id="greeting-container">
+        <span class="greet-text"></span>
+        <span class="greet-user-name"></span>
+      </div>
+    </div>
   </body>
 </html>
