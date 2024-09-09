@@ -138,6 +138,7 @@ function awaitGenerateInitials() {
 function logOut() {
   if (sessionStorage.getItem("userName")) {
     sessionStorage.removeItem("userName");
+    localStorage.removeItem("greetingShown");
   }
 }
 
