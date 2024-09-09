@@ -4,7 +4,7 @@ let tasks = [
         title: "font.css",
         description: "font.css verursacht Fehler.",
         assigned: "",
-        prio: "low",
+        prio: "Low",
         category: "todo",
         subtasks: "",
         id: 0,
@@ -15,7 +15,7 @@ let tasks = [
         title: "Join aktuell",
         description: "Zwichenstand von Mentoren.",
         assigned: "",
-        prio: "low",
+        prio: "Low",
         category: "await",
         subtasks: "",
         id: 1,
@@ -26,7 +26,7 @@ let tasks = [
         title: "Join Contacts",
         description: "Contacts Seite erstellen.",
         assigned: "",
-        prio: "med",
+        prio: "Medium",
         category: "progress",
         subtasks: "",
         id: 2,
@@ -37,7 +37,7 @@ let tasks = [
         title: "Bestellapp",
         description: "Clone einer bekannten Bestllapp.",
         assigned: "",
-        prio: "high",
+        prio: "Urgent",
         category: "done",
         subtasks: "",
         id: 3,
@@ -48,7 +48,7 @@ let tasks = [
         title: "Join Board",
         description: "Task Board erstellen.",
         assigned: "",
-        prio: "high",
+        prio: "Urgent",
         category: "progress",
         subtasks: "",
         id: 4,
@@ -61,9 +61,9 @@ const artColors = {
 };
 
 const prios = {
-    low: "assets/img/Prio_low.svg",
-    med: "assets/img/Prio_med.svg",
-    high: "assets/img/Prio_high.svg",
+    Low: "assets/img/Prio_low.svg",
+    Medium: "assets/img/Prio_med.svg",
+    Urgent: "assets/img/Prio_high.svg",
 };
 
 let draggedTo;
@@ -166,6 +166,19 @@ function addPrioImg(tasks) {
     }
 }
 
+/**
+ * adds a specific priority Icon/img to the big task card.
+ *
+ * @param {object} tasks -
+ */
+function addPrioBigImg(bigelement) {
+    const prioBigImg = prios[bigelement.prio];
+    const big_prio_img = document.getElementById(`big_prio_img_${bigelement.id}`);
+    if (prioBigImg) {
+        big_prio_img.innerHTML = `${bigelement['prio']}  <img src="${prioBigImg}">`;
+    }
+}
+
 
 /**
  * startDrag(id) assigns the value of id to the variable draggedTo, to follow the element being dragged in a drag and drop operation.
@@ -231,17 +244,26 @@ function clearAndFilterTasks(searchValue) {
 }
 
 
-function showBigTask() {
-    document.getElementById('big_card_bg').classList.remove('d_none');
-    for (let index = 0; index < tasks.length; index++) {
-        const bigelement = tasks[index];
+/**
+ * this function looks through each task to see if its id matches the taskId that was passed in and displays the big task card.
+ * 
+ * @param {*} taskId 
+ */
+function showBigTask(taskId) {
+    const bigelement = tasks.find(task => task.id === taskId);
+    if (bigelement) {
+        document.getElementById('big_card_bg').classList.remove('d_none');
         document.getElementById("big_card_bg").innerHTML = "";
-        document.getElementById('big_card_bg').innerHTML += renderBigTaskCard(bigelement);
-        addPrioImg(bigelement);
+        document.getElementById('big_card_bg').innerHTML = renderBigTaskCard(bigelement);
+        changeArtBackground(`big_art_${bigelement.id}`);
+        addPrioBigImg(bigelement);
     }
 }
 
 
+/**
+ * function to close the big card.
+ */
 function hideBigTask() {
     document.getElementById('big_card_bg').classList.add('d_none');
     document.getElementById('big_card_bg').innerHTML = '';

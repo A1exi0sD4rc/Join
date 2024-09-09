@@ -1,5 +1,6 @@
 let contacts = [];
 let lastSelected;
+let BASE_URL = `https://join-a2f86-default-rtdb.europe-west1.firebasedatabase.app/contacts`;
 
 
 async function init() {
@@ -11,7 +12,6 @@ async function init() {
 
 
 async function getContacts() {
-    let BASE_URL = `https://join-a2f86-default-rtdb.europe-west1.firebasedatabase.app/contacts`;
     let response = await fetch(BASE_URL + ".json");
     let responseAsJson = await response.json();
 
@@ -47,7 +47,7 @@ function render() {
     document.getElementById("contacts-div").innerHTML = "";
     document.getElementById("contacts-div").innerHTML += /*html*/ `
         <div class="contacts-new-contact-div">
-            <button class="contacts-new-contact-btn">
+            <button class="contacts-new-contact-btn" onclick="editContact('add')">
                 Add new contact <img src="./assets/img/contacts_new_contact.svg">
             </button>
         </div>
@@ -135,7 +135,8 @@ function renderContactDetails(i) {
             <div class="contacts-contact-details-h-edit-delete">
                 <h2>${contacts[i]['name']}</h2>
                 <div class="contacts-contact-details-btn-div">
-                    <button class="contacts-contact-details-edit-btn" onclick="editContact(${i})">Edit</button><button class="contacts-contact-details-delete-btn" onclick="deleteContact(${i})">Delete</button>
+                    <button class="contacts-contact-details-edit-btn" onclick="editContact(${i}, 'edit')">Edit</button>
+                    <button class="contacts-contact-details-delete-btn" onclick="deleteContact('/contacts/${i}')"">Delete</button>
                 </div>
             </div>
         </div>  
@@ -167,9 +168,13 @@ function toggleDetailClasses(i) {
 }
 
 
-function editContact(i) {
+function editContact(i, action) {
     toggleVisiblility();
-    renderEditContact(i);
+    if (action == 'edit') {
+        renderEditContact(i);
+    }else {
+        addNewContact()
+    }
 }
 
 
@@ -201,15 +206,76 @@ function renderEditContact(i) {
             <div class="contacts-edit-input-btn">
                 <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility()"></button>
                 <div class="contacts-edit-input">
-                    <input class="contacts-edit-name" type="text" value="${contacts[i]['name']}">
-                    <input class="contacts-edit-email" type="text" value="${contacts[i]['email']}">
-                    <input class="contacts-edit-number" type="text" value="${contacts[i]['number']}">
+                    <input id="contacts-user-name" class="contacts-edit-name" type="text" value="${contacts[i]['name']}">
+                    <input id="contacts-user-email" class="contacts-edit-email" type="text" value="${contacts[i]['email']}">
+                    <input id="contacts-user-number" class="contacts-edit-number" type="text" value="${contacts[i]['number']}">
                 </div>
                 <div>
-                    <button class="contacts-edit-delete-btn">Delete</button>
-                    <button class="contacts-edit-save-btn">Save <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-edit-delete-btn" onclick="deleteContact('/contacts/${i}')">Delete</button>
+                    <button class="contacts-edit-save-btn" onclick="saveEdit('/contacts/${i}')">Save <img src="./assets/img/check.svg"></button>
                 </div>
             </div>
         </div>
     `;
+}
+
+
+function addNewContact() {
+    document.getElementById('contacts-add-edit').innerHTML = '';
+    document.getElementById('contacts-add-edit').innerHTML += /*html*/`
+        <div class="contacts-add-title">
+            <img src="./assets/img/logo_white.svg">
+            <div class="contacts-edit-title-h1">
+                <div>
+                    <h1>Add contact</h1>
+                    <h3></h3>
+                </div>
+                <svg width="94" height="3" viewBox="0 0 94 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M92 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>   
+    `;
+    document.getElementById('contacts-add-edit').innerHTML += /*html*/`
+        <div class="contacts-add-section">
+            <img src="./assets/img/no_user.svg">
+            <div class="contacts-edit-input-btn">
+                <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility()"></button>
+                <div class="contacts-edit-input">
+                    <input id="contacts-user-name" class="contacts-edit-name" type="text" placeholder="Name">
+                    <input id="contacts-user-email" class="contacts-edit-email" type="text" placeholder="Email">
+                    <input id="contacts-user-number" class="contacts-edit-number" type="text" placeholder="Phone">
+                </div>
+                <div>
+                    <button class="contacts-edit-delete-btn" onclick="deleteContact('/contacts/${contacts.length++}')">Delete</button>
+                    <button class="contacts-edit-save-btn" onclick="saveEdit('/contacts/${contacts.length++}')">Save <img src="./assets/img/check.svg"></button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+
+async function deleteContact(path="") {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "DELETE",
+    });
+    return responseToJson = await response.json();
+}
+
+
+async function saveEdit(path="") {
+    let changeUserName = document.getElementById('contacts-user-name').value;
+    let changeUserEmail = document.getElementById('contacts-user-name').value;
+    let changeUserNumber = document.getElementById('contacts-user-number').value;
+    const response = await fetch(BASE_URL + path + ".json", {
+        method: "PUT",
+        header: {"Content-Type": "application/json"},
+        body: JSON.stringify(data = {
+            "name": `${changeUserName}`,
+            "email": `${changeUserEmail}`,
+            "number": `${changeUserNumber}`
+        })
+    });
+    return responseToJson = await response.json();
 }

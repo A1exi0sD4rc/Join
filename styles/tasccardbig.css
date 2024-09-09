@@ -12,7 +12,6 @@
 
 .big_card {
     width: 525px;
-    height: 800px;
     border-radius: 30px;
     padding: 48px, 40px, 48px, 40px;
     gap: 24px;
@@ -21,8 +20,6 @@
     align-items: center;
     background-color: #ffffff;
     box-shadow: 0px 0px 4px 0px #00000029;
-    top: -3975px;
-    left: 729px;
 }
 
 .d_none {
@@ -43,6 +40,12 @@
     border-radius: 8px;
     padding: 4px, 24px, 4px, 24px;
     gap: 10px;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .big_card_close{
@@ -94,6 +97,7 @@
     gap: 8px;
     display: flex;
     flex-direction: row;
+    border: 1px solid red;
 }
 
 .big_del{

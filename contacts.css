@@ -277,7 +277,7 @@ body {
 }
 
 
-/* contact edit */
+/* contact add / edit */
 
 .contacts-add-edit-bg {
     position: fixed;
@@ -306,6 +306,9 @@ body {
 .contacts-translateX {
     transform: translateX(0%) !important;
 }
+
+
+/* contact edit */
 
 .contacts-edit-title {
     width: 453px;
@@ -414,6 +417,7 @@ body {
 
 .contacts-edit-save-btn:hover {
     background-color: #29ABE2;
+    box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.3); 
 }
 
 .contacts-edit-name {
@@ -435,4 +439,38 @@ body {
     background-repeat: no-repeat;
     background-size: 18px;
     background-position: 95% 50%;
+}
+
+
+/* contact add new */
+
+.contacts-add-title {
+    width: 467px;
+    height: 590px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    background-color: #2A3647;
+}
+
+.contacts-add-title img {
+    width: 54px;
+    height: 67px;
+    margin-left: 50px;
+}
+
+.contacts-add-section {
+    display: flex;
+    margin-bottom: 100px;
+    padding: 50px;
+}
+
+.contacts-add-section img {
+    width: 120px;
+    height: 120px;
+    margin-left: 50px;
+    margin-right: 75px;
+    margin-top: 150px;
 }
