@@ -6,6 +6,7 @@
   height: 96px;
   width: 100%;
   position: fixed;
+  top: 0;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2), 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -290,6 +291,10 @@ table {
 
   .header {
     height: 80px;
+  }
+
+  .user-content {
+    top: 81px;
   }
 
   .header_content {

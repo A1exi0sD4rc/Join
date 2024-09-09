@@ -3,6 +3,7 @@
  */
 async function summaryInit() {
   includeHTML();
+  initPage();
   generateCounts();
   generateGreets();
   generateUpcomingDate();
@@ -125,7 +126,6 @@ function hideGreeting() {
  * Initializes the page based on window width.
  */
 function initPage() {
-  const animationScreen = document.getElementById("animationScreen");
   const summaryCardContainer = document.querySelector(
     ".summary-card-container"
   );
@@ -141,8 +141,3 @@ function initPage() {
     }
   }
 }
-
-/**
- * This function runs initPage when DOM is loaded.
- */
-document.addEventListener("DOMContentLoaded", initPage);

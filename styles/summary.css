@@ -363,7 +363,7 @@ p {
 
 .animation-screen {
   position: absolute;
-  top: 441px;
+  top: 350px;
 }
 
 .greeting-user-animation {
@@ -436,7 +436,7 @@ p {
 
 @media (max-height: 960px) {
   .summary-main-container {
-    margin-top: 10px;
+    padding-top: 100px;
   }
 }
 
@@ -478,6 +478,16 @@ p {
   }
 }
 
+@media (max-height: 700px) {
+  .summary-main-container {
+    margin: 0 !important;
+  }
+
+  .animation-screen {
+    top: 300px !important;
+  }
+}
+
 @media (max-width: 580px) {
   .summary-main-container {
     margin-left: 0px;
@@ -488,7 +498,7 @@ p {
   }
 
   .summary-card-container {
-    width: 100%;
+    width: 90%;
   }
 
   .summary-card-small {
@@ -502,10 +512,6 @@ p {
   .text-container {
     font-size: 20px;
     font-weight: 600;
-  }
-
-  .summary-card-small-container {
-    gap: 20px;
   }
 }
 
@@ -545,7 +551,7 @@ p {
   }
 
   .summary-card-small-container {
-    gap: 5px;
+    gap: 10px;
   }
 
   .summary-icons-container {
@@ -581,7 +587,7 @@ p {
   }
 
   .summary-card-small {
-    width: 110px;
+    width: 90px;
     height: 100px;
   }
 
@@ -606,7 +612,7 @@ p {
   }
 
   .summary-card-small-container {
-    gap: 5px;
+    gap: 10px;
   }
 
   .text-container {
@@ -653,15 +659,5 @@ p {
 
   .text-container {
     font-size: 12px;
-  }
-}
-
-@media (max-height: 700px) {
-  .summary-main-container {
-    margin: 0 !important;
-  }
-
-  .animation-screen {
-    top: 300px !important;
   }
 }
