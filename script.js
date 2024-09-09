@@ -149,15 +149,3 @@ function toggleMenu() {
     userContent.style.display = "block";
   }
 }
-
-/**
- * Hides the 'header_help_icon_container' div when the help link is clicked.
- * This function is called on clicking the help link and does not prevent
- * the default navigation to help.html.
- */
-function hideHelpDiv() {
-  const headerHpIcon = document.querySelector(".header_help_icon_container");
-  if (headerHpIcon) {
-    headerHpIcon.style.display = "none";
-  }
-}
