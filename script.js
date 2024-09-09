@@ -1,5 +1,6 @@
 function init_ll_pp_hp() {
   includeHTML();
+  awaitGenerateInitials();
 }
 
 function includeHTML() {
