@@ -1,11 +1,11 @@
 /**
- * Updates the source of the responsive image and adjusts styles based on screen width.
+ * Updates the image source and background color based on screen width.
  */
 function updateImageSource() {
-  const image = document.getElementById("responsiveImage");
-  const startingScreen = document.getElementById("startingScreen");
+  const isSmallScreen = window.innerWidth <= 720;
 
-  if (window.innerWidth <= 720) {
+  // Switch image and styles based on screen width
+  if (isSmallScreen) {
     image.src = "./assets/img/logo_white.svg";
     document.body.style.backgroundColor = "#2A3647";
     startingScreen.style.left = "38px";
@@ -18,11 +18,13 @@ function updateImageSource() {
   }
 }
 
-window.addEventListener("resize", updateImageSource);
-window.addEventListener("load", updateImageSource);
-
+// Cache DOM elements
 const startingScreen = document.getElementById("startingScreen");
 const image = document.getElementById("responsiveImage");
+
+// Update image on page load and window resize
+window.addEventListener("resize", updateImageSource);
+window.addEventListener("load", updateImageSource);
 
 /**
  * Event handler for the end of the startingScreen animation.

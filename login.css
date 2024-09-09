@@ -299,8 +299,7 @@ body {
   font-weight: 700;
   line-height: 19.2px;
   border-width: 0px;
-  transition: background-color 100ms ease-in-out, box-shadow 100ms ease-in-out,
-    border 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
 .login-window {
@@ -332,7 +331,7 @@ h1 {
 }
 
 .login-input {
-  font-size: 16px;
+  font-size: 18px;
   border: none;
   outline: none;
   font-family: "Inter", sans-serif;
@@ -461,14 +460,21 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
 
-  a {
-    text-decoration: none;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 19.2px;
-    color: #a8a8a8;
-  }
+.links-container a {
+  width: 123px;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.2px;
+  color: #a8a8a8;
+  transition: all 100ms ease-in-out;
+}
+
+.links-container a:hover {
+  color: #29abe2;
+  font-weight: 700;
 }
 
 .wrong-password {
