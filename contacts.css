@@ -5,6 +5,7 @@ body {
     font-family: "Inter", system-ui;
     background-color: #f6f7f8;
     max-width: 1440px;
+    overflow-x: hidden;
 }
 
 .d-none {
@@ -18,7 +19,7 @@ body {
     position: relative;
     top: 96px;
     left: 232px;
-    max-width: 1100px;
+    max-width: 2000px;
 }
 
 
