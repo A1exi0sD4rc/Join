@@ -209,6 +209,7 @@ sup {
   cursor: pointer;
   color: #d1d1d1;
   position: relative;
+  margin-bottom: 24px;
 }
 
 .aT_input_date::after {
@@ -225,5 +226,16 @@ sup {
   background-color: white;
 }
 
-.aT_input_date:focus {
+.aT_set_prio_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.aT_set_prio {
+  box-sizing: border-box;
+  width: 136px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
