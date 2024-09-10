@@ -30,19 +30,27 @@
       <form id="myForm">
         <div class="add_task_fillIn_section">
           <div class="add_task_form_left">
-            <label class="aT_input_labels" for="titleInput"
+            <label class="aT_input_labels" for="aT_titleInput"
               >Title<sup>*</sup></label
             >
-            <input
-              class="aT_input_title aT_unset"
-              type="text"
-              id="aT_titleInput"
-              name="title"
-              placeholder="Enter a title"
-            />
-            <span id="error-message" class="error">hier die Error Meldung</span>
+            <div class="title_input_error_container">
+              <input
+                class="aT_input_title aT_unset"
+                type="text"
+                id="aT_titleInput"
+                name="title"
+                placeholder="Enter a title"
+              />
+              <span id="error-message" class="error"
+                >hier die Error Meldung</span
+              >
+            </div>
+            <label class="aT_input_labels" for="aT_descriptionInput"
+              >Description</label
+            >
             <div class="resizable-container">
               <textarea
+                id="aT_descriptionInput"
                 class="resizable-textarea"
                 placeholder="Enter a Description"
               ></textarea>
@@ -52,6 +60,18 @@
                 alt="Resize Handle"
               />
             </div>
+            <label class="aT_input_labels" for="aT_select_contacts"
+              >Assigned to</label
+            >
+            <select
+              id="aT_select_contacts"
+              name="example"
+              class="aT_select_contacts_dropdown"
+            >
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
           </div>
 
           <div class="add_task_seperator"></div>

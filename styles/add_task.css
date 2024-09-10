@@ -1,6 +1,7 @@
 .add_task_content {
   padding-top: 206px;
   padding-left: 328px;
+  background-color: #f6f7f8;
 }
 
 .add_task_h1 {
@@ -20,7 +21,7 @@
 .add_task_form_left {
   height: 376px;
   width: 440px;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   margin-right: 47.5px;
 }
 
@@ -44,6 +45,7 @@
 }
 
 .aT_input_title {
+  background-color: white;
   box-sizing: border-box;
   padding: 12px 21px;
   width: 440px;
@@ -56,6 +58,7 @@
 
 .aT_input_title::placeholder {
   color: #d1d1d1;
+  font-weight: 400;
 }
 
 /* Fehlermeldung und Randfarbe bei Fehler */
@@ -71,7 +74,7 @@ input.error-border {
 
 label {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 sup {
@@ -79,6 +82,11 @@ sup {
   font-size: 20px;
   position: relative;
   top: 7px; /* Verschiebt den Stern nach unten */
+}
+
+.title_input_error_container {
+  margin-bottom: 8px;
+  height: 64px;
 }
 
 .aT_input_labels {
@@ -93,6 +101,7 @@ sup {
 }
 
 .resizable-textarea {
+  margin-bottom: 16px;
   width: 100%;
   height: 100%;
   border: 1px solid #d1d1d1; /* Randfarbe */
@@ -113,11 +122,36 @@ sup {
 
 .resize-handle {
   position: absolute;
-  bottom: 4px;
-  right: 4px;
+  bottom: 6px;
+  right: 6px;
   width: 19px; /* Breite des Resize-Handles */
   height: 19px; /* Höhe des Resize-Handles */
   cursor: se-resize; /* Zeigt einen Resize-Cursor an */
   z-index: 10; /* Stellt sicher, dass das Bild über dem Textarea liegt */
   pointer-events: auto; /* Erlaubt Interaktionen mit dem Bild */
+}
+
+.aT_input_title:focus,
+.resizable-textarea:focus {
+  border-color: #29abe2; /* Neue Randfarbe beim Fokus */
+  outline: none; /* Entfernt den Standard-Outline-Bereich, der beim Fokussieren angezeigt wird */
+}
+
+.aT_select_contacts_dropdown {
+  width: 440px;
+  height: 48px;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: #d1d1d1;
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
 }
