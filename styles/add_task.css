@@ -9,14 +9,18 @@
   margin-bottom: 48px;
 }
 
-.add_task_form_section {
+.add_task_fillIn_section {
   display: flex;
+}
+
+.aT_unset {
+  all: unset;
 }
 
 .add_task_form_left {
   height: 376px;
   width: 440px;
-  background-color: brown;
+  background-color: antiquewhite;
   margin-right: 47.5px;
 }
 
@@ -30,11 +34,90 @@
 .add_task_form_right {
   height: 416px;
   width: 440px;
-  background-color: bisque;
+  background-color: rgba(219, 199, 175, 0.754);
 }
 
 .add_task_bottom_section {
   width: 976px;
   height: 56px;
   background-color: aquamarine;
+}
+
+.aT_input_title {
+  box-sizing: border-box;
+  padding: 12px 21px;
+  width: 440px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 20px;
+  border: 1px solid;
+  border-color: #d1d1d1;
+}
+
+.aT_input_title::placeholder {
+  color: #d1d1d1;
+}
+
+/* Fehlermeldung und Randfarbe bei Fehler */
+input.error-border {
+  border: 2px solid red;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  /* display: none; Standardmäßig versteckt */
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+sup {
+  color: #ff8190;
+  font-size: 20px;
+  position: relative;
+  top: 7px; /* Verschiebt den Stern nach unten */
+}
+
+.aT_input_labels {
+  font-size: 20px;
+  color: #2a3647;
+}
+
+.resizable-container {
+  position: relative;
+  width: 440px;
+  height: 136px;
+}
+
+.resizable-textarea {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #d1d1d1; /* Randfarbe */
+  border-radius: 10px; /* Abgerundete Ecken */
+  padding: 12px 21px; /* Innenabstand */
+  box-sizing: border-box; /* Padding und Border zur Gesamtbreite und -höhe hinzufügen */
+  font-size: 20px; /* Schriftgröße für eingegebenen Text */
+  font-family: "Inter", sans-serif;
+  resize: none; /* Deaktiviert die Standard-Resize-Handles */
+}
+
+/* Placeholder-Styling */
+.resizable-textarea::placeholder {
+  color: #d1d1d1; /* Farbe des Platzhaltertextes */
+  font-size: 20px; /* Schriftgröße des Platzhaltertextes */
+  font-family: "Inter", sans-serif;
+}
+
+.resize-handle {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 19px; /* Breite des Resize-Handles */
+  height: 19px; /* Höhe des Resize-Handles */
+  cursor: se-resize; /* Zeigt einen Resize-Cursor an */
+  z-index: 10; /* Stellt sicher, dass das Bild über dem Textarea liegt */
+  pointer-events: auto; /* Erlaubt Interaktionen mit dem Bild */
 }

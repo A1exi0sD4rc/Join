@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles/add_task.css" />
     <script src="script.js"></script>
     <script src="./scripts/summary.js"></script>
+    <script src="./scripts/add_task.js"></script>
     <title>JOIN Add Task</title>
   </head>
   <body onload="includeHTML()">
@@ -22,14 +23,42 @@
       w3-include-html="./assets/templates/sidebar.html"
       class="sidebar"
     ></section>
+
     <section class="add_task_content">
       <h1 class="add_task_h1">Add Task</h1>
-      <div class="add_task_form_section">
-        <div class="add_task_form_left"></div>
-        <div class="add_task_seperator"></div>
-        <div class="add_task_form_right"></div>
-      </div>
-      <div class="add_task_bottom_section"></div>
+
+      <form id="myForm">
+        <div class="add_task_fillIn_section">
+          <div class="add_task_form_left">
+            <label class="aT_input_labels" for="titleInput"
+              >Title<sup>*</sup></label
+            >
+            <input
+              class="aT_input_title aT_unset"
+              type="text"
+              id="aT_titleInput"
+              name="title"
+              placeholder="Enter a title"
+            />
+            <span id="error-message" class="error">hier die Error Meldung</span>
+            <div class="resizable-container">
+              <textarea
+                class="resizable-textarea"
+                placeholder="Enter a Description"
+              ></textarea>
+              <img
+                src="./assets/img/resize_description.svg"
+                class="resize-handle"
+                alt="Resize Handle"
+              />
+            </div>
+          </div>
+
+          <div class="add_task_seperator"></div>
+          <div class="add_task_form_right"></div>
+        </div>
+        <div class="add_task_bottom_section"></div>
+      </form>
     </section>
   </body>
 </html>
