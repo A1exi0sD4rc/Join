@@ -2,6 +2,7 @@
   padding-top: 206px;
   padding-left: 328px;
   background-color: #f6f7f8;
+  height: 100vh;
 }
 
 .add_task_h1 {
@@ -54,6 +55,7 @@
   font-size: 20px;
   border: 1px solid;
   border-color: #d1d1d1;
+  cursor: pointer;
 }
 
 .aT_input_title::placeholder {
@@ -97,11 +99,11 @@ sup {
 .resizable-container {
   position: relative;
   width: 440px;
-  height: 136px;
+  height: 120px;
+  margin-bottom: 24px;
 }
 
 .resizable-textarea {
-  margin-bottom: 16px;
   width: 100%;
   height: 100%;
   border: 1px solid #d1d1d1; /* Randfarbe */
@@ -111,6 +113,7 @@ sup {
   font-size: 20px; /* Schriftgröße für eingegebenen Text */
   font-family: "Inter", sans-serif;
   resize: none; /* Deaktiviert die Standard-Resize-Handles */
+  cursor: pointer;
 }
 
 /* Placeholder-Styling */
@@ -121,11 +124,14 @@ sup {
 }
 
 .resize-handle {
+  padding-bottom: 6px;
+  padding-right: 6px;
+  box-sizing: border-box;
   position: absolute;
-  bottom: 6px;
-  right: 6px;
-  width: 19px; /* Breite des Resize-Handles */
-  height: 19px; /* Höhe des Resize-Handles */
+  bottom: 0px;
+  right: 0px;
+  width: 24px;
+  height: 24px;
   cursor: se-resize; /* Zeigt einen Resize-Cursor an */
   z-index: 10; /* Stellt sicher, dass das Bild über dem Textarea liegt */
   pointer-events: auto; /* Erlaubt Interaktionen mit dem Bild */
@@ -133,7 +139,8 @@ sup {
 
 .aT_input_title:focus,
 .resizable-textarea:focus,
-.aT_select_contacts_dropdown:focus {
+.aT_select_contacts_dropdown:focus,
+.aT_input_date:focus {
   border-color: #29abe2; /* Neue Randfarbe beim Fokus */
   outline: none; /* Entfernt den Standard-Outline-Bereich, der beim Fokussieren angezeigt wird */
 }
@@ -150,6 +157,7 @@ sup {
   padding-top: 12px;
   padding-bottom: 12px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .drop_down_arrow_container {
@@ -181,4 +189,41 @@ sup {
   color: black;
   font-size: 20px; /* Schriftgröße des Platzhaltertextes */
   font-family: "Inter", sans-serif;
+}
+
+.aT_select_contacts_dropdown:focus::placeholder {
+  color: transparent;
+}
+
+.aT_input_date {
+  all: unset;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 12px 21px;
+  width: 440px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 20px;
+  border: 1px solid;
+  border-color: #d1d1d1;
+  cursor: pointer;
+  color: #d1d1d1;
+  position: relative;
+}
+
+.aT_input_date::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 24px; /* Abstand vom rechten Rand */
+  transform: translateY(-50%);
+  width: 18px; /* Breite deines Bildes */
+  height: 20px; /* Höhe deines Bildes */
+  background: url(../assets/img/date_calender.svg) no-repeat center center;
+  background-size: contain; /* Skalierung des Bildes */
+  pointer-events: none; /* Verhindert, dass das Bild Klicks blockiert */
+  background-color: white;
+}
+
+.aT_input_date:focus {
 }

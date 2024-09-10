@@ -35,6 +35,7 @@
             >
             <div class="title_input_error_container">
               <input
+                required
                 class="aT_input_title aT_unset"
                 type="text"
                 id="aT_titleInput"
@@ -79,7 +80,17 @@
           </div>
 
           <div class="add_task_seperator"></div>
-          <div class="add_task_form_right"></div>
+          <div class="add_task_form_right">
+            <label class="aT_input_labels" for="aT_dateInput"
+              >Due date<sup>*</sup></label
+            >
+            <input
+              required
+              id="at_dateInput"
+              class="aT_input_date"
+              type="date"
+            />
+          </div>
         </div>
         <div class="add_task_bottom_section"></div>
       </form>
