@@ -467,10 +467,43 @@ body {
     padding: 50px;
 }
 
-.contacts-add-section img {
+.contacts-add-section-img {
     width: 120px;
     height: 120px;
     margin-left: 50px;
     margin-right: 75px;
     margin-top: 150px;
+}
+
+.contacts-img-margin img{
+    margin-left: 4px;
+}
+
+.contacts-add-cancel-btn {
+    padding: 15px 24px;
+    border-radius: 8px;
+    border: solid 1px #2A3647;
+    transition: all 150ms ease-in-out;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.contacts-add-cancel-btn:hover {
+    color: #29ABE2;
+    border: solid 1px #29ABE2;
+    box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.3); 
+}
+
+.contacts-add-create-btn {
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #2A3647;
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
+}
+
+.contacts-add-create-btn:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.3); 
 }

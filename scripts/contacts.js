@@ -211,8 +211,8 @@ function renderEditContact(i) {
                     <input id="contacts-user-number" class="contacts-edit-number" type="text" value="${contacts[i]['number']}">
                 </div>
                 <div>
-                    <button class="contacts-edit-delete-btn" onclick="deleteContact('/contacts/${i}')">Delete</button>
-                    <button class="contacts-edit-save-btn" onclick="saveEdit('/contacts/${i}')">Save <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-edit-delete-btn"  onclick="deleteContact('/contacts/${i}')">Delete</button>
+                    <button class="contacts-edit-save-btn contacts-img-margin" onclick="saveEdit('/contacts/${i}')">Save <img src="./assets/img/check.svg"></button>
                 </div>
             </div>
         </div>
@@ -238,19 +238,19 @@ function addNewContact() {
     `;
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
         <div class="contacts-add-section">
-            <img src="./assets/img/no_user.svg">
-            <div class="contacts-edit-input-btn">
+            <img class="contacts-add-section-img" src="./assets/img/no_user.svg">
+            <form class="contacts-edit-input-btn">
                 <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility()"></button>
                 <div class="contacts-edit-input">
-                    <input id="contacts-user-name" class="contacts-edit-name" type="text" placeholder="Name">
-                    <input id="contacts-user-email" class="contacts-edit-email" type="text" placeholder="Email">
-                    <input id="contacts-user-number" class="contacts-edit-number" type="text" placeholder="Phone">
+                    <input required id="contacts-user-name" class="contacts-edit-name" type="text" placeholder="Name">
+                    <input required id="contacts-user-email" class="contacts-edit-email" type="text" placeholder="Email">
+                    <input required id="contacts-user-number" class="contacts-edit-number" type="text" placeholder="Phone">
                 </div>
                 <div>
-                    <button class="contacts-edit-delete-btn" onclick="deleteContact('/contacts/${contacts.length++}')">Delete</button>
-                    <button class="contacts-edit-save-btn" onclick="saveEdit('/contacts/${contacts.length++}')">Save <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-add-cancel-btn contacts-img-margin" onclick="deleteContact('/contacts/${contacts.length++}')">Cancel <img src="./assets/img/close.svg"></button>
+                    <button class="contacts-add-create-btn contacts-img-margin" onsubmit="saveEdit('/contacts/${contacts.length++}')">Create contact <img src="./assets/img/check.svg"></button>
                 </div>
-            </div>
+            </form>
         </div>
     `;
 }
