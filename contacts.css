@@ -5,6 +5,7 @@ body {
     font-family: "Inter", system-ui;
     background-color: #f6f7f8;
     max-width: 1440px;
+    overflow-x: hidden;
 }
 
 .d-none {

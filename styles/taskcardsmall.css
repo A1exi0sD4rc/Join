@@ -8,7 +8,7 @@
     box-shadow: 0px 0px 10px 3px #00000014;
     margin-top: 16px;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 300ms ease-out;
 }
 
 .rotate {
@@ -25,12 +25,11 @@
 }
 
 .art_small {
-    width: 113px;
+    width: 144px;
     height: 27px;
     border-radius: 8px;
     padding: 4px, 16px, 4px, 16px;
     gap: 10px;
-    background-color: #0038FF;
     font-size: 16px;
     font-weight: 400;
     color: #ffffff;
