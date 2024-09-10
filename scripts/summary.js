@@ -42,7 +42,7 @@ function counter(category) {
  * @returns number of urgent tasks
  */
 function countUrgentTasks() {
-  return tasks.filter((task) => task.prio === "high").length;
+  return tasks.filter((task) => task.prio === "Urgent").length;
 }
 
 /**

@@ -13,19 +13,19 @@ body {
   position: absolute;
   top: 345px;
   left: 583px;
-  animation: moveDiv 1.3s forwards;
+  animation: moveDiv 0.7s forwards;
 }
 
 .starting-screen img {
   width: 274px;
   height: 334.07px;
-  animation: resizeImg 1.8s forwards;
+  animation: resizeImg 0.7s forwards;
 }
 
 .content {
   display: flex;
   opacity: 0;
-  animation: showContent 2s forwards 1s;
+  animation: showContent 1.5s forwards 0.5s ease;
   flex-direction: column;
   align-items: center;
 }
