@@ -63,15 +63,19 @@
             <label class="aT_input_labels" for="aT_select_contacts"
               >Assigned to</label
             >
-            <select
-              id="aT_select_contacts"
-              name="example"
-              class="aT_select_contacts_dropdown"
-            >
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-            </select>
+            <div class="aT_select_container">
+              <input
+                id="aT_select_contacts"
+                class="aT_select_contacts_dropdown"
+                placeholder="Select contacts to assign"
+              />
+              <div class="drop_down_arrow_container">
+                <img
+                  src="./assets/img/arrow_drop_down.svg"
+                  alt="drop_down_arrow"
+                />
+              </div>
+            </div>
           </div>
 
           <div class="add_task_seperator"></div>

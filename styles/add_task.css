@@ -132,26 +132,53 @@ sup {
 }
 
 .aT_input_title:focus,
-.resizable-textarea:focus {
+.resizable-textarea:focus,
+.aT_select_contacts_dropdown:focus {
   border-color: #29abe2; /* Neue Randfarbe beim Fokus */
   outline: none; /* Entfernt den Standard-Outline-Bereich, der beim Fokussieren angezeigt wird */
 }
 
 .aT_select_contacts_dropdown {
+  all: unset;
   width: 440px;
   height: 48px;
-  border-width: 1px;
+  border: 1px solid #d1d1d1;
   border-radius: 10px;
-  border-color: #d1d1d1;
+  background-color: white;
+  padding-left: 21px;
+  padding-right: 35px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-sizing: border-box;
 }
 
-.select-selected:after {
+.drop_down_arrow_container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aT_select_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.drop_down_arrow_container {
   position: absolute;
-  content: "";
-  top: 14px;
   right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+}
+
+.drop_down_arrow_container:hover {
+  background-color: rgb(238, 238, 238);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.aT_select_contacts_dropdown::placeholder {
+  color: black;
+  font-size: 20px; /* Schriftgröße des Platzhaltertextes */
+  font-family: "Inter", sans-serif;
 }
