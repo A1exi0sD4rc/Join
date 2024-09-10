@@ -1,6 +1,6 @@
 function renderTaskCardToDo(elementToDo) {
   return `
-        <div onclick="showBigTask(${elementToDo['id']})" class="task_card_small" draggable="true" ondragstart="startDrag(${elementToDo['id']})">
+        <div onclick="showBigTask(${elementToDo['id']})" class="task_card_small" id="${elementToDo['id']}" draggable="true" ondragstart="startDrag(${elementToDo['id']})">
             
         <div class="task_card_small_content">
 
@@ -30,7 +30,7 @@ function renderTaskCardToDo(elementToDo) {
 
 function renderTaskCardProgress(elementProgress) {
   return `
-        <div onclick="showBigTask(${elementProgress['id']}))" class="task_card_small" draggable="true" ondragstart="startDrag(${elementProgress['id']})">
+        <div onclick="showBigTask(${elementProgress['id']}))" class="task_card_small" id="${elementProgress['id']}" draggable="true" ondragstart="startDrag(${elementProgress['id']})">
             <div class="task_card_small_content">
             
                 <div class="art_task_small"><div class="art_small" id="art_small_${elementProgress['id']}">${elementProgress['art']}</div></div>
@@ -58,7 +58,7 @@ function renderTaskCardProgress(elementProgress) {
 
 function renderTaskCardAwait(elementAwait) {
   return `
-        <div onclick="showBigTask(${elementAwait['id']})" class="task_card_small" draggable="true" ondragstart="startDrag(${elementAwait['id']})">
+        <div onclick="showBigTask(${elementAwait['id']})" class="task_card_small" id="${elementAwait['id']}" draggable="true" ondragstart="startDrag(${elementAwait['id']})">
             <div class="task_card_small_content">
             
                 <div class="art_task_small"><div class="art_small" id="art_small_${elementAwait['id']}">${elementAwait['art']}</div></div>
@@ -86,7 +86,7 @@ function renderTaskCardAwait(elementAwait) {
 
 function renderTaskCardDone(elementDone) {
   return `
-        <div onclick="showBigTask(${elementDone['id']})" class="task_card_small" draggable="true" ondragstart="startDrag(${elementDone['id']})">
+        <div onclick="showBigTask(${elementDone['id']})" class="task_card_small" id="${elementDone['id']}" draggable="true" ondragstart="startDrag(${elementDone['id']})">
             <div class="task_card_small_content">
             
                 <div class="art_task_small"><div class="art_small" id="art_small_${elementDone['id']}">${elementDone['id']}</div></div>
@@ -156,5 +156,32 @@ function renderBigTaskCard(bigelement) {
       </div>
 
     </div>
+  `;
+}
+
+function renderNoTasksToDo(){
+  return`
+    <div class="no_tasks"><div class="no_tasks_txt">No tasks To do</div></div>
+  `;
+}
+
+
+function renderNoTasksProgress(){
+  return`
+    <div class="no_tasks"><div class="no_tasks_txt">No tasks in Progress</div></div>
+  `;
+}
+
+
+function renderNoTasksAwait(){
+  return`
+    <div class="no_tasks"><div class="no_tasks_txt">No feedback awaited</div></div>
+  `;
+}
+
+
+function renderNoTaskDone(){
+  return`
+    <div class="no_tasks"><div class="no_tasks_txt">No tasks Done</div></div>
   `;
 }
