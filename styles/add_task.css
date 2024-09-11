@@ -225,6 +225,20 @@ sup {
   transform: rotate(180deg);
 }
 
+/* Stile für das Kontaktlisten-Div */
+.contact_list {
+  /*display: none; /* Standardmäßig verborgen */
+  position: absolute; /* Positionierung relativ zum Container */
+  top: 100%; /* Direkt unter dem Input-Feld */
+  left: 0;
+  width: 100%; /* Gleiche Breite wie das Input-Feld */
+  max-height: 336px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  background-color: white;
+  z-index: 1000; /* Sicherstellen, dass es über anderen Inhalten liegt */
+}
+
 /*--------------------------------------------------------------------------------------*/
 
 .aT_input_date {
