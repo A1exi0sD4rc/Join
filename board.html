@@ -2,6 +2,7 @@
 <html lang="de">
 
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -18,8 +19,10 @@
   <script src="scripts/boardrender.js"></script>
   <script src="scripts/searchborder.js"></script>
   <script src="./scripts/summary.js"></script>
+  <script src="scripts/boardDragAndDrop.js"></script>
 
   <title>Board</title>
+
 </head>
 
 <body onload="initBoardJs()">
@@ -27,24 +30,26 @@
   <section w3-include-html="./assets/templates/sidebar.html" class="sidebar"></section>
 
   <div class="board_content">
+
     <div class="big_card_bg d_none" id="big_card_bg"></div>
 
     <div class="board_header">
+
       <h1>Board</h1>
 
       <div class="search_add_task">
         <div class="input_div">
-          <input class="search_task_input" oninput="filterTasks()" type="search" placeholder="Find Task">
+          <input class="search_task_input" id="search_task_input" oninput="filterTasks()" type="search" placeholder="Find Task">
           <div class="search_icon_div">
-            <div class="search_icon" onclick="filterTasks()">
-              <img src="assets/img/search.svg" />
+            <div class="search_icon" onclick="filterTasks(); emptySearchInput()">
+              <img src="assets/img/search.svg">
             </div>
           </div>
         </div>
 
-        <div class="add_task_btn"><div>Add Task +</div></div>
-        
+        <div class="add_task_btn"><div>Add Task +</div></div> 
       </div>
+
     </div>
 
     <div class="board_categorys">
@@ -62,6 +67,7 @@
     </div>
 
   </div>
+  
 </body>
 
 </html>
