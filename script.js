@@ -151,3 +151,15 @@ function toggleMenu() {
     userContent.style.display = "block";
   }
 }
+
+/**
+ * Brings the user back to the index.html page if not logged in.
+ * Ensure that the user can't access pages like summary.html or board.html without login.
+ */
+function checkLogin() {
+  const userName = sessionStorage.getItem("userName");
+
+  if (!userName) {
+    window.location.href = "index.html";
+  }
+}

@@ -2,6 +2,7 @@
  * This function initializes the summary html.
  */
 async function summaryInit() {
+  // checkLogin(); // Implemented but don't need for tests or functions, only activate when uploaded on the server!
   includeHTML();
   initPage();
   generateCounts();
@@ -85,8 +86,8 @@ function getGreeting() {
  */
 function generateUpcomingDate() {
   let content = document.getElementById("upcomingDate");
-  // content.innerHTML = getClosestUrgentDueDate(); FUNCTION CAN'T BE IMPLEMENTED!
-  content.innerHTML = "Oktober 10, 2024";
+  // content.innerHTML = getClosestUrgentDueDate(); Function can be implemented when tasks have a due date.
+  content.innerHTML = "Oktober 10, 2024"; // Here for dinamic date.
 }
 
 /**

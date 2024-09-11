@@ -373,46 +373,50 @@ p {
 }
 
 @media (max-width: 1250px) {
+  .summary-main-container {
+    flex-direction: column;
+  }
+
   .greet-user-name {
     font-size: 50px;
+    margin-left: 10px;
+  }
+
+  .greeting-container {
+    width: 630px;
+    flex-direction: row;
+    align-items: last baseline;
   }
 }
 
 @media (max-width: 1100px) {
   .greet-text {
-    font-size: 28px;
+    font-size: 34px;
   }
 
   .greet-user-name {
-    font-size: 44px;
+    font-size: 45px;
   }
 }
 
 @media (max-width: 1050px) {
-  .summary-main-container {
-    justify-content: center;
-  }
-
   .sidebar {
     display: none;
   }
 }
 
-@media (max-width: 1000px) {
-  .title-contact {
-    font-size: 48px;
-  }
-
-  .greet-user-name {
-    font-size: 48px;
+@media (max-width: 950px) {
+  .summary-main-container {
+    padding-left: 270px;
   }
 }
 
 @media (max-width: 920px) {
   .summary-main-container {
+    justify-content: center;
     width: 100%;
-    padding: 0;
-    padding-top: 176px;
+    padding-left: 0;
+    align-items: center;
   }
 }
 
@@ -533,7 +537,7 @@ p {
   }
 
   .title-contact {
-    font-size: 32px;
+    font-size: 40px;
   }
 
   .date-text {
