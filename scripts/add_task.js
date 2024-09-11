@@ -29,3 +29,26 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("Elemente nicht gefunden!");
   }
 });
+
+// Funktion, die beim Klicken auf eine div aufgerufen wird
+function activateBox(boxId, activeClass) {
+  // Zuerst alle deaktivieren
+  deactivateAll();
+
+  // Dann die angeklickte div aktivieren
+  const box = document.getElementById(boxId);
+  box.classList.remove("aT_set_prio");
+  box.classList.add(activeClass);
+}
+
+// Funktion, um alle divs inaktiv zu machen
+function deactivateAll() {
+  document.getElementById("boxUrgent").classList.remove("urgent_box_active");
+  document.getElementById("boxUrgent").classList.add("aT_set_prio");
+
+  document.getElementById("boxMedium").classList.remove("medium_box_active");
+  document.getElementById("boxMedium").classList.add("aT_set_prio");
+
+  document.getElementById("boxLow").classList.remove("low_box_active");
+  document.getElementById("boxLow").classList.add("aT_set_prio");
+}

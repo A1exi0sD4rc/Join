@@ -86,23 +86,52 @@
             >
             <input
               required
-              id="at_dateInput"
+              id="aT_dateInput"
               class="aT_input_date"
               type="date"
             />
-            <label class="aT_input_labels" for="aT_set_prio">Prio</label>
+            <div class="aT_input_labels">Prio</div>
             <div class="aT_set_prio_container" id="aT_set_prio">
-              <div class="aT_set_prio">
+              <div
+                class="aT_set_prio"
+                id="boxUrgent"
+                onclick="activateBox('boxUrgent', 'urgent_box_active')"
+              >
                 <span>Urgent</span
                 ><img src="./assets/img/Prio_high.svg" alt="urgent_icon" />
               </div>
-              <div class="aT_set_prio">
+              <div
+                class="medium_box_active"
+                id="boxMedium"
+                onclick="activateBox('boxMedium', 'medium_box_active')"
+              >
                 <span>Medium</span
                 ><img src="./assets/img/Prio_med.svg" alt="medium_icon" />
               </div>
-              <div class="aT_set_prio">
+              <div
+                class="aT_set_prio"
+                id="boxLow"
+                onclick="activateBox('boxLow', 'low_box_active')"
+              >
                 <span>Low</span
                 ><img src="./assets/img/Prio_low.svg" alt="low_icon" />
+              </div>
+            </div>
+
+            <label class="aT_input_labels" for="aT_select_category"
+              >Category<sup>*</sup></label
+            >
+            <div class="aT_select_container">
+              <input
+                id="aT_select_category"
+                class="aT_select_contacts_dropdown"
+                placeholder="Select task category"
+              />
+              <div class="drop_down_arrow_container">
+                <img
+                  src="./assets/img/arrow_drop_down.svg"
+                  alt="drop_down_arrow"
+                />
               </div>
             </div>
           </div>

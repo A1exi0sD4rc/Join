@@ -73,11 +73,6 @@ input.error-border {
   /* display: none; Standardmäßig versteckt */
 }
 
-label {
-  display: block;
-  margin-bottom: 8px;
-}
-
 sup {
   color: #ff8190;
   font-size: 20px;
@@ -93,6 +88,8 @@ sup {
 .aT_input_labels {
   font-size: 20px;
   color: #2a3647;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .resizable-container {
@@ -157,6 +154,22 @@ sup {
   padding-bottom: 12px;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+.aT_select_contacts_dropdown:hover {
+  border: 1px solid #a8a8a8;
+}
+
+.aT_select_contacts_dropdown:focus {
+  border-color: #29abe2;
+}
+
+.aT_select_contacts_dropdown:hover {
+  border: 1px solid #a8a8a8;
+}
+
+.aT_select_contacts_dropdown:focus:hover {
+  border-color: #29abe2;
 }
 
 .drop_down_arrow_container {
@@ -228,6 +241,7 @@ sup {
 .aT_set_prio_container {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .aT_set_prio {
@@ -237,17 +251,98 @@ sup {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
   border-radius: 10px;
   font-size: 20px;
   box-shadow: 0px 0px 4px 0px #0000001a;
+  background-color: white;
 }
 
 .aT_set_prio span {
-  padding-right: 5px;
+  padding-right: 8px;
 }
 
 .aT_set_prio:hover {
   box-shadow: 0px 4px 4px 0px #00000040;
+  cursor: pointer;
+}
+
+.urgent_box_active {
+  box-sizing: border-box;
+  width: 136px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: #ff3d00;
+  color: white;
+  font-weight: 700;
+  box-shadow: none; /* Schatten weg */
+}
+
+.urgent_box_active span {
+  padding-right: 8px;
+}
+
+.urgent_box_active img {
+  content: url("../assets/img/Prio_urgent_active.svg");
+}
+
+.urgent_box_active:hover {
+  cursor: pointer;
+}
+
+.medium_box_active {
+  box-sizing: border-box;
+  width: 136px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: #ffa800;
+  color: white;
+  font-weight: 700;
+  box-shadow: none; /* Schatten weg */
+}
+
+.medium_box_active span {
+  padding-right: 8px;
+}
+
+.medium_box_active img {
+  content: url("../assets/img/Prio_medium_active.svg");
+}
+
+.medium_box_active:hover {
+  cursor: pointer;
+}
+
+.low_box_active {
+  box-sizing: border-box;
+  width: 136px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: #7ae229;
+  color: white;
+  font-weight: 700;
+  box-shadow: none; /* Schatten weg */
+}
+
+.low_box_active span {
+  padding-right: 8px;
+}
+
+.low_box_active img {
+  content: url("../assets/img/Prio_low_active.svg");
+}
+
+.low_box_active:hover {
   cursor: pointer;
 }
