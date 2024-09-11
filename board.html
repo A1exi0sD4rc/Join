@@ -60,14 +60,35 @@
     </div>
 
     <div class="task_slots">
-      <div class="slots" id="small_card_todo" ondrop="moveTo('todo')" ondragover="allowDrop(event)"></div>
-      <div class="slots" id="small_card_progress" ondrop="moveTo('progress')" ondragover="allowDrop(event)"></div>
-      <div class="slots" id="small_card_await" ondrop="moveTo('await')" ondragover="allowDrop(event)"></div>
-      <div class="slots" id="small_card_done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
+
+      <div class="slots" id="small_card_todo" 
+        ondrop="moveTo('todo')" 
+        ondragover="allowDrop(event); addHighlightBorder('small_card_todo')" 
+        ondragleave="removeHighlightBorder('small_card_todo')">
+      </div>
+
+      <div class="slots" id="small_card_progress" 
+        ondrop="moveTo('progress')" 
+        ondragover="allowDrop(event); addHighlightBorder('small_card_progress')" 
+        ondragleave="removeHighlightBorder('small_card_progress')">
+      </div>
+
+      <div class="slots" id="small_card_await" 
+        ondrop="moveTo('await')" 
+        ondragover="allowDrop(event); addHighlightBorder('small_card_await')" 
+        ondragleave="removeHighlightBorder('small_card_await')">
+      </div>
+
+      <div class="slots" id="small_card_done" 
+        ondrop="moveTo('done')" 
+        ondragover="allowDrop(event); addHighlightBorder('small_card_done')" 
+        ondragleave="removeHighlightBorder('small_card_done')">
+      </div>
+      
     </div>
 
   </div>
-  
+
 </body>
 
 </html>

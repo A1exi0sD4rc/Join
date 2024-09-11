@@ -37,3 +37,13 @@ function moveTo(category) {
     updateHtmlAwait();
     updateHtmlDone();
 }
+
+
+function addHighlightBorder(id) {
+    document.getElementById(id).classList.add('drag_area_border');
+}
+
+
+function removeHighlightBorder(id) {
+    document.getElementById(id).classList.remove('drag_area_border');
+}
