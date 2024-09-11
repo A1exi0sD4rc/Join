@@ -53,59 +53,49 @@ function deactivateAll() {
   document.getElementById("boxLow").classList.add("aT_set_prio");
 }
 
+//_____________________________________________________________________________
+
 document.addEventListener("DOMContentLoaded", function () {
-  // Funktion zum Aktivieren und Deaktivieren des Input-Feldes
+  // Referenzen für Input-Feld und das div mit dem Pfeil
+  const inputField = document.getElementById("aT_select_contacts");
+  const arrowContainer = document.querySelector(".drop_down_arrow_container");
+  const arrowImage = arrowContainer.querySelector("img");
 
-  function toggleInput(event) {
-    event.stopPropagation(); // Verhindert, dass das Klick-Ereignis auf das Input-Feld propagiert wird
-    const inputField = document.getElementById("aT_select_contacts");
-    const isFocused = document.activeElement === inputField;
+  // Funktion zum Aktivieren des Input-Feldes
+  function activateField(event) {
+    event.stopPropagation(); // Verhindert, dass der Klick das Dokument beeinflusst
 
-    if (isFocused) {
-      deactivateInput();
+    inputField.classList.add("active-border");
+    arrowImage.classList.add("rotate");
+  }
+
+  // Funktion zum Deaktivieren des Input-Feldes
+  function deactivateField() {
+    inputField.classList.remove("active-border");
+    arrowImage.classList.remove("rotate");
+    inputField.value = ""; // Löscht den Text im Input-Feld
+  }
+
+  // Event Listener für das Input-Feld (aktivieren des Input-Feldes)
+  inputField.addEventListener("click", activateField);
+
+  // Event Listener für das div mit dem Pfeil (aktivieren oder deaktivieren des Input-Feldes)
+  arrowContainer.addEventListener("click", function (event) {
+    event.stopPropagation(); // Verhindert, dass der Klick das Dokument beeinflusst
+    if (inputField.classList.contains("active-border")) {
+      deactivateField(); // Deaktivieren, wenn das Input-Feld bereits aktiv ist
     } else {
-      activateInput();
+      activateField(event); // Aktivieren, wenn das Input-Feld nicht aktiv ist
     }
-  }
+  });
 
-  // Aktivieren des Input-Feldes
-  function activateInput() {
-    const inputField = document.getElementById("aT_select_contacts");
-    inputField.classList.add("active");
-    inputField.focus();
-  }
-
-  // Deaktivieren des Input-Feldes und Zurücksetzen der Stile
-  function deactivateInput() {
-    const inputField = document.getElementById("aT_select_contacts");
-    inputField.classList.remove("active");
-    inputField.blur();
-    inputField.placeholder = "Select contacts to assign";
-    inputField.value = "";
-  }
-
-  // Überprüfen, ob außerhalb des Feldes geklickt wurde
+  // Event Listener für Klicks auf das gesamte Dokument (deaktivieren des Input-Feldes)
   document.addEventListener("click", function (event) {
-    const inputField = document.getElementById("aT_select_contacts");
-    const arrowContainer = document.querySelector(".drop_down_arrow_container");
-
     if (
       !inputField.contains(event.target) &&
       !arrowContainer.contains(event.target)
     ) {
-      deactivateInput();
+      deactivateField(); // Deaktivieren, wenn außerhalb des Input-Feldes und des Arrow-Containers geklickt wird
     }
   });
-
-  // Event-Listener für das Input-Feld hinzufügen
-  const inputField = document.getElementById("aT_select_contacts");
-  if (inputField) {
-    inputField.addEventListener("click", toggleInput);
-  }
-
-  // Event-Listener für das PfeilDiv hinzufügen
-  const arrowContainer = document.querySelector(".drop_down_arrow_container");
-  if (arrowContainer) {
-    arrowContainer.addEventListener("click", toggleInput);
-  }
 });

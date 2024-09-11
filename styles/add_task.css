@@ -133,14 +133,14 @@ sup {
   pointer-events: auto; /* Erlaubt Interaktionen mit dem Bild */
 }
 
-/*---------------------------------------------------------------------------------*/
-
 .aT_input_title:focus,
 .resizable-textarea:focus,
 .aT_input_date:focus {
   border-color: #29abe2;
   outline: none;
 }
+
+/*---------------------------------------------------------------------------------*/
 
 /*container mit inputfeld und div mit pfeil img*/
 .aT_select_container {
@@ -162,6 +162,9 @@ sup {
   padding-bottom: 12px;
   box-sizing: border-box;
   cursor: pointer;
+  font-size: 20px;
+
+  position: relative;
 }
 
 .aT_select_contacts_dropdown:hover {
@@ -186,11 +189,40 @@ sup {
   cursor: pointer;
 }
 
+/* Sicherstellen, dass der Hover-Effekt des Input-Feldes auch bei Hover über den Arrow-Container aktiv ist, wenn nicht aktiviert */
+.aT_select_container:hover .aT_select_contacts_dropdown:not(.active-border) {
+  border: 1px solid #a8a8a8;
+}
 /*aussehen vom placeholder im inputfeld*/
 .aT_select_contacts_dropdown::placeholder {
   color: black;
   font-size: 20px;
   font-family: "Inter", sans-serif;
+}
+
+/* Placeholder unsichtbar, wenn das Feld aktiviert ist */
+.aT_select_contacts_dropdown.active-border::placeholder {
+  opacity: 0; /* Macht den Placeholder unsichtbar */
+}
+
+/* Wenn aktiv, ändere die Farbe des Borders */
+.active-border {
+  border: 1px solid #29abe2;
+}
+
+/* Hover-Effekt, wenn das Feld aktiviert ist */
+.aT_select_contacts_dropdown.active-border:hover {
+  border: 1px solid #29abe2; /* Beispiel für die Farbe, die beim Aktivieren verwendet wird */
+}
+
+/* Ausgangszustand - keine Rotation */
+.arrow {
+  transition: transform 0.3s ease; /* Übergangsanimation */
+}
+
+/* Drehung um 180 Grad */
+.arrow.rotate {
+  transform: rotate(180deg);
 }
 
 /*--------------------------------------------------------------------------------------*/
