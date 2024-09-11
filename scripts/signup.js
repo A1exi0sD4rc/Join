@@ -46,8 +46,6 @@ function init() {
 
   if (signupForm && signupButton && acceptPolicyImage) {
     setupFormSubmission(signupForm);
-  } else {
-    console.log("Form elements missing!");
   }
 }
 
@@ -89,8 +87,6 @@ function handleFormSubmit(event) {
 
   if (validateInputs()) {
     signupUser(name.value, email.value, password.value);
-  } else {
-    console.log("Validation failed, form will not be submitted");
   }
 }
 
