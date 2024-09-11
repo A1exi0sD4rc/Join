@@ -81,7 +81,7 @@ sup {
 }
 
 .title_input_error_container {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   height: 64px;
 }
 
@@ -96,7 +96,7 @@ sup {
   position: relative;
   width: 440px;
   height: 120px;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
 .resizable-textarea {
@@ -133,16 +133,20 @@ sup {
   pointer-events: auto; /* Erlaubt Interaktionen mit dem Bild */
 }
 
+/*---------------------------------------------------------------------------------*/
+
 .aT_input_title:focus,
 .resizable-textarea:focus,
-.aT_select_contacts_dropdown:focus,
 .aT_input_date:focus {
-  border-color: #29abe2; /* Neue Randfarbe beim Fokus */
-  outline: none; /* Entfernt den Standard-Outline-Bereich, der beim Fokussieren angezeigt wird */
+  border-color: #29abe2;
+  outline: none;
 }
 
-.aT_select_contacts_dropdown:focus img {
-  transform: rotate(180deg);
+/*container mit inputfeld und div mit pfeil img*/
+.aT_select_container {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .aT_select_contacts_dropdown {
@@ -164,18 +168,7 @@ sup {
   border: 1px solid #a8a8a8;
 }
 
-.aT_select_contacts_dropdown:focus {
-  border-color: #29abe2;
-}
-
-.aT_select_contacts_dropdown:hover {
-  border: 1px solid #a8a8a8;
-}
-
-.aT_select_contacts_dropdown:focus:hover {
-  border-color: #29abe2;
-}
-
+/*aussehen vom div mit pfeil img*/
 .drop_down_arrow_container {
   width: 24px;
   height: 24px;
@@ -184,38 +177,23 @@ sup {
   justify-content: center;
   position: absolute;
   right: 10px;
-  pointer-events: auto;
 }
 
-.drop_down_arrow_container img {
-  transition: transform 0.3s ease; /* Für eine sanfte Drehung */
-}
-
-.aT_select_contacts_dropdown:focus + .drop_down_arrow_container img {
-  transform: rotate(180deg);
-}
-
-.aT_select_container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
+/*hover effekt für die div mit dem pfeil*/
 .drop_down_arrow_container:hover {
   background-color: rgb(238, 238, 238);
   border-radius: 15px;
   cursor: pointer;
 }
 
+/*aussehen vom placeholder im inputfeld*/
 .aT_select_contacts_dropdown::placeholder {
   color: black;
-  font-size: 20px; /* Schriftgröße des Platzhaltertextes */
+  font-size: 20px;
   font-family: "Inter", sans-serif;
 }
 
-.aT_select_contacts_dropdown:focus::placeholder {
-  color: transparent;
-}
+/*--------------------------------------------------------------------------------------*/
 
 .aT_input_date {
   all: unset;
@@ -231,7 +209,7 @@ sup {
   cursor: pointer;
   color: #d1d1d1;
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
 .aT_input_date::after {
