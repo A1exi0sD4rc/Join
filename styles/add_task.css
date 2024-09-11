@@ -141,6 +141,10 @@ sup {
   outline: none; /* Entfernt den Standard-Outline-Bereich, der beim Fokussieren angezeigt wird */
 }
 
+.aT_select_contacts_dropdown:focus img {
+  transform: rotate(180deg);
+}
+
 .aT_select_contacts_dropdown {
   all: unset;
   width: 440px;
