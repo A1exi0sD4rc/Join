@@ -182,17 +182,23 @@ sup {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  right: 10px;
+  pointer-events: auto;
+}
+
+.drop_down_arrow_container img {
+  transition: transform 0.3s ease; /* Für eine sanfte Drehung */
+}
+
+.aT_select_contacts_dropdown:focus + .drop_down_arrow_container img {
+  transform: rotate(180deg);
 }
 
 .aT_select_container {
   position: relative;
   display: flex;
   align-items: center;
-}
-
-.drop_down_arrow_container {
-  position: absolute;
-  right: 10px;
 }
 
 .drop_down_arrow_container:hover {
