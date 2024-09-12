@@ -1,39 +1,32 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import {
-    getDatabase,
-    ref,
-    get,
-} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+// import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 
 
-/**
-      * Firebase configuration object.
-      * @type {Object}
-      */
-const firebaseConfig = {
-    apiKey: "AIzaSyC__8h3qCr6cM1oaZBnw6ejQUOptococYA",
-    authDomain: "join-a2f86.firebaseapp.com",
-    databaseURL: "https://join-a2f86-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "join-a2f86",
-    storageBucket: "join-a2f86.appspot.com",
-    messagingSenderId: "975506728412",
-    appId: "1:975506728412:web:126844692fe85baa699b19"
-};
+// /**
+//       * Firebase configuration object.
+//       * @type {Object}
+//       */
+//     const firebaseConfig = {
+//     apiKey: "AIzaSyC__8h3qCr6cM1oaZBnw6ejQUOptococYA",
+//     authDomain: "join-a2f86.firebaseapp.com",
+//     databaseURL: "https://join-a2f86-default-rtdb.europe-west1.firebasedatabase.app",
+//     projectId: "join-a2f86",
+//     storageBucket: "join-a2f86.appspot.com",
+//     messagingSenderId: "975506728412",
+//     appId: "1:975506728412:web:126844692fe85baa699b19"
+// };
 
-/**
-* Initializes Firebase app.
-* @type {firebase.app.App}
-*/
-const app = initializeApp(firebaseConfig);
+// /**
+// * Initializes Firebase app.
+// * @type {firebase.app.App}
+// */
+// const app = initializeApp(firebaseConfig);
 
-/**
-* Gets the database service for the default app or a given app.
-* @type {firebase.database.Database}
-*/
-const database = getDatabase(app);
-
-
-
+// /**
+// * Gets the database service for the default app or a given app.
+// * @type {firebase.database.Database}
+// */
+// const database = getDatabase(app);
 
 let contacts = [];
 let lastSelected;
@@ -43,7 +36,6 @@ init();
 
 
 async function init() {
-    includeHTML();
     await getContacts();
     render();
     renderContacts();
@@ -119,7 +111,7 @@ function renderContacts() {
                 <div id="${originalIndex}" class="contacts-overview-contact contacts-overview-contact-unselected" onclick="renderContactDetails(${originalIndex})">
                     <div class="contacts-initials">
                         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="21" cy="21" r="20" fill="#FF7A00" stroke="white" stroke-width="2"/>
+                            <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
                             <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${getInitials(contact.name)}</text>
                         </svg>
                     </div>
@@ -175,7 +167,7 @@ function renderContactDetails(i) {
                 <h2>${contacts[i]['name']}</h2>
                 <div class="contacts-contact-details-btn-div">
                     <button class="contacts-contact-details-edit-btn" onclick="editContact(${i}, 'edit')">Edit</button>
-                    <button class="contacts-contact-details-delete-btn" onclick="deleteContact('/contacts/${i}')"">Delete</button>
+                    <button class="contacts-contact-details-delete-btn" onclick="deleteContact('/${i}')">Delete</button>
                 </div>
             </div>
         </div>  
@@ -250,8 +242,8 @@ function renderEditContact(i) {
                     <input id="contacts-user-number" class="contacts-edit-number" type="text" value="${contacts[i]['number']}">
                 </div>
                 <div>
-                    <button class="contacts-edit-delete-btn"  onclick="deleteContact('/contacts/${i}')">Delete</button>
-                    <button class="contacts-edit-save-btn contacts-img-margin" onclick="saveEdit('/contacts/${i}')">Save <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-edit-delete-btn"  onclick="deleteContact('/${i}')">Delete</button>
+                    <button class="contacts-edit-save-btn contacts-img-margin" onclick="saveEdit('/${i}')">Save <img src="./assets/img/check.svg"></button>
                 </div>
             </div>
         </div>
@@ -282,18 +274,17 @@ function addNewContact() {
                 <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility()"></button>
                 <div class="contacts-edit-input">
                     <input required id="contacts-user-name" class="contacts-edit-name" type="text" placeholder="Name">
-                    <input required id="contacts-user-email" class="contacts-edit-email" type="text" placeholder="Email">
-                    <input required id="contacts-user-number" class="contacts-edit-number" type="text" placeholder="Phone">
+                    <input required id="contacts-user-email" class="contacts-edit-email" type="email" placeholder="Email">
+                    <input required id="contacts-user-number" class="contacts-edit-number" type="tel" placeholder="Phone">
                 </div>
                 <div>
                     <button class="contacts-add-cancel-btn contacts-img-margin" onclick="deleteContact('/contacts/${contacts.length++}')">Cancel <img src="./assets/img/close.svg"></button>
-                    <button class="contacts-add-create-btn contacts-img-margin" onsubmit="saveEdit('/contacts/${contacts.length++}')">Create contact <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-add-create-btn contacts-img-margin" onsubmit="addContactToDb()">Create contact <img src="./assets/img/check.svg"></button>
                 </div>
             </form>
         </div>
     `;
 }
-
 
 async function deleteContact(path = "") {
     let response = await fetch(BASE_URL + path + ".json", {
@@ -305,7 +296,7 @@ async function deleteContact(path = "") {
 
 async function saveEdit(path = "") {
     let changeUserName = document.getElementById('contacts-user-name').value;
-    let changeUserEmail = document.getElementById('contacts-user-name').value;
+    let changeUserEmail = document.getElementById('contacts-user-email').value;
     let changeUserNumber = document.getElementById('contacts-user-number').value;
     const response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
@@ -317,4 +308,30 @@ async function saveEdit(path = "") {
         })
     });
     return responseToJson = await response.json();
+}
+
+
+async function addContactToDb() {
+    let path = '/' + contacts.length++;
+    let data = {
+        'name': document.getElementById('contacts-user-name').value,
+        'email': document.getElementById('contacts-user-email').value,
+        'number': document.getElementById('contacts-user-number').value,
+        'bgcolor': generateColor()
+    };
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "POST", 
+        header: {
+            "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(data)
+    });
+    return responseToJson = await response.json();
+}
+
+
+function generateColor() {
+    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    
+    return randomColor;
 }
