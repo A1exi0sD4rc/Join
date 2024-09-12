@@ -1,6 +1,45 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import {
+    getDatabase,
+    ref,
+    get,
+} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+
+
+/**
+      * Firebase configuration object.
+      * @type {Object}
+      */
+const firebaseConfig = {
+    apiKey: "AIzaSyC__8h3qCr6cM1oaZBnw6ejQUOptococYA",
+    authDomain: "join-a2f86.firebaseapp.com",
+    databaseURL: "https://join-a2f86-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "join-a2f86",
+    storageBucket: "join-a2f86.appspot.com",
+    messagingSenderId: "975506728412",
+    appId: "1:975506728412:web:126844692fe85baa699b19"
+};
+
+/**
+* Initializes Firebase app.
+* @type {firebase.app.App}
+*/
+const app = initializeApp(firebaseConfig);
+
+/**
+* Gets the database service for the default app or a given app.
+* @type {firebase.database.Database}
+*/
+const database = getDatabase(app);
+
+
+
+
 let contacts = [];
 let lastSelected;
 let BASE_URL = `https://join-a2f86-default-rtdb.europe-west1.firebasedatabase.app/contacts`;
+
+init();
 
 
 async function init() {
@@ -8,21 +47,6 @@ async function init() {
     await getContacts();
     render();
     renderContacts();
-}
-
-
-async function initFirebase() {
-    const firebaseConfig = {
-        apiKey: "API_KEY",
-        authDomain: "PROJECT_ID.firebaseapp.com",
-        databaseURL: "https://PROJECT_ID.firebaseio.com",
-        projectId: "PROJECT_ID",
-        storageBucket: "PROJECT_ID.appspot.com",
-        messagingSenderId: "SENDER_ID",
-        appId: "APP_ID"
-    };
-
-    firebase.initializeApp(firebaseConfig);
 }
 
 
@@ -187,7 +211,7 @@ function editContact(i, action) {
     toggleVisiblility();
     if (action == 'edit') {
         renderEditContact(i);
-    }else {
+    } else {
         addNewContact()
     }
 }
@@ -271,7 +295,7 @@ function addNewContact() {
 }
 
 
-async function deleteContact(path="") {
+async function deleteContact(path = "") {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "DELETE",
     });
@@ -279,13 +303,13 @@ async function deleteContact(path="") {
 }
 
 
-async function saveEdit(path="") {
+async function saveEdit(path = "") {
     let changeUserName = document.getElementById('contacts-user-name').value;
     let changeUserEmail = document.getElementById('contacts-user-name').value;
     let changeUserNumber = document.getElementById('contacts-user-number').value;
     const response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
-        header: {"Content-Type": "application/json"},
+        header: { "Content-Type": "application/json" },
         body: JSON.stringify(data = {
             "name": `${changeUserName}`,
             "email": `${changeUserEmail}`,
