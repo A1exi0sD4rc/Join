@@ -238,9 +238,24 @@ sup {
 .category_list {
   border-radius: 10px;
   background-color: white;
-  padding: 55px 7px 7px 7px;
+  padding: 48px 0 0 0;
   margin-top: -48px;
   box-shadow: 0px 0px 4px 0px #0000001a;
+}
+
+.categories {
+  height: 48px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0 14px 0 14px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.categories:hover {
+  background-color: rgb(238, 238, 238);
 }
 
 .scrollable_container {
