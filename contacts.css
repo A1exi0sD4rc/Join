@@ -292,8 +292,8 @@ body {
 
 .contacts-add-edit-div {
     position: absolute;
-    top: 70px;
-    left: -115px; /* change to 10 % */
+    top: 5vh;
+    left: 7vw;
     z-index: 3;
     transform: translateX(+200%);
     transition: all 125ms ease-in-out;

@@ -243,7 +243,7 @@ function renderEditContact(i) {
                 </div>
                 <div>
                     <button class="contacts-edit-delete-btn"  onclick="deleteContact('/${i}')">Delete</button>
-                    <button class="contacts-edit-save-btn contacts-img-margin" onclick="saveEdit('/${i}')">Save <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-edit-save-btn contacts-img-margin" onclick="saveEdit(${i}, '/${i}')">Save <img src="./assets/img/check.svg"></button>
                 </div>
             </div>
         </div>
@@ -279,22 +279,27 @@ function addNewContact() {
                 </div>
                 <div>
                     <button class="contacts-add-cancel-btn contacts-img-margin" onclick="deleteContact('/contacts/${contacts.length++}')">Cancel <img src="./assets/img/close.svg"></button>
-                    <button class="contacts-add-create-btn contacts-img-margin" onsubmit="addContactToDb()">Create contact <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-add-create-btn contacts-img-margin" onsubmit="addContactToDb('/${contacts.length++}' ,getNewContactData())">Create contact <img src="./assets/img/check.svg"></button>
                 </div>
             </form>
         </div>
     `;
 }
 
-async function deleteContact(path = "") {
+
+async function addContactToDb(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
-        method: "DELETE",
+        method: "POST", 
+        header: {
+            "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(data)
     });
     return responseToJson = await response.json();
 }
 
 
-async function saveEdit(path = "") {
+async function saveEdit(i, path = "") {
     let changeUserName = document.getElementById('contacts-user-name').value;
     let changeUserEmail = document.getElementById('contacts-user-email').value;
     let changeUserNumber = document.getElementById('contacts-user-number').value;
@@ -304,29 +309,31 @@ async function saveEdit(path = "") {
         body: JSON.stringify(data = {
             "name": `${changeUserName}`,
             "email": `${changeUserEmail}`,
-            "number": `${changeUserNumber}`
+            "number": `${changeUserNumber}`,
+            "bgcolor": contacts[i]['bgcolor']
         })
     });
     return responseToJson = await response.json();
 }
 
 
-async function addContactToDb() {
-    let path = '/' + contacts.length++;
+async function deleteContact(path = "") {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "DELETE",
+    });
+    return responseToJson = await response.json();
+}
+
+
+function getNewContactData() {
     let data = {
         'name': document.getElementById('contacts-user-name').value,
         'email': document.getElementById('contacts-user-email').value,
         'number': document.getElementById('contacts-user-number').value,
         'bgcolor': generateColor()
     };
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "POST", 
-        header: {
-            "Content-Type": "application/json", 
-        },
-        body: JSON.stringify(data)
-    });
-    return responseToJson = await response.json();
+
+    return data;
 }
 
 
