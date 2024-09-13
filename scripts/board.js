@@ -1,3 +1,4 @@
+/*
 let tasks = [
     {
         art: "User Story",
@@ -54,6 +55,22 @@ let tasks = [
         id: 4,
     },
 ];
+*/
+
+
+let tasks = [];
+
+const BASE_URL = "https://jointasks-a6bba-default-rtdb.europe-west1.firebasedatabase.app/";
+
+async function fetchTasks() {
+    let response  = await fetch(BASE_URL + ".json");
+    tasks = await response.json();
+
+    console.log(tasks);
+}
+
+
+
 
 const artColors = {
     "Technical Task": "#1FD7C1",
@@ -71,6 +88,7 @@ let draggedTo;
 function initBoardJs() {
     includeHTML();
     awaitGenerateInitials();
+    fetchTasks();
     updateHtmlTodo();
     updateHtmlProgress();
     updateHtmlAwait();
