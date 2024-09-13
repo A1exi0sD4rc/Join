@@ -393,8 +393,8 @@ input[type="password"]::-ms-clear {
     width: 364px;
   }
   .arrow-container {
-    top: 40px !important;
-    left: 28px !important;
+    top: 50px;
+    left: 25px !important;
   }
   h1 {
     font-size: 47px !important;
