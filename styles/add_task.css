@@ -112,6 +112,10 @@ sup {
   cursor: pointer;
 }
 
+.resizable-textarea::-webkit-scrollbar {
+  display: none;
+}
+
 /* Placeholder-Styling */
 .resizable-textarea::placeholder {
   color: #d1d1d1; /* Farbe des Platzhaltertextes */
@@ -147,7 +151,6 @@ sup {
   position: relative;
   display: flex;
   align-items: center;
-  z-index: 1;
 }
 
 .aT_select_dropdown_fields {
@@ -441,4 +444,12 @@ sup {
 
 .low_box_active:hover {
   cursor: pointer;
+}
+
+.aT_label_subtasks {
+  font-size: 20px;
+  color: #2a3647;
+  display: block;
+  margin-top: 24px;
+  margin-bottom: 8px;
 }
