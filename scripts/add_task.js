@@ -54,12 +54,15 @@ function deactivateAll() {
 }
 
 //_____________________________________________________________________________
-
+//Contacts
 document.addEventListener("DOMContentLoaded", function () {
   // Referenzen für Input-Feld und das div mit dem Pfeil
   const inputField = document.getElementById("aT_select_contacts");
-  const arrowContainer = document.querySelector(".drop_down_arrow_container");
-  const arrowImage = arrowContainer.querySelector("img");
+  const arrowConContainer = document.getElementById(
+    "select_contacts_arrow_container"
+  );
+  const arrowImage = arrowConContainer.querySelector("img");
+  const dropDowncontacts = document.getElementById("contact_list");
 
   // Funktion zum Aktivieren des Input-Feldes
   function activateField(event) {
@@ -67,20 +70,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     inputField.classList.add("active-border");
     arrowImage.classList.add("rotate");
+    dropDowncontacts.classList.remove("d-none");
   }
 
   // Funktion zum Deaktivieren des Input-Feldes
   function deactivateField() {
     inputField.classList.remove("active-border");
     arrowImage.classList.remove("rotate");
+    dropDowncontacts.classList.add("d-none");
     inputField.value = ""; // Löscht den Text im Input-Feld
   }
 
-  // Event Listener für das Input-Feld (aktivieren des Input-Feldes)
+  // Event Listener für das select contacts Input-Feld (aktivieren des Input-Feldes)
   inputField.addEventListener("click", activateField);
 
   // Event Listener für das div mit dem Pfeil (aktivieren oder deaktivieren des Input-Feldes)
-  arrowContainer.addEventListener("click", function (event) {
+  arrowConContainer.addEventListener("click", function (event) {
     event.stopPropagation(); // Verhindert, dass der Klick das Dokument beeinflusst
     if (inputField.classList.contains("active-border")) {
       deactivateField(); // Deaktivieren, wenn das Input-Feld bereits aktiv ist
@@ -93,7 +98,56 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("click", function (event) {
     if (
       !inputField.contains(event.target) &&
-      !arrowContainer.contains(event.target)
+      !arrowConContainer.contains(event.target)
+    ) {
+      deactivateField(); // Deaktivieren, wenn außerhalb des Input-Feldes und des Arrow-Containers geklickt wird
+    }
+  });
+});
+
+//'##################################################################################################################
+//CATEGORY
+document.addEventListener("DOMContentLoaded", function () {
+  // Referenzen für category-Input-Feld und das div mit dem Pfeil
+  const inputField = document.getElementById("aT_select_category");
+  const arrowConContainer = document.getElementById(
+    "select_category_arrow_container"
+  );
+  const arrowImage = arrowConContainer.querySelector("img");
+
+  // Funktion zum Aktivieren des Input-Feldes
+  function activateField() {
+    // inputField.classList.add("active-border");
+    arrowImage.classList.add("rotate");
+  }
+
+  // Funktion zum Deaktivieren des Input-Feldes
+  function deactivateField() {
+    // inputField.classList.remove("active-border");
+    arrowImage.classList.remove("rotate");
+  }
+
+  // Funktion zum Umschalten des Zustands des Input-Feldes (Aktivieren oder Deaktivieren)
+  function toggleField(event) {
+    event.stopPropagation(); // Verhindert, dass der Klick das Dokument beeinflusst
+    if (arrowImage.classList.contains("rotate")) {
+      deactivateField(); // Deaktivieren, wenn das Feld aktiv ist
+    } else {
+      activateField(); // Aktivieren, wenn das Feld nicht aktiv ist
+    }
+  }
+
+  // Event Listener für das select Input-Feld (umschalten des Zustands)
+  inputField.addEventListener("click", toggleField);
+
+  // Event Listener für das div mit dem Pfeil (umschalten des Zustands)
+  arrowConContainer.addEventListener("click", toggleField);
+
+  // Event Listener für Klicks auf das gesamte Dokument (deaktivieren des Input-Feldes)
+  document.addEventListener("click", function (event) {
+    if (
+      !inputField.contains(event.target) &&
+      !arrowConContainer.contains(event.target)
     ) {
       deactivateField(); // Deaktivieren, wenn außerhalb des Input-Feldes und des Arrow-Containers geklickt wird
     }
