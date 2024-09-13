@@ -112,6 +112,10 @@ sup {
   cursor: pointer;
 }
 
+.resizable-textarea::-webkit-scrollbar {
+  display: none;
+}
+
 /* Placeholder-Styling */
 .resizable-textarea::placeholder {
   color: #d1d1d1; /* Farbe des Platzhaltertextes */
@@ -129,7 +133,7 @@ sup {
   width: 24px;
   height: 24px;
   cursor: se-resize; /* Zeigt einen Resize-Cursor an */
-  z-index: 10; /* Stellt sicher, dass das Bild über dem Textarea liegt */
+  z-index: 1; /* Stellt sicher, dass das Bild über dem Textarea liegt */
   pointer-events: auto; /* Erlaubt Interaktionen mit dem Bild */
 }
 
@@ -149,7 +153,7 @@ sup {
   align-items: center;
 }
 
-.aT_select_contacts_dropdown {
+.aT_select_dropdown_fields {
   all: unset;
   width: 440px;
   height: 48px;
@@ -163,11 +167,10 @@ sup {
   box-sizing: border-box;
   cursor: pointer;
   font-size: 20px;
-
   position: relative;
 }
 
-.aT_select_contacts_dropdown:hover {
+.aT_select_dropdown_fields:hover {
   border: 1px solid #a8a8a8;
 }
 
@@ -190,18 +193,18 @@ sup {
 }
 
 /* Sicherstellen, dass der Hover-Effekt des Input-Feldes auch bei Hover über den Arrow-Container aktiv ist, wenn nicht aktiviert */
-.aT_select_container:hover .aT_select_contacts_dropdown:not(.active-border) {
+.aT_select_container:hover .aT_select_dropdown_fields:not(.active-border) {
   border: 1px solid #a8a8a8;
 }
 /*aussehen vom placeholder im inputfeld*/
-.aT_select_contacts_dropdown::placeholder {
+.aT_select_dropdown_fields::placeholder {
   color: black;
   font-size: 20px;
   font-family: "Inter", sans-serif;
 }
 
 /* Placeholder unsichtbar, wenn das Feld aktiviert ist */
-.aT_select_contacts_dropdown.active-border::placeholder {
+.aT_select_dropdown_fields.active-border::placeholder {
   opacity: 0; /* Macht den Placeholder unsichtbar */
 }
 
@@ -211,7 +214,7 @@ sup {
 }
 
 /* Hover-Effekt, wenn das Feld aktiviert ist */
-.aT_select_contacts_dropdown.active-border:hover {
+.aT_select_dropdown_fields.active-border:hover {
   border: 1px solid #29abe2; /* Beispiel für die Farbe, die beim Aktivieren verwendet wird */
 }
 
@@ -227,18 +230,80 @@ sup {
 
 /* Stile für das Kontaktlisten-Div */
 .contact_list {
-  /*display: none; /* Standardmäßig verborgen */
-  position: absolute; /* Positionierung relativ zum Container */
-  top: 100%; /* Direkt unter dem Input-Feld */
-  left: 0;
-  width: 100%; /* Gleiche Breite wie das Input-Feld */
-  max-height: 336px;
-  border: 1px solid #d1d1d1;
   border-radius: 10px;
   background-color: white;
-  z-index: 1000; /* Sicherstellen, dass es über anderen Inhalten liegt */
+  padding: 55px 7px 7px 7px;
+  margin-top: -48px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  overflow: hidden;
 }
 
+.category_list {
+  border-radius: 10px;
+  background-color: white;
+  padding: 48px 0 0 0;
+  margin-top: -48px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+}
+
+.categories {
+  height: 48px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0 14px 0 14px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.categories:hover {
+  background-color: rgb(238, 238, 238);
+}
+
+.scrollable_container {
+  max-height: 100px; /*eigtl. 336px*/
+  overflow-y: auto;
+  /*scrollbar-width: thin; als Alternative, weil der style leider nicht mögl. ist.*/
+}
+
+/* Scrollbar komplett ausblenden, außer den Thumb und die Pfeile */
+.scrollable_container::-webkit-scrollbar {
+  background-color: transparent; /* Kein Hintergrund oder Rand für die Scrollbar */
+  width: 10px;
+}
+
+/* Den Scroll-Thumb (den Griff) stylen */
+.scrollable_container::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8; /* Farbe des Scroll-Thumbs */
+  border-radius: 8px; /* Optionale Rundung des Scroll-Thumbs */
+}
+
+/* Obere Button mit benutzerdefiniertem Bild */
+.scrollable_container::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url("../assets/img/scrollbarArrowUp.svg");
+  background-repeat: no-repeat;
+}
+
+/* Untere Button mit benutzerdefiniertem Bild */
+.scrollable_container::-webkit-scrollbar-button:vertical:increment {
+  background-image: url("../assets/img/scrollbarArrowDown.svg");
+  background-repeat: no-repeat;
+}
+
+/* Die Scrollbar-Schiene verstecken */
+.scrollable_container::-webkit-scrollbar-track {
+  background: transparent; /* Unsichtbare Schiene auf der der thumb gleitet*/
+}
+
+/* Scrollbar-Schienenkante ausblenden */
+.scrollable_container::-webkit-scrollbar-track-piece {
+  background: transparent; /* keine Farbe für sichtbare Laufleiste hinter thumb */
+}
+
+.d-none {
+  display: none;
+}
 /*--------------------------------------------------------------------------------------*/
 
 .aT_input_date {
@@ -379,4 +444,12 @@ sup {
 
 .low_box_active:hover {
   cursor: pointer;
+}
+
+.aT_label_subtasks {
+  font-size: 20px;
+  color: #2a3647;
+  display: block;
+  margin-top: 24px;
+  margin-bottom: 8px;
 }

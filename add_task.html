@@ -65,22 +65,34 @@
             <div class="aT_select_container">
               <input
                 id="aT_select_contacts"
-                class="aT_select_contacts_dropdown"
+                class="aT_select_dropdown_fields"
                 placeholder="Select contacts to assign"
               />
-              <div class="drop_down_arrow_container" tabindex="0">
+              <div
+                id="select_contacts_arrow_container"
+                class="drop_down_arrow_container"
+                tabindex="0"
+              >
                 <img
                   src="./assets/img/arrow_drop_down.svg"
                   alt="drop_down_arrow"
                   class="arrow"
                 />
               </div>
-              <div id="contact_list" class="contact_list">
+            </div>
+            <div id="contact_list" class="contact_list d-none">
+              <div class="scrollable_container">
                 <div class="example_contact">Name 1</div>
                 <div class="example_contact">Name 2</div>
                 <div class="example_contact">Name 3</div>
                 <div class="example_contact">Name 1</div>
                 <div class="example_contact">Name 2</div>
+                <div class="example_contact">Name 3</div>
+                <div class="example_contact">Name 3</div>
+                <div class="example_contact">Name 3</div>
+                <div class="example_contact">Name 3</div>
+                <div class="example_contact">Name 3</div>
+                <div class="example_contact">Name 3</div>
                 <div class="example_contact">Name 3</div>
               </div>
             </div>
@@ -124,21 +136,34 @@
                 ><img src="./assets/img/Prio_low.svg" alt="low_icon" />
               </div>
             </div>
-
             <label class="aT_input_labels">Category<sup>*</sup></label>
             <div class="aT_select_container">
-              <input
-                id="aT_select_category"
-                class="aT_select_contacts_dropdown"
-                placeholder="Select task category"
-              />
-              <div class="drop_down_arrow_container">
+              <div id="aT_select_category" class="aT_select_dropdown_fields">
+                Select task category
+              </div>
+              <div
+                id="select_category_arrow_container"
+                class="drop_down_arrow_container"
+              >
                 <img
                   src="./assets/img/arrow_drop_down.svg"
                   alt="drop_down_arrow"
+                  class="arrow"
                 />
               </div>
             </div>
+            <div id="category_list" class="category_list d-none">
+              <div>
+                <div class="categories">Technical Task</div>
+                <div class="categories">User Story</div>
+              </div>
+            </div>
+            <label class="aT_label_subtasks">Subtasks</label>
+            <input
+              id="aT_select_contacts"
+              class="aT_select_dropdown_fields"
+              placeholder="Add new subtask"
+            />
           </div>
         </div>
         <div class="add_task_bottom_section"></div>
