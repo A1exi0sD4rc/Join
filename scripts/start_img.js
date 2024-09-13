@@ -6,15 +6,13 @@ function updateImageSource() {
 
   // Switch image and styles based on screen width
   if (isSmallScreen) {
-    image.src = "./assets/img/logo_white.svg";
     document.body.style.backgroundColor = "#2A3647";
-    startingScreen.style.left = "38px";
-    startingScreen.style.top = "37px";
+    image.src = "./assets/img/logo_white.svg";
+    startingScreen.style.transform = "translate(-50%, -50%)";
   } else {
-    image.src = "./assets/img/logo_black.svg";
     document.body.style.backgroundColor = "#F6F7F8";
-    startingScreen.style.left = "583px";
-    startingScreen.style.top = "345px";
+    image.src = "./assets/img/logo_black.svg";
+    startingScreen.style.transform = "translate(-50%, -50%)";
   }
 }
 
