@@ -30,7 +30,7 @@
       <form id="myForm">
         <div class="add_task_fillIn_section">
           <div class="add_task_form_left">
-            <label class="aT_input_labels" for="aT_titleInput"
+            <label class="aT_input_labels" for="aT_title"
               >Title<sup>*</sup></label
             >
             <div class="title_input_error_container">
@@ -38,7 +38,7 @@
                 required
                 class="aT_input_title aT_unset"
                 type="text"
-                id="aT_titleInput"
+                id="aT_title"
                 name="title"
                 placeholder="Enter a title"
               />
@@ -46,12 +46,12 @@
                 >hier die Error Meldung</span
               >
             </div>
-            <label class="aT_input_labels" for="aT_descriptionInput"
+            <label class="aT_input_labels" for="aT_description"
               >Description</label
             >
             <div class="resizable-container">
               <textarea
-                id="aT_descriptionInput"
+                id="aT_description"
                 class="resizable-textarea"
                 placeholder="Enter a Description"
               ></textarea>
@@ -100,15 +100,10 @@
 
           <div class="add_task_seperator"></div>
           <div class="add_task_form_right">
-            <label class="aT_input_labels" for="aT_dateInput"
+            <label class="aT_input_labels" for="aT_date"
               >Due date<sup>*</sup></label
             >
-            <input
-              required
-              id="aT_dateInput"
-              class="aT_input_date"
-              type="date"
-            />
+            <input required id="aT_date" class="aT_input_date" type="date" />
             <div class="aT_input_labels">Prio</div>
             <div class="aT_set_prio_container" id="aT_set_prio">
               <div
@@ -174,7 +169,7 @@
                 />
               </div>
               <div class="close_check_container">
-                <div class="c_icon_container">
+                <div class="c_icon_container" onclick="cancel_input_subtask()">
                   <img
                     class="add_subtasks_close_icon"
                     src="./assets/img/add_subtasks_close_icon.svg"

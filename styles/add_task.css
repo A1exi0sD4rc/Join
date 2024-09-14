@@ -522,3 +522,8 @@ sup {
   color: #d1d1d1;
   font-weight: 300;
 }
+
+.aT_input_addSubtask:focus {
+  border-color: #29abe2;
+  outline: none;
+}

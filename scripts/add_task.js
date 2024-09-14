@@ -177,3 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
     option.addEventListener("click", selectCategory);
   });
 });
+
+function cancel_input_subtask() {
+  document.getElementById("aT_add_subtasks").value = "";
+}
