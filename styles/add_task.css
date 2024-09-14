@@ -59,7 +59,7 @@
 
 .aT_input_title::placeholder {
   color: #d1d1d1;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 /* Fehlermeldung und Randfarbe bei Fehler */
@@ -121,6 +121,7 @@ sup {
   color: #d1d1d1; /* Farbe des Platzhaltertextes */
   font-size: 20px; /* Schriftgröße des Platzhaltertextes */
   font-family: "Inter", sans-serif;
+  font-weight: 300;
 }
 
 .resize-handle {
@@ -452,4 +453,40 @@ sup {
   display: block;
   margin-top: 24px;
   margin-bottom: 8px;
+}
+
+.subtasks_container {
+  position: relative;
+}
+
+.add_subtasks_plus_icon {
+  width: 14px;
+  height: 14px;
+}
+
+.add_subtasks_close_icon {
+  width: 13.1px;
+  height: 13.1px;
+}
+
+.add_subtasks_check_icon {
+  width: 15.5px;
+  height: 11.2px;
+}
+
+.seperator_close_check {
+  height: 24px;
+  width: 1px;
+  background-color: #d1d1d1;
+  margin: 0 3.5px;
+}
+
+.drop_down_arrow_container_active_subtasks {
+  width: 56px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 10px;
 }

@@ -115,17 +115,19 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const arrowImage = arrowConContainer.querySelector("img");
   const dropDownCategories = document.getElementById("category_list");
+  const categoryOptions = document.querySelectorAll(".categories");
+
+  // Ursprünglicher Text
+  const originalText = "Select task category";
 
   // Funktion zum Aktivieren des Input-Feldes
   function activateField() {
-    // inputField.classList.add("active-border");
     arrowImage.classList.add("rotate");
     dropDownCategories.classList.remove("d-none");
   }
 
   // Funktion zum Deaktivieren des Input-Feldes
   function deactivateField() {
-    // inputField.classList.remove("active-border");
     arrowImage.classList.remove("rotate");
     dropDownCategories.classList.add("d-none");
   }
@@ -133,11 +135,24 @@ document.addEventListener("DOMContentLoaded", function () {
   // Funktion zum Umschalten des Zustands des Input-Feldes (Aktivieren oder Deaktivieren)
   function toggleField(event) {
     event.stopPropagation(); // Verhindert, dass der Klick das Dokument beeinflusst
+
+    // Prüfen, ob der Text bereits geändert wurde und zurücksetzen, wenn ja
+    if (inputField.textContent !== originalText) {
+      inputField.textContent = originalText; // Setze auf den ursprünglichen Text zurück
+    }
+
     if (arrowImage.classList.contains("rotate")) {
       deactivateField(); // Deaktivieren, wenn das Feld aktiv ist
     } else {
       activateField(); // Aktivieren, wenn das Feld nicht aktiv ist
     }
+  }
+
+  // Funktion zum Auswählen einer Kategorie und Schließen des Dropdowns
+  function selectCategory(event) {
+    const selectedCategory = event.target.textContent;
+    inputField.textContent = selectedCategory; // Update der ausgewählten Kategorie
+    deactivateField(); // Schließe das Dropdown nach Auswahl
   }
 
   // Event Listener für das select Input-Feld (umschalten des Zustands)
@@ -150,9 +165,15 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("click", function (event) {
     if (
       !inputField.contains(event.target) &&
-      !arrowConContainer.contains(event.target)
+      !arrowConContainer.contains(event.target) &&
+      !dropDownCategories.contains(event.target)
     ) {
       deactivateField(); // Deaktivieren, wenn außerhalb des Input-Feldes und des Arrow-Containers geklickt wird
     }
+  });
+
+  // Event Listener für jede Kategorie-Option
+  categoryOptions.forEach(function (option) {
+    option.addEventListener("click", selectCategory);
   });
 });
