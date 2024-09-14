@@ -279,7 +279,7 @@ function addNewContact() {
                 </div>
                 <div>
                     <button class="contacts-add-cancel-btn contacts-img-margin" onclick="deleteContact('/contacts/${contacts.length++}')">Cancel <img src="./assets/img/close.svg"></button>
-                    <button class="contacts-add-create-btn contacts-img-margin" onsubmit="addContactToDb('/${contacts.length++}' ,getNewContactData())">Create contact <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-add-create-btn contacts-img-margin" onclick="addContact(event, '/${contacts.length++}' ,getNewContactData())">Create contact <img src="./assets/img/check.svg"></button>
                 </div>
             </form>
         </div>
@@ -287,7 +287,13 @@ function addNewContact() {
 }
 
 
-async function addContactToDb(path, data) {
+function addContact(event, path, data) {
+    event.preventDefault();
+    addContactToDb(path, data);
+}
+
+
+async function addContactToDb(event, path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST", 
         header: {
