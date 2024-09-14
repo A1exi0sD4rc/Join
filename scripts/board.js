@@ -1,76 +1,6 @@
-/*
-let tasks = [
-    {
-        art: "User Story",
-        title: "font.css",
-        description: "font.css verursacht Fehler.",
-        assigned: "",
-        prio: "Low",
-        category: "todo",
-        subtasks: "",
-        id: 0,
-    },
-
-    {
-        art: "User Story",
-        title: "Join aktuell",
-        description: "Zwichenstand von Mentoren.",
-        assigned: "",
-        prio: "Low",
-        category: "await",
-        subtasks: "",
-        id: 1,
-    },
-
-    {
-        art: "User Story",
-        title: "Join Contacts",
-        description: "Contacts Seite erstellen.",
-        assigned: "",
-        prio: "Medium",
-        category: "progress",
-        subtasks: "",
-        id: 2,
-    },
-
-    {
-        art: "Technical Task",
-        title: "Bestellapp",
-        description: "Clone einer bekannten Bestllapp.",
-        assigned: "",
-        prio: "Urgent",
-        category: "done",
-        subtasks: "",
-        id: 3,
-    },
-
-    {
-        art: "Technical Task",
-        title: "Join Board",
-        description: "Task Board erstellen.",
-        assigned: "",
-        prio: "Urgent",
-        category: "progress",
-        subtasks: "",
-        id: 4,
-    },
-];
-*/
-
-
-let tasks = [];
-
 const BASE_URL = "https://jointasks-a6bba-default-rtdb.europe-west1.firebasedatabase.app/";
 
-async function fetchTasks() {
-    let response  = await fetch(BASE_URL + ".json");
-    tasks = await response.json();
-
-    console.log(tasks);
-}
-
-
-
+let tasks = [];
 
 const artColors = {
     "Technical Task": "#1FD7C1",
@@ -94,6 +24,14 @@ function initBoardJs() {
     updateHtmlAwait();
     updateHtmlDone();
     changeArtBackground();
+}
+
+
+async function fetchTasks(path="") {
+    let response  = await fetch(BASE_URL + path + ".json");
+    tasks = await response.json();
+
+    console.log(tasks);
 }
 
 
