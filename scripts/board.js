@@ -1,4 +1,4 @@
-const BASE_URL = "https://jointasks-a6bba-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 
 let tasks = [];
 
@@ -15,10 +15,10 @@ const prios = {
 
 let draggedTo;
 
-function initBoardJs() {
+async function initBoardJs() {
     includeHTML();
     awaitGenerateInitials();
-    fetchTasks();
+    await fetchTasks();
     updateHtmlTodo();
     updateHtmlProgress();
     updateHtmlAwait();
@@ -30,7 +30,6 @@ function initBoardJs() {
 async function fetchTasks(path="") {
     let response  = await fetch(BASE_URL + path + ".json");
     tasks = await response.json();
-
     console.log(tasks);
 }
 
@@ -39,7 +38,7 @@ async function fetchTasks(path="") {
  * filters tasks marked as "todo" and dynamically updates the section with task cards including their background-color and priority img.
  */
 function updateHtmlTodo() {
-    let todo = tasks.filter((x) => x["category"] == "todo");
+    let todo = tasks.filter(x => x["category"] == "todo");
     document.getElementById("small_card_todo").innerHTML = "";
     if (todo.length < 1) {
         document.getElementById('small_card_todo').innerHTML = renderNoTasksToDo();
@@ -58,7 +57,7 @@ function updateHtmlTodo() {
  * filters tasks marked as "progress" and dynamically updates the section with task cards including their background-color and priority img.
  */
 function updateHtmlProgress() {
-    let progress = tasks.filter((x) => x["category"] == "progress");
+    let progress = tasks.filter(x => x["category"] == "progress");
     document.getElementById("small_card_progress").innerHTML = "";
     if (progress.length < 1) {
         document.getElementById('small_card_progress').innerHTML = renderNoTasksProgress();
@@ -77,7 +76,7 @@ function updateHtmlProgress() {
  * filters tasks marked as "await" and dynamically updates the section with task cards including their background-color and priority img.
  */
 function updateHtmlAwait() {
-    let await = tasks.filter((x) => x["category"] == "await");
+    let await = tasks.filter(x => x["category"] == "await");
     document.getElementById("small_card_await").innerHTML = "";
     if (await.length < 1) {
         document.getElementById('small_card_await').innerHTML = renderNoTasksAwait();
@@ -96,7 +95,7 @@ function updateHtmlAwait() {
  * filters tasks marked as "done" and dynamically updates the section with task cards including their background-color and priority img.
  */
 function updateHtmlDone() {
-    let done = tasks.filter((x) => x["category"] == "done");
+    let done = tasks.filter(x => x["category"] == "done");
     document.getElementById("small_card_done").innerHTML = "";
     if (done.length < 1) {
         document.getElementById('small_card_done').innerHTML = renderNoTaskDone();
