@@ -39,8 +39,7 @@ function loadNameCluster() {
     });
     for (let key in nameClusters) {
         nameClusters[key].sort((a, b) => a.name.localeCompare(b.name));
-    }
-
+    } 
     return nameClusters;
 }
 
@@ -72,7 +71,7 @@ function editContact(i, action) {
     if (action == 'edit') {
         renderEditContact(i);
     } else {
-        addNewContact()
+        renderAddNewContact()
     }
 }
 
@@ -83,14 +82,14 @@ function toggleVisiblility() {
 }
 
 
-function addContact(event, path) {
+function addContact(event) {
     event.preventDefault();
-    addContactToDb(path);
+    addContactToDb();
 }
 
 
-async function addContactToDb(path, data) {
-    let response = await fetch(BASE_URL + path + ".json", {
+async function addContactToDb() {
+    let response = await fetch(BASE_URL + ".json", {
         method: "POST", 
         header: {
             "Content-Type": "application/json", 
@@ -114,8 +113,11 @@ function getNewContactData() {
 
 
 function generateColor() {
-    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    
+    const minColorValue = 0x100000;
+    const maxColorValue = 0xEFFFFF;
+
+    const randomColor = '#' + Math.floor(Math.random() * (maxColorValue - minColorValue) + minColorValue).toString(16);
+
     return randomColor;
 }
 
@@ -137,14 +139,7 @@ async function saveEdit(i, path) {
     return responseToJson = await response.json();
 }
 
-
-function initDelete(path) {
-    deleteContact(path)
-    renderContacts();
-}
-
-
-async function deleteContact(path = "") {
+async function deleteContact(path) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "DELETE",
     });

@@ -37,14 +37,13 @@ function renderContacts() {
         <div class="contacts-overview-space"></div>
     `;
 
-
     for (let letter in clusteredContacts) {
         document.getElementById('contacts-overview').innerHTML += /*html*/ `
             <div class="contacts-overview-category">${letter}</div>
             <div class="contacts-seperatore-horizontal"></div>
         `;
 
-        clusteredContacts[letter].forEach(contact => {
+        clusteredContacts[letter].forEach(contact => {    
             let originalIndex = contacts.indexOf(contact);
 
             document.getElementById('contacts-overview').innerHTML += /*html*/ `
@@ -69,7 +68,7 @@ function renderContacts() {
 
 
 function renderContactDetails(i) {
-    toggleDetailClasses();
+    toggleDetailClasses(i);
 
     document.getElementById('contact-details').innerHTML = '';
     document.getElementById('contact-details').innerHTML += /*html*/ `
@@ -82,7 +81,7 @@ function renderContactDetails(i) {
                 <h2>${contacts[i]['name']}</h2>
                 <div class="contacts-contact-details-btn-div">
                     <button class="contacts-contact-details-edit-btn" onclick="editContact(${i}, 'edit')">Edit</button>
-                    <button class="contacts-contact-details-delete-btn" onclick="initDelete('/${i}')">Delete</button>
+                    <button class="contacts-contact-details-delete-btn" onclick="deleteContact('/${i}')">Delete</button>
                 </div>
             </div>
         </div>  
@@ -135,7 +134,7 @@ function renderEditContact(i) {
 }
 
 
-function addNewContact() {
+function renderAddNewContact() {
     document.getElementById('contacts-add-edit').innerHTML = '';
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
         <div class="contacts-add-title">
@@ -163,7 +162,7 @@ function addNewContact() {
                 </div>
                 <div>
                     <button class="contacts-add-cancel-btn contacts-img-margin" onclick="deleteContact('/contacts/${contacts.length++}')">Cancel <img src="./assets/img/close.svg"></button>
-                    <button class="contacts-add-create-btn contacts-img-margin" onclick="addContact(event, '/${contacts.length++}')">Create contact <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-add-create-btn contacts-img-margin" onclick="addContact(event)">Create contact <img src="./assets/img/check.svg"></button>
                 </div>
             </form>
         </div>
