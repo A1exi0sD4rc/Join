@@ -55,6 +55,7 @@
   border: 1px solid;
   border-color: #d1d1d1;
   cursor: pointer;
+  position: relative;
 }
 
 .aT_input_title::placeholder {
@@ -455,10 +456,6 @@ sup {
   margin-bottom: 8px;
 }
 
-.subtasks_container {
-  position: relative;
-}
-
 .add_subtasks_plus_icon {
   width: 14px;
   height: 14px;
@@ -481,12 +478,47 @@ sup {
   margin: 0 3.5px;
 }
 
-.drop_down_arrow_container_active_subtasks {
+.close_check_container {
   width: 56px;
   height: 24px;
   display: flex;
   align-items: center;
-  justify-content: center;
   position: absolute;
   right: 10px;
+}
+
+.c_icon_container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c_icon_container:hover {
+  background-color: rgb(238, 238, 238);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.aT_input_addSubtask {
+  background-color: white;
+  box-sizing: border-box;
+  padding-left: 21px;
+  padding-right: 70px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 440px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 20px;
+  border: 1px solid;
+  border-color: #d1d1d1;
+  cursor: pointer;
+  position: relative;
+}
+
+.aT_input_addSubtask::placeholder {
+  color: #d1d1d1;
+  font-weight: 300;
 }
