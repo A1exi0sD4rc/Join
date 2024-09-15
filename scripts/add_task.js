@@ -204,10 +204,9 @@ function addSubtaskToList() {
     // HTML-String für ul, li, Buttons und Separator
     const newListHTML = /*html*/ `
       <ul class="task-item">
-        <li>${subtaskText}</li>
+        <li class="task-text">${subtaskText}</li>
         <div class="task-controls">
-        <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn">
-          
+        <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editTask(this)">
           <div class="separator_subtasks"></div>
           <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteTask(this)">
         </div>
@@ -223,6 +222,76 @@ function addSubtaskToList() {
     resetDivVisibility();
   }
 }
+
+//ab hier edit der subtasks
+function editTask(editButton) {
+  const taskItem = editButton.closest(".task-item");
+
+  if (!taskItem) {
+    console.error("Task item not found");
+    return;
+  }
+
+  const taskTextElement = taskItem.querySelector(".task-text");
+  const taskControls = taskItem.querySelector(".task-controls");
+
+  if (!taskTextElement || !taskControls) {
+    console.error("Task text element or controls not found");
+    return;
+  }
+
+  // Erstelle das Editier-Layout
+  const currentText = taskTextElement.textContent;
+
+  // Ändere die Struktur der Bearbeitungsansicht / Editiermodus
+  taskItem.innerHTML = /*html*/ `
+    <input type="text" value="${currentText}" class="edit-input">
+    <div class="task-controls">
+      <div class="edit-modus-btns">
+     <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn-input delete-btn-input" onclick="deleteTask(this)"></div>
+       <div class="separator_subtasks"></div>
+       <div class="edit-modus-btns">
+     <img src="./assets/img/edit_subtask_check.svg" alt="Save" class="task-btn-input save-btn-input" onclick="saveTask(this)"></div>
+    </div>
+  `;
+}
+
+function saveTask(saveButton) {
+  const taskItem = saveButton.closest(".task-item");
+  const inputElement = taskItem.querySelector(".edit-input");
+
+  if (!inputElement) {
+    console.error("Input element not found");
+    return;
+  }
+
+  const taskTextElement = document.createElement("li");
+  taskTextElement.className = "task-text";
+  taskTextElement.textContent = inputElement.value.trim();
+
+  const taskControls = taskItem.querySelector(".task-controls");
+
+  // Setze den Inhalt der Aufgabe zurück
+  taskItem.innerHTML = "";
+  taskItem.appendChild(taskTextElement);
+  taskItem.appendChild(taskControls);
+
+  // Optional: zurücksetzen der ursprünglichen Kontrollen
+  taskControls.innerHTML = /*html*/ `
+    <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editTask(this)">
+    <div class="separator_subtasks"></div>
+    <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteTask(this)">
+  `;
+}
+
+function deleteTask(deleteButton) {
+  const taskItem = deleteButton.closest(".task-item");
+  if (taskItem) {
+    taskItem.remove();
+  }
+}
+
+//ab hier delete subtask ohne im nichtEditModus
 
 function deleteTask(button) {
   // Finde das übergeordnete ul-Element des Buttons

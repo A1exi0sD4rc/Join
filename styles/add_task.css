@@ -188,7 +188,7 @@ sup {
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 10px;
+  right: 16px;
 }
 
 /*hover effekt für die div mit dem pfeil*/
@@ -486,7 +486,7 @@ sup {
   display: flex;
   align-items: center;
   position: absolute;
-  right: 10px;
+  right: 16px;
 }
 
 .c_icon_container {
@@ -624,7 +624,7 @@ li {
   width: 1px;
   height: 24px;
   background-color: #ccc;
-  margin-left: 5px; /* Abstand zwischen den Buttons */
+  margin: 0 6px;
 }
 
 .task-controls {
@@ -639,7 +639,6 @@ li {
 .task-btn {
   width: 24px; /* Breite der Buttons */
   height: 24px; /* Höhe der Buttons */
-  margin-left: 5px; /* Abstand zwischen den Buttons */
   transition: transform 0.2s; /* Sanfte Bewegung beim Hover */
 }
 
@@ -655,10 +654,59 @@ li {
 }
 
 .delete-btn {
+  margin-right: 6px;
   height: 18px;
   width: 16px;
 }
 
 .edit-btn {
   width: 18.2px;
+}
+
+/*ab hier lediglich die subtasks editierbuttons*/
+
+/* Stil für das Eingabefeld im Bearbeitungsmodus */
+.edit-input {
+  margin-left: -48px;
+  width: 440px;
+  height: 32px;
+  background-color: #fff; /* Weiße Hintergrundfarbe */
+  border: none; /* Kein Border-Radius */
+  border-bottom: 1px solid #005dff;
+  padding: 4px 16px 4px 16px; /* Optional: etwas Innenabstand */
+  box-sizing: border-box; /* Stellt sicher, dass Padding zur Gesamtbreite hinzugefügt wird */
+  font-size: 16px;
+}
+
+/* Stil für die Buttons */
+.task-btn-input {
+  width: 24px; /* Breite der Buttons */
+  height: 24px; /* Höhe der Buttons */
+  cursor: pointer; /* Zeigt, dass die Buttons klickbar sind */
+}
+
+.delete-btn-input {
+  width: 16px;
+  height: 18px;
+}
+
+.save-btn-input {
+  height: 11.2px;
+  width: 15.5px;
+}
+
+.edit-modus-btns {
+  display: flex;
+  width: 22px;
+  height: 24px; /* Höhe des Containers */
+  border-radius: 50%; /* Rund */
+  align-items: center; /* Zentriert den Inhalt vertikal */
+  justify-content: center; /* Zentriert den Inhalt horizontal */
+  background-color: transparent; /* Transparenter Hintergrund standardmäßig */
+  transition: background-color 0.3s; /* Sanfter Übergang für den Hover-Effekt */
+}
+
+/* Hover-Effekt für den Container */
+.edit-modus-btns:hover {
+  background-color: #f0f0f0; /* Grauer Hintergrund beim Hover */
 }
