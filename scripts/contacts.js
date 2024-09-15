@@ -1,36 +1,43 @@
-let contacts = [];
+let contactKeys = [];
 let lastSelected;
 let BASE_URL = `https://join-a2f86-default-rtdb.europe-west1.firebasedatabase.app/contacts`;
 
 
 async function init() {
-    await getContacts();
+    await getContactData();
     render();
     renderContacts();
 }
 
 
+async function getContactData() {
+    let allContacts = await getContacts();
+    let allKeys = Object.keys(allContacts);
+
+    for (let index = 0; index < allKeys.length; index++) {
+        contactKeys.push({
+            id: allKeys[index],
+            name: allContacts[allKeys[index]]['name'],
+            email: allContacts[allKeys[index]]['email'],
+            number: allContacts[allKeys[index]]['number'],
+            bgcolor: allContacts[allKeys[index]]['bgcolor']
+        })
+    }
+    contactKeys.sort((a, b) => a.name.localeCompare(b.name));  
+    console.log(contactKeys);
+}
+
+
 async function getContacts() {
     let response = await fetch(BASE_URL + ".json");
-    let responseAsJson = await response.json();
-
-    try {
-        if (!response.ok) {
-            console.error(`HTTP error! Status: ${response.status}`);
-        }
-        contacts = responseAsJson;
-        console.log(contacts);
-        contacts.sort((a, b) => a.name.localeCompare(b.name));  
-    } catch (error) {
-        console.log(error);
-    }
+    return responseAsJson = await response.json();
 }
 
 
 function loadNameCluster() {
     let nameClusters = {};
 
-    contacts.forEach(contact => {
+    contactKeys.forEach(contact => {
         let firstLetter = contact.name.charAt(0).toUpperCase();
         if (!nameClusters[firstLetter]) {
             nameClusters[firstLetter] = [];
@@ -71,7 +78,7 @@ function editContact(i, action) {
     if (action == 'edit') {
         renderEditContact(i);
     } else {
-        renderAddNewContact()
+        renderAddNewContact();
     }
 }
 
@@ -133,7 +140,7 @@ async function saveEdit(i, path) {
             "name": `${changeUserName}`,
             "email": `${changeUserEmail}`,
             "number": `${changeUserNumber}`,
-            "bgcolor": contacts[i]['bgcolor']
+            "bgcolor": contactKeys[i]['bgcolor']
         })
     });
     return responseToJson = await response.json();
