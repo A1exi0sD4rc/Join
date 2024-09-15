@@ -604,11 +604,60 @@ sup {
 ul {
   padding-left: 48px;
   border-radius: 10px;
-  background-color: #d1d1d1;
+  position: relative;
+  margin-top: 5px;
+}
+
+ul:hover {
+  background-color: #eeee;
+  cursor: pointer;
 }
 
 li {
   height: 32px;
   font-size: 16px;
   line-height: 32px;
+}
+
+.separator_subtasks {
+  width: 1px;
+  height: 24px;
+  background-color: #ccc;
+  margin-left: 5px; /* Abstand zwischen den Buttons */
+}
+
+.task-controls {
+  position: absolute;
+  right: 10px; /* Abstand vom rechten Rand */
+  top: 50%;
+  transform: translateY(-50%); /* Vertikale Zentrierung */
+  display: none; /* Standardmäßig ausblenden */
+}
+
+/* Buttons */
+.task-btn {
+  width: 24px; /* Breite der Buttons */
+  height: 24px; /* Höhe der Buttons */
+  margin-left: 5px; /* Abstand zwischen den Buttons */
+  transition: transform 0.2s; /* Sanfte Bewegung beim Hover */
+}
+
+/* Anzeigen der Buttons bei Hover */
+.task-item:hover .task-controls {
+  display: flex;
+  align-items: center; /* Zentriert die Buttons vertikal */
+}
+
+/* Bewegung der Buttons bei Hover */
+.task-btn:hover {
+  transform: translateY(1px); /* Leicht nach unten bewegen */
+}
+
+.delete-btn {
+  height: 18px;
+  width: 16px;
+}
+
+.edit-btn {
+  width: 18.2px;
 }

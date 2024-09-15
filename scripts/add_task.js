@@ -201,10 +201,19 @@ function addSubtaskToList() {
   const subtaskText = inputField.value.trim(); // Eingabetext holen und trimmen (um Leerzeichen zu entfernen)
 
   if (subtaskText !== "") {
-    // Ein neues ul mit einem li erstellen und als HTML-String einfügen
-    const newListHTML = `<ul><li>${subtaskText}</li></ul>`;
+    // HTML-String für ul, li, Buttons und Separator
+    const newListHTML = /*html*/ `
+      <ul class="task-item">
+        <li>${subtaskText}</li>
+        <div class="task-controls">
+        <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn">
+          
+          <div class="separator_subtasks"></div>
+          <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn">
+        </div>
+      </ul>`;
 
-    // Die neue Liste (ul mit li) in die Div (created_subtasks) einfügen
+    // Neue Liste (ul mit li, Buttons und Separator) in die Div (created_subtasks) einfügen
     document.getElementById("created_subtasks").innerHTML += newListHTML;
 
     // Input-Feld leeren
