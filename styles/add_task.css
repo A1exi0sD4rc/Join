@@ -245,6 +245,7 @@ sup {
 }
 
 .category_list {
+  z-index: 999;
   border-radius: 10px;
   background-color: white;
   padding: 48px 0 0 0;
@@ -628,7 +629,7 @@ li {
 
 .task-controls {
   position: absolute;
-  right: 10px; /* Abstand vom rechten Rand */
+  right: 16px; /* Abstand vom rechten Rand */
   top: 50%;
   transform: translateY(-50%); /* Vertikale Zentrierung */
   display: none; /* Standardmäßig ausblenden */

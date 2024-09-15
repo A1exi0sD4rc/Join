@@ -209,7 +209,7 @@ function addSubtaskToList() {
         <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn">
           
           <div class="separator_subtasks"></div>
-          <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn">
+          <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteTask(this)">
         </div>
       </ul>`;
 
@@ -221,6 +221,16 @@ function addSubtaskToList() {
 
     // Optional: Divs wieder zurücksetzen
     resetDivVisibility();
+  }
+}
+
+function deleteTask(button) {
+  // Finde das übergeordnete ul-Element des Buttons
+  const ulElement = button.closest("ul");
+
+  // Entferne das ul-Element
+  if (ulElement) {
+    ulElement.remove();
   }
 }
 
@@ -249,3 +259,12 @@ document
 document
   .getElementById("check_input_subtask")
   .addEventListener("click", addSubtaskToList);
+
+document
+  .getElementById("aT_add_subtasks")
+  .addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Verhindert, dass ein Zeilenumbruch eingefügt wird
+      addSubtaskToList();
+    }
+  });
