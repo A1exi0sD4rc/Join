@@ -195,6 +195,26 @@ function resetDivVisibility() {
   document.getElementById("close_and_check_btns").classList.add("d-none");
 }
 
+// Funktion zum Hinzufügen eines neuen Subtask zur Liste
+function addSubtaskToList() {
+  const inputField = document.getElementById("aT_add_subtasks");
+  const subtaskText = inputField.value.trim(); // Eingabetext holen und trimmen (um Leerzeichen zu entfernen)
+
+  if (subtaskText !== "") {
+    // Ein neues ul mit einem li erstellen und als HTML-String einfügen
+    const newListHTML = `<ul><li>${subtaskText}</li></ul>`;
+
+    // Die neue Liste (ul mit li) in die Div (created_subtasks) einfügen
+    document.getElementById("created_subtasks").innerHTML += newListHTML;
+
+    // Input-Feld leeren
+    inputField.value = "";
+
+    // Optional: Divs wieder zurücksetzen
+    resetDivVisibility();
+  }
+}
+
 // Event Listener für das input-Feld, um es zu aktivieren und Divs umzuschalten
 document
   .getElementById("aT_add_subtasks")
@@ -216,19 +236,7 @@ document
     resetDivVisibility(); // Sichtbarkeit zurücksetzen
   });
 
-// Event Listener für Klicks außerhalb des input-Felds
-document.addEventListener("click", function (event) {
-  const inputField = document.getElementById("aT_add_subtasks");
-  const activeDiv = document.getElementById("aktive_input_addSubtask");
-  const closeAndCheckBtns = document.getElementById("close_and_check_btns");
-
-  // Überprüfen, ob der Klick nicht auf das input-Feld oder die Divs erfolgt
-  if (
-    !inputField.contains(event.target) &&
-    !closeAndCheckBtns.contains(event.target) &&
-    !activeDiv.contains(event.target)
-  ) {
-    inputField.blur(); // Input-Feld deaktivieren
-    resetDivVisibility(); // Divs zurücksetzen
-  }
-});
+// Event Listener für die div (check_input_subtask), um den Text zu speichern und zur Liste hinzuzufügen
+document
+  .getElementById("check_input_subtask")
+  .addEventListener("click", addSubtaskToList);
