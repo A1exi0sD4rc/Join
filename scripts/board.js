@@ -27,10 +27,14 @@ async function initBoardJs() {
 }
 
 
+/**
+ * retrieves data from API , converts them to JSON format and pushs the result to the tasks variable.
+ * 
+ * @param {path} path 
+ */
 async function fetchTasks(path="") {
     let response  = await fetch(BASE_URL + path + ".json");
     tasks = await response.json();
-    console.log(tasks);
 }
 
 
@@ -135,6 +139,7 @@ function addPrioImg(tasks) {
         prio_small.innerHTML = `<img src="${prioimg}">`;
     }
 }
+
 
 /**
  * adds a specific priority Icon/img to the big task card.
