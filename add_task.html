@@ -161,15 +161,25 @@
                 class="aT_input_addSubtask aT_unset"
                 placeholder="Add new subtask"
               />
-              <div class="drop_down_arrow_container d-none">
+              <div
+                id="aktive_input_addSubtask"
+                class="drop_down_arrow_container"
+              >
                 <img
                   class="add_subtasks_plus_icon"
                   src="./assets/img/add_subtasks_plus_icon.svg"
                   alt="plus_icon"
                 />
               </div>
-              <div class="close_check_container">
-                <div class="c_icon_container" onclick="cancel_input_subtask()">
+              <div
+                id="close_and_check_btns"
+                class="close_check_container d-none"
+              >
+                <div
+                  id="cancel_input_subtasks"
+                  class="c_icon_container"
+                  onclick="cancel_input_subtask()"
+                >
                   <img
                     class="add_subtasks_close_icon"
                     src="./assets/img/add_subtasks_close_icon.svg"

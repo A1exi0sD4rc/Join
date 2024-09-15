@@ -181,3 +181,54 @@ document.addEventListener("DOMContentLoaded", function () {
 function cancel_input_subtask() {
   document.getElementById("aT_add_subtasks").value = "";
 }
+
+//ADD SUBTASKS
+// Funktion zum Umschalten der Sichtbarkeit beim Aktivieren des Input-Felds
+function toggleDivVisibility() {
+  document.getElementById("aktive_input_addSubtask").classList.add("d-none");
+  document.getElementById("close_and_check_btns").classList.remove("d-none");
+}
+
+// Funktion zum Zurücksetzen der Sichtbarkeit beim Deaktivieren des Input-Felds
+function resetDivVisibility() {
+  document.getElementById("aktive_input_addSubtask").classList.remove("d-none");
+  document.getElementById("close_and_check_btns").classList.add("d-none");
+}
+
+// Event Listener für das input-Feld, um es zu aktivieren und Divs umzuschalten
+document
+  .getElementById("aT_add_subtasks")
+  .addEventListener("click", toggleDivVisibility);
+
+// Event Listener für die div (aktive_input_addSubtask), um das Input-Feld zu fokussieren und die Divs umzuschalten
+document
+  .getElementById("aktive_input_addSubtask")
+  .addEventListener("click", function () {
+    document.getElementById("aT_add_subtasks").focus(); // Input-Feld fokussieren
+    toggleDivVisibility(); // Sichtbarkeit umschalten
+  });
+
+// Event Listener für die div (cancel_input_subtasks), um das Input-Feld zu deaktivieren und Divs zurückzusetzen
+document
+  .getElementById("cancel_input_subtasks")
+  .addEventListener("click", function () {
+    document.getElementById("aT_add_subtasks").blur(); // Input-Feld verliert den Fokus (deaktivieren)
+    resetDivVisibility(); // Sichtbarkeit zurücksetzen
+  });
+
+// Event Listener für Klicks außerhalb des input-Felds
+document.addEventListener("click", function (event) {
+  const inputField = document.getElementById("aT_add_subtasks");
+  const activeDiv = document.getElementById("aktive_input_addSubtask");
+  const closeAndCheckBtns = document.getElementById("close_and_check_btns");
+
+  // Überprüfen, ob der Klick nicht auf das input-Feld oder die Divs erfolgt
+  if (
+    !inputField.contains(event.target) &&
+    !closeAndCheckBtns.contains(event.target) &&
+    !activeDiv.contains(event.target)
+  ) {
+    inputField.blur(); // Input-Feld deaktivieren
+    resetDivVisibility(); // Divs zurücksetzen
+  }
+});

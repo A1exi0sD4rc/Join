@@ -307,9 +307,6 @@ sup {
   background: transparent; /* keine Farbe für sichtbare Laufleiste hinter thumb */
 }
 
-.d-none {
-  display: none;
-}
 /*--------------------------------------------------------------------------------------*/
 
 .aT_input_date {
@@ -593,4 +590,13 @@ sup {
   border: 2px solid #29abe2;
   cursor: pointer;
   color: #29abe2;
+}
+
+.clear_form:hover img {
+  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg)
+    brightness(91%) contrast(95%);
+}
+
+.d-none {
+  display: none;
 }
