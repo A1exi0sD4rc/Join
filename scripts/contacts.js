@@ -121,12 +121,14 @@ function getNewContactData() {
 
 
 function generateColor() {
-    const minColorValue = 0x100000;
-    const maxColorValue = 0xEFFFFF;
+    const min = 50;
+    const max = 200;
 
-    const randomColor = '#' + Math.floor(Math.random() * (maxColorValue - minColorValue) + minColorValue).toString(16);
+    const r = Math.floor(Math.random() * (max - min + 1)) + min;
+    const g = Math.floor(Math.random() * (max - min + 1)) + min;
+    const b = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    return randomColor;
+    return `rgb(${r}, ${g}, ${b})`;
 }
 
 
