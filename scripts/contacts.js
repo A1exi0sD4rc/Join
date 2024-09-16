@@ -89,10 +89,10 @@ function toggleVisiblility() {
 }
 
 
-function addContact(event) {
+async function addContact(event) {
     event.preventDefault();
-    addContactToDb();
-    init();
+    await addContactToDb();
+    await init();
 }
 
 
@@ -132,9 +132,9 @@ function generateColor() {
 }
 
 
-function editSaveInit(i) {
-    saveEdit(i);
-    init();
+async function editSaveInit(i) {
+    await saveEdit(i);
+    await init();
 }
 
 
