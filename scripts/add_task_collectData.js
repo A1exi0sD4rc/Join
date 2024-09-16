@@ -3,7 +3,7 @@ let TASKS_URL = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 async function addTaskToDatabase() {
   const newTask = collectTaskData();
   await saveTaskToDatabase(newTask);
-  await refreshTaskBoard();
+  goToBoard();
 }
 
 function collectTaskData() {
@@ -73,4 +73,8 @@ async function refreshTaskBoard() {
   updateHtmlProgress();
   updateHtmlAwait();
   updateHtmlDone();
+}
+
+function goToBoard() {
+  window.location.href = "board.html";
 }
