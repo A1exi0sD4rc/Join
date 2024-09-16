@@ -261,6 +261,8 @@ sup {
   display: flex;
   align-items: center;
   border-radius: 10px;
+  z-index: 999 !important;
+
 }
 
 .categories:hover {
