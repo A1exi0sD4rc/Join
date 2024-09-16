@@ -5,6 +5,7 @@ async function summaryInit() {
   // checkLogin(); // Implemented but don't need for tests or functions, only activate when uploaded on the server!
   includeHTML();
   initPage();
+  await fetchTasks();
   generateCounts();
   generateGreets();
   generateUpcomingDate();

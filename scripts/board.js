@@ -29,12 +29,15 @@ async function initBoardJs() {
 
 /**
  * retrieves data from API , converts them to JSON format and pushs the result to the tasks variable.
- * 
- * @param {path} path 
+ *
+ * @param {path} path
  */
-async function fetchTasks(path="") {
-    let response  = await fetch(BASE_URL + path + ".json");
-    tasks = await response.json();
+async function fetchTasks(path = "") {
+    let response = await fetch(BASE_URL + path + ".json");
+    data = await response.json();
+    for (let key in data) {
+        tasks.push({ id: key, ...data[key] });
+    }
 }
 
 
@@ -117,7 +120,7 @@ function updateHtmlDone() {
 /**
  * changes the background-color of a div depending on his catergory/textContent
  *
- * @param {number} id - The id provides a unique identifier for the object.
+ * @param {number} id
  */
 function changeArtBackground(id) {
     const toChangeBg = document.getElementById(id);
