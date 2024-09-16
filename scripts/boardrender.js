@@ -121,8 +121,18 @@ function renderBigTaskCard(bigelement) {
       </div>
 
       <div class="big_assigned">
+
         <div class="big_assigned_txt">Assigned To:</div>
-        <div class="big_assigned_user"></div>
+
+        <div class="assigned_div">
+          <div class="big_assigned_user">
+            <div class="assigned_logo_name">
+              <div class="assigned_big_logo" id="assigned_big_logo"> LOGO HERE </div>
+              <div class="assigned_big_name" id="assigned_big_name"> NAME HERE </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div class="big_subs">

@@ -27,7 +27,7 @@
     display: none;
 }
 
-.big_card_art_close{
+.big_card_art_close {
     width: 445px;
     height: 36px;
     display: flex;
@@ -36,7 +36,7 @@
     margin-top: 48px;
 }
 
-.big_art{
+.big_art {
     width: 208px;
     height: 36px;
     border-radius: 8px;
@@ -50,7 +50,7 @@
     align-items: center;
 }
 
-.big_card_close{
+.big_card_close {
     width: 32px;
     height: 32px;
     display: flex;
@@ -59,7 +59,7 @@
     cursor: pointer;
 }
 
-.title_big{
+.title_big {
     width: 445px;
     height: 219px;
     font-size: 61px;
@@ -67,7 +67,7 @@
     color: #000000;
 }
 
-.big_description{
+.big_description {
     width: 445px;
     height: 24px;
     font-size: 20px;
@@ -78,7 +78,7 @@
 .big_due,
 .big_prio,
 .big_assigned,
-.big_subs{
+.big_subs {
     display: flex;
     flex-direction: row;
     width: 445px;
@@ -87,13 +87,13 @@
 }
 
 .big_del_txt,
-.big_edit_txt{
+.big_edit_txt {
     font-size: 16px;
     font-weight: 400;
     color: #2A3647;
 }
 
-.big_del_edit{
+.big_del_edit {
     width: 445px;
     height: 24px;
     gap: 8px;
@@ -103,7 +103,7 @@
     margin-bottom: 48px;
 }
 
-.big_del{
+.big_del {
     width: 81px;
     height: 24px;
     display: flex;
@@ -112,7 +112,7 @@
     cursor: pointer;
 }
 
-.big_edit{
+.big_edit {
     width: 62px;
     height: 24px;
     display: flex;
@@ -121,7 +121,7 @@
     cursor: pointer;
 }
 
-.big_del_txt{
+.big_del_txt {
     width: 49px;
     height: 19px;
     display: flex;
@@ -129,13 +129,13 @@
     gap: 8px;
 }
 
-.big_edit_txt{
+.big_edit_txt {
     width: 30px;
     height: 19px;
 }
 
 .big_del_icon_div,
-.big_edit_icon_div{
+.big_edit_icon_div {
     width: 24px;
     height: 24px;
     display: flex;
@@ -144,9 +144,57 @@
 }
 
 .big_edit_icon,
-.big_del_icon{
+.big_del_icon {
     width: 18.28px;
     height: 18.28px;
+}
+
+.big_assigned {
+    width: 445px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.big_assigned_txt{
+    width: 445px;
+    height: 24px;
+}
+
+.assigned_div {
+    width: 445px;
+    gap: 4px;
+}
+
+.big_assigned_user {
+    width: 445px;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 7px, 16px, 7px, 16px;
+}
+
+.assigned_logo_name{
+    height: 42px;
+    gap: 16px;
+    font-weight: 400;
+    font-size: 19px;
+    color: #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.assigned_big_logo{
+    width: 42px;
+    height: 42px;
+    gap: 10px;
+}
+
+.assigned_big_name{
+    height: 23px;
 }
 
 @keyframes slideIn {
@@ -154,6 +202,7 @@
         transform: translateX(100%);
         opacity: 0;
     }
+
     100% {
         transform: translateX(0);
         opacity: 1;
