@@ -269,7 +269,7 @@ sup {
 }
 
 .scrollable_container {
-  max-height: 100px; /*eigtl. 336px*/
+  max-height: 180px; /*eigtl. 336px*/
   overflow-y: auto;
   /*scrollbar-width: thin; als Alternative, weil der style leider nicht mögl. ist.*/
 }
