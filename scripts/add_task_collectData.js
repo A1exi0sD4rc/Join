@@ -69,6 +69,7 @@ async function saveTaskToDatabase(task) {
 
 async function refreshTaskBoard() {
   await fetchTasks();
+  clearTaskContainers();
   updateHtmlTodo();
   updateHtmlProgress();
   updateHtmlAwait();
@@ -77,4 +78,11 @@ async function refreshTaskBoard() {
 
 function goToBoard() {
   window.location.href = "board.html";
+}
+
+function clearTaskContainers() {
+  document.getElementById("small_card_todo").innerHTML = "";
+  document.getElementById("small_card_progress").innerHTML = "";
+  document.getElementById("small_card_await").innerHTML = "";
+  document.getElementById("small_card_done").innerHTML = "";
 }
