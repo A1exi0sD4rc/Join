@@ -18,7 +18,7 @@ function render() {
     document.getElementById("contacts-div").innerHTML = "";
     document.getElementById("contacts-div").innerHTML += /*html*/ `
         <div class="contacts-new-contact-div">
-            <button class="contacts-new-contact-btn" onclick="editContact('add')">
+            <button class="contacts-new-contact-btn" onclick="contactAddEditInit('add')">
                 Add new contact <img src="./assets/img/contacts_new_contact.svg">
             </button>
         </div>
@@ -104,8 +104,8 @@ function renderContactDetails(i) {
             <div class="contacts-contact-details-h-edit-delete">
                 <h2>${contactKeys[i]['name']}</h2>
                 <div class="contacts-contact-details-btn-div">
-                    <button class="contacts-contact-details-edit-btn" onclick="editContact(${i}, 'edit')">Edit</button>
-                    <button class="contacts-contact-details-delete-btn" onclick="deleteContact('/${i}')">Delete</button>
+                    <button class="contacts-contact-details-edit-btn" onclick="contactAddEditInit(${i}, 'edit')">Edit</button>
+                    <button class="contacts-contact-details-delete-btn" onclick="contactDeleteInit(${i})">Delete</button>
                 </div>
             </div>
         </div>  
@@ -149,8 +149,8 @@ function renderEditContact(i) {
                     <input id="contacts-user-number" class="contacts-edit-number" type="text" value="${contactKeys[i]['number']}">
                 </div>
                 <div>
-                    <button class="contacts-edit-delete-btn"  onclick="initDelete('/${i}')">Delete</button>
-                    <button class="contacts-edit-save-btn contacts-img-margin" onclick="saveEdit(${i}, '/${i}')">Save <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-edit-delete-btn"  onclick="contactDeleteInit(${i})">Delete</button>
+                    <button class="contacts-edit-save-btn contacts-img-margin" onclick="editSaveInit(${i})">Save <img src="./assets/img/check.svg"></button>
                 </div>
             </div>
         </div>
@@ -185,7 +185,7 @@ function renderAddNewContact() {
                     <input required id="contacts-user-number" class="contacts-edit-number" type="tel" placeholder="Phone">
                 </div>
                 <div>
-                    <button class="contacts-add-cancel-btn contacts-img-margin" onclick="deleteContact('/contacts/${contactKeys.length++}')">Cancel <img src="./assets/img/close.svg"></button>
+                    <button class="contacts-add-cancel-btn contacts-img-margin" onclick="toggleVisiblility()">Cancel <img src="./assets/img/close.svg"></button>
                     <button class="contacts-add-create-btn contacts-img-margin" onclick="addContact(event)">Create contact <img src="./assets/img/check.svg"></button>
                 </div>
             </form>
