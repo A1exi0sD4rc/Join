@@ -73,7 +73,7 @@ function toggleDetailClasses(i) {
 }
 
 
-function editContact(i, action) {
+function contactAddEditInit(i, action) {
     toggleVisiblility();
     if (action == 'edit') {
         renderEditContact(i);
@@ -92,6 +92,7 @@ function toggleVisiblility() {
 function addContact(event) {
     event.preventDefault();
     addContactToDb();
+    init();
 }
 
 
@@ -129,11 +130,17 @@ function generateColor() {
 }
 
 
-async function saveEdit(i, path) {
+function editSaveInit(i) {
+    saveEdit(i);
+    init();
+}
+
+
+async function saveEdit(i) {
     let changeUserName = document.getElementById('contacts-user-name').value;
     let changeUserEmail = document.getElementById('contacts-user-email').value;
     let changeUserNumber = document.getElementById('contacts-user-number').value;
-    const response = await fetch(BASE_URL + path + ".json", {
+    const response = await fetch(BASE_URL + `/${contactKeys[i]['id']}` + ".json", {
         method: "PUT",
         header: { "Content-Type": "application/json" },
         body: JSON.stringify(data = {
@@ -146,8 +153,16 @@ async function saveEdit(i, path) {
     return responseToJson = await response.json();
 }
 
-async function deleteContact(path) {
-    let response = await fetch(BASE_URL + path + ".json", {
+
+async function contactDeleteInit(i) {
+    await deleteContact(i);
+    await getContactData();
+    renderContacts();
+}
+
+
+async function deleteContact(i) {
+    let response = await fetch(BASE_URL + `/${contactKeys[i]['id']}` + ".json", {
         method: "DELETE",
     });
     return responseToJson = await response.json();
