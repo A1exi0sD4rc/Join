@@ -533,6 +533,7 @@ input[type="password"]::-ms-clear {
 @media (max-height: 870px) {
   .login-window {
     height: 420px;
+    margin-top: 15px !important;
   }
 
   .input-fields {

@@ -4,12 +4,12 @@ async function initAddTask() {
 
 //fetch Contacts
 
-let BASE_URL =
+let CONTACTS_URL =
   "https://join-a2f86-default-rtdb.europe-west1.firebasedatabase.app/contacts";
 contactsAddTask = [];
 
 async function getContacts() {
-  let response = await fetch(BASE_URL + ".json");
+  let response = await fetch(CONTACTS_URL + ".json");
   let responseAsJson = await response.json();
 
   try {
