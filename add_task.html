@@ -46,7 +46,7 @@
                 placeholder="Enter a title"
               />
               <span id="error-message" class="error"
-                >hier die Error Meldung</span
+                >This field is required</span
               >
             </div>
             <label class="aT_input_labels" for="aT_description"
@@ -94,6 +94,7 @@
               >Due date<sup>*</sup></label
             >
             <input required id="aT_date" class="aT_input_date" type="date" />
+            <span id="error-message" class="error">This field is required</span>
             <div class="aT_input_labels">Prio</div>
             <div class="aT_set_prio_container" id="aT_set_prio">
               <div
@@ -204,7 +205,10 @@
                 />
               </div>
             </div>
-            <div class="clear_check_container create_task">
+            <div
+              class="clear_check_container create_task"
+              onclick="addTaskToDatabase()"
+            >
               <div>Create Task</div>
               <img
                 src="./assets/img/create_task_white.svg"
