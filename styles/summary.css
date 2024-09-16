@@ -434,6 +434,7 @@ p {
 
   .summary-card-container {
     margin-right: 0px;
+    margin-bottom: 30px;
     width: 530px;
   }
 }
