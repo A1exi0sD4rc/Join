@@ -338,3 +338,43 @@ input.addEventListener("input", function () {
     this.style.color = "#d1d1d1"; // Farbe für den Placeholder
   }
 });
+
+//clear komplettes Formular:
+function clearAll() {
+  clearTitle();
+  clearDescription();
+  clearDate();
+}
+
+//clear titel input:function clearInputField() {
+function clearTitle() {
+  // Hole das Eingabefeld basierend auf der ID
+  const inputField = document.getElementById("aT_title");
+
+  // Überprüfe, ob das Eingabefeld existiert
+  if (inputField) {
+    // Setze den Wert des Eingabefeldes auf eine leere Zeichenkette
+    inputField.value = "";
+  }
+}
+
+//clear description:
+function clearDescription() {
+  // Hole das Textarea-Feld basierend auf der ID
+  const textArea = document.getElementById("aT_description");
+
+  // Überprüfe, ob das Textarea-Feld existiert
+  if (textArea) {
+    // Setze den Wert des Textarea-Feldes auf eine leere Zeichenkette
+    textArea.value = "";
+  }
+}
+
+//clear Datum:
+function clearDate() {
+  const dateField = document.getElementById("aT_date");
+  if (dateField) {
+    // Setze den Wert des Datum-Feldes auf null
+    dateField.value = "";
+  }
+}

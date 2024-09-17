@@ -312,7 +312,7 @@ sup {
 /*--------------------------------------------------------------------------------------*/
 
 .aT_input_date {
-  all: unset;
+  font-family: "Inter", sans-serif;
   background-color: white;
   box-sizing: border-box;
   padding: 12px 21px;
