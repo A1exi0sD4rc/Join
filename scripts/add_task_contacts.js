@@ -31,7 +31,8 @@ function renderContacts() {
   for (let i = 0; i < contactsAddTask.length; i++) {
     let contact = contactsAddTask[i];
     contactContainer.innerHTML += `
-      <div>
+      <div class="contact_container_element">
+       <div style="display: flex; align-items: center; gap: 20px">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="21" cy="21" r="20" fill="${
             contact.bgcolor
@@ -40,7 +41,8 @@ function renderContacts() {
             contact.name
           )}</text>
         </svg>
-        <div>${contact.name}</div>
+          <div>${contact.name}</div>
+        </div>
         <input type="checkbox" class="contact-checkbox" onchange="selectContact(${i}, this)">
       </div>
     `;

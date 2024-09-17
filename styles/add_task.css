@@ -257,6 +257,14 @@ sup {
   width: max-content;
 }
 
+.contact_container_element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+  margin-bottom: 2px;
+}
+
 .category_list {
   z-index: 999;
   border-radius: 10px;
