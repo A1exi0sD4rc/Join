@@ -231,24 +231,12 @@ function addSubtaskToList() {
 //ab hier edit der subtasks
 function editTask(editButton) {
   const taskItem = editButton.closest(".task-item");
-
-  if (!taskItem) {
-    console.error("Task item not found");
-    return;
-  }
-
   const taskTextElement = taskItem.querySelector(".task-text");
-  const taskControls = taskItem.querySelector(".task-controls");
 
-  if (!taskTextElement || !taskControls) {
-    console.error("Task text element or controls not found");
-    return;
-  }
-
-  // Erstelle das Editier-Layout
+  // Erstelle Editier-Layout
   const currentText = taskTextElement.textContent;
 
-  // Ändere die Struktur der Bearbeitungsansicht / Editiermodus
+  // Änderung in Bearbeitungsansicht / Editiermodus
   taskItem.innerHTML = /*html*/ `
     <input type="text" value="${currentText}" class="edit-input">
     <div class="task-controls">
@@ -259,6 +247,13 @@ function editTask(editButton) {
      <img src="./assets/img/edit_subtask_check.svg" alt="Save" class="task-btn-input save-btn-input" onclick="saveTask(this)"></div>
     </div>
   `;
+  // Fokussiere das Input-Feld
+  const inputField = taskItem.querySelector(".edit-input");
+  inputField.focus();
+
+  // Setze den Cursor ans Ende des Textes
+  const textLength = inputField.value.length;
+  inputField.setSelectionRange(textLength, textLength);
 }
 
 function saveTask(saveButton) {

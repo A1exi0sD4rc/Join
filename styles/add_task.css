@@ -263,7 +263,6 @@ sup {
   align-items: center;
   border-radius: 10px;
   z-index: 999 !important;
-
 }
 
 .categories:hover {
@@ -678,6 +677,11 @@ li {
   padding: 4px 16px 4px 16px; /* Optional: etwas Innenabstand */
   box-sizing: border-box; /* Stellt sicher, dass Padding zur Gesamtbreite hinzugefügt wird */
   font-size: 16px;
+}
+
+.edit-input:focus {
+  border-bottom: 1px solid #005dff;
+  outline: none; /* Entfernt den Fokusrahmen des Browsers */
 }
 
 /* Stil für die Buttons */
