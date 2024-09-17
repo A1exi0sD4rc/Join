@@ -337,3 +337,15 @@ document
       addSubtaskToList();
     }
   });
+
+const input = document.querySelector(".aT_input_date");
+
+input.addEventListener("input", function () {
+  if (this.value) {
+    // Wenn ein Datum ausgewählt wurde
+    this.style.color = "#000000"; // Farbe nach Auswahl (z.B. Schwarz)
+  } else {
+    // Wenn kein Datum ausgewählt ist oder das Feld wieder leer wird
+    this.style.color = "#d1d1d1"; // Farbe für den Placeholder
+  }
+});
