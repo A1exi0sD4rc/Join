@@ -11,6 +11,7 @@ function startDrag(id) {
   card.classList.add("rotate");
 }
 
+
 function endDrag(id) {
   const card = document.getElementById(id);
   card.classList.remove("rotate");
@@ -41,13 +42,16 @@ function moveTo(newCategory) {
   }
 }
 
+
 function addHighlightBorder(id) {
   document.getElementById(id).classList.add("drag_area_border");
 }
 
+
 function removeHighlightBorder(id) {
   document.getElementById(id).classList.remove("drag_area_border");
 }
+
 
 async function updateTaskInDatabase(task) {
   try {

@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     arrowImage.classList.add("rotate");
     dropDowncontacts.classList.remove("d-none");
     renderContacts();
+    inputField.focus(); // Fokussiert das Eingabefeld
   }
 
   // Funktion zum Deaktivieren des Input-Feldes
@@ -231,24 +232,12 @@ function addSubtaskToList() {
 //ab hier edit der subtasks
 function editTask(editButton) {
   const taskItem = editButton.closest(".task-item");
-
-  if (!taskItem) {
-    console.error("Task item not found");
-    return;
-  }
-
   const taskTextElement = taskItem.querySelector(".task-text");
-  const taskControls = taskItem.querySelector(".task-controls");
 
-  if (!taskTextElement || !taskControls) {
-    console.error("Task text element or controls not found");
-    return;
-  }
-
-  // Erstelle das Editier-Layout
+  // Erstelle Editier-Layout
   const currentText = taskTextElement.textContent;
 
-  // Ändere die Struktur der Bearbeitungsansicht / Editiermodus
+  // Änderung in Bearbeitungsansicht / Editiermodus
   taskItem.innerHTML = /*html*/ `
     <input type="text" value="${currentText}" class="edit-input">
     <div class="task-controls">
@@ -259,6 +248,13 @@ function editTask(editButton) {
      <img src="./assets/img/edit_subtask_check.svg" alt="Save" class="task-btn-input save-btn-input" onclick="saveTask(this)"></div>
     </div>
   `;
+  // Fokussiere das Input-Feld
+  const inputField = taskItem.querySelector(".edit-input");
+  inputField.focus();
+
+  // Setze den Cursor ans Ende des Textes
+  const textLength = inputField.value.length;
+  inputField.setSelectionRange(textLength, textLength);
 }
 
 function saveTask(saveButton) {
@@ -296,18 +292,6 @@ function deleteTask(deleteButton) {
   }
 }
 
-//ab hier delete subtask ohne im nichtEditModus
-
-function deleteTask(button) {
-  // Finde das übergeordnete ul-Element des Buttons
-  const ulElement = button.closest("ul");
-
-  // Entferne das ul-Element
-  if (ulElement) {
-    ulElement.remove();
-  }
-}
-
 // Event Listener für das input-Feld, um es zu aktivieren und Divs umzuschalten
 document
   .getElementById("aT_add_subtasks")
@@ -342,3 +326,15 @@ document
       addSubtaskToList();
     }
   });
+
+const input = document.querySelector(".aT_input_date");
+
+input.addEventListener("input", function () {
+  if (this.value) {
+    // Wenn ein Datum ausgewählt wurde
+    this.style.color = "#000000"; // Farbe nach Auswahl (z.B. Schwarz)
+  } else {
+    // Wenn kein Datum ausgewählt ist oder das Feld wieder leer wird
+    this.style.color = "#d1d1d1"; // Farbe für den Placeholder
+  }
+});
