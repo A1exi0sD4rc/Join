@@ -107,7 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("click", function (event) {
     if (
       !inputField.contains(event.target) &&
-      !arrowConContainer.contains(event.target)
+      !arrowConContainer.contains(event.target) &&
+      !dropDowncontacts.contains(event.target)
     ) {
       deactivateField(); // Deaktivieren, wenn außerhalb des Input-Feldes und des Arrow-Containers geklickt wird
     }

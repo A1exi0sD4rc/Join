@@ -246,6 +246,7 @@ sup {
 }
 
 .selected-contacts-container {
+  padding-left: 7px;
   position: relative;
   margin-top: 10px;
   display: flex;
