@@ -1,6 +1,10 @@
-const BASE_URL = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
-
+const BASE_URL_TASKS = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let tasks = [];
+
+const BASE_URL_ASSIGNED = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+let bigassigned = [];
+
+let draggedTo;
 
 const artColors = {
     "Technical Task": "#1FD7C1",
@@ -13,7 +17,6 @@ const prios = {
     Urgent: "assets/img/Prio_high.svg",
 };
 
-let draggedTo;
 
 async function initBoardJs() {
     includeHTML();
@@ -32,7 +35,7 @@ async function initBoardJs() {
  * @param {path} path
  */
 async function fetchTasks(path = "") {
-    let response = await fetch(BASE_URL + path + ".json");
+    let response = await fetch(BASE_URL_TASKS + path + ".json");
     data = await response.json();
     tasks = [];
     for (let key in data) {
@@ -209,4 +212,20 @@ function showBigTask(taskId) {
 function hideBigTask() {
     document.getElementById('big_card_bg').classList.add('d_none');
     document.getElementById('big_card_bg').innerHTML = '';
+}
+
+// in progress
+
+async function assignedToBigCard(path = "") {
+    let assigned = await fetch(BASE_URL_ASSIGNED + path + ".json");
+    bigassigned = await assigned.json();
+    bigassigned = [];
+}
+
+
+function bigAssignedTo() {
+        for (let index = 0; index < bigassigned.length; index++) {
+            const assigned = bigassigned[index];
+            document.getElementById('assigned_big_name').innerHTML += renderBigTaskCard(assigned);
+        }
 }
