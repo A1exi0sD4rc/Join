@@ -214,15 +214,21 @@ function hideBigTask() {
     document.getElementById('big_card_bg').innerHTML = '';
 }
 
-// in progress
+// in progress - waiting for DB
 
+/**
+ * retrieves data from API , converts them to JSON format and pushs the result to the bigassigned variable.
+ * 
+ * @param {*} path 
+ */
 async function assignedToBigCard(path = "") {
     let assigned = await fetch(BASE_URL_ASSIGNED + path + ".json");
     bigassigned = await assigned.json();
-    bigassigned = [];
 }
 
-
+/**
+ * 
+ */
 function bigAssignedTo() {
         for (let index = 0; index < bigassigned.length; index++) {
             const assigned = bigassigned[index];
