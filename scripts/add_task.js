@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const arrowImage = arrowConContainer.querySelector("img");
   const dropDowncontacts = document.getElementById("contact_list");
+  const selectedContacts = document.getElementById("selected_contacts");
 
   // Funktion zum Aktivieren des Input-Feldes
   function activateField(event) {
@@ -75,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     inputField.classList.add("active-border");
     arrowImage.classList.add("rotate");
     dropDowncontacts.classList.remove("d-none");
+    selectedContacts.classList.add("d-none");
     renderContacts();
     inputField.focus(); // Fokussiert das Eingabefeld
   }
@@ -84,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     inputField.classList.remove("active-border");
     arrowImage.classList.remove("rotate");
     dropDowncontacts.classList.add("d-none");
+    selectedContacts.classList.remove("d-none");
     inputField.value = ""; // Löscht den Text im Input-Feld
   }
 

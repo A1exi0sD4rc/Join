@@ -236,12 +236,24 @@ sup {
 
 /* Stile für das Kontaktlisten-Div */
 .contact_list {
+  z-index: 10;
   border-radius: 10px;
   background-color: white;
   padding: 55px 7px 7px 7px;
   margin-top: -48px;
   box-shadow: 0px 0px 4px 0px #0000001a;
   overflow: hidden;
+}
+
+.selected-contacts-container {
+  position: relative;
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.selected-contact {
+  width: max-content;
 }
 
 .category_list {
