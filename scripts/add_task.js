@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     arrowImage.classList.add("rotate");
     dropDowncontacts.classList.remove("d-none");
     renderContacts();
+    inputField.focus(); // Fokussiert das Eingabefeld
   }
 
   // Funktion zum Deaktivieren des Input-Feldes
@@ -288,18 +289,6 @@ function deleteTask(deleteButton) {
   const taskItem = deleteButton.closest(".task-item");
   if (taskItem) {
     taskItem.remove();
-  }
-}
-
-//ab hier delete subtask ohne im nichtEditModus
-
-function deleteTask(button) {
-  // Finde das übergeordnete ul-Element des Buttons
-  const ulElement = button.closest("ul");
-
-  // Entferne das ul-Element
-  if (ulElement) {
-    ulElement.remove();
   }
 }
 
