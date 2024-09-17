@@ -3,6 +3,8 @@ let TASKS_URL = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 async function addTaskToDatabase() {
   const newTask = collectTaskData();
   await saveTaskToDatabase(newTask);
+  selectedContacts = [];
+  displaySelectedContacts();
   goToBoard();
 }
 
@@ -11,10 +13,11 @@ function collectTaskData() {
   const description = getInputValueById("aT_description");
   const category = getCategory();
   const prio = getActivePriority();
+  const contacts = selectedContacts;
 
   return {
     art: category,
-    assigned: "", //Empty for now.
+    assigned: contacts,
     category: "todo", // Default
     description: description,
     prio: prio,
