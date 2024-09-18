@@ -4,7 +4,7 @@ async function initAddTask() {
 
 document.addEventListener("DOMContentLoaded", function () {
   const handle = document.querySelector(".resize-handle");
-  const textarea = document.querySelector(".resizable-textarea");
+  const textarea = document.getElementById("aT_description");
   const container = document.querySelector(".resizable-container");
 
   if (handle && textarea && container) {
@@ -47,57 +47,87 @@ function deactivateAll() {
   document.getElementById("boxLow").classList.remove("low_box_active");
   document.getElementById("boxLow").classList.add("aT_set_prio");
 }
+//#################################################################################################
 
-//##############################################################################################
-document.addEventListener("DOMContentLoaded", function () {
-  const inputFieldContacts = document.getElementById("aT_select_contacts");
-  const arrowConContainer = document.getElementById(
-    "select_contacts_arrow_container"
-  );
-  const arrowConConImage = arrowConContainer.querySelector("img");
-  const dropDowncontacts = document.getElementById("contact_list");
-  const selectedContacts = document.getElementById("selected_contacts");
+document.addEventListener("click", handleDocumentClick);
+const inputFieldContacts = document.getElementById("aT_select_contacts");
+const categoryList = document.getElementById("category_list");
+const arrowConContainer = document.getElementById(
+  "select_contacts_arrow_container"
+);
+const arrowConConImage = arrowConContainer.querySelector("img");
+const dropDowncontacts = document.getElementById("contact_list");
+const selectedContactsCon = document.getElementById("selected_contacts");
 
-  function activateField(event) {
-    event.stopPropagation();
-    inputFieldContacts.classList.add("active-border");
-    arrowConConImage.classList.add("rotate");
-    dropDowncontacts.classList.remove("d-none");
-    selectedContacts.classList.add("d-none");
-    renderContacts();
-    inputFieldContacts.focus();
-  }
-
-  function deactivateField() {
-    inputFieldContacts.classList.remove("active-border");
-    arrowConConImage.classList.remove("rotate");
-    dropDowncontacts.classList.add("d-none");
-    selectedContacts.classList.remove("d-none");
-    inputFieldContacts.value = "";
-  }
-
-  inputFieldContacts.addEventListener("click", activateField);
-  arrowConContainer.addEventListener("click", function (event) {
-    event.stopPropagation();
-    if (inputFieldContacts.classList.contains("active-border")) {
-      deactivateField();
-    } else {
-      activateField(event);
+function handleDocumentClick(event) {
+  const isInsideInputFieldContacts = inputFieldContacts.contains(event.target);
+  const isInsideArrowConContainer = arrowConContainer.contains(event.target);
+  const isInsideCategoryList = categoryList.contains(event.target);
+  if (inputFieldContacts.classList.contains("active-border")) {
+    if (!isInsideInputFieldContacts && !isInsideArrowConContainer) {
+      handleContactsClick(event);
     }
-  });
-
-  document.addEventListener("click", function (event) {
-    if (
-      !inputFieldContacts.contains(event.target) &&
-      !arrowConContainer.contains(event.target) &&
-      !dropDowncontacts.contains(event.target)
-    ) {
-      deactivateField();
+  } else if (!categoryList.classList.contains("d-none")) {
+    if (!isInsideCategoryList) {
+      handleCategoryClick(event);
     }
-  });
+  }
+}
+
+function handleContactsClick(event) {
+  if (
+    !inputFieldContacts.contains(event.target) &&
+    !arrowConContainer.contains(event.target) &&
+    !dropDowncontacts.contains(event.target)
+  ) {
+    deactivateFieldContacts();
+  }
+}
+
+function handleCategoryClick(event) {
+  if (
+    !inputFieldCategeory.contains(event.target) &&
+    !arrowCatContainer.contains(event.target) &&
+    !dropDownCategories.contains(event.target)
+  ) {
+    deactivateFieldCategory();
+  }
+}
+
+function deactivateFieldContacts() {
+  inputFieldContacts.classList.remove("active-border");
+  arrowConConImage.classList.remove("rotate");
+  dropDowncontacts.classList.add("d-none");
+  selectedContactsCon.classList.remove("d-none");
+  inputFieldContacts.value = "";
+}
+
+arrowConContainer.addEventListener("click", function (event) {
+  event.stopPropagation(); // Verhindert, dass der Klick auch den document-Event-Listener auslöst
+  if (inputFieldContacts.classList.contains("active-border")) {
+    deactivateFieldContacts();
+  } else {
+    activateField(event);
+  }
+});
+
+function activateField(event) {
+  event.stopPropagation();
+  inputFieldContacts.classList.add("active-border");
+  arrowConConImage.classList.add("rotate");
+  dropDowncontacts.classList.remove("d-none");
+  selectedContactsCon.classList.add("d-none");
+  renderContacts();
+  inputFieldContacts.focus();
+}
+
+inputFieldContacts.addEventListener("click", function (event) {
+  event.stopPropagation(); // Verhindert, dass der Klick auch den document-Event-Listener auslöst
+  activateField(event);
 });
 
 //#######################################################################################################
+//CATEGORY
 const inputFieldCategeory = document.getElementById("aT_select_category");
 const arrowCatContainer = document.getElementById(
   "select_category_arrow_container"
@@ -107,12 +137,12 @@ const dropDownCategories = document.getElementById("category_list");
 const categoryOptions = document.querySelectorAll(".categories");
 const originalText = "Select task category";
 
-function activateField() {
+function activateCatField() {
   arrowImage.classList.add("rotate");
   dropDownCategories.classList.remove("d-none");
 }
 
-function deactivateField() {
+function deactivateFieldCategory() {
   arrowImage.classList.remove("rotate");
   dropDownCategories.classList.add("d-none");
 }
@@ -123,16 +153,16 @@ function toggleField(event) {
     inputFieldCategeory.textContent = originalText;
   }
   if (arrowImage.classList.contains("rotate")) {
-    deactivateField();
+    deactivateFieldCategory();
   } else {
-    activateField();
+    activateCatField();
   }
 }
 
 function selectCategory(event) {
   const selectedCategory = event.target.textContent;
   inputFieldCategeory.textContent = selectedCategory;
-  deactivateField();
+  deactivateFieldCategory();
 }
 
 function handleClickOutside(event) {
@@ -141,7 +171,7 @@ function handleClickOutside(event) {
     !arrowCatContainer.contains(event.target) &&
     !dropDownCategories.contains(event.target)
   ) {
-    deactivateField();
+    deactivateFieldCategory();
   }
 }
 
@@ -152,6 +182,7 @@ categoryOptions.forEach(function (option) {
   option.addEventListener("click", selectCategory);
 });
 
+//###################################Subtask###################################
 function cancel_input_subtask() {
   document.getElementById("aT_add_subtasks").value = "";
 }
@@ -336,9 +367,9 @@ function clearTitle() {
 }
 
 function clearDescription() {
-  const textArea = document.getElementById("aT_description");
-  if (textArea) {
-    textArea.value = "";
+  const textarea = document.getElementById("aT_description");
+  if (textarea) {
+    textarea.value = "";
   }
 }
 
@@ -365,13 +396,10 @@ function clearSubtasks() {
 }
 
 function clearCategory() {
-  const inputField = document.getElementById("aT_select_category");
-  const originalText = "Select task category";
-  inputField.textContent = originalText;
   const arrowCatConImage = document
     .getElementById("select_category_arrow_container")
     .querySelector("img");
-  const dropDownCategories = document.getElementById("category_list");
+  inputFieldCategeory.textContent = originalText;
   arrowCatConImage.classList.remove("rotate");
   dropDownCategories.classList.add("d-none");
 }
