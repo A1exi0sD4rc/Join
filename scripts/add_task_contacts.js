@@ -1,5 +1,5 @@
 let CONTACTS_URL =
-  "https://join-a2f86-default-rtdb.europe-west1.firebasedatabase.app/contacts";
+  "https://join-337-userlist-default-rtdb.firebaseio.com/contacts";
 
 contactsAddTask = [];
 let selectedContacts = [];
@@ -41,7 +41,7 @@ function renderContacts() {
             contact.name
           )}</text>
         </svg>
-          <div>${contact.name}</div>
+          <div style="font-weight: 400; font-size: 20px;">${contact.name}</div>
         </div>
         <input type="checkbox" class="contact-checkbox" onchange="selectContact(${i}, this)">
       </div>
