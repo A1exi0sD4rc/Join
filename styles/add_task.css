@@ -28,7 +28,7 @@
 }
 
 .add_task_seperator {
-  height: 424px;
+  height: 450px;
   width: 1px;
   background-color: #d1d1d1;
   margin-right: 47.5px;
@@ -42,7 +42,7 @@
 .add_task_bottom_section {
   width: 976px;
   height: 56px;
-  margin-top: 170px;
+  margin-top: 145px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -758,7 +758,7 @@ li {
 
 .category_input_dropdown_error_container {
   height: 50px;
-  z-index: 999;
+  z-index: 3;
   position: relative;
 }
 
