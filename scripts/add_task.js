@@ -354,10 +354,12 @@ input.addEventListener("input", function () {
 function clearAll() {
   clearTitle();
   clearDescription();
+  //hier noch clearSelectedContacts() mit rein.
   clearDate();
   clearPrio();
   clearSubtasks();
   clearCategory();
+  resetValidationErrors();
 }
 
 function clearTitle() {

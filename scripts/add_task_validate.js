@@ -30,7 +30,6 @@ function validateDate() {
   return true;
 }
 
-// Funktion zum Überprüfen der Kategorie
 function validateCategory() {
   const categoryDiv = document.getElementById("aT_select_category");
   const categoryError = document.getElementById("categoryError");
@@ -50,8 +49,6 @@ function validateForm() {
   const isTitleValid = validateTitle();
   const isDateValid = validateDate();
   const isCategoryValid = validateCategory();
-
-  // Clear the red border and error message for category when it is valid
   const categoryDiv = document.getElementById("aT_select_category");
   const categoryError = document.getElementById("categoryError");
 
@@ -59,9 +56,40 @@ function validateForm() {
     categoryDiv.classList.remove("invalid");
     categoryError.classList.remove("error-show");
   }
-
-  // If all fields are valid, execute addTaskToDatabase()
   if (isTitleValid && isDateValid && isCategoryValid) {
     addTaskToDatabase();
+  }
+}
+
+function resetValidationErrors() {
+  resetTitleValidation();
+  resetDateValidation();
+  resetCategoryValidation();
+}
+
+function resetTitleValidation() {
+  const titleInput = document.getElementById("aT_title");
+  const titleError = document.getElementById("titleError");
+  if (titleInput && titleError) {
+    titleInput.classList.remove("invalid");
+    titleError.classList.remove("error-show");
+  }
+}
+
+function resetDateValidation() {
+  const dateInput = document.getElementById("aT_date");
+  const dateError = document.getElementById("dateError");
+  if (dateInput && dateError) {
+    dateInput.classList.remove("invalid");
+    dateError.classList.remove("error-show");
+  }
+}
+
+function resetCategoryValidation() {
+  const categoryDiv = document.getElementById("aT_select_category");
+  const categoryError = document.getElementById("categoryError");
+  if (categoryDiv && categoryError) {
+    categoryDiv.classList.remove("invalid");
+    categoryError.classList.remove("error-show");
   }
 }
