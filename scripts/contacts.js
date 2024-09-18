@@ -1,6 +1,6 @@
 let contactKeys = [];
 let lastSelected;
-let lastContactCreat;
+let lastContactNumber;
 let BASE_URL = `https://join-337-userlist-default-rtdb.firebaseio.com/contacts`;
 
 async function init() {
@@ -88,9 +88,10 @@ async function addContact(event) {
     event.preventDefault();
     await addContactToDb();
     await init();
+    // renderContactDetails(contactKeys.findIndex(contact => contact.number === lastContactNumber))
+    // focusAddedContact();
     contactCreatSuccesfull();
     setTimeout(contactCreatSuccesfull, 2000);
-    // renderContactDetails(contactKeys.find(() => lastContactCreat.key['id']))
 }
 
 async function addContactToDb() {
@@ -102,7 +103,7 @@ async function addContactToDb() {
         body: JSON.stringify(getNewContactData()),
     });
     lastSelected = undefined;
-    lastContactCreat = document.getElementById("contacts-user-name").value;
+    lastContactCreat = document.getElementById("contacts-user-number").value;
     return (responseToJson = await response.json());
 }
 
@@ -121,18 +122,16 @@ function generateColor() {
     const colors = [
         'red',  
         'yellow',
-        'green', 
+        'yellowgreen', 
         'blue',  
         'cyan',      
         'magenta',  
         'orange',  
         'purple',
-        'lime',     
-        'pink',  
-        'turquoise',
+        'lime',
         'indigo',  
         'teal',      
-        'violet'    
+        'violet'   
     ];
 
     const randomIndex = Math.floor(Math.random() * colors.length);
@@ -143,6 +142,11 @@ function generateColor() {
 
 function contactCreatSuccesfull() {
     document.getElementById('contact-created').classList.toggle('creation-succesfull');
+}
+
+
+function focusAddedContact() {
+    document.getElementById(contactKeys.findIndex(contact => contact.number === lastContactNumber)).focus;
 }
 
 
@@ -170,6 +174,7 @@ async function saveEdit(i) {
             ),
         }
     );
+    lastSelected = undefined;
     return (responseToJson = await response.json());
 }
 
