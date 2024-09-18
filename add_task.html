@@ -15,6 +15,7 @@
     <script src="./scripts/add_task_collectData.js" defer></script>
     <script src="scripts/add_task_contacts.js" defer></script>
     <script src="scripts/board.js" defer></script>
+    <script src="scripts/add_task_validate.js"></script>
     <title>JOIN Add Task</title>
   </head>
   <body onload="includeHTML(), initAddTask()">
@@ -45,9 +46,7 @@
                 name="title"
                 placeholder="Enter a title"
               />
-              <span id="error-message" class="error"
-                >This field is required</span
-              >
+              <span id="titleError" class="error">This field is required</span>
             </div>
             <label class="aT_input_labels" for="aT_description"
               >Description</label
@@ -99,7 +98,7 @@
               >Due date<sup>*</sup></label
             >
             <input required id="aT_date" class="aT_input_date" type="date" />
-            <span id="error-message" class="error">This field is required</span>
+            <span id="dateError" class="error">This field is required</span>
             <div class="aT_input_labels">Prio</div>
             <div class="aT_set_prio_container" id="aT_set_prio">
               <div
@@ -149,6 +148,9 @@
                 <div class="categories">User Story</div>
               </div>
             </div>
+            <span id="categoryError" class="error"
+              >Please select a category for your task.</span
+            >
 
             <label class="aT_label_subtasks">Subtasks</label>
             <div class="aT_select_container">
@@ -212,7 +214,7 @@
             </div>
             <div
               class="clear_check_container create_task"
-              onclick="addTaskToDatabase()"
+              onclick="validateForm()"
             >
               <div>Create Task</div>
               <img

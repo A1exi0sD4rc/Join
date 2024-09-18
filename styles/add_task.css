@@ -67,27 +67,11 @@
   font-weight: 300;
 }
 
-/* Fehlermeldung und Randfarbe bei Fehler */
-input.error-border {
-  border: 2px solid red;
-}
-
-.error {
-  color: red;
-  font-size: 12px;
-  /* display: none; Standardmäßig versteckt */
-}
-
 sup {
   color: #ff8190;
   font-size: 20px;
   position: relative;
   top: 7px; /* Verschiebt den Stern nach unten */
-}
-
-.title_input_error_container {
-  margin-bottom: 12px;
-  height: 64px;
 }
 
 .aT_input_labels {
@@ -346,7 +330,6 @@ sup {
   cursor: pointer;
   color: #d1d1d1;
   position: relative;
-  margin-bottom: 30px;
 }
 
 .aT_input_date::after {
@@ -736,4 +719,28 @@ li {
 /* Hover-Effekt für den Container */
 .edit-modus-btns:hover {
   background-color: #f0f0f0; /* Grauer Hintergrund beim Hover */
+}
+
+.error {
+  display: none;
+  color: red;
+  font-size: 12px;
+}
+
+.error-show {
+  display: block;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+/* Rote Rand-Stile für ungültige Felder */
+.aT_select_dropdown_fields.invalid {
+  border: 1px solid red !important; /* !important verwenden, um sicherzustellen, dass es die Standard-Stile überschreibt */
+}
+
+/* Hover-Effekt des Containers */
+.aT_select_container:hover .aT_select_dropdown_fields:not(.invalid) {
+  border: 1px solid #a8a8a8;
 }
