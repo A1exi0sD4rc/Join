@@ -67,6 +67,11 @@
   font-weight: 300;
 }
 
+.title_input_error_container {
+  height: 52px;
+  margin-bottom: 32px;
+}
+
 sup {
   color: #ff8190;
   font-size: 20px;
@@ -220,7 +225,6 @@ sup {
 
 /* Stile für das Kontaktlisten-Div */
 .contact_list {
-  z-index: 10;
   border-radius: 10px;
   background-color: white;
   padding: 55px 7px 7px 7px;
@@ -250,7 +254,6 @@ sup {
 }
 
 .category_list {
-  z-index: 999;
   border-radius: 10px;
   background-color: white;
   padding: 48px 0 0 0;
@@ -267,7 +270,6 @@ sup {
   display: flex;
   align-items: center;
   border-radius: 10px;
-  z-index: 999 !important;
 }
 
 .categories:hover {
@@ -344,6 +346,11 @@ sup {
   background-size: contain; /* Skalierung des Bildes */
   pointer-events: none; /* Verhindert, dass das Bild Klicks blockiert */
   background-color: white;
+}
+
+.date_error_container {
+  height: 52px;
+  margin-bottom: 32px;
 }
 
 .aT_set_prio_container {
@@ -743,4 +750,19 @@ li {
 /* Hover-Effekt des Containers */
 .aT_select_container:hover .aT_select_dropdown_fields:not(.invalid) {
   border: 1px solid #a8a8a8;
+}
+
+.category_subtasks_container {
+  position: relative;
+}
+
+.category_input_dropdown_error_container {
+  height: 50px;
+  z-index: 999;
+  position: relative;
+}
+
+.subtasks_input_subs_container {
+  position: relative;
+  z-index: 2;
 }
