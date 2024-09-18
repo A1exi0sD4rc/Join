@@ -67,30 +67,6 @@ function renderContacts() {
 }
 
 
-function test() {
-    for (let i = 0; i < contactKeys.length; i++) {
-        let category = contactKeys.find(id => i.name.charA(0).toUpperCase() == id);
-
-        document.getElementById(category).innerHTML += /*html*/ `
-                <div id="${i}" class="contacts-overview-contact contacts-overview-contact-unselected" onclick="renderContactDetails(${i})">
-                    <div class="contacts-initials">
-                        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="21" cy="21" r="20" fill="${contactKeys[i]['bgcolor']}" stroke="white" stroke-width="2"/>
-                            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${getInitials(contactKeys[i]['name'])}</text>
-                        </svg>
-                    </div>
-                    <div class="contacts-name-email">
-                        <div class="contacts-center">
-                            ${contactKeys[i]['name']}<br>
-                            <a href="#">${contactKeys[i]['email']}</a> 
-                        </div>
-                    </div>
-                </div>
-            `;
-    }
-}
-
-
 function renderContactDetails(i) {
     toggleDetailClasses(i);
 
@@ -118,6 +94,15 @@ function renderContactDetails(i) {
             <b>Phone</b>
             ${contactKeys[i]['number']}
         </div>
+    `;
+}
+
+
+function renderContactCreated() {
+    document.getElementById('contacts-site').innerHTML += /*html*/`
+        <div id="contact-created" class="contact-created">
+            Contact succesfully created
+        </div>  
     `;
 }
 

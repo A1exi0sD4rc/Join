@@ -511,6 +511,30 @@ body {
 }
 
 
+/* contact created */
+
+.contact-created {
+    position: absolute;
+    bottom: 50px;
+    right: 100px;
+    width: 330px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    border-radius: 20px;
+    font-size: 20px;
+    color: white;
+    transform: translateX(300%);
+    transition: all 150ms ease-in-out;
+}
+
+.creation-succesfull {
+    transform: translateX(0%) !important;
+}
+
+
 /* media compatibility */
 
 @media (max-width: 920px) {
