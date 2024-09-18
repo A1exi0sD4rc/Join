@@ -163,6 +163,7 @@ function selectCategory(event) {
   const selectedCategory = event.target.textContent;
   inputFieldCategeory.textContent = selectedCategory;
   deactivateFieldCategory();
+  validateCategory();
 }
 
 function handleClickOutside(event) {
