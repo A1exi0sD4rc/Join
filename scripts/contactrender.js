@@ -175,7 +175,7 @@ function renderAddNewContact() {
                 </div>
                 <div>
                     <button class="contacts-add-cancel-btn contacts-img-margin" onclick="toggleVisiblility()">Cancel <img src="./assets/img/close.svg"></button>
-                    <button class="contacts-add-create-btn contacts-img-margin" onclick="addContact(event)">Create contact <img src="./assets/img/check.svg"  href="${focusAddedContact()}}"></button>
+                    <button class="contacts-add-create-btn contacts-img-margin" onclick="addContact(event)">Create contact <img src="./assets/img/check.svg"></button>
                 </div>
             </form>
         </div>

@@ -167,7 +167,7 @@ function contactCreatSuccesfull() {
 }
 
 function focusAddedContact() {
-  return '#' + contactKeys.findIndex(contact => contact.name === lastContactCreat)
+  return document.getElementById(`${contactKeys.findIndex(contact => contact.name === lastContactCreat)}`).focus(); 
 }
 
 async function editSaveInit(i) {
