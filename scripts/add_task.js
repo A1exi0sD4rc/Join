@@ -1,5 +1,7 @@
 async function initAddTask() {
+  includeHTML();
   await getContacts();
+  awaitGenerateInitials();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
