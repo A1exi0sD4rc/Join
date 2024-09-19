@@ -113,8 +113,15 @@ function saveSelectedContactsToSession() {
 
 function loadSelectedContactsFromSession() {
   let savedContacts = sessionStorage.getItem("selectedContacts");
+
   if (savedContacts) {
-    selectedContacts = JSON.parse(savedContacts);
+    let tempSelectedContacts = JSON.parse(savedContacts);
+    selectedContacts = tempSelectedContacts.filter((contact) =>
+      contactsAddTask.some((c) => c.name === contact.name)
+    );
+
+    saveSelectedContactsToSession();
+
     restoreContactsState();
     displaySelectedContacts();
   } else {
