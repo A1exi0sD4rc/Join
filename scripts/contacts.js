@@ -1,6 +1,6 @@
 let contactKeys = [];
 let lastSelected;
-let lastContactNumber;
+let lastContactCreat;
 let BASE_URL = `https://join-337-userlist-default-rtdb.firebaseio.com/contacts`;
 let selectedContacts = [];
 
@@ -103,8 +103,8 @@ async function addContact(event) {
   event.preventDefault();
   await addContactToDb();
   await init();
-  // renderContactDetails(contactKeys.findIndex(contact => contact.number === lastContactNumber))
-  // focusAddedContact();
+  renderContactDetails(contactKeys.findIndex(contact => contact.name === lastContactCreat))
+  focusAddedContact();
   contactCreatSuccesfull();
   setTimeout(contactCreatSuccesfull, 2000);
 }
@@ -118,7 +118,7 @@ async function addContactToDb() {
     body: JSON.stringify(getNewContactData()),
   });
   lastSelected = undefined;
-  lastContactCreat = document.getElementById("contacts-user-number").value;
+  lastContactCreat = document.getElementById("contacts-user-name").value;
   return (responseToJson = await response.json());
 }
 
@@ -161,9 +161,7 @@ function contactCreatSuccesfull() {
 }
 
 function focusAddedContact() {
-  document.getElementById(
-    contactKeys.findIndex((contact) => contact.number === lastContactNumber)
-  ).focus;
+  return '#' + contactKeys.findIndex(contact => contact.name === lastContactCreat)
 }
 
 async function editSaveInit(i) {
