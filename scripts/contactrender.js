@@ -22,9 +22,7 @@ function render() {
                 Add new contact <img src="./assets/img/contacts_new_contact.svg">
             </button>
         </div>
-        <div id="contacts-overview" class="contacts-overview">
-            
-        </div>
+        <div id="contacts-overview" class="contacts-overview"></div>
     `;
 }
 
@@ -37,32 +35,38 @@ function renderContacts() {
         <div class="contacts-overview-space"></div>
     `;
 
-    for (let letter in clusteredContacts) {
-        document.getElementById('contacts-overview').innerHTML += /*html*/ `
-            <div class="contacts-overview-category">${letter}</div>
-            <div class="contacts-seperatore-horizontal"></div>
-        `;
-
-        clusteredContacts[letter].forEach(contact => {    
-            let originalIndex = contactKeys.indexOf(contact);
-
+    if (contactKeys.length > 0) {
+        for (let letter in clusteredContacts) {
             document.getElementById('contacts-overview').innerHTML += /*html*/ `
-                <div id="${originalIndex}" class="contacts-overview-contact contacts-overview-contact-unselected" onclick="renderContactDetails(${originalIndex})">
-                    <div class="contacts-initials">
-                        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
-                            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${getInitials(contact.name)}</text>
-                        </svg>
-                    </div>
-                    <div class="contacts-name-email">
-                        <div class="contacts-center">
-                            ${contact.name}<br>
-                            <a href="#">${contact.email}</a> 
+                <div class="contacts-overview-category">${letter}</div>
+                <div class="contacts-seperatore-horizontal"></div>
+            `;
+    
+            clusteredContacts[letter].forEach(contact => {    
+                let originalIndex = contactKeys.indexOf(contact);
+    
+                document.getElementById('contacts-overview').innerHTML += /*html*/ `
+                    <div id="${originalIndex}" class="contacts-overview-contact contacts-overview-contact-unselected" onclick="renderContactDetails(${originalIndex})">
+                        <div class="contacts-initials">
+                            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
+                                <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${getInitials(contact.name)}</text>
+                            </svg>
+                        </div>
+                        <div class="contacts-name-email">
+                            <div class="contacts-center">
+                                ${contact.name}<br>
+                                <a href="#">${contact.email}</a> 
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-        });
+                `;
+            });
+        }
+    } else {
+        document.getElementById('contacts-overview').innerHTML += /*html*/ `
+        <h3 class="headline-margin">Keine Kontakte vorhanden</h3> 
+        `;
     }
 }
 

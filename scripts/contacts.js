@@ -13,25 +13,31 @@ async function init() {
 
 async function getContactData() {
   let allContacts = await getContacts();
-  let allKeys = Object.keys(allContacts);
+  if (allContacts !== null) {
+    let allKeys = Object.keys(allContacts);
 
-  contactKeys = [];
-  for (let index = 0; index < allKeys.length; index++) {
-    contactKeys.push({
-      id: allKeys[index],
-      name: allContacts[allKeys[index]]["name"],
-      email: allContacts[allKeys[index]]["email"],
-      number: allContacts[allKeys[index]]["number"],
-      bgcolor: allContacts[allKeys[index]]["bgcolor"],
-    });
+    contactKeys = [];
+    for (let index = 0; index < allKeys.length; index++) {
+      contactKeys.push({
+        id: allKeys[index],
+        name: allContacts[allKeys[index]]["name"],
+        email: allContacts[allKeys[index]]["email"],
+        number: allContacts[allKeys[index]]["number"],
+        bgcolor: allContacts[allKeys[index]]["bgcolor"],
+      });
+    }
+    contactKeys.sort((a, b) => a.name.localeCompare(b.name));
+    console.log(contactKeys);
   }
-  contactKeys.sort((a, b) => a.name.localeCompare(b.name));
-  console.log(contactKeys);
 }
 
 async function getContacts() {
-  let response = await fetch(BASE_URL + ".json");
-  return (responseAsJson = await response.json());
+  try {
+    let response = await fetch(BASE_URL + ".json");
+    return (responseAsJson = await response.json());
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function loadNameCluster() {
