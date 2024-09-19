@@ -110,7 +110,7 @@ function storeCredentials(email, password) {
  */
 function handleSuccess(userName) {
   sessionStorage.setItem("userName", userName);
-  // localStorage.removeItem("greetingShown");
+  localStorage.removeItem("greetingShown");
   goToSummary();
 }
 
