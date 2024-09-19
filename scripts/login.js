@@ -383,7 +383,7 @@ document
  */
 function guestLogin(event) {
   event.preventDefault();
-  // localStorage.removeItem("greetingShown");
+  localStorage.removeItem("greetingShown");
   goToSummary();
   sessionStorage.setItem("userName", "Guest");
 }

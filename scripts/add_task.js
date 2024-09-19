@@ -94,25 +94,7 @@ function handleCategoryClick(event) {
   }
 }
 
-function deactivateFieldContacts() {
-  inputFieldContacts.classList.remove("active-border");
-  arrowConConImage.classList.remove("rotate");
-  dropDowncontacts.classList.add("d-none");
-  selectedContactsCon.classList.remove("d-none");
-  inputFieldContacts.value = "";
-}
-
-arrowConContainer.addEventListener("click", function (event) {
-  event.stopPropagation(); // Verhindert, dass der Klick auch den document-Event-Listener auslöst
-  if (inputFieldContacts.classList.contains("active-border")) {
-    deactivateFieldContacts();
-  } else {
-    activateField(event);
-  }
-});
-
-function activateField(event) {
-  event.stopPropagation();
+function activateFieldContacts() {
   inputFieldContacts.classList.add("active-border");
   arrowConConImage.classList.add("rotate");
   dropDowncontacts.classList.remove("d-none");
@@ -121,10 +103,78 @@ function activateField(event) {
   inputFieldContacts.focus();
 }
 
+function deactivateFieldContacts() {
+  inputFieldContacts.classList.remove("active-border");
+  arrowConConImage.classList.remove("rotate");
+  dropDowncontacts.classList.add("d-none");
+  selectedContactsCon.classList.remove("d-none");
+  inputFieldContacts.value = "";
+  renderContacts();
+  inputFieldContacts.blur();
+}
+
+function toggleDropdown(event) {
+  event.stopPropagation();
+
+  if (inputFieldContacts.classList.contains("active-border")) {
+    deactivateFieldContacts();
+  } else {
+    activateFieldContacts();
+  }
+}
+
+arrowConContainer.addEventListener("click", toggleDropdown);
+
 inputFieldContacts.addEventListener("click", function (event) {
-  event.stopPropagation(); // Verhindert, dass der Klick auch den document-Event-Listener auslöst
-  activateField(event);
+  event.stopPropagation();
+  toggleDropdown(event);
 });
+
+inputFieldContacts.addEventListener("input", function () {
+  let searchQuery = inputFieldContacts.value.toLowerCase();
+  let filteredContacts = contactsAddTask.filter((contact) =>
+    contact.name.toLowerCase().includes(searchQuery)
+  );
+  renderFilteredContacts(filteredContacts);
+});
+
+function filterContacts(searchTerm) {
+  let filteredContacts = contactsAddTask.filter((contact) =>
+    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  renderFilteredContacts(filteredContacts);
+}
+
+function renderFilteredContacts(filteredContacts) {
+  let contactContainer = document.getElementById("contacts_container");
+  contactContainer.innerHTML = "";
+
+  filteredContacts.forEach((contact, index) => {
+    let originalIndex = contactsAddTask.indexOf(contact); // Get the original index from contactsAddTask
+    let checked = isSelected(contact);
+    let backgroundColor = checked ? "#2A3647" : "#FFFFFF";
+    let checkboxImage = checked ? "checkbox-checked-white.png" : "checkbox.png";
+    let contactTextColor = checked ? "#FFFFFF" : "#000000";
+    let contactClass = checked ? "contact-selected" : "contact-unselected";
+
+    contactContainer.innerHTML += `
+      <div class="contact_container_element ${contactClass}" id="contact_${originalIndex}" style="background-color: ${backgroundColor}" onclick="toggleContact(${originalIndex})">
+        <div style="display: flex; align-items: center; gap: 20px; color: ${contactTextColor}">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="21" cy="21" r="20" fill="${
+              contact.bgcolor
+            }" stroke="white" stroke-width="2"/>
+            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${getInitials(
+              contact.name
+            )}</text>
+          </svg>
+          <div id="contact_list_name">${contact.name}</div>
+        </div>
+        <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_${originalIndex}">
+      </div>
+    `;
+  });
+}
 
 //#######################################################################################################
 //CATEGORY
@@ -354,7 +404,7 @@ input.addEventListener("input", function () {
 function clearAll() {
   clearTitle();
   clearDescription();
-  //hier noch clearSelectedContacts() mit rein.
+  clearSelectedContacts();
   clearDate();
   clearPrio();
   clearSubtasks();
@@ -374,6 +424,13 @@ function clearDescription() {
   if (textarea) {
     textarea.value = "";
   }
+}
+
+function clearSelectedContacts() {
+  selectedContacts = [];
+  sessionStorage.removeItem("selectedContacts");
+  renderContacts();
+  displaySelectedContacts();
 }
 
 function clearDate() {

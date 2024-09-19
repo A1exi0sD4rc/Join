@@ -3,8 +3,6 @@ let TASKS_URL = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 async function addTaskToDatabase() {
   const newTask = collectTaskData();
   await saveTaskToDatabase(newTask);
-  selectedContacts = [];
-  displaySelectedContacts();
   goToBoard();
 }
 

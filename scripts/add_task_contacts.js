@@ -10,8 +10,9 @@ async function getContacts() {
 
   try {
     contactsAddTask = Object.values(responseAsJson);
-    console.log("Contacts fetched:", contactsAddTask);
     contactsAddTask.sort((a, b) => a.name.localeCompare(b.name));
+    renderContacts();
+    loadSelectedContactsFromSession();
   } catch (error) {
     console.log(error);
   }
@@ -30,36 +31,55 @@ function renderContacts() {
 
   for (let i = 0; i < contactsAddTask.length; i++) {
     let contact = contactsAddTask[i];
+    let checked = isSelected(contact);
+    let contactClass = checked ? "contact-selected" : "contact-unselected";
+    let checkboxImage = checked ? "checkbox-checked-white.png" : "checkbox.png";
+    let contactTextColorClass = checked ? "text-white" : "text-black";
+
     contactContainer.innerHTML += `
-      <div class="contact_container_element">
-       <div style="display: flex; align-items: center; gap: 20px">
-        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="21" cy="21" r="20" fill="${
-            contact.bgcolor
-          }" stroke="white" stroke-width="2"/>
-          <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${getInitials(
-            contact.name
-          )}</text>
-        </svg>
-          <div style="font-weight: 400; font-size: 20px;">${contact.name}</div>
+       <div class="contact_container_element ${contactClass}" id="contact_${i}" onclick="toggleContact(${i})">
+        <div style="display: flex; align-items: center; gap: 20px;" class="${contactTextColorClass}">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="21" cy="21" r="20" fill="${
+              contact.bgcolor
+            }" stroke="white" stroke-width="2"/>
+            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${getInitials(
+              contact.name
+            )}</text>
+          </svg>
+          <div id="contact_list_name">${contact.name}</div>
         </div>
-        <input type="checkbox" class="contact-checkbox" onchange="selectContact(${i}, this)">
+        <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_${i}">
       </div>
     `;
   }
 }
 
-function selectContact(index, checkbox) {
+function toggleContact(index) {
   let contact = contactsAddTask[index];
+  let contactElement = document.getElementById(`contact_${index}`);
+  let checkboxImage = document.getElementById(`checkbox_${index}`);
+  let textContainer = contactElement.querySelector("div");
 
-  if (checkbox.checked) {
-    if (!selectedContacts.includes(contact)) {
-      selectedContacts.push(contact);
-    }
+  if (isSelected(contact)) {
+    contactElement.classList.remove("contact-selected");
+    contactElement.classList.add("contact-unselected");
+    textContainer.classList.remove("text-white");
+    textContainer.classList.add("text-black");
+    contactElement.style.backgroundColor = "#FFFFFF";
+    checkboxImage.src = "./assets/img/checkbox.png";
+    selectedContacts = selectedContacts.filter((c) => c.name !== contact.name);
   } else {
-    selectedContacts = selectedContacts.filter((c) => c !== contact);
+    contactElement.classList.add("contact-selected");
+    contactElement.classList.remove("contact-unselected");
+    textContainer.classList.remove("text-black");
+    textContainer.classList.add("text-white");
+    contactElement.style.backgroundColor = "#2A3647";
+    checkboxImage.src = "./assets/img/checkbox-checked-white.png";
+    selectedContacts.push(contact);
   }
 
+  saveSelectedContactsToSession();
   displaySelectedContacts();
 }
 
@@ -67,8 +87,7 @@ function displaySelectedContacts() {
   let selectedContainer = document.getElementById("selected_contacts");
   selectedContainer.innerHTML = "";
 
-  for (let i = 0; i < selectedContacts.length; i++) {
-    let contact = selectedContacts[i];
+  for (let contact of selectedContacts) {
     selectedContainer.innerHTML += `
       <div class="selected-contact">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,4 +101,51 @@ function displaySelectedContacts() {
       </div>
     `;
   }
+}
+
+function isSelected(contact) {
+  return selectedContacts.some((c) => c.name === contact.name);
+}
+
+function saveSelectedContactsToSession() {
+  sessionStorage.setItem("selectedContacts", JSON.stringify(selectedContacts));
+}
+
+function loadSelectedContactsFromSession() {
+  let savedContacts = sessionStorage.getItem("selectedContacts");
+  if (savedContacts) {
+    selectedContacts = JSON.parse(savedContacts);
+    restoreContactsState();
+    displaySelectedContacts();
+  } else {
+    selectedContacts = [];
+  }
+}
+
+function restoreContactsState() {
+  contactsAddTask.forEach((contact, index) => {
+    let contactElement = document.getElementById(`contact_${index}`);
+    let checkboxImage = document.getElementById(`checkbox_${index}`);
+
+    if (isSelected(contact)) {
+      contactElement.classList.add("contact-selected");
+      contactElement.classList.remove("contact-unselected");
+      contactElement.style.backgroundColor = "#2A3647";
+      contactElement.style.color = "#FFFFFF";
+      checkboxImage.src = "./assets/img/checkbox-checked-white.png";
+    } else {
+      contactElement.classList.add("contact-unselected");
+      contactElement.classList.remove("contact-selected");
+      contactElement.style.backgroundColor = "#FFFFFF";
+      contactElement.style.color = "#000000";
+      checkboxImage.src = "./assets/img/checkbox.png";
+    }
+  });
+}
+
+function clearSelectedContacts() {
+  selectedContacts = [];
+  sessionStorage.removeItem("selectedContacts");
+  renderContacts();
+  displaySelectedContacts();
 }

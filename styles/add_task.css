@@ -233,24 +233,63 @@ sup {
   overflow: hidden;
 }
 
+#contact_list_name {
+  font-weight: 400;
+  font-size: 20px;
+}
+
 .selected-contacts-container {
   padding-left: 7px;
+  max-width: 440px;
+  flex-wrap: wrap;
   position: relative;
   margin-top: 10px;
   display: flex;
   gap: 5px;
 }
 
+.contact-selected {
+  background-color: #2a3647 !important;
+}
+
+.contact-unselected {
+  background-color: #ffffff !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.text-black {
+  color: #000000 !important;
+}
+
 .selected-contact {
   width: max-content;
+}
+
+.contact-selected:hover {
+  background-color: #091931 !important;
+}
+
+.contact-unselected:hover {
+  background-color: #eeeeee !important;
 }
 
 .contact_container_element {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 10px;
+  padding: 7px 15px;
   margin-bottom: 2px;
+  margin-right: 5px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.contact_container_element:hover {
+  cursor: pointer;
 }
 
 .category_list {
