@@ -23,7 +23,6 @@
 .add_task_form_left {
   height: 376px;
   width: 440px;
-  /* background-color: antiquewhite; */
   margin-right: 47.5px;
 }
 
@@ -76,7 +75,7 @@ sup {
   color: #ff8190;
   font-size: 20px;
   position: relative;
-  top: 7px; /* Verschiebt den Stern nach unten */
+  top: 7px;
 }
 
 .aT_input_labels {
@@ -96,13 +95,13 @@ sup {
 .resizable-textarea {
   width: 100%;
   height: 100%;
-  border: 1px solid #d1d1d1; /* Randfarbe */
-  border-radius: 10px; /* Abgerundete Ecken */
-  padding: 12px 21px; /* Innenabstand */
-  box-sizing: border-box; /* Padding und Border zur Gesamtbreite und -höhe hinzufügen */
-  font-size: 20px; /* Schriftgröße für eingegebenen Text */
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  padding: 12px 21px;
+  box-sizing: border-box;
+  font-size: 20px;
   font-family: "Inter", sans-serif;
-  resize: none; /* Deaktiviert die Standard-Resize-Handles */
+  resize: none;
   cursor: pointer;
 }
 
@@ -110,10 +109,9 @@ sup {
   display: none;
 }
 
-/* Placeholder-Styling */
 .resizable-textarea::placeholder {
-  color: #d1d1d1; /* Farbe des Platzhaltertextes */
-  font-size: 20px; /* Schriftgröße des Platzhaltertextes */
+  color: #d1d1d1;
+  font-size: 20px;
   font-family: "Inter", sans-serif;
   font-weight: 300;
 }
@@ -127,9 +125,9 @@ sup {
   right: 0px;
   width: 24px;
   height: 24px;
-  cursor: se-resize; /* Zeigt einen Resize-Cursor an */
-  z-index: 1; /* Stellt sicher, dass das Bild über dem Textarea liegt */
-  pointer-events: auto; /* Erlaubt Interaktionen mit dem Bild */
+  cursor: se-resize;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 .aT_input_title:focus,
@@ -139,9 +137,6 @@ sup {
   outline: none;
 }
 
-/*---------------------------------------------------------------------------------*/
-
-/*container mit inputfeld und div mit pfeil img*/
 .aT_select_container {
   position: relative;
   display: flex;
@@ -169,7 +164,6 @@ sup {
   border: 1px solid #a8a8a8;
 }
 
-/*aussehen vom div mit pfeil img*/
 .drop_down_arrow_container {
   width: 24px;
   height: 24px;
@@ -180,50 +174,38 @@ sup {
   right: 16px;
 }
 
-/*hover effekt für die div mit dem pfeil*/
 .drop_down_arrow_container:hover {
   background-color: rgb(238, 238, 238);
   border-radius: 15px;
   cursor: pointer;
 }
 
-/* Sicherstellen, dass der Hover-Effekt des Input-Feldes auch bei Hover über den Arrow-Container aktiv ist, wenn nicht aktiviert */
 .aT_select_container:hover .aT_select_dropdown_fields:not(.active-border) {
   border: 1px solid #a8a8a8;
 }
-/*aussehen vom placeholder im inputfeld*/
+
 .aT_select_dropdown_fields::placeholder {
   color: black;
   font-size: 20px;
   font-family: "Inter", sans-serif;
 }
 
-/* Placeholder unsichtbar, wenn das Feld aktiviert ist */
 .aT_select_dropdown_fields.active-border::placeholder {
-  opacity: 0; /* Macht den Placeholder unsichtbar */
+  opacity: 0;
 }
 
-/* Wenn aktiv, ändere die Farbe des Borders */
-.active-border {
+.aT_select_dropdown_fields.active-border:hover {
   border: 1px solid #29abe2;
 }
 
-/* Hover-Effekt, wenn das Feld aktiviert ist */
-.aT_select_dropdown_fields.active-border:hover {
-  border: 1px solid #29abe2; /* Beispiel für die Farbe, die beim Aktivieren verwendet wird */
-}
-
-/* Ausgangszustand - keine Rotation */
 .arrow {
-  transition: transform 0.3s ease; /* Übergangsanimation */
+  transition: transform 0.3s ease;
 }
 
-/* Drehung um 180 Grad */
 .arrow.rotate {
   transform: rotate(180deg);
 }
 
-/* Stile für das Kontaktlisten-Div */
 .contact_list {
   border-radius: 10px;
   background-color: white;
@@ -316,46 +298,37 @@ sup {
 }
 
 .scrollable_container {
-  max-height: 180px; /*eigtl. 336px*/
+  max-height: 180px;
   overflow-y: auto;
-  /*scrollbar-width: thin; als Alternative, weil der style leider nicht mögl. ist.*/
 }
 
-/* Scrollbar komplett ausblenden, außer den Thumb und die Pfeile */
 .scrollable_container::-webkit-scrollbar {
-  background-color: transparent; /* Kein Hintergrund oder Rand für die Scrollbar */
+  background-color: transparent;
   width: 10px;
 }
 
-/* Den Scroll-Thumb (den Griff) stylen */
 .scrollable_container::-webkit-scrollbar-thumb {
-  background-color: #a8a8a8; /* Farbe des Scroll-Thumbs */
-  border-radius: 8px; /* Optionale Rundung des Scroll-Thumbs */
+  background-color: #a8a8a8;
+  border-radius: 8px;
 }
 
-/* Obere Button mit benutzerdefiniertem Bild */
 .scrollable_container::-webkit-scrollbar-button:vertical:decrement {
   background-image: url("../assets/img/scrollbarArrowUp.svg");
   background-repeat: no-repeat;
 }
 
-/* Untere Button mit benutzerdefiniertem Bild */
 .scrollable_container::-webkit-scrollbar-button:vertical:increment {
   background-image: url("../assets/img/scrollbarArrowDown.svg");
   background-repeat: no-repeat;
 }
 
-/* Die Scrollbar-Schiene verstecken */
 .scrollable_container::-webkit-scrollbar-track {
-  background: transparent; /* Unsichtbare Schiene auf der der thumb gleitet*/
+  background: transparent;
 }
 
-/* Scrollbar-Schienenkante ausblenden */
 .scrollable_container::-webkit-scrollbar-track-piece {
-  background: transparent; /* keine Farbe für sichtbare Laufleiste hinter thumb */
+  background: transparent;
 }
-
-/*--------------------------------------------------------------------------------------*/
 
 .aT_input_date {
   font-family: "Inter", sans-serif;
@@ -377,13 +350,13 @@ sup {
   content: "";
   position: absolute;
   top: 50%;
-  right: 24px; /* Abstand vom rechten Rand */
+  right: 24px;
   transform: translateY(-50%);
-  width: 18px; /* Breite deines Bildes */
-  height: 20px; /* Höhe deines Bildes */
+  width: 18px;
+  height: 20px;
   background: url(../assets/img/date_calender.svg) no-repeat center center;
-  background-size: contain; /* Skalierung des Bildes */
-  pointer-events: none; /* Verhindert, dass das Bild Klicks blockiert */
+  background-size: contain;
+  pointer-events: none;
   background-color: white;
 }
 
@@ -432,7 +405,7 @@ sup {
   background-color: #ff3d00;
   color: white;
   font-weight: 700;
-  box-shadow: none; /* Schatten weg */
+  box-shadow: none;
 }
 
 .urgent_box_active span {
@@ -459,7 +432,7 @@ sup {
   background-color: #ffa800;
   color: white;
   font-weight: 700;
-  box-shadow: none; /* Schatten weg */
+  box-shadow: none;
 }
 
 .medium_box_active span {
@@ -486,7 +459,7 @@ sup {
   background-color: #7ae229;
   color: white;
   font-weight: 700;
-  box-shadow: none; /* Schatten weg */
+  box-shadow: none;
 }
 
 .low_box_active span {
@@ -592,6 +565,10 @@ sup {
   justify-content: space-between;
 }
 
+.active-border {
+  border: 1px solid #29abe2;
+}
+
 .clear_check_container {
   height: 56px;
   display: flex;
@@ -680,28 +657,25 @@ li {
 
 .task-controls {
   position: absolute;
-  right: 16px; /* Abstand vom rechten Rand */
+  right: 16px;
   top: 50%;
-  transform: translateY(-50%); /* Vertikale Zentrierung */
-  display: none; /* Standardmäßig ausblenden */
+  transform: translateY(-50%);
+  display: none;
 }
 
-/* Buttons */
 .task-btn {
-  width: 24px; /* Breite der Buttons */
-  height: 24px; /* Höhe der Buttons */
-  transition: transform 0.2s; /* Sanfte Bewegung beim Hover */
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s;
 }
 
-/* Anzeigen der Buttons bei Hover */
 .task-item:hover .task-controls {
   display: flex;
-  align-items: center; /* Zentriert die Buttons vertikal */
+  align-items: center;
 }
 
-/* Bewegung der Buttons bei Hover */
 .task-btn:hover {
-  transform: translateY(1px); /* Leicht nach unten bewegen */
+  transform: translateY(1px);
 }
 
 .delete-btn {
@@ -714,31 +688,27 @@ li {
   width: 18.2px;
 }
 
-/*ab hier lediglich die subtasks editierbuttons*/
-
-/* Stil für das Eingabefeld im Bearbeitungsmodus */
 .edit-input {
   margin-left: -48px;
   width: 440px;
   height: 32px;
-  background-color: #fff; /* Weiße Hintergrundfarbe */
-  border: none; /* Kein Border-Radius */
+  background-color: #fff;
+  border: none;
   border-bottom: 1px solid #005dff;
-  padding: 4px 16px 4px 16px; /* Optional: etwas Innenabstand */
-  box-sizing: border-box; /* Stellt sicher, dass Padding zur Gesamtbreite hinzugefügt wird */
+  padding: 4px 16px 4px 16px;
+  box-sizing: border-box;
   font-size: 16px;
 }
 
 .edit-input:focus {
   border-bottom: 1px solid #005dff;
-  outline: none; /* Entfernt den Fokusrahmen des Browsers */
+  outline: none;
 }
 
-/* Stil für die Buttons */
 .task-btn-input {
-  width: 24px; /* Breite der Buttons */
-  height: 24px; /* Höhe der Buttons */
-  cursor: pointer; /* Zeigt, dass die Buttons klickbar sind */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .delete-btn-input {
@@ -754,17 +724,16 @@ li {
 .edit-modus-btns {
   display: flex;
   width: 22px;
-  height: 24px; /* Höhe des Containers */
-  border-radius: 50%; /* Rund */
-  align-items: center; /* Zentriert den Inhalt vertikal */
-  justify-content: center; /* Zentriert den Inhalt horizontal */
-  background-color: transparent; /* Transparenter Hintergrund standardmäßig */
-  transition: background-color 0.3s; /* Sanfter Übergang für den Hover-Effekt */
+  height: 24px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: background-color 0.3s;
 }
 
-/* Hover-Effekt für den Container */
 .edit-modus-btns:hover {
-  background-color: #f0f0f0; /* Grauer Hintergrund beim Hover */
+  background-color: #f0f0f0;
 }
 
 .error {
@@ -780,13 +749,10 @@ li {
 .invalid {
   border: 1px solid red;
 }
-
-/* Rote Rand-Stile für ungültige Felder */
 .aT_select_dropdown_fields.invalid {
-  border: 1px solid red !important; /* !important verwenden, um sicherzustellen, dass es die Standard-Stile überschreibt */
+  border: 1px solid red !important;
 }
 
-/* Hover-Effekt des Containers */
 .aT_select_container:hover .aT_select_dropdown_fields:not(.invalid) {
   border: 1px solid #a8a8a8;
 }
@@ -804,4 +770,35 @@ li {
 .subtasks_input_subs_container {
   position: relative;
   z-index: 2;
+}
+
+.task-message {
+  padding: 12px;
+  position: fixed;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2a3647;
+  color: white;
+  width: 315px;
+  height: 50px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s ease;
+  font-size: 24px;
+}
+
+.task-message.show {
+  bottom: 50%;
+  opacity: 1;
+}
+
+.task-image {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  margin-left: 12px;
 }

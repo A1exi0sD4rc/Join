@@ -49,7 +49,6 @@ function deactivateAll() {
   document.getElementById("boxLow").classList.remove("low_box_active");
   document.getElementById("boxLow").classList.add("aT_set_prio");
 }
-//#################################################################################################
 
 document.addEventListener("click", handleDocumentClick);
 const inputFieldContacts = document.getElementById("aT_select_contacts");
@@ -178,8 +177,6 @@ function renderFilteredContacts(filteredContacts) {
   });
 }
 
-//#######################################################################################################
-//CATEGORY
 const inputFieldCategeory = document.getElementById("aT_select_category");
 const arrowCatContainer = document.getElementById(
   "select_category_arrow_container"
@@ -235,7 +232,6 @@ categoryOptions.forEach(function (option) {
   option.addEventListener("click", selectCategory);
 });
 
-//###################################Subtask###################################
 function cancel_input_subtask() {
   document.getElementById("aT_add_subtasks").value = "";
 }

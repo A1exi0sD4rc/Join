@@ -93,3 +93,11 @@ function resetCategoryValidation() {
     categoryError.classList.remove("error-show");
   }
 }
+
+function showTaskMessage() {
+  const messageDiv = document.getElementById("taskMessage");
+  messageDiv.classList.add("show");
+  setTimeout(() => {
+    setTimeout(() => {}, 200);
+  }, 3000);
+}
