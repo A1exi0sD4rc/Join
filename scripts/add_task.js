@@ -249,15 +249,26 @@ function resetDivVisibility() {
   document.getElementById("close_and_check_btns").classList.add("d-none");
 }
 
+let subtasks = [];
+
 function addSubtaskToList() {
   const inputField = document.getElementById("aT_add_subtasks");
   const subtaskText = getTrimmedSubtaskText(inputField);
   if (subtaskText !== "") {
     const newListHTML = createSubtaskHTML(subtaskText);
     appendSubtaskToList(newListHTML);
+    addSubtaskToArray(subtaskText);
     clearInputField(inputField);
     resetDivVisibility();
   }
+}
+
+function addSubtaskToArray(subtaskText) {
+  const subtask = {
+    title: subtaskText,
+    completed: false,
+  };
+  subtasks.push(subtask);
 }
 
 function getTrimmedSubtaskText(inputField) {
@@ -359,8 +370,14 @@ function updateTaskControls(taskControls) {
 function deleteTask(deleteButton) {
   const taskItem = deleteButton.closest(".task-item");
   if (taskItem) {
+    const taskText = taskItem.querySelector(".task-text").textContent.trim();
+    removeSubtaskFromArray(taskText);
     taskItem.remove();
   }
+}
+
+function removeSubtaskFromArray(taskText) {
+  subtasks = subtasks.filter((subtask) => subtask.title !== taskText);
 }
 
 document
