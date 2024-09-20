@@ -178,13 +178,13 @@ body {
   height: 18.67px;
 }
 
-.no_tasks{
+.no_tasks {
   width: 252px;
   height: 48px;
-  border: 1px dotted #A8A8A8;
+  border: 1px dotted #a8a8a8;
   border-radius: 10px;
   gap: 10px;
-  background-color: #E7E7E7;
+  background-color: #e7e7e7;
   box-shadow: 0px 0px 4px 0px #00000029;
   margin-top: 16px;
   display: flex;
@@ -192,16 +192,44 @@ body {
   align-items: center;
 }
 
-.no_tasks_txt{
+.no_tasks_txt {
   height: 19px;
   font-family: "Open Sans";
   font-size: 16px;
   font-weight: 400;
-  color: #A8A8A8;
+  color: #a8a8a8;
 }
 
 .drag_area_border {
-  border: 1px dotted #A8A8A8;
+  border: 1px dotted #a8a8a8;
   border-radius: 30px;
   box-shadow: 0px 0px 4px 0px #00000029;
+}
+
+/* Der Container, in den die Section geladen wird */
+#sectionContainer {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Start außerhalb des Bildschirms */
+  width: 300px;
+  height: 100vh;
+  z-index: 1001;
+  transition: right 0.5s ease-in-out;
+}
+
+/* Der ausgegraute Hintergrund */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Wenn die Section angezeigt wird */
+.show-section {
+  right: 0; /* Bringt die Section ins Bild */
 }
