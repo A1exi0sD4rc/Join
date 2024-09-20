@@ -59,6 +59,7 @@ const arrowConContainer = document.getElementById(
 const arrowConConImage = arrowConContainer.querySelector("img");
 const dropDowncontacts = document.getElementById("contact_list");
 const selectedContactsCon = document.getElementById("selected_contacts");
+const hintField = document.querySelector(".hint_container");
 
 function handleDocumentClick(event) {
   const isInsideInputFieldContacts = inputFieldContacts.contains(event.target);
@@ -100,6 +101,7 @@ function activateFieldContacts() {
   arrowConConImage.classList.add("rotate");
   dropDowncontacts.classList.remove("d-none");
   selectedContactsCon.classList.add("d-none");
+  hintField.style.opacity = "0";
   renderContacts();
   inputFieldContacts.focus();
 }
@@ -109,6 +111,7 @@ function deactivateFieldContacts() {
   arrowConConImage.classList.remove("rotate");
   dropDowncontacts.classList.add("d-none");
   selectedContactsCon.classList.remove("d-none");
+  hintField.style.opacity = "1";
   inputFieldContacts.value = "";
   renderContacts();
   inputFieldContacts.blur();
