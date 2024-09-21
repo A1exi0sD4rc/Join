@@ -11,7 +11,6 @@ function startDrag(id) {
   card.classList.add("rotate");
 }
 
-
 function endDrag(id) {
   const card = document.getElementById(id);
   card.classList.remove("rotate");
@@ -37,21 +36,21 @@ function moveTo(newCategory) {
 
   if (task) {
     task.category = newCategory;
-    refreshTaskBoard();
+    updateHtmlTodo();
+    updateHtmlProgress();
+    updateHtmlAwait();
+    updateHtmlDone();
     updateTaskInDatabase(task);
   }
 }
-
 
 function addHighlightBorder(id) {
   document.getElementById(id).classList.add("drag_area_border");
 }
 
-
 function removeHighlightBorder(id) {
   document.getElementById(id).classList.remove("drag_area_border");
 }
-
 
 async function updateTaskInDatabase(task) {
   try {
@@ -63,7 +62,7 @@ async function updateTaskInDatabase(task) {
     if (!response.ok) {
       throw new Error("Error updating task");
     }
-    await refreshTaskBoard();
+    console.log("Task successfully updated in the database");
   } catch (error) {
     console.error("Network error:", error);
   }

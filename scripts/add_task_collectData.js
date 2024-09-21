@@ -80,12 +80,12 @@ async function saveTaskToDatabase(task) {
 }
 
 async function refreshTaskBoard() {
-  await fetchTasks();
   clearTaskContainers();
   updateHtmlTodo();
   updateHtmlProgress();
   updateHtmlAwait();
   updateHtmlDone();
+  await fetchTasks();
 }
 
 function goToBoard() {
