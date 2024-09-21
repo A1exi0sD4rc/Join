@@ -4,6 +4,7 @@ async function addTaskToDatabase() {
   const newTask = collectTaskData();
   await saveTaskToDatabase(newTask);
   goToBoard();
+  clearAll();
 }
 
 function collectTaskData() {

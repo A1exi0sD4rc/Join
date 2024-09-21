@@ -255,16 +255,18 @@ function addSubtaskToList() {
   const inputField = document.getElementById("aT_add_subtasks");
   const subtaskText = getTrimmedSubtaskText(inputField);
   if (subtaskText !== "") {
-    const newListHTML = createSubtaskHTML(subtaskText);
+    const subtaskId = generateSubtaskId();
+    const newListHTML = createSubtaskHTML(subtaskText, subtaskId);
     appendSubtaskToList(newListHTML);
-    addSubtaskToArray(subtaskText);
+    addSubtaskToArray(subtaskText, subtaskId);
     clearInputField(inputField);
     resetDivVisibility();
   }
 }
 
-function addSubtaskToArray(subtaskText) {
+function addSubtaskToArray(subtaskText, subtaskId) {
   const subtask = {
+    id: subtaskId,
     title: subtaskText,
     completed: false,
   };
@@ -275,9 +277,9 @@ function getTrimmedSubtaskText(inputField) {
   return inputField.value.trim();
 }
 
-function createSubtaskHTML(subtaskText) {
+function createSubtaskHTML(subtaskText, subtaskId) {
   return /*html*/ `
-    <ul class="task-item">
+    <ul class="task-item" data-id="${subtaskId}">
       <li class="task-text">${subtaskText}</li>
       <div class="task-controls">
         <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editTask(this)">
@@ -318,8 +320,7 @@ function updateTaskItemForEditing(taskItem, currentText) {
       <div class="edit-modus-btns">
         <img src="./assets/img/edit_subtask_check.svg" alt="Save" class="task-btn-input save-btn-input" onclick="saveTask(this)">
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
 function focusAndSetCursorAtEnd(taskItem) {
@@ -336,7 +337,18 @@ function saveTask(saveButton) {
     console.error("Input element not found");
     return;
   }
-  const taskTextElement = createTaskTextElement(inputElement);
+
+  const subtaskId = taskItem.getAttribute("data-id");
+  const newTitle = inputElement.value.trim();
+
+  const subtaskIndex = subtasks.findIndex(
+    (subtask) => subtask.id === subtaskId
+  );
+  if (subtaskIndex !== -1) {
+    subtasks[subtaskIndex].title = newTitle;
+  }
+
+  const taskTextElement = createTaskTextElement(newTitle);
   const taskControls = taskItem.querySelector(".task-controls");
   updateTaskItem(taskItem, taskTextElement, taskControls);
   updateTaskControls(taskControls);
@@ -346,10 +358,10 @@ function getInputElement(taskItem) {
   return taskItem.querySelector(".edit-input");
 }
 
-function createTaskTextElement(inputElement) {
+function createTaskTextElement(newTitle) {
   const taskTextElement = document.createElement("li");
   taskTextElement.className = "task-text";
-  taskTextElement.textContent = inputElement.value.trim();
+  taskTextElement.textContent = newTitle;
   return taskTextElement;
 }
 
@@ -370,38 +382,38 @@ function updateTaskControls(taskControls) {
 function deleteTask(deleteButton) {
   const taskItem = deleteButton.closest(".task-item");
   if (taskItem) {
-    const taskText = taskItem.querySelector(".task-text").textContent.trim();
-    removeSubtaskFromArray(taskText);
+    const subtaskId = taskItem.getAttribute("data-id");
+    removeSubtaskFromArray(subtaskId);
     taskItem.remove();
   }
 }
 
-function removeSubtaskFromArray(taskText) {
-  subtasks = subtasks.filter((subtask) => subtask.title !== taskText);
+function removeSubtaskFromArray(subtaskId) {
+  subtasks = subtasks.filter((subtask) => subtask.id !== subtaskId);
+}
+
+function generateSubtaskId() {
+  return `subtask_${new Date().getTime()}`;
 }
 
 document
   .getElementById("aT_add_subtasks")
   .addEventListener("click", toggleDivVisibility);
-
 document
   .getElementById("aktive_input_addSubtask")
   .addEventListener("click", function () {
     document.getElementById("aT_add_subtasks").focus();
     toggleDivVisibility();
   });
-
 document
   .getElementById("cancel_input_subtasks")
   .addEventListener("click", function () {
     document.getElementById("aT_add_subtasks").blur();
     resetDivVisibility();
   });
-
 document
   .getElementById("check_input_subtask")
   .addEventListener("click", addSubtaskToList);
-
 document
   .getElementById("aT_add_subtasks")
   .addEventListener("keydown", function (event) {
