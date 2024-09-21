@@ -802,3 +802,13 @@ li {
   margin-right: 5px;
   margin-left: 12px;
 }
+
+@media (max-width: 1310px) {
+  .add_task_fillIn_section {
+    display: block;
+  }
+
+  .add_task_seperator {
+    display: none;
+  }
+}
