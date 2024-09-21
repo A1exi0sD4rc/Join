@@ -8,12 +8,15 @@ function render() {
         <div id="contacts-div" class="contacts-container"></div>
     `;
     document.getElementById("contacts-site").innerHTML += /*html*/ `
-        <div class="contacts-headline">
-            <h1>Contacts</h1>
-            <div class="contacts-seperator-vertikal"></div>
-            <h2>Better with a team</h2>
-        </div>
-        <div id="contact-details" class="contacts-contact-details"></div>  
+        <div class="contacts-headline-details-div">
+            <div class="contacts-headline">
+                <h1>Contacts</h1>
+                <div class="contacts-seperator-vertikal"></div>
+                <h4>Better with a team</h4>
+                <div class="contacts-headline-seperator-horizontal"></div>
+            </div>
+            <div id="contact-details" class="contacts-contact-details"></div>   
+        </div> 
     `;
     document.getElementById("contacts-div").innerHTML = "";
     document.getElementById("contacts-div").innerHTML += /*html*/ `
@@ -50,7 +53,7 @@ function renderContacts() {
                         <div class="contacts-initials">
                             <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
-                                <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${getInitials(contact.name)}</text>
+                                <text x="21" y="25" text-anchor="middle" font-size="12" fill="white">${getInitials(contact.name)}</text>
                             </svg>
                         </div>
                         <div class="contacts-name-email">
@@ -78,8 +81,8 @@ function renderContactDetails(i) {
     document.getElementById('contact-details').innerHTML += /*html*/ `
         <div class="contacts-contact-logo-name">
             <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="60" cy="60" r="60" fill="#FF7A00"/>
-                <text x="60" y="73" text-anchor="middle" font-size="47" fill="white">${getInitials(contactKeys[i]['name'])}</text>
+                <circle cx="60" cy="60" r="60" fill="${contactKeys[i]['bgcolor']}"/>
+                <text x="60" y="75" text-anchor="middle" font-size="47" fill="white">${getInitials(contactKeys[i]['name'])}</text>
             </svg>
             <div class="contacts-contact-details-h-edit-delete">
                 <h2>${contactKeys[i]['name']}</h2>
