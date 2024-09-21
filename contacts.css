@@ -27,7 +27,7 @@ body {
 
 .contacts-container {
     width: 456px;
-    height: 823px;
+    height: calc(100vh - 96px);
     background-color: #ffffff;
     box-shadow: 4px 0px 6px 0px #00000014;
     overflow-y: scroll;
