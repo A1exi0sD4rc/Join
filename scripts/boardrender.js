@@ -1,9 +1,15 @@
 function renderTaskCardToDo(elementToDo) {
   return `
-    <div onclick="showBigTask('${elementToDo["id"]}')" class="task_card_small" id="${elementToDo["id"]}" draggable="true" ondragstart="startDrag('${elementToDo["id"]}')">
+    <div onclick="showBigTask('${
+      elementToDo["id"]
+    }')" class="task_card_small" id="${
+    elementToDo["id"]
+  }" draggable="true" ondragstart="startDrag('${elementToDo["id"]}')">
       <div class="task_card_small_content">
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementToDo["id"]}">${elementToDo["art"]}</div>
+          <div class="art_small" id="art_small_${elementToDo["id"]}">${
+    elementToDo["art"]
+  }</div>
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementToDo["title"]}</div>
@@ -14,21 +20,30 @@ function renderTaskCardToDo(elementToDo) {
           <div class="amount_subtasks">0/0 Subtasks</div>
         </div>
         <div class="assigned_prio_small">
-          <div class="assigned_small"></div>
-          <div class="prio_small" id="prio_small_${elementToDo["id"]}"></div>
+          <div class="assigned_small">
+            ${renderAssignedContacts(elementToDo["assigned"])}
+          </div>
+          <div class="prio_small" id="prio_small_${elementToDo["id"]}">${
+    elementToDo["prio"]
+  }</div>
         </div>
       </div>
     </div>
   `;
 }
 
-
 function renderTaskCardProgress(elementProgress) {
   return `
-        <div onclick="showBigTask('${elementProgress["id"]}')" class="task_card_small" id="${elementProgress["id"]}" draggable="true" ondragstart="startDrag('${elementProgress["id"]}')">
+    <div onclick="showBigTask('${
+      elementProgress["id"]
+    }')" class="task_card_small" id="${
+    elementProgress["id"]
+  }" draggable="true" ondragstart="startDrag('${elementProgress["id"]}')">
       <div class="task_card_small_content">
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementProgress["id"]}">${elementProgress["art"]}</div>
+          <div class="art_small" id="art_small_${elementProgress["id"]}">${
+    elementProgress["art"]
+  }</div>
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementProgress["title"]}</div>
@@ -39,21 +54,30 @@ function renderTaskCardProgress(elementProgress) {
           <div class="amount_subtasks">0/0 Subtasks</div>
         </div>
         <div class="assigned_prio_small">
-          <div class="assigned_small"></div>
-          <div class="prio_small" id="prio_small_${elementProgress["id"]}"></div>
+          <div class="assigned_small">
+            ${renderAssignedContacts(elementProgress["assigned"])}
+          </div>
+          <div class="prio_small" id="prio_small_${elementProgress["id"]}">${
+    elementProgress["prio"]
+  }</div>
         </div>
       </div>
     </div>
-    `;
+  `;
 }
-
 
 function renderTaskCardAwait(elementAwait) {
   return `
-        <div onclick="showBigTask('${elementAwait["id"]}')" class="task_card_small" id="${elementAwait["id"]}" draggable="true" ondragstart="startDrag('${elementAwait["id"]}')">
+    <div onclick="showBigTask('${
+      elementAwait["id"]
+    }')" class="task_card_small" id="${
+    elementAwait["id"]
+  }" draggable="true" ondragstart="startDrag('${elementAwait["id"]}')">
       <div class="task_card_small_content">
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementAwait["id"]}">${elementAwait["art"]}</div>
+          <div class="art_small" id="art_small_${elementAwait["id"]}">${
+    elementAwait["art"]
+  }</div>
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementAwait["title"]}</div>
@@ -64,21 +88,30 @@ function renderTaskCardAwait(elementAwait) {
           <div class="amount_subtasks">0/0 Subtasks</div>
         </div>
         <div class="assigned_prio_small">
-          <div class="assigned_small"></div>
-          <div class="prio_small" id="prio_small_${elementAwait["id"]}"></div>
+          <div class="assigned_small">
+            ${renderAssignedContacts(elementAwait["assigned"])}
+          </div>
+          <div class="prio_small" id="prio_small_${elementAwait["id"]}">${
+    elementAwait["prio"]
+  }</div>
         </div>
       </div>
     </div>
-    `;
+  `;
 }
-
 
 function renderTaskCardDone(elementDone) {
   return `
-        <div onclick="showBigTask('${elementDone["id"]}')" class="task_card_small" id="${elementDone["id"]}" draggable="true" ondragstart="startDrag('${elementDone["id"]}')">
+    <div onclick="showBigTask('${
+      elementDone["id"]
+    }')" class="task_card_small" id="${
+    elementDone["id"]
+  }" draggable="true" ondragstart="startDrag('${elementDone["id"]}')">
       <div class="task_card_small_content">
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementDone["id"]}">${elementDone["art"]}</div>
+          <div class="art_small" id="art_small_${elementDone["id"]}">${
+    elementDone["art"]
+  }</div>
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementDone["title"]}</div>
@@ -89,14 +122,33 @@ function renderTaskCardDone(elementDone) {
           <div class="amount_subtasks">0/0 Subtasks</div>
         </div>
         <div class="assigned_prio_small">
-          <div class="assigned_small"></div>
-          <div class="prio_small" id="prio_small_${elementDone["id"]}"></div>
+          <div class="assigned_small">
+            ${renderAssignedContacts(elementDone["assigned"])}
+          </div>
+          <div class="prio_small" id="prio_small_${elementDone["id"]}">${
+    elementDone["prio"]
+  }</div>
         </div>
       </div>
     </div>
-    `;
+  `;
 }
 
+function renderAssignedContacts(assigned) {
+  return assigned
+    .map((contact) => {
+      let initials = getInitials(contact.name.replace(" (You)", ""));
+      return `
+      <div class="assigned-contact" style="position: relative; display: inline-block;">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
+          <text x="20" y="26" text-anchor="middle" font-size="16" font-weight="500" fill="white">${initials}</text>
+        </svg>
+      </div>
+    `;
+    })
+    .join("");
+}
 
 function renderBigTaskCard(bigelement) {
   return `
@@ -156,13 +208,11 @@ function renderBigTaskCard(bigelement) {
   `;
 }
 
-
 function renderNoTasksToDo() {
   return `
     <div class="no_tasks"><div class="no_tasks_txt">No tasks To do</div></div>
   `;
 }
-
 
 function renderNoTasksProgress() {
   return `
@@ -170,13 +220,11 @@ function renderNoTasksProgress() {
   `;
 }
 
-
 function renderNoTasksAwait() {
   return `
     <div class="no_tasks"><div class="no_tasks_txt">No feedback awaited</div></div>
   `;
 }
-
 
 function renderNoTaskDone() {
   return `

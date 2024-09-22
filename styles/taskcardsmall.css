@@ -1,111 +1,115 @@
 .task_card_small {
-    width: 220px;
-    height: 225px;
-    border-radius: 24px;
-    padding: 16px;
-    gap: 10px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 10px 3px #00000014;
-    margin-bottom: 16px;
-    cursor: pointer;
-    transition: transform 300ms ease-out;
+  width: 220px;
+  height: 225px;
+  border-radius: 24px;
+  padding: 16px;
+  gap: 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px 3px #00000014;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: transform 300ms ease-out;
 }
 
 .rotate {
-    transform: rotate(5deg);
+  transform: rotate(5deg);
 }
 
 .task_card_small_content {
-    height: 193px;
-    width: 220px;
-    gap: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  height: 193px;
+  width: 220px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .art_small {
-    width: 144px;
-    height: 27px;
-    border-radius: 8px;
-    padding: 4px, 16px, 4px, 16px;
-    gap: 10px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 144px;
+  height: 27px;
+  border-radius: 8px;
+  padding: 4px, 16px, 4px, 16px;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .title_desc_small_div {
-    width: 220px;
-    height: 46px;
-    border-radius: 10px;
-    gap: 8px;
+  width: 220px;
+  height: 46px;
+  border-radius: 10px;
+  gap: 8px;
 }
 
 .title_small {
-    width: 220px;
-    height: 19px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #2A3647;
+  width: 220px;
+  height: 19px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2a3647;
 }
 
 .description_small {
-    width: 220px;
-    height: 19px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #A8A8A8;
+  width: 220px;
+  height: 19px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #a8a8a8;
 }
 
 .sub_amount_small {
-    width: 220px;
-    height: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  width: 220px;
+  height: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .subtasks_bar_small {
-    width: 128px;
-    height: 8px;
-    top: 4px;
-    border-radius: 8px;
-    gap: 10px;
-    background-color: #F4F4F4;
+  width: 128px;
+  height: 8px;
+  top: 4px;
+  border-radius: 8px;
+  gap: 10px;
+  background-color: #f4f4f4;
 }
 
 .amount_subtasks {
-    width: 75px;
-    height: 14px;
-    left: 139px;
-    font-size: 12px;
-    font-weight: 400;
-    color: #000000;
+  width: 75px;
+  height: 14px;
+  left: 139px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #000000;
 }
 
 .assigned_prio_small {
-    width: 220px;
-    height: 32px;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  height: 32px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 35px;
 }
 
 .assigned_small {
-    width: 80px;
-    height: 32px;
+  width: 80px;
+  height: 32px;
+  display: flex;
+  margin-left: 12px;
+}
 
+.assigned-contact {
+  margin-left: -12px;
 }
 
 .prio_small {
-    width: 32px;
-    height: 32px;
-    padding: 10px, 18px, 10px, 18px;
-    gap: 10px;
+  width: 32px;
+  padding: 10px, 18px, 10px, 18px;
+  gap: 10px;
 }
