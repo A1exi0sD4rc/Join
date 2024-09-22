@@ -3,7 +3,7 @@
   padding-top: 206px;
   padding-left: 328px;
   background-color: #f6f7f8;
-  height: 100vh;
+  height: 100%;
 }
 
 .add_task_h1 {
@@ -45,6 +45,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  background-color: #f6f7f8;
+  position: fixed;
+  bottom: 0;
 }
 
 .aT_input_title {
@@ -553,9 +558,6 @@ sup {
   border-color: #29abe2;
   outline: none;
 }
-.hint_container {
-  padding-top: 20px;
-}
 
 .button_container {
   width: 309px;
@@ -805,10 +807,34 @@ li {
 
 @media (max-width: 1310px) {
   .add_task_fillIn_section {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    background-color: #f6f7f8;
   }
 
   .add_task_seperator {
+    display: none;
+  }
+
+  .add_task_form_left {
+    height: unset;
+    margin-right: 0;
+  }
+
+  .add_task_form_right {
+    margin-top: 30px;
+    margin-bottom: 300px;
+  }
+
+  .add_task_bottom_section {
+    z-index: 2000;
+  }
+
+  .category_input_dropdown_error_container {
+    height: unset;
+  }
+
+  .clear_form {
     display: none;
   }
 }
