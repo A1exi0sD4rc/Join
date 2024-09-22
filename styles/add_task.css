@@ -894,4 +894,7 @@ li {
   .aT_select_dropdown_fields {
     padding-right: 15px;
   }
+  .category_subtasks_container {
+    z-index: 1;
+  }
 }
