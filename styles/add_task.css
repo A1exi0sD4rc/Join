@@ -1,9 +1,12 @@
+.form_area {
+  height: 100vh;
+}
+
 .add_task_content {
   box-sizing: border-box;
   padding-top: 206px;
   padding-left: 328px;
   background-color: #f6f7f8;
-  height: 100%;
 }
 
 .add_task_h1 {
@@ -56,7 +59,7 @@
   background-color: white;
   box-sizing: border-box;
   padding: 12px 21px;
-  width: 440px;
+  width: 100%;
   height: 48px;
   border-radius: 10px;
   font-size: 20px;
@@ -92,7 +95,7 @@ sup {
 
 .resizable-container {
   position: relative;
-  width: 440px;
+  width: 100%;
   height: 120px;
   margin-bottom: 30px;
 }
@@ -340,7 +343,7 @@ sup {
   background-color: white;
   box-sizing: border-box;
   padding: 12px 21px;
-  width: 440px;
+  width: 100%;
   height: 48px;
   border-radius: 10px;
   font-size: 20px;
@@ -366,6 +369,7 @@ sup {
 }
 
 .date_error_container {
+  width: 100%;
   height: 52px;
   margin-bottom: 32px;
 }
@@ -806,6 +810,10 @@ li {
 }
 
 @media (max-width: 1310px) {
+  .add_task_content {
+    height: 1470px;
+  }
+
   .add_task_fillIn_section {
     display: flex;
     flex-direction: column;
@@ -827,7 +835,11 @@ li {
   }
 
   .add_task_bottom_section {
+    margin-left: -23px;
+    justify-content: space-around;
     z-index: 2000;
+    width: 567px;
+    padding-bottom: 98px;
   }
 
   .category_input_dropdown_error_container {
@@ -836,5 +848,50 @@ li {
 
   .clear_form {
     display: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .add_task_content {
+    justify-content: center;
+    display: flex;
+    padding-left: 13px;
+    padding-top: 128px;
+  }
+  .add_task_h1 {
+    position: fixed;
+    z-index: 2;
+    background-color: #f6f7f8;
+    width: 100%;
+    top: 80px;
+    left: 0;
+    padding: 13px;
+  }
+
+  .form_area {
+    height: 100vh;
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .add_task_content {
+    display: block;
+  }
+
+  .resize-handle {
+    z-index: 0;
+  }
+
+  .add_task_form_left {
+    width: 300px;
+  }
+
+  .add_task_form_right {
+    width: 300px;
+  }
+
+  .aT_select_dropdown_fields {
+    padding-right: 15px;
   }
 }
