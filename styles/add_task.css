@@ -868,6 +868,10 @@ li {
     padding: 13px;
   }
 
+  .resize-handle {
+    z-index: 0;
+  }
+
   .form_area {
     height: 100vh;
     padding-top: 80px;
