@@ -595,7 +595,12 @@ body {
     }
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1350px) {
+
+    .contacts-headline-details-div {
+        margin-top: 50px;
+    }
+
     .contacts-headline {
         flex-direction: column;
         align-items: normal;
