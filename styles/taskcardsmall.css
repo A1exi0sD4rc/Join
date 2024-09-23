@@ -81,6 +81,12 @@
   background-color: #f4f4f4;
 }
 
+.subtasks_bar_fill {
+  height: 100%;
+  border-radius: 8px;
+  background-color: #4589ff;
+}
+
 .amount_subtasks {
   width: 75px;
   height: 14px;
