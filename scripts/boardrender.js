@@ -142,7 +142,7 @@ function renderAssignedContacts(assigned) {
       <div class="assigned-contact" style="position: relative; display: inline-block;">
         <svg width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
-          <text x="20" y="26" text-anchor="middle" font-size="16" font-weight="500" fill="white">${initials}</text>
+          <text x="20" y="26" text-anchor="middle" font-size="16" font-weight="400" fill="white">${initials}</text>
         </svg>
       </div>
     `;

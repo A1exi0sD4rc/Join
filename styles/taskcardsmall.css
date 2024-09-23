@@ -1,6 +1,6 @@
 .task_card_small {
   width: 220px;
-  height: 225px;
+  min-height: 196px;
   border-radius: 24px;
   padding: 16px;
   gap: 10px;
@@ -16,9 +16,9 @@
 }
 
 .task_card_small_content {
+  position: relative;
   height: 193px;
   width: 220px;
-  gap: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -42,7 +42,10 @@
   width: 220px;
   height: 46px;
   border-radius: 10px;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 .title_small {
@@ -55,7 +58,6 @@
 
 .description_small {
   width: 220px;
-  height: 19px;
   font-size: 16px;
   font-weight: 400;
   color: #a8a8a8;
@@ -89,12 +91,12 @@
 }
 
 .assigned_prio_small {
+  width: 100%;
   height: 32px;
   justify-content: space-between;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 35px;
 }
 
 .assigned_small {
@@ -109,7 +111,5 @@
 }
 
 .prio_small {
-  width: 32px;
-  padding: 10px, 18px, 10px, 18px;
-  gap: 10px;
+  padding: 10px;
 }
