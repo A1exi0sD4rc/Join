@@ -887,10 +887,6 @@ li {
 }
 
 @media (max-width: 480px) {
-  .add_task_content {
-    display: block;
-  }
-
   .resize-handle {
     z-index: 0;
   }
@@ -946,5 +942,45 @@ li {
     flex-direction: column;
     padding-bottom: 140px;
     margin-left: -116px;
+  }
+
+  .add_task_h1 {
+    font-size: 45px;
+  }
+  .aT_input_labels {
+    font-size: 16px;
+  }
+  .aT_input_title {
+    font-size: 16px;
+  }
+  .resizable-textarea {
+    font-size: 16px;
+  }
+  .resizable-textarea::placeholder {
+    font-size: 16px;
+  }
+  .aT_select_dropdown_fields {
+    font-size: 16px;
+  }
+  .aT_select_dropdown_fields::placeholder {
+    font-size: 16px;
+  }
+  .aT_input_date {
+    font-size: 16px;
+  }
+  .categories {
+    font-size: 16px;
+  }
+  .aT_label_subtasks {
+    font-size: 16px;
+  }
+  .aT_input_addSubtask {
+    font-size: 16px;
+  }
+  p {
+    margin-left: -46px;
+  }
+  #contact_list_name {
+    font-size: 16px;
   }
 }
