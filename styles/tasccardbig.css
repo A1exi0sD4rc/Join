@@ -1,210 +1,211 @@
 .big_card_bg {
-    z-index: 999;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  z-index: 999;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .big_card {
-    width: 525px;
-    border-radius: 30px;
-
-    gap: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 4px 0px #00000029;
-    animation: slideIn 100ms ease-out;
+  width: 525px;
+  border-radius: 30px;
+  height: 931px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 4px 0px #00000029;
+  animation: slideIn 100ms ease-out;
 }
 
 .d_none {
-    display: none;
+  display: none;
 }
 
 .big_card_art_close {
-    width: 445px;
-    height: 36px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 48px;
+  width: 445px;
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 48px;
 }
 
 .big_art {
-    width: 208px;
-    height: 36px;
-    border-radius: 8px;
-    padding: 4px, 24px, 4px, 24px;
-    gap: 10px;
-    color: #ffffff;
-    font-size: 23px;
-    font-weight: 400;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 208px;
+  height: 36px;
+  border-radius: 8px;
+  padding: 4px, 24px, 4px, 24px;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .big_card_close {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .title_big {
-    width: 445px;
-    height: 219px;
-    font-size: 61px;
-    font-weight: 700;
-    color: #000000;
+  width: 445px;
+  font-size: 61px;
+  font-weight: 700;
+  color: #000000;
 }
 
 .big_description {
-    width: 445px;
-    height: 24px;
-    font-size: 20px;
-    font-weight: 400;
-    color: #000000;
+  width: 445px;
+  height: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
 }
 
 .big_due,
 .big_prio,
 .big_assigned,
 .big_subs {
-    display: flex;
-    flex-direction: row;
-    width: 445px;
-    height: 24px;
-    gap: 25px;
+  color: #2a3647;
+  display: flex;
+  flex-direction: row;
+  width: 445px;
+  height: 24px;
+  font-size: 20px;
+  gap: 25px;
 }
 
 .big_del_txt,
 .big_edit_txt {
-    font-size: 16px;
-    font-weight: 400;
-    color: #2A3647;
+  font-size: 16px;
+  font-weight: 400;
+  color: #2a3647;
 }
 
 .big_del_edit {
-    width: 445px;
-    height: 24px;
-    gap: 8px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-bottom: 48px;
+  width: 445px;
+  height: 24px;
+  gap: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 48px;
 }
 
 .big_del {
-    width: 81px;
-    height: 24px;
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    cursor: pointer;
+  width: 81px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  cursor: pointer;
 }
 
 .big_edit {
-    width: 62px;
-    height: 24px;
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    cursor: pointer;
+  width: 62px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  cursor: pointer;
 }
 
 .big_del_txt {
-    width: 49px;
-    height: 19px;
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
+  width: 49px;
+  height: 19px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 }
 
 .big_edit_txt {
-    width: 30px;
-    height: 19px;
+  width: 30px;
+  height: 19px;
 }
 
 .big_del_icon_div,
 .big_edit_icon_div {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .big_edit_icon,
 .big_del_icon {
-    width: 18.28px;
-    height: 18.28px;
+  width: 18.28px;
+  height: 18.28px;
 }
 
 .big_assigned {
-    width: 445px;
-    gap: 8px;
-    display: flex;
-    flex-direction: column;
+  width: 445px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
-.big_assigned_txt{
-    width: 445px;
-    height: 24px;
+.big_assigned_txt {
+  width: 445px;
+  height: 24px;
 }
 
 .assigned_div {
-    width: 445px;
-    gap: 4px;
+  width: 445px;
+  gap: 4px;
 }
 
 .big_assigned_user {
-    width: 445px;
-    height: 56px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 7px, 16px, 7px, 16px;
+  width: 445px;
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 7px, 16px, 7px, 16px;
 }
 
-.assigned_logo_name{
-    height: 42px;
-    gap: 16px;
-    font-weight: 400;
-    font-size: 19px;
-    color: #000000;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.assigned_logo_name {
+  height: 42px;
+  gap: 16px;
+  font-weight: 400;
+  font-size: 19px;
+  color: #000000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.assigned_big_logo{
-    width: 42px;
-    height: 42px;
-    gap: 10px;
+.assigned_big_logo {
+  width: 42px;
+  height: 42px;
+  gap: 10px;
 }
 
-.assigned_big_name{
-    height: 23px;
+.assigned_big_name {
+  height: 23px;
 }
 
 @keyframes slideIn {
-    0% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
