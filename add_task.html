@@ -28,10 +28,10 @@
       class="sidebar"
     ></section>
 
-    <section class="add_task_content">
+    <section class="add_task_content" id="taskSection">
       <h1 class="add_task_h1">Add Task</h1>
 
-      <form id="myForm">
+      <form id="myForm" class="form_area">
         <div class="add_task_fillIn_section">
           <div class="add_task_form_left">
             <label class="aT_input_labels" for="aT_title"
@@ -63,6 +63,7 @@
                 alt="Resize Handle"
               />
             </div>
+
             <label class="aT_input_labels">Assigned to</label>
             <div class="aT_select_container">
               <input
@@ -91,7 +92,6 @@
               class="selected-contacts-container"
             ></div>
           </div>
-
           <div class="add_task_seperator"></div>
           <div class="add_task_form_right">
             <label class="aT_input_labels" for="aT_date"
@@ -208,7 +208,7 @@
           </div>
         </div>
         <div class="add_task_bottom_section">
-          <div class="hint_container">
+          <div>
             <p><sup>*</sup>This field is required.</p>
           </div>
           <div class="button_container">
@@ -234,6 +234,14 @@
               />
             </div>
           </div>
+        </div>
+        <div id="taskMessage" class="task-message">
+          <span>Task added to board</span>
+          <img
+            src="./assets/img/board_message.svg"
+            alt="Task Image"
+            class="task-image"
+          />
         </div>
       </form>
     </section>

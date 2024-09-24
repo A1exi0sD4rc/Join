@@ -49,7 +49,6 @@ function deactivateAll() {
   document.getElementById("boxLow").classList.remove("low_box_active");
   document.getElementById("boxLow").classList.add("aT_set_prio");
 }
-//#################################################################################################
 
 document.addEventListener("click", handleDocumentClick);
 const inputFieldContacts = document.getElementById("aT_select_contacts");
@@ -178,8 +177,6 @@ function renderFilteredContacts(filteredContacts) {
   });
 }
 
-//#######################################################################################################
-//CATEGORY
 const inputFieldCategeory = document.getElementById("aT_select_category");
 const arrowCatContainer = document.getElementById(
   "select_category_arrow_container"
@@ -235,7 +232,6 @@ categoryOptions.forEach(function (option) {
   option.addEventListener("click", selectCategory);
 });
 
-//###################################Subtask###################################
 function cancel_input_subtask() {
   document.getElementById("aT_add_subtasks").value = "";
 }
@@ -250,24 +246,37 @@ function resetDivVisibility() {
   document.getElementById("close_and_check_btns").classList.add("d-none");
 }
 
+let subtasks = [];
+
 function addSubtaskToList() {
   const inputField = document.getElementById("aT_add_subtasks");
   const subtaskText = getTrimmedSubtaskText(inputField);
   if (subtaskText !== "") {
-    const newListHTML = createSubtaskHTML(subtaskText);
+    const subtaskId = generateSubtaskId();
+    const newListHTML = createSubtaskHTML(subtaskText, subtaskId);
     appendSubtaskToList(newListHTML);
+    addSubtaskToArray(subtaskText, subtaskId);
     clearInputField(inputField);
     resetDivVisibility();
   }
+}
+
+function addSubtaskToArray(subtaskText, subtaskId) {
+  const subtask = {
+    id: subtaskId,
+    title: subtaskText,
+    completed: false,
+  };
+  subtasks.push(subtask);
 }
 
 function getTrimmedSubtaskText(inputField) {
   return inputField.value.trim();
 }
 
-function createSubtaskHTML(subtaskText) {
+function createSubtaskHTML(subtaskText, subtaskId) {
   return /*html*/ `
-    <ul class="task-item">
+    <ul class="task-item" data-id="${subtaskId}">
       <li class="task-text">${subtaskText}</li>
       <div class="task-controls">
         <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editTask(this)">
@@ -308,8 +317,7 @@ function updateTaskItemForEditing(taskItem, currentText) {
       <div class="edit-modus-btns">
         <img src="./assets/img/edit_subtask_check.svg" alt="Save" class="task-btn-input save-btn-input" onclick="saveTask(this)">
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
 function focusAndSetCursorAtEnd(taskItem) {
@@ -326,7 +334,18 @@ function saveTask(saveButton) {
     console.error("Input element not found");
     return;
   }
-  const taskTextElement = createTaskTextElement(inputElement);
+
+  const subtaskId = taskItem.getAttribute("data-id");
+  const newTitle = inputElement.value.trim();
+
+  const subtaskIndex = subtasks.findIndex(
+    (subtask) => subtask.id === subtaskId
+  );
+  if (subtaskIndex !== -1) {
+    subtasks[subtaskIndex].title = newTitle;
+  }
+
+  const taskTextElement = createTaskTextElement(newTitle);
   const taskControls = taskItem.querySelector(".task-controls");
   updateTaskItem(taskItem, taskTextElement, taskControls);
   updateTaskControls(taskControls);
@@ -336,10 +355,10 @@ function getInputElement(taskItem) {
   return taskItem.querySelector(".edit-input");
 }
 
-function createTaskTextElement(inputElement) {
+function createTaskTextElement(newTitle) {
   const taskTextElement = document.createElement("li");
   taskTextElement.className = "task-text";
-  taskTextElement.textContent = inputElement.value.trim();
+  taskTextElement.textContent = newTitle;
   return taskTextElement;
 }
 
@@ -360,32 +379,38 @@ function updateTaskControls(taskControls) {
 function deleteTask(deleteButton) {
   const taskItem = deleteButton.closest(".task-item");
   if (taskItem) {
+    const subtaskId = taskItem.getAttribute("data-id");
+    removeSubtaskFromArray(subtaskId);
     taskItem.remove();
   }
+}
+
+function removeSubtaskFromArray(subtaskId) {
+  subtasks = subtasks.filter((subtask) => subtask.id !== subtaskId);
+}
+
+function generateSubtaskId() {
+  return `subtask_${new Date().getTime()}`;
 }
 
 document
   .getElementById("aT_add_subtasks")
   .addEventListener("click", toggleDivVisibility);
-
 document
   .getElementById("aktive_input_addSubtask")
   .addEventListener("click", function () {
     document.getElementById("aT_add_subtasks").focus();
     toggleDivVisibility();
   });
-
 document
   .getElementById("cancel_input_subtasks")
   .addEventListener("click", function () {
     document.getElementById("aT_add_subtasks").blur();
     resetDivVisibility();
   });
-
 document
   .getElementById("check_input_subtask")
   .addEventListener("click", addSubtaskToList);
-
 document
   .getElementById("aT_add_subtasks")
   .addEventListener("keydown", function (event) {

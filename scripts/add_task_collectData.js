@@ -4,14 +4,24 @@ async function addTaskToDatabase() {
   const newTask = collectTaskData();
   await saveTaskToDatabase(newTask);
   goToBoard();
+  clearAll();
 }
 
 function collectTaskData() {
   const title = getInputValueById("aT_title");
   const description = getInputValueById("aT_description");
+  const dueDate = getInputValueById("aT_date");
   const category = getCategory();
   const prio = getActivePriority();
   const contacts = selectedContacts;
+
+  let subtasksObject = {};
+  subtasks.forEach((subtask, index) => {
+    subtasksObject[`subtask${index + 1}`] = {
+      completed: subtask.completed,
+      title: subtask.title,
+    };
+  });
 
   return {
     art: category,
@@ -19,7 +29,8 @@ function collectTaskData() {
     category: "todo", // Default
     description: description,
     prio: prio,
-    subtask: "", // Empty for now
+    due_date: dueDate,
+    subtask: subtasksObject,
     title: title,
   };
 }
@@ -69,12 +80,12 @@ async function saveTaskToDatabase(task) {
 }
 
 async function refreshTaskBoard() {
-  await fetchTasks();
   clearTaskContainers();
   updateHtmlTodo();
   updateHtmlProgress();
   updateHtmlAwait();
   updateHtmlDone();
+  await fetchTasks();
 }
 
 function goToBoard() {

@@ -13,23 +13,22 @@ body {
     display: none;
 }
 
-
 /* site content */
 
 .contacts-content {
     position: relative;
     top: 96px;
     left: 232px;
-    max-width: 1100px;
+    max-width: 1200px;
+    display: flex;
 }
-
 
 /* overview */
 
 .contacts-container {
     width: 456px;
-    height: 823px;
-    background-color: #FFFFFF;
+    height: calc(100vh - 96px);
+    background-color: #ffffff;
     box-shadow: 4px 0px 6px 0px #00000014;
     overflow-y: scroll;
 }
@@ -70,7 +69,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 .contacts-new-contact-btn {
@@ -86,7 +85,7 @@ body {
     font-weight: 700;
     margin-left: 20px;
     color: white;
-    background-color: #2A3647;
+    background-color: #2a3647;
     cursor: pointer;
 }
 
@@ -95,7 +94,7 @@ body {
 }
 
 .contacts-new-contact-btn:hover {
-    background-color: #29ABE2;
+    background-color: #29abe2;
 }
 
 .contacts-overview {
@@ -145,7 +144,7 @@ body {
 }
 
 .contacts-overview-contact-selected {
-    background-color: #2A3647;
+    background-color: #2a3647;
     color: white;
 }
 
@@ -172,7 +171,7 @@ body {
 }
 
 .contacts-center a {
-    color: #29ABE2;
+    color: #29abe2;
     cursor: pointer;
     font-size: 16px;
 }
@@ -182,12 +181,17 @@ body {
 }
 
 
+/* headline details div */
+
+.contacts-headline-details-div {
+    margin-left: 75px;
+    margin-top: 140px;
+}
+
+
 /* contact headline */
 
 .contacts-headline {
-    position: absolute;
-    top: 100px;
-    left: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -202,33 +206,40 @@ body {
 }
 
 .contacts-seperator-vertikal {
-    width: 2px;
+    width: 3px;
     height: 80%;
-    background-color: #29ABE2;
+    background-color: #29abe2;
     margin-left: 16px;
     margin-right: 16px;
 }
 
-.contacts-headline h2 {
+.contacts-headline h4 {
     font-weight: 400;
     font-size: 27px;
     margin: 0;
 }
 
+.contacts-headline-seperator-horizontal {
+    display: none;
+    width: 100px;
+    height: 3px;
+    background-color: #29abe2;
+    margin-top: 16px;
+}
 
 /* contact details */
 
 .contacts-contact-details {
-    height: 364px;
-    position: fixed;
-    top: 311px;
-    left: 750px;
+    height: fit-content;
+    width: fit-content;
     gap: 21px;
+    margin-top: 30px;
 }
 
 .contacts-contact-logo-name {
     display: flex;
     justify-content: space-between;
+    max-width: 630px;
 }
 
 .contacts-contact-details-btn-div {
@@ -237,7 +248,7 @@ body {
 }
 
 .contacts-contact-details-h-edit-delete {
-    margin-left: 60px;
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -260,7 +271,7 @@ body {
 }
 
 .contacts-contact-details-h-edit-delete button:hover {
-    color: #29ABE2;
+    color: #29abe2;
     font-weight: 700;
 }
 
@@ -306,11 +317,10 @@ body {
 }
 
 .contacts-details-info a {
-    color: #29ABE2;
+    color: #29abe2;
     cursor: pointer;
     font-size: 16px;
 }
-
 
 /* contact add / edit */
 
@@ -342,7 +352,6 @@ body {
     transform: translateX(0%) !important;
 }
 
-
 /* contact edit */
 
 .contacts-edit-title {
@@ -353,7 +362,7 @@ body {
     justify-content: center;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-    background-color: #2A3647;
+    background-color: #2a3647;
 }
 
 .contacts-edit-title img {
@@ -423,21 +432,21 @@ body {
     border: solid 1px #e8e8e8;
     font-size: 20px;
     font-weight: 400;
-    outline-color: #29ABE2;
+    outline-color: #29abe2;
 }
 
 .contacts-edit-delete-btn {
     padding: 15px 24px;
     border-radius: 8px;
-    border: solid 1px #2A3647;
+    border: solid 1px #2a3647;
     transition: all 150ms ease-in-out;
     margin-right: 16px;
     cursor: pointer;
 }
 
 .contacts-edit-delete-btn:hover {
-    color: #29ABE2;
-    border: solid 1px #29ABE2;
+    color: #29abe2;
+    border: solid 1px #29abe2;
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3);
 }
 
@@ -445,13 +454,13 @@ body {
     color: white;
     padding: 16px;
     border-radius: 8px;
-    background-color: #2A3647;
+    background-color: #2a3647;
     transition: all 150ms ease-in-out;
     cursor: pointer;
 }
 
 .contacts-edit-save-btn:hover {
-    background-color: #29ABE2;
+    background-color: #29abe2;
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3);
 }
 
@@ -476,7 +485,6 @@ body {
     background-position: 95% 50%;
 }
 
-
 /* contact add new */
 
 .contacts-add-title {
@@ -487,7 +495,7 @@ body {
     justify-content: center;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-    background-color: #2A3647;
+    background-color: #2a3647;
 }
 
 .contacts-add-title img {
@@ -517,15 +525,15 @@ body {
 .contacts-add-cancel-btn {
     padding: 15px 24px;
     border-radius: 8px;
-    border: solid 1px #2A3647;
+    border: solid 1px #2a3647;
     transition: all 150ms ease-in-out;
     margin-right: 16px;
     cursor: pointer;
 }
 
 .contacts-add-cancel-btn:hover {
-    color: #29ABE2;
-    border: solid 1px #29ABE2;
+    color: #29abe2;
+    border: solid 1px #29abe2;
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3);
 }
 
@@ -533,7 +541,7 @@ body {
     color: white;
     padding: 16px;
     border-radius: 8px;
-    background-color: #2A3647;
+    background-color: #2a3647;
     transition: all 150ms ease-in-out;
     cursor: pointer;
 }
@@ -542,7 +550,6 @@ body {
     background-color: #c8eeff;
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3);
 }
-
 
 /* contact created */
 
@@ -555,7 +562,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2A3647;
+    background-color: #2a3647;
     border-radius: 20px;
     font-size: 20px;
     color: white;
@@ -569,6 +576,64 @@ body {
 
 
 /* media compatibility */
+
+@media (max-width: 1400px) {
+    .contacts-headline {
+        height: 70px;
+    }
+
+    .contacts-headline h1 {
+        font-size: 50px;
+    }
+
+    .contacts-headline h4 {
+        font-size: 24px;
+    }
+
+    .contacts-contact-details-h-edit-delete h2 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 1350px) {
+
+    .contacts-headline-details-div {
+        margin-top: 50px;
+    }
+
+    .contacts-headline {
+        flex-direction: column;
+        align-items: normal;
+        height: 110px;
+    }
+
+    .contacts-seperator-vertikal {
+        display: none;
+    }
+
+    .contacts-headline-seperator-horizontal {
+        display: block;
+    }
+
+    .contacts-contact-logo-name {
+        align-items: center;
+        flex-direction: column;
+        margin-top: 48px;
+    }
+
+    .contacts-contact-details-h-edit-delete {
+        margin-left: 0;
+        margin-top: 16px;
+    }
+
+    .contacts-contact-details-btn-div {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1100px) {
+    
+}
 
 @media (max-width: 920px) {
     .contacts-content {
