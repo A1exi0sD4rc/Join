@@ -208,9 +208,12 @@ function renderBigTaskCard(bigelement) {
       </div>
 
 
-      <div class="big_subs">
+     <div class="big_subs">
         <div class="big_subs_txt">Subtasks</div>
-        <div></div>
+        <div class="subtasks_container">${renderSubtasks(
+          bigelement.subtask,
+          bigelement.id
+        )}</div>
       </div>
 
       <div class="big_del_edit">
@@ -229,6 +232,63 @@ function renderBigTaskCard(bigelement) {
   `;
 }
 
+function renderSubtasks(subtasks, taskId) {
+  return Object.keys(subtasks)
+    .map((key, index) => {
+      const subtask = subtasks[key];
+      const checkboxSrc = subtask.completed
+        ? "assets/img/checkbox-checked.png"
+        : "assets/img/checkbox.png";
+      return `
+        <div class="subtask_item" id="subtask_${taskId}_${index}">
+          <img src="${checkboxSrc}" class="subtask_checkbox" id="subtask_checkbox_${taskId}_${index}" onclick="toggleSubtask('${taskId}', ${index})">
+          <span class="subtask_title">${subtask.title}</span>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+async function toggleSubtask(taskId, subtaskIndex) {
+  const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
+  const taskData = await taskResponse.json();
+
+  if (!taskData || !taskData.subtask) {
+    console.error("Task data or subtasks not found");
+    return;
+  }
+
+  const subtaskKey = `subtask${subtaskIndex + 1}`;
+  const subtask = taskData.subtask[subtaskKey];
+
+  if (!subtask) {
+    console.error(`Subtask ${subtaskKey} not found`);
+    return;
+  }
+
+  subtask.completed = !subtask.completed;
+
+  const checkboxImage = document.getElementById(
+    `subtask_checkbox_${taskId}_${subtaskIndex}`
+  );
+  checkboxImage.src = subtask.completed
+    ? "assets/img/checkbox-checked.png"
+    : "assets/img/checkbox.png";
+
+  await fetch(`${TASKS_URL}/${taskId}/subtask/${subtaskKey}/completed.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(subtask.completed),
+  });
+
+  const taskCardElement = document.getElementById(taskId);
+  if (taskCardElement) {
+    taskCardElement.innerHTML = renderTaskCardToDo(taskData);
+  } else {
+    console.error("Task card element not found");
+  }
+}
+
 function renderBigAssignedContacts(assigned) {
   return assigned
     .map((contact) => {
@@ -238,8 +298,8 @@ function renderBigAssignedContacts(assigned) {
         <div class="big_assigned_user">
           <div class="assigned_logo_name">
             <svg width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
-              <text x="20" y="26" text-anchor="middle" font-size="16" font-weight="400" fill="white">${initials}</text>
+              <circle cx="21" cy="21" r="21" fill="${contact.bgcolor}" stroke="white" stroke-width="3"/>
+              <text x="21" y="26" text-anchor="middle" font-size="17" font-weight="400" fill="white">${initials}</text>
             </svg>
             <div class="assigned_big_name">${displayName}</div>
           </div>

@@ -11,9 +11,10 @@
 }
 
 .big_card {
+  position: relative;
   width: 525px;
   border-radius: 30px;
-  height: 931px;
+  min-height: 871px;
   gap: 24px;
   display: flex;
   flex-direction: column;
@@ -87,6 +88,51 @@
   gap: 25px;
 }
 
+.big_prio_img {
+  color: #000000;
+  font-size: 20px;
+}
+
+.big_due_date {
+  font-size: 19px;
+  color: #000000;
+}
+
+.big_subs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px !important;
+  margin-top: -10px;
+}
+
+.subtask_item {
+  width: 90%;
+  flex-direction: row;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  padding: 7px 16px;
+}
+
+.subtask_checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.subtask_title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.subtasks_container {
+  display: flex;
+  flex-direction: column;
+  width: 445px;
+  padding: 7px 16px;
+}
+
 .big_del_txt,
 .big_edit_txt {
   font-size: 16px;
@@ -95,6 +141,8 @@
 }
 
 .big_del_edit {
+  position: absolute;
+  bottom: 0;
   width: 445px;
   height: 24px;
   gap: 8px;
@@ -153,6 +201,7 @@
 .big_assigned {
   width: 445px;
   gap: 8px;
+  height: auto !important;
   display: flex;
   flex-direction: column;
 }
@@ -163,17 +212,19 @@
 }
 
 .assigned_div {
+  display: flex;
+  flex-direction: column;
   width: 445px;
-  gap: 4px;
+  padding: 7px 16px;
 }
 
 .big_assigned_user {
-  width: 445px;
-  height: 56px;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 7px, 16px, 7px, 16px;
+  align-items: center;
+  padding: 7px 16px;
 }
 
 .assigned_logo_name {
@@ -196,6 +247,9 @@
 
 .assigned_big_name {
   height: 23px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
 }
 
 @keyframes slideIn {
