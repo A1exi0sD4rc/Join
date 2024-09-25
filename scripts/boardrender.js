@@ -250,42 +250,59 @@ function renderSubtasks(subtasks, taskId) {
 }
 
 async function toggleSubtask(taskId, subtaskIndex) {
-  const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
-  const taskData = await taskResponse.json();
+  try {
+    const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
+    const taskData = await taskResponse.json();
+    const subtaskKey = `subtask${subtaskIndex + 1}`;
+    const subtask = taskData.subtask[subtaskKey];
 
-  if (!taskData || !taskData.subtask) {
-    console.error("Task data or subtasks not found");
-    return;
+    if (!subtask) {
+      console.error(`Subtask ${subtaskKey} not found`);
+      return;
+    }
+
+    subtask.completed = !subtask.completed;
+
+    const checkboxImage = document.getElementById(
+      `subtask_checkbox_${taskId}_${subtaskIndex}`
+    );
+    checkboxImage.src = subtask.completed
+      ? "assets/img/checkbox-checked.png"
+      : "assets/img/checkbox.png";
+
+    const taskToUpdate = tasks.find((t) => t.id === taskId);
+    if (taskToUpdate) {
+      taskToUpdate.subtask[subtaskKey] = subtask;
+    }
+
+    updateSubtasksUI(taskId, taskData);
+    await updateTaskInDatabase(taskData);
+  } catch (error) {
+    console.error("Error toggling subtask:", error);
   }
+}
 
-  const subtaskKey = `subtask${subtaskIndex + 1}`;
-  const subtask = taskData.subtask[subtaskKey];
-
-  if (!subtask) {
-    console.error(`Subtask ${subtaskKey} not found`);
-    return;
-  }
-
-  subtask.completed = !subtask.completed;
-
-  const checkboxImage = document.getElementById(
-    `subtask_checkbox_${taskId}_${subtaskIndex}`
+function updateSubtasksUI(taskId, taskData) {
+  const subtasks = taskData.subtask;
+  const totalSubtasks = Object.keys(subtasks).length;
+  const completedSubtasks = Object.values(subtasks).filter(
+    (st) => st.completed
+  ).length;
+  const progressBarFill = document.querySelector(
+    `#${taskId} .subtasks_bar_fill`
   );
-  checkboxImage.src = subtask.completed
-    ? "assets/img/checkbox-checked.png"
-    : "assets/img/checkbox.png";
 
-  await fetch(`${TASKS_URL}/${taskId}/subtask/${subtaskKey}/completed.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(subtask.completed),
-  });
+  if (progressBarFill) {
+    const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
+    progressBarFill.style.width = `${progressPercentage}%`;
+  }
 
-  const taskCardElement = document.getElementById(taskId);
-  if (taskCardElement) {
-    taskCardElement.innerHTML = renderTaskCardToDo(taskData);
-  } else {
-    console.error("Task card element not found");
+  const subAmountElement = document.querySelector(
+    `#${taskId} .amount_subtasks`
+  );
+
+  if (subAmountElement) {
+    subAmountElement.innerHTML = `${completedSubtasks}/${totalSubtasks} Subtasks`;
   }
 }
 

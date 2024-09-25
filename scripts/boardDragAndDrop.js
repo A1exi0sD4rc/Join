@@ -30,11 +30,18 @@ function allowDrop(ev) {
  *
  * @param {string} category
  */
-function moveTo(newCategory) {
+async function moveTo(newCategory) {
   const taskId = draggedTaskId;
   let task = tasks.find((t) => t.id === taskId);
 
   if (task) {
+    const currentTaskData = await fetch(`${TASKS_URL}/${taskId}.json`);
+    const updatedTaskData = await currentTaskData.json();
+
+    if (updatedTaskData && updatedTaskData.subtask) {
+      task.subtask = updatedTaskData.subtask;
+    }
+
     task.category = newCategory;
     updateHtmlTodo();
     updateHtmlProgress();
@@ -62,7 +69,6 @@ async function updateTaskInDatabase(task) {
     if (!response.ok) {
       throw new Error("Error updating task");
     }
-    console.log("Task successfully updated in the database");
   } catch (error) {
     console.error("Network error:", error);
   }
