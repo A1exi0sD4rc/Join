@@ -676,12 +676,12 @@ body {
     }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1000px) {
     .contacts-content {
         position: absolute;
         top: 80px;
         left: 0;
-        width: 100vw;
+        height: 100vh;
         display: flex;
         justify-content: center;
     }
@@ -694,7 +694,84 @@ body {
         align-items: center;
     }
 
-    .contacts-headline {
+    .contacts-container::-webkit-scrollbar {
         display: none;
+    }
+
+    .contacts-new-contact-div {
+        width: 450px;
+    }
+
+    .contacts-new-contact-btn {
+        width: 400px;
+        margin-left: 0;
+    }
+    
+    .contacts-overview-contact {
+        width: 300px;
+    }
+
+    .contacts-overview-category {
+        min-width: 400px;
+    }
+
+    .contacts-seperatore-horizontal {
+        width: 400px;
+    }
+
+    .contacts-headline-details-div {
+        display: none;
+    }
+}
+
+@media (max-width: 750px) {
+    .contacts-new-contact-div {
+        width: 280px;
+    }
+
+    .contacts-new-contact-btn {
+        width: 250px;
+        font-size: 14px;
+    }
+
+    .contacts-seperatore-horizontal {
+        width: 300px;
+    }
+
+    .contacts-overview-category {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .contacts-container::-webkit-scrollbar {
+        display: inline;
+        width: 7px;
+    }
+
+    .contacts-container::-webkit-scrollbar-button:vertical:decrement {
+        background-color: white;
+        background-image: none;
+    }
+    
+    .contacts-container::-webkit-scrollbar-button:vertical:increment {
+        background-color: white;
+        background-image: url("./assets/img/contacts_arrow_down.svg");
+        background-repeat: no-repeat;
+        background-position: 50% 10%;
+        background-size: 8px;
+    }
+
+    .contacts-seperatore-horizontal {
+        width: 250px;
+    }
+
+    .contacts-overview-category {
+        min-width: 250px;
+    }
+
+    .contacts-overview-contact {
+        width: 250px;
     }
 }
