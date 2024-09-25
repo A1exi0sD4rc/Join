@@ -233,6 +233,10 @@ function renderBigTaskCard(bigelement) {
 }
 
 function renderSubtasks(subtasks, taskId) {
+  if (!subtasks || typeof subtasks !== "object") {
+    return `<span class="subtask_title"></span>`;
+  }
+
   return Object.keys(subtasks)
     .map((key, index) => {
       const subtask = subtasks[key];
