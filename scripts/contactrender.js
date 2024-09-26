@@ -26,6 +26,7 @@ function render() {
             </button>
         </div>
         <div id="contacts-overview" class="contacts-overview"></div>
+        <button class="contacts-add-contact-mobil"></button>
     `;
 }
 

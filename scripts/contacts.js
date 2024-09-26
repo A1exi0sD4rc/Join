@@ -64,28 +64,33 @@ function getInitials(name) {
 }
 
 function toggleDetailClasses(i) {
-  if (lastSelected === undefined) {
-    document
-      .getElementById(`${i}`)
-      .classList.toggle("contacts-overview-contact-selected");
-    document
-      .getElementById(`${i}`)
-      .classList.toggle("contacts-overview-contact-unselected");
-    lastSelected = i;
+  if (window.innerWidth < 1000) {
+    document.getElementById('contacts-div').classList.toggle('d-none');
+    document.getElementById('contacts-headline-details-div').style.toggle('display: none');
   } else {
-    document
-      .getElementById(`${lastSelected}`)
-      .classList.toggle("contacts-overview-contact-selected");
-    document
-      .getElementById(`${lastSelected}`)
-      .classList.toggle("contacts-overview-contact-unselected");
-    document
-      .getElementById(`${i}`)
-      .classList.toggle("contacts-overview-contact-selected");
-    document
-      .getElementById(`${i}`)
-      .classList.toggle("contacts-overview-contact-unselected");
-    lastSelected = i;
+    if (lastSelected === undefined) {
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-selected");
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-unselected");
+      lastSelected = i;
+    } else {
+      document
+        .getElementById(`${lastSelected}`)
+        .classList.toggle("contacts-overview-contact-selected");
+      document
+        .getElementById(`${lastSelected}`)
+        .classList.toggle("contacts-overview-contact-unselected");
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-selected");
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-unselected");
+      lastSelected = i;
+    }
   }
 }
 
