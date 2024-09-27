@@ -57,7 +57,7 @@ function validateForm() {
     categoryError.classList.remove("error-show");
   }
   if (isTitleValid && isDateValid && isCategoryValid) {
-    showTaskMessage();
+    showTaskAddedToBoardMessage();
   }
 }
 
@@ -94,7 +94,7 @@ function resetCategoryValidation() {
   }
 }
 
-function showTaskMessage() {
+function showTaskAddedToBoardMessage() {
   const taskMessage = document.getElementById("taskMessage");
   taskMessage.classList.add("show");
   setTimeout(() => {
