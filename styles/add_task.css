@@ -779,6 +779,7 @@ li {
 }
 
 .task-message {
+  z-index: 2000;
   padding: 12px;
   position: fixed;
   bottom: -50px;
@@ -793,7 +794,7 @@ li {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
   font-size: 24px;
 }
 

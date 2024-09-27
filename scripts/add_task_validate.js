@@ -57,7 +57,7 @@ function validateForm() {
     categoryError.classList.remove("error-show");
   }
   if (isTitleValid && isDateValid && isCategoryValid) {
-    addTaskToDatabase();
+    showTaskMessage();
   }
 }
 
@@ -95,9 +95,12 @@ function resetCategoryValidation() {
 }
 
 function showTaskMessage() {
-  const messageDiv = document.getElementById("taskMessage");
-  messageDiv.classList.add("show");
+  const taskMessage = document.getElementById("taskMessage");
+  taskMessage.classList.add("show");
   setTimeout(() => {
-    setTimeout(() => {}, 200);
-  }, 3000);
+    addTaskToDatabase();
+    setTimeout(() => {
+      taskMessage.classList.remove("show");
+    }, 500);
+  }, 1000);
 }
