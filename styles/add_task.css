@@ -746,6 +746,7 @@ li {
   margin-top: 3px;
   display: none;
   color: #ff8190;
+  font-size: 12px;
 }
 
 .error-show {
