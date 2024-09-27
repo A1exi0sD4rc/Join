@@ -233,3 +233,45 @@ body {
 .show-section {
   right: 0; /* Bringt die Section ins Bild */
 }
+
+/* ab hier addTaskOverlay von Judith*/
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none; /* Standardmäßig versteckt */
+  z-index: 1; /* Über dem Rest der Seite */
+}
+
+.task-form {
+  position: fixed;
+  top: 50%;
+  right: -1116px; /* Start außerhalb des Bildschirms */
+  width: 1116px;
+  height: 870px;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  transform: translateY(-50%); /* Vertikal zentriert */
+  transition: right 0.3s ease-in-out; /* Animationsdauer */
+  z-index: 2; /* Über dem Overlay */
+}
+
+.task-form.active {
+  right: calc(50% - 558px); /* Zentriert die div */
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Ende addTask Overlay von Judith */

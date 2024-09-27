@@ -8,6 +8,21 @@
       href="./assets/img/logo_white.svg"
       type="image/x-icon"
     />
+    <!-- ab hier alles nötige um add task richtig anzuzeigen, evtl. is noch was doppelt. -->
+    <link rel="icon" href="./assets/img/logo_white.svg" />
+    <link rel="stylesheet" href="ln_pp_hp_style.css" />
+    <link rel="stylesheet" href="assets/templates/sidebar_header_style.css" />
+    <link rel="stylesheet" href="./assets/fonts.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/add_task.css" />
+    <script src="script.js"></script>
+    <script src="./scripts/summary.js"></script>
+    <script src="./scripts/add_task.js" defer></script>
+    <script src="./scripts/add_task_collectData.js" defer></script>
+    <script src="scripts/add_task_contacts.js" defer></script>
+    <script src="scripts/board.js" defer></script>
+    <script src="scripts/add_task_validate.js"></script>
+    <!-- hier ende von allem nötigen -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="styles/board.css" />
     <link rel="stylesheet" href="assets/fonts.css" />
@@ -39,6 +54,15 @@
       class="sidebar"
     ></section>
 
+    <!-- ab hier addTaskOverlay -->
+    <div id="taskOverlay" class="overlay" onclick="closeForm()"></div>
+    <div id="taskForm" class="task-form">
+      <button id="closeBtn" class="close-btn" onclick="closeForm()">X</button>
+      <h2>Task Erstellen</h2>
+      <!-- Hier kannst du weitere Eingabefelder hinzufügen -->
+    </div>
+    <!-- hier Ende overlay -->
+
     <div class="board_content">
       <div class="big_card_bg d_none" id="big_card_bg"></div>
 
@@ -64,7 +88,7 @@
             </div>
           </div>
 
-          <div class="add_task_btn">
+          <div class="add_task_btn" id="addTaskBtn" onclick="openForm()">
             <div>
               <span class="add_task_btn_txt">Add Task</span
               ><img class="add_task_plus" src="assets/img/add.svg" />
