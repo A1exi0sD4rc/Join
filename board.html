@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="de">
+
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="./assets/img/logo_white.svg"
-      type="image/x-icon"
-    />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="./assets/img/logo_white.svg" type="image/x-icon">
     <!-- ab hier alles nötige um add task richtig anzuzeigen -->
     <link rel="icon" href="./assets/img/logo_white.svg" />
     <link rel="stylesheet" href="./assets/fonts.css" />
     <link rel="stylesheet" href="styles/add_task.css" />
+
     <script src="scripts/summary.js" defer></script>
     <script src="scripts/add_task.js" defer></script>
     <script src="scripts/add_task_collectData.js" defer></script>
@@ -26,6 +27,7 @@
     <link rel="stylesheet" href="ln_pp_hp_style.css" />
     <link rel="stylesheet" href="styles/tasccardbig.css" />
     <link rel="stylesheet" href="styles/boardresponsive.css" />
+
     <script src="script.js" defer></script>
     <script src="scripts/boardrender.js" defer></script>
     <script src="scripts/searchborder.js" defer></script>
@@ -33,20 +35,17 @@
     <script src="scripts/contacts.js" defer></script>
 
     <title>Board</title>
+
   </head>
 
   <body onload="initBoardJs()">
-    <section
-      w3-include-html="./assets/templates/header.html"
-      class="header"
-    ></section>
-    <section
-      w3-include-html="./assets/templates/sidebar.html"
-      class="sidebar"
-    ></section>
+
+    <section w3-include-html="./assets/templates/header.html" class="header"></section>
+    <section w3-include-html="./assets/templates/sidebar.html" class="sidebar"></section>
 
     <!-- ab hier addTaskOverlay -->
     <div id="taskOverlay" class="overlay" onclick="closeForm()"></div>
+
     <div id="taskForm" class="task-form">
       <button id="closeBtn" class="close-btn" onclick="closeForm()">X</button>
       <h2>Task Erstellen</h2>
@@ -55,52 +54,34 @@
     <!-- hier Ende overlay -->
 
     <div class="board_content">
+
       <div class="big_card_bg d_none" id="big_card_bg"></div>
 
       <div class="board_header">
+
         <h1>Board</h1>
 
         <div class="search_add_task">
-          <div class="input_div">
-            <input
-              class="search_task_input"
-              id="search_task_input"
-              oninput="filterTasks()"
-              type="search"
-              placeholder="Find Task"
-            />
-            <div class="search_icon_div">
-              <div
-                class="search_icon"
-                onclick="filterTasks(); emptySearchInput()"
-              >
-                <img src="assets/img/search.svg" />
+
+            <div class="input_div"><input class="search_task_input" id="search_task_input" oninput="filterTasks()" type="search" placeholder="Find Task">
+              <div class="search_icon_div">
+                <div class="search_icon" onclick="filterTasks(); emptySearchInput()"><img src="assets/img/search.svg"></div>
               </div>
             </div>
-          </div>
 
-          <div class="add_task_btn" id="addTaskBtn" onclick="openForm()">
-            <div>
-              <span class="add_task_btn_txt">Add Task</span
-              ><img class="add_task_plus" src="assets/img/add.svg" />
+            <div class="add_task_btn" id="addTaskBtn" onclick="openForm()">
+              <div class="add_task_btn_txt"><span class="add_task_btn_txt">Add Task</span></div>
+              <div class=""><img class="add_task_plus" src="assets/img/add.svg"></div>
             </div>
-          </div>
+
         </div>
+
       </div>
 
       <div class="board_categorys">
-        <div class="category_topics">
-          To do
-          <div class="plus_btn"><img src="assets/img/add_dark.svg" /></div>
-        </div>
-        <div class="category_topics">
-          In progress
-          <div class="plus_btn"><img src="assets/img/add_dark.svg" /></div>
-        </div>
-        <div class="category_topics">
-          Await feedback
-          <div class="plus_btn"><img src="assets/img/add_dark.svg" /></div>
-        </div>
+        <div class="category_topics">To do<div class="plus_btn" onclick="openForm()">+</div></div>
+        <div class="category_topics">In progress<div class="plus_btn" onclick="openForm()">+</div></div>
+        <div class="category_topics">Await feedback<div class="plus_btn" onclick="openForm()">+</div></div>
         <div class="category_topics">Done</div>
       </div>
 
@@ -110,33 +91,37 @@
           id="small_card_todo"
           ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
           ondragover="allowDrop(event); addHighlightBorder('small_card_todo')"
-          ondragleave="removeHighlightBorder('small_card_todo')"
-        ></div>
+          ondragleave="removeHighlightBorder('small_card_todo')">
+        </div>
 
         <div
           class="slots"
           id="small_card_progress"
           ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
           ondragover="allowDrop(event); addHighlightBorder('small_card_progress')"
-          ondragleave="removeHighlightBorder('small_card_progress')"
-        ></div>
+          ondragleave="removeHighlightBorder('small_card_progress')">
+        </div>
 
         <div
           class="slots"
           id="small_card_await"
           ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
           ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
-          ondragleave="removeHighlightBorder('small_card_await')"
-        ></div>
+          ondragleave="removeHighlightBorder('small_card_await')">
+        </div>
 
         <div
           class="slots"
           id="small_card_done"
           ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
           ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
-          ondragleave="removeHighlightBorder('small_card_done')"
-        ></div>
+          ondragleave="removeHighlightBorder('small_card_done')">
+        </div>
+
       </div>
+
     </div>
+
   </body>
+
 </html>

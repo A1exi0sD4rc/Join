@@ -1,9 +1,7 @@
-const BASE_URL_TASKS =
-  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_TASKS = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let tasks = [];
 
-const BASE_URL_ASSIGNED =
-  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_ASSIGNED = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let bigassigned = [];
 
 let draggedTo;
@@ -216,8 +214,7 @@ function showBigTask(taskId) {
   if (bigelement) {
     document.getElementById("big_card_bg").classList.remove("d_none");
     document.getElementById("big_card_bg").innerHTML = "";
-    document.getElementById("big_card_bg").innerHTML =
-      renderBigTaskCard(bigelement);
+    document.getElementById("big_card_bg").innerHTML = renderBigTaskCard(bigelement);
     changeArtBackground(`big_art_${bigelement.id}`);
     addPrioBigImg(bigelement);
   }
