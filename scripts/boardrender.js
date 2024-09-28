@@ -3,16 +3,13 @@ function renderTaskCardToDo(elementToDo) {
   const subAmountHtml = generateSubAmountHtml(subtasks);
 
   return `
-    <div onclick="showBigTask('${
-      elementToDo["id"]
-    }')" class="task_card_small" id="${
-    elementToDo["id"]
-  }" draggable="true" ondragstart="startDrag('${elementToDo["id"]}')">
+    <div onclick="showBigTask('${elementToDo["id"]
+    }')" class="task_card_small" id="${elementToDo["id"]
+    }" draggable="true" ondragstart="startDrag('${elementToDo["id"]}')">
       <div class="task_card_small_content">
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementToDo["id"]}">${
-    elementToDo["art"]
-  }</div>
+          <div class="art_small" id="art_small_${elementToDo["id"]}">${elementToDo["art"]
+    }</div>
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementToDo["title"]}</div>
@@ -23,9 +20,8 @@ function renderTaskCardToDo(elementToDo) {
           <div class="assigned_small">
             ${renderAssignedContacts(elementToDo["assigned"])}
           </div>
-          <div class="prio_small" id="prio_small_${elementToDo["id"]}">${
-    elementToDo["prio"]
-  }</div>
+          <div class="prio_small" id="prio_small_${elementToDo["id"]}">${elementToDo["prio"]
+    }</div>
         </div>
       </div>
     </div>
@@ -37,16 +33,13 @@ function renderTaskCardProgress(elementProgress) {
   const subAmountHtml = generateSubAmountHtml(subtasks);
 
   return `
-    <div onclick="showBigTask('${
-      elementProgress["id"]
-    }')" class="task_card_small" id="${
-    elementProgress["id"]
-  }" draggable="true" ondragstart="startDrag('${elementProgress["id"]}')">
+    <div onclick="showBigTask('${elementProgress["id"]
+    }')" class="task_card_small" id="${elementProgress["id"]
+    }" draggable="true" ondragstart="startDrag('${elementProgress["id"]}')">
       <div class="task_card_small_content">
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementProgress["id"]}">${
-    elementProgress["art"]
-  }</div>
+          <div class="art_small" id="art_small_${elementProgress["id"]}">${elementProgress["art"]
+    }</div>
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementProgress["title"]}</div>
@@ -57,9 +50,8 @@ function renderTaskCardProgress(elementProgress) {
           <div class="assigned_small">
             ${renderAssignedContacts(elementProgress["assigned"])}
           </div>
-          <div class="prio_small" id="prio_small_${elementProgress["id"]}">${
-    elementProgress["prio"]
-  }</div>
+          <div class="prio_small" id="prio_small_${elementProgress["id"]}">${elementProgress["prio"]
+    }</div>
         </div>
       </div>
     </div>
@@ -71,16 +63,13 @@ function renderTaskCardAwait(elementAwait) {
   const subAmountHtml = generateSubAmountHtml(subtasks);
 
   return `
-    <div onclick="showBigTask('${
-      elementAwait["id"]
-    }')" class="task_card_small" id="${
-    elementAwait["id"]
-  }" draggable="true" ondragstart="startDrag('${elementAwait["id"]}')">
+    <div onclick="showBigTask('${elementAwait["id"]
+    }')" class="task_card_small" id="${elementAwait["id"]
+    }" draggable="true" ondragstart="startDrag('${elementAwait["id"]}')">
       <div class="task_card_small_content">
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementAwait["id"]}">${
-    elementAwait["art"]
-  }</div>
+          <div class="art_small" id="art_small_${elementAwait["id"]}">${elementAwait["art"]
+    }</div>
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementAwait["title"]}</div>
@@ -91,9 +80,8 @@ function renderTaskCardAwait(elementAwait) {
           <div class="assigned_small">
             ${renderAssignedContacts(elementAwait["assigned"])}
           </div>
-          <div class="prio_small" id="prio_small_${elementAwait["id"]}">${
-    elementAwait["prio"]
-  }</div>
+          <div class="prio_small" id="prio_small_${elementAwait["id"]}">${elementAwait["prio"]
+    }</div>
         </div>
       </div>
     </div>
@@ -105,16 +93,13 @@ function renderTaskCardDone(elementDone) {
   const subAmountHtml = generateSubAmountHtml(subtasks);
 
   return `
-    <div onclick="showBigTask('${
-      elementDone["id"]
-    }')" class="task_card_small" id="${
-    elementDone["id"]
-  }" draggable="true" ondragstart="startDrag('${elementDone["id"]}')">
+    <div onclick="showBigTask('${elementDone["id"]
+    }')" class="task_card_small" id="${elementDone["id"]
+    }" draggable="true" ondragstart="startDrag('${elementDone["id"]}')">
       <div class="task_card_small_content">
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementDone["id"]}">${
-    elementDone["art"]
-  }</div>
+          <div class="art_small" id="art_small_${elementDone["id"]}">${elementDone["art"]
+    }</div>
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementDone["title"]}</div>
@@ -125,9 +110,8 @@ function renderTaskCardDone(elementDone) {
           <div class="assigned_small">
             ${renderAssignedContacts(elementDone["assigned"])}
           </div>
-          <div class="prio_small" id="prio_small_${elementDone["id"]}">${
-    elementDone["prio"]
-  }</div>
+          <div class="prio_small" id="prio_small_${elementDone["id"]}">${elementDone["prio"]
+    }</div>
         </div>
       </div>
     </div>
@@ -160,9 +144,8 @@ function generateSubAmountHtml(subtasks) {
     ? `
     <div class="sub_amount_small">
       <div class="subtasks_bar_small">
-        <div class="subtasks_bar_fill" style="width: ${
-          (completedSubtasks / totalSubtasks) * 100
-        }%; background-color: #4589FF;"></div>
+        <div class="subtasks_bar_fill" style="width: ${(completedSubtasks / totalSubtasks) * 100
+    }%; background-color: #4589FF;"></div>
       </div>
       <div class="amount_subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</div>
     </div>
@@ -175,29 +158,26 @@ function renderBigTaskCard(bigelement) {
     <div id="big_card" class="big_card">
 
       <div class="big_card_art_close">
-        <div class="big_art" id="big_art_${bigelement["id"]}">${
-    bigelement["art"]
-  }</div>
+        <div class="big_art" id="big_art_${bigelement["id"]}">${bigelement["art"]
+    }</div>
         <div class="big_card_close" onclick="hideBigTask()"><img src="assets/img/close.svg"></div>
       </div>
 
       <div class="title_big">${bigelement["title"]}</div>
-      <div class="big_description" id="big_description_${
-        bigelement["description"]
-      }">${bigelement["description"]}</div>
+      <div class="big_description" id="big_description_${bigelement["description"]
+    }">${bigelement["description"]}</div>
 
       <div class="big_due" id="big_due">
         <div class="big_due_date_txt" id="big_due_date_txt">Due date:</div>
         <div class="big_due_date" id="big_due_date">${formatDate(
-          bigelement["due_date"]
-        )}</div>
+      bigelement["due_date"]
+    )}</div>
       </div>
 
       <div class="big_prio">
         <div class="big_prio_txt" id="big_prio_txt">Priority:</div>
-        <div class="big_prio_img" id="big_prio_img_${bigelement["id"]}"> ${
-    bigelement["prio"]
-  }</div>
+        <div class="big_prio_img" id="big_prio_img_${bigelement["id"]}"> ${bigelement["prio"]
+    }</div>
       </div>
 
       <div class="big_assigned">
