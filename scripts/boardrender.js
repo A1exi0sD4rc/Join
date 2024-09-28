@@ -164,9 +164,10 @@ function renderBigTaskCard(bigelement) {
       </div>
 
       <div class="title_big">${bigelement["title"]}</div>
-      <div class="big_description" id="big_description_${bigelement["description"]
-    }">${bigelement["description"]}</div>
-
+      <div class="big_description" id="big_description_${
+        bigelement["description"]
+      }">${bigelement["description"]}</div>
+      
       <div class="big_due" id="big_due">
         <div class="big_due_date_txt" id="big_due_date_txt">Due date:</div>
         <div class="big_due_date" id="big_due_date">${formatDate(
@@ -181,23 +182,19 @@ function renderBigTaskCard(bigelement) {
       </div>
 
       <div class="big_assigned">
-
         <div class="big_assigned_txt">Assigned To:</div>
-
-        <div class="assigned_div">
-          <div class="big_assigned_user">
-            <div class="assigned_logo_name">
-              <div class="assigned_big_logo" id="assigned_big_logo"> LOGO HERE </div>
-              <div class="assigned_big_name" id="assigned_big_name"> NAME HERE </div>
-            </div>
-          </div>
-        </div>
-
+        <div class="assigned_div">${renderBigAssignedContacts(
+          bigelement.assigned
+        )}</div>
       </div>
 
-      <div class="big_subs">
+
+     <div class="big_subs">
         <div class="big_subs_txt">Subtasks</div>
-        <div></div>
+        <div class="subtasks_container">${renderSubtasks(
+          bigelement.subtask,
+          bigelement.id
+        )}</div>
       </div>
 
       <div class="big_del_edit">
@@ -214,6 +211,104 @@ function renderBigTaskCard(bigelement) {
 
     </div>
   `;
+}
+
+function renderSubtasks(subtasks, taskId) {
+  if (!subtasks || typeof subtasks !== "object") {
+    return `<span class="subtask_title"></span>`;
+  }
+
+  return Object.keys(subtasks)
+    .map((key, index) => {
+      const subtask = subtasks[key];
+      const checkboxSrc = subtask.completed
+        ? "assets/img/checkbox-checked.png"
+        : "assets/img/checkbox.png";
+      return `
+        <div class="subtask_item" id="subtask_${taskId}_${index}">
+          <img src="${checkboxSrc}" class="subtask_checkbox" id="subtask_checkbox_${taskId}_${index}" onclick="toggleSubtask('${taskId}', ${index})">
+          <span class="subtask_title">${subtask.title}</span>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+async function toggleSubtask(taskId, subtaskIndex) {
+  try {
+    const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
+    const taskData = await taskResponse.json();
+    const subtaskKey = `subtask${subtaskIndex + 1}`;
+    const subtask = taskData.subtask[subtaskKey];
+
+    if (!subtask) {
+      console.error(`Subtask ${subtaskKey} not found`);
+      return;
+    }
+
+    subtask.completed = !subtask.completed;
+
+    const checkboxImage = document.getElementById(
+      `subtask_checkbox_${taskId}_${subtaskIndex}`
+    );
+    checkboxImage.src = subtask.completed
+      ? "assets/img/checkbox-checked.png"
+      : "assets/img/checkbox.png";
+
+    const taskToUpdate = tasks.find((t) => t.id === taskId);
+    if (taskToUpdate) {
+      taskToUpdate.subtask[subtaskKey] = subtask;
+    }
+
+    updateSubtasksUI(taskId, taskData);
+    await updateTaskInDatabase(taskData);
+  } catch (error) {
+    console.error("Error toggling subtask:", error);
+  }
+}
+
+function updateSubtasksUI(taskId, taskData) {
+  const subtasks = taskData.subtask;
+  const totalSubtasks = Object.keys(subtasks).length;
+  const completedSubtasks = Object.values(subtasks).filter(
+    (st) => st.completed
+  ).length;
+  const progressBarFill = document.querySelector(
+    `#${taskId} .subtasks_bar_fill`
+  );
+
+  if (progressBarFill) {
+    const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
+    progressBarFill.style.width = `${progressPercentage}%`;
+  }
+
+  const subAmountElement = document.querySelector(
+    `#${taskId} .amount_subtasks`
+  );
+
+  if (subAmountElement) {
+    subAmountElement.innerHTML = `${completedSubtasks}/${totalSubtasks} Subtasks`;
+  }
+}
+
+function renderBigAssignedContacts(assigned) {
+  return assigned
+    .map((contact) => {
+      let displayName = contact.name.replace(" (You)", "");
+      let initials = getInitials(displayName);
+      return `
+        <div class="big_assigned_user">
+          <div class="assigned_logo_name">
+            <svg width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="21" cy="21" r="21" fill="${contact.bgcolor}" stroke="white" stroke-width="3"/>
+              <text x="21" y="26" text-anchor="middle" font-size="17" font-weight="400" fill="white">${initials}</text>
+            </svg>
+            <div class="assigned_big_name">${displayName}</div>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
 }
 
 function formatDate(dateString) {

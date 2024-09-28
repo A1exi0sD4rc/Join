@@ -2,7 +2,7 @@ let contactKeys = [];
 let lastSelected;
 let lastContactCreat;
 let BASE_URL = `https://join-337-userlist-default-rtdb.firebaseio.com/contacts`;
-let selectedContacts = [];
+// let selectedContacts = []; Judith: wurde schon in Datei add_task_contacts.js deklariert, daher hier deaktiviert, sonst Konsolenfehler bei boardSeite.
 
 async function init() {
   await getContactData();
@@ -64,28 +64,35 @@ function getInitials(name) {
 }
 
 function toggleDetailClasses(i) {
-  if (lastSelected === undefined) {
+  if (window.innerWidth < 1000) {
+    document.getElementById("contacts-div").classList.toggle("d-none");
     document
-      .getElementById(`${i}`)
-      .classList.toggle("contacts-overview-contact-selected");
-    document
-      .getElementById(`${i}`)
-      .classList.toggle("contacts-overview-contact-unselected");
-    lastSelected = i;
+      .getElementById("contacts-headline-details-div")
+      .style.toggle("display: none");
   } else {
-    document
-      .getElementById(`${lastSelected}`)
-      .classList.toggle("contacts-overview-contact-selected");
-    document
-      .getElementById(`${lastSelected}`)
-      .classList.toggle("contacts-overview-contact-unselected");
-    document
-      .getElementById(`${i}`)
-      .classList.toggle("contacts-overview-contact-selected");
-    document
-      .getElementById(`${i}`)
-      .classList.toggle("contacts-overview-contact-unselected");
-    lastSelected = i;
+    if (lastSelected === undefined) {
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-selected");
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-unselected");
+      lastSelected = i;
+    } else {
+      document
+        .getElementById(`${lastSelected}`)
+        .classList.toggle("contacts-overview-contact-selected");
+      document
+        .getElementById(`${lastSelected}`)
+        .classList.toggle("contacts-overview-contact-unselected");
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-selected");
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-unselected");
+      lastSelected = i;
+    }
   }
 }
 
@@ -109,7 +116,9 @@ async function addContact(event) {
   event.preventDefault();
   await addContactToDb();
   await init();
-  renderContactDetails(contactKeys.findIndex(contact => contact.name === lastContactCreat))
+  renderContactDetails(
+    contactKeys.findIndex((contact) => contact.name === lastContactCreat)
+  );
   focusAddedContact();
   contactCreatSuccesfull();
   setTimeout(contactCreatSuccesfull, 2000);
@@ -167,7 +176,11 @@ function contactCreatSuccesfull() {
 }
 
 function focusAddedContact() {
-  return document.getElementById(`${contactKeys.findIndex(contact => contact.name === lastContactCreat)}`).focus(); 
+  return document
+    .getElementById(
+      `${contactKeys.findIndex((contact) => contact.name === lastContactCreat)}`
+    )
+    .focus();
 }
 
 async function editSaveInit(i) {

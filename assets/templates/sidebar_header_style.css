@@ -205,7 +205,7 @@ table {
   display: none;
 }
 
-@media (min-width: 921px) {
+@media (min-width: 1001px) {
   #regular_board_link,
   #regular_addTask_link,
   #header_headline {
@@ -213,7 +213,7 @@ table {
   }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1000px) {
   #responsive_board_link,
   #responsive_addTasks_link {
     display: flex;

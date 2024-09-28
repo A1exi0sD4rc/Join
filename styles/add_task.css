@@ -746,6 +746,7 @@ li {
   margin-top: 3px;
   display: none;
   color: #ff8190;
+  font-size: 12px;
 }
 
 .error-show {
@@ -779,6 +780,7 @@ li {
 }
 
 .task-message {
+  z-index: 2000;
   padding: 12px;
   position: fixed;
   bottom: -50px;
@@ -793,7 +795,7 @@ li {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
   font-size: 24px;
 }
 
@@ -855,7 +857,7 @@ li {
   }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1000px) {
   .add_task_content {
     justify-content: center;
     display: flex;
@@ -887,10 +889,6 @@ li {
 }
 
 @media (max-width: 480px) {
-  .add_task_content {
-    display: block;
-  }
-
   .resize-handle {
     z-index: 0;
   }
@@ -947,4 +945,54 @@ li {
     padding-bottom: 140px;
     margin-left: -116px;
   }
+
+  .add_task_h1 {
+    font-size: 45px;
+  }
+  .aT_input_labels {
+    font-size: 16px;
+  }
+  .aT_input_title {
+    font-size: 16px;
+  }
+  .resizable-textarea {
+    font-size: 16px;
+  }
+  .resizable-textarea::placeholder {
+    font-size: 16px;
+  }
+  .aT_select_dropdown_fields {
+    font-size: 16px;
+  }
+  .aT_select_dropdown_fields::placeholder {
+    font-size: 16px;
+  }
+  .aT_input_date {
+    font-size: 16px;
+  }
+  .categories {
+    font-size: 16px;
+  }
+  .aT_label_subtasks {
+    font-size: 16px;
+  }
+  .aT_input_addSubtask {
+    font-size: 16px;
+  }
+  p {
+    margin-left: -46px;
+  }
+  #contact_list_name {
+    font-size: 16px;
+  }
 }
+
+/* Spezifischer Stil nur für die add_task_content innerhalb der modal */
+/* .modal .add_task_content {
+  padding-left: 0;
+  padding-top: 0;
+}
+
+.modal {
+  display: flex;
+} */
