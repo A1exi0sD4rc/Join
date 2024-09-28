@@ -66,17 +66,11 @@ function getInitials(name) {
 function toggleDetailClasses(i) {
   if (window.innerWidth < 1000) {
     document.getElementById("contacts-div").classList.toggle("d-none");
-    document
-      .getElementById("contacts-headline-details-div")
-      .style.toggle("display: none");
+    document.getElementById("contacts-h-d-div").classList.toggle("contacts-h-d-mobil");
   } else {
     if (lastSelected === undefined) {
-      document
-        .getElementById(`${i}`)
-        .classList.toggle("contacts-overview-contact-selected");
-      document
-        .getElementById(`${i}`)
-        .classList.toggle("contacts-overview-contact-unselected");
+      document.getElementById(`${i}`).classList.toggle("contacts-overview-contact-selected");
+      document.getElementById(`${i}`).classList.toggle("contacts-overview-contact-unselected");
       lastSelected = i;
     } else {
       document

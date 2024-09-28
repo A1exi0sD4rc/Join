@@ -8,14 +8,16 @@ function render() {
         <div id="contacts-div" class="contacts-container"></div>
     `;
     document.getElementById("contacts-site").innerHTML += /*html*/ `
-        <div class="contacts-headline-details-div">
+        <div id="contacts-h-d-div" class="contacts-headline-details-div">
+            <button class="contacts-details-mobil-close-btn d-none" onclick="toggleDetailClasses()"></button>
             <div class="contacts-headline">
                 <h1>Contacts</h1>
                 <div class="contacts-seperator-vertikal"></div>
                 <h4>Better with a team</h4>
                 <div class="contacts-headline-seperator-horizontal"></div>
             </div>
-            <div id="contact-details" class="contacts-contact-details"></div>   
+            <div id="contact-details" class="contacts-contact-details"></div>
+            <button class="contacts-d-more-options-btn d-none"></button>   
         </div> 
     `;
     document.getElementById("contacts-div").innerHTML = "";
