@@ -406,8 +406,8 @@ body {
 
 .contacts-add-edit-div {
     position: absolute;
-    top: 5vh;
-    left: 7vw;
+    top: 50px;
+    left: -125px;
     z-index: 3;
     transform: translateX(+200%);
     transition: all 125ms ease-in-out;
@@ -472,7 +472,7 @@ body {
 .contacts-add-edit-close-btn {
     width: 32px;
     height: 32px;
-    margin-left: 390px;
+    margin-left: 93%;
     background-image: url("./assets/img/close.svg");
     background-size: 13px;
     background-repeat: no-repeat;
@@ -663,6 +663,30 @@ body {
     .contacts-contact-details-h-edit-delete h2 {
         font-size: 40px;
     }
+
+    .contacts-add-edit-div {
+        width: 1000px;
+        height: 500px;
+    }
+
+    .contacts-add-section {
+        padding: 25px;
+        margin-bottom: 0;
+    }
+
+    .contacts-add-section-img {
+        margin-left: 25px;
+        margin-right: 40px;
+    }
+
+    .contacts-add-title {
+        width: 550px;
+        height: 500px;
+    }
+
+    .contacts-edit-title-h1 h1 {
+        font-size: 45px;
+    }
 }
 
 @media (max-width: 1350px) {
@@ -736,6 +760,38 @@ body {
 
     .contacts-headline-details-div {
         margin-left: 50px;
+    }
+
+    .contacts-add-edit-div {
+        width: 850px;
+    }
+
+    .contacts-edit-input-btn {
+        max-width: 350px;
+    }
+
+    .contacts-edit-input input {
+        width: 250px;
+    }
+
+    .contacts-add-edit-close-btn {
+        margin-left: 90%;
+    }
+
+    .contacts-add-cancel-btn {
+        padding: 12px 16px;
+    }
+
+    .contacts-add-create-btn {
+        padding: 13px;
+    }
+
+    .contacts-add-title {
+        width: 300px;
+    }
+
+    .contacts-edit-title-h1 h1 {
+        font-size: 40px;
     }
 }
 
@@ -838,6 +894,10 @@ body {
     .contacts-details-mobil-close-btn {
         display: flex !important;
     }
+
+    .contacts-add-edit-div {
+        left: 50px;
+    }
 }
 
 @media (max-width: 750px) {
@@ -880,15 +940,15 @@ body {
 @media (max-width: 450px) {
 
     .contacts-seperatore-horizontal {
-        width: 250px;
+        width: 290px;
     }
 
     .contacts-overview-category {
-        min-width: 250px;
+        min-width: 290px;
     }
 
     .contacts-overview-contact {
-        width: 250px;
+        width: 290px;
     }
 
     .contacts-add-contact-mobil {
