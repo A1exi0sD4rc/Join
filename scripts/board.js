@@ -254,29 +254,10 @@ function bigAssignedTo() {
   }
 }
 
-//ab hier addTask Btn Funktionen von Judith:
+// Hauptfunktion zum Öffnen des add task Formulars (Judith)
 function openForm() {
-  const overlay = document.getElementById("taskOverlay");
-  const taskForm = document.getElementById("taskForm");
-
-  overlay.style.display = "block"; // Overlay sichtbar machen
-
-  // Kurze Verzögerung, um die Animation zu ermöglichen
-  setTimeout(() => {
-    taskForm.classList.add("active"); // Klasse hinzufügen, um die Animation zu starten
-  }, 10); // Verzögerung für die Animation
-}
-
-function closeForm() {
-  const taskForm = document.getElementById("taskForm");
-
-  // Zunächst die Klasse entfernen, um die div zu schließen
-  taskForm.classList.remove("active");
-
-  // Overlay bleibt sichtbar, während die Animation läuft
-  setTimeout(() => {
-    document.getElementById("taskOverlay").style.display = "none"; // Overlay ausblenden
-  }, 500); // Zeit entspricht der Animationsdauer
+  openOverlay(); // Overlay anzeigen
+  loadFormContent(); // Inhalt des Formulars laden
 }
 
 // Funktion, um das Overlay anzuzeigen
@@ -321,9 +302,16 @@ function handleFetchError(error) {
   console.error("Es gab ein Problem mit dem Fetch-Vorgang:", error); // Fehler im Konsolenlog
 }
 
-// Hauptfunktion zum Öffnen des Formulars
-function openForm() {
-  openOverlay(); // Overlay anzeigen
-  loadFormContent(); // Inhalt des Formulars laden
+//schließen der add task form
+function closeForm() {
+  const taskForm = document.getElementById("taskForm");
+
+  // Zunächst die Klasse entfernen, um die div zu schließen
+  taskForm.classList.remove("active");
+
+  // Overlay bleibt sichtbar, während die Animation läuft
+  setTimeout(() => {
+    document.getElementById("taskOverlay").style.display = "none"; // Overlay ausblenden
+  }, 500); // Zeit entspricht der Animationsdauer
 }
 //Hier Ende addTask Btn Funktionen. Muss ich (Judith) noch hübsch machen.
