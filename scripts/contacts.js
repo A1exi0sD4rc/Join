@@ -6,7 +6,7 @@ let BASE_URL = `https://join-337-userlist-default-rtdb.firebaseio.com/contacts`;
 
 async function init() {
   await getContactData();
-  render();
+  render(Event);
   renderContacts();
   renderContactCreated();
 }
@@ -90,8 +90,8 @@ function toggleDetailClasses(i) {
   }
 }
 
-function contactAddEditInit(i, action) {
-  toggleVisiblility();
+function contactAddEditInit(action, Event, i) {
+  toggleVisiblility(Event);
   if (action == "edit") {
     renderEditContact(i);
   } else {
@@ -99,11 +99,10 @@ function contactAddEditInit(i, action) {
   }
 }
 
-function toggleVisiblility() {
-  document.getElementById("contacts-add-edit-bg").classList.toggle(".contacts-add-edit-bg-show");
-  document
-    .getElementById("contacts-add-edit")
-    .classList.toggle("contacts-translateX");
+function toggleVisiblility(event) {
+  event.stopPropagation();
+  document.getElementById("contacts-add-edit-bg").classList.toggle("contacts-add-edit-bg-show");
+  document.getElementById("contacts-add-edit").classList.toggle("contacts-translateX");
 }
 
 async function addContact(event) {

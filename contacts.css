@@ -4,6 +4,7 @@ body {
     margin: 0;
     font-family: "Inter", system-ui;
     background-color: #f6f7f8;
+    overflow-x: hidden;
 }
 
 .d-none {
@@ -18,8 +19,6 @@ body {
     left: 232px;
     max-width: 1200px;
     display: flex;
-    overflow-y: hidden;
-    overflow: hidden;
 }
 
 /* overview */
@@ -401,25 +400,20 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    transform: translateX(+200%);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 2;
     background-color: #b8b9ba5d;
-    opacity: 0;
+    transform: translateX(+200%);
     transition: all 125ms ease-in-out;
 }
 
 .contacts-add-edit-bg-show {
     transform: translateX(0%) !important;
-    opacity: 1 !important;
 }
 
 .contacts-add-edit-div {
-    position: absolute;
-    top: 50px;
-    left: -125px;
     z-index: 3;
     transform: translateX(+200%);
     transition: all 125ms ease-in-out;
@@ -575,7 +569,7 @@ body {
 /* contact add new */
 
 .contacts-add-title {
-    width: 467px;
+    min-width: 467px;
     height: 590px;
     display: flex;
     flex-direction: column;
@@ -936,8 +930,6 @@ body {
     }
 
     .contacts-add-edit-div {
-        left: 30%;
-        top: 4px;
         width: 400px;
         height: 750px;
         flex-direction: column;
