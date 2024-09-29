@@ -1,7 +1,7 @@
 function render() {
     document.getElementById("contacts-site").innerHTML = "";
     document.getElementById("contacts-site").innerHTML = /*html*/`
-        <div id="contacts-add-edit-bg" class="contacts-add-edit-bg d-none" onclick="toggleVisiblility()"></div>
+        <div id="contacts-add-edit-bg" class="contacts-add-edit-bg-hide" onclick="toggleVisiblility()"></div>
         <div id="contacts-add-edit" class="contacts-add-edit-div"></div> 
     `;
     document.getElementById("contacts-site").innerHTML += /*html*/ `
@@ -158,10 +158,10 @@ function renderAddNewContact() {
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
         <div class="contacts-add-title">
             <img src="./assets/img/logo_white.svg">
-            <div class="contacts-edit-title-h1">
+            <div class="contacts-edit-title-h">
                 <div>
                     <h1>Add contact</h1>
-                    <h3></h3>
+                    <h3>Tasks are better with a team!</h3>
                 </div>
                 <svg width="94" height="3" viewBox="0 0 94 3" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M92 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>

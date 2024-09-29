@@ -100,7 +100,7 @@ function contactAddEditInit(i, action) {
 }
 
 function toggleVisiblility() {
-  document.getElementById("contacts-add-edit-bg").classList.toggle("d-none");
+  document.getElementById("contacts-add-edit-bg").classList.toggle(".contacts-add-edit-bg-show");
   document
     .getElementById("contacts-add-edit")
     .classList.toggle("contacts-translateX");
