@@ -277,4 +277,18 @@ body.no-scroll {
 .task-form.active {
   right: calc(50% - 558px);
 }
+
+.addTask_overlay_headline {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close_overlay_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+}
 /* Ende addTask Overlay von Judith */

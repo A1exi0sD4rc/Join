@@ -52,9 +52,16 @@
     <!-- ab hier addTaskOverlay -->
     <div id="taskOverlay" class="overlay" onclick="closeForm()"></div>
     <div id="taskForm" class="task-form">
-      <section class="add_task_content" id="taskSection">
-        <h1 class="add_task_h1">Add Task</h1>
-
+      <section id="taskSection">
+        <div class="addTask_overlay_headline">
+          <h1 class="add_task_h1">Add Task</h1>
+          <button class="close_overlay_btn" onclick="closeForm()">
+            <img
+              src=".//assets/img/close_addTask_overlay.svg"
+              alt="close addTask"
+            />
+          </button>
+        </div>
         <form id="myForm" class="form_area">
           <div class="add_task_fillIn_section">
             <div class="add_task_form_left">
