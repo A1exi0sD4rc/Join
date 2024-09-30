@@ -280,7 +280,7 @@ function closeForm() {
   setTimeout(() => {
     taskForm.style.display = "none";
     document.getElementById("taskOverlay").style.display = "none";
-  }, 500);
+  }, 300);
   document.body.classList.remove("no-scroll");
 }
 //Hier Ende addTask Btn Funktionen. Muss ich (Judith) noch hübsch machen.

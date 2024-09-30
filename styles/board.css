@@ -270,7 +270,7 @@ body.no-scroll {
   border-radius: 30px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
   transform: translateY(-50%);
-  transition: right 0.3s ease-in-out;
+  transition: right 0.2s ease-in-out;
   z-index: 502; /* Über dem Overlay */
 }
 
@@ -287,8 +287,21 @@ body.no-scroll {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   height: 32px;
   width: 32px;
+  cursor: pointer;
+}
+
+.close_overlay_btn:hover {
+  background-color: rgb(238, 238, 238);
+  border-radius: 15px;
+}
+
+.add_task_bottom_overlay {
+  margin-top: 145px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
 }
 /* Ende addTask Overlay von Judith */
