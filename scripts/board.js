@@ -254,12 +254,16 @@ function bigAssignedTo() {
   }
 }
 
+//ab hier Funktionen Judith für addTask
 // Hauptfunktion zum Öffnen des add task Formulars
 function openForm() {
   openOverlay();
   const taskForm = document.getElementById("taskForm");
   taskForm.style.display = "block";
-  taskForm.classList.add("active");
+  setTimeout(() => {
+    taskForm.classList.add("active");
+  }, 10);
+  document.body.classList.add("no-scroll");
 }
 
 // Funktion, um das Overlay anzuzeigen
@@ -270,11 +274,13 @@ function openOverlay() {
 
 // Funktion, um das Formular zu schließen
 function closeForm() {
+  clearAll();
   const taskForm = document.getElementById("taskForm");
   taskForm.classList.remove("active");
   setTimeout(() => {
     taskForm.style.display = "none";
     document.getElementById("taskOverlay").style.display = "none";
   }, 500);
+  document.body.classList.remove("no-scroll");
 }
 //Hier Ende addTask Btn Funktionen. Muss ich (Judith) noch hübsch machen.
