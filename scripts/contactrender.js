@@ -1,8 +1,8 @@
-function render(event) {
+function render() {
     document.getElementById("contacts-site").innerHTML = "";
     document.getElementById("contacts-site").innerHTML = /*html*/`
-        <div id="contacts-add-edit-bg" class="contacts-add-edit-bg-hide" onclick="toggleVisiblility(${event})">
-            <div id="contacts-add-edit" class="contacts-add-edit-div"></div>
+        <div id="contacts-add-edit-bg" class="contacts-add-edit-bg-hide" onclick="toggleVisiblility()">
+            <div id="contacts-add-edit" class="contacts-add-edit-div" onclick="toggleVisiblility(event)"></div>
         </div> 
     `;
     document.getElementById("contacts-site").innerHTML += /*html*/ `
@@ -24,12 +24,12 @@ function render(event) {
     document.getElementById("contacts-div").innerHTML = "";
     document.getElementById("contacts-div").innerHTML += /*html*/ `
         <div class="contacts-new-contact-div">
-            <button class="contacts-new-contact-btn" onclick="contactAddEditInit('add', ${event})">
+            <button class="contacts-new-contact-btn" onclick="contactAddEditInit('add')">
                 Add new contact <img src="./assets/img/contacts_new_contact.svg">
             </button>
         </div>
         <div id="contacts-overview" class="contacts-overview"></div>
-        <button class="contacts-add-contact-mobil" onclick="contactAddEditInit('add', ${event})"></button>
+        <button class="contacts-add-contact-mobil" onclick="contactAddEditInit('add')"></button>
     `;
 }
 

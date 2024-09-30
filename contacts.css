@@ -406,7 +406,7 @@ body {
     z-index: 2;
     background-color: #b8b9ba5d;
     transform: translateX(+200%);
-    transition: all 125ms ease-in-out;
+    transition: all 25ms ease-in-out;
 }
 
 .contacts-add-edit-bg-show {
@@ -416,7 +416,7 @@ body {
 .contacts-add-edit-div {
     z-index: 3;
     transform: translateX(+200%);
-    transition: all 125ms ease-in-out;
+    transition: all 150ms ease-in-out;
     width: 1220px;
     height: 590px;
     background-color: white;
@@ -936,7 +936,8 @@ body {
     }
 
     .contacts-add-title {
-        width: 100%;
+        min-width: 0;
+        width: 400px;
         min-height: 350px;
         border-top-right-radius: 20px;
         border-bottom-left-radius: 0;
@@ -947,6 +948,7 @@ body {
     }
 
     .contacts-edit-title-h {
+        width: 350px;
         margin-bottom: 0;
         margin-left: 25px;
     }
@@ -981,7 +983,7 @@ body {
         margin: 0;
         position: relative;
         left: 35%;
-        top: -85px;
+        top: -120px;
     }
 
     .contacts-edit-input-btn {

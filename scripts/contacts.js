@@ -6,7 +6,7 @@ let BASE_URL = `https://join-337-userlist-default-rtdb.firebaseio.com/contacts`;
 
 async function init() {
   await getContactData();
-  render(Event);
+  render();
   renderContacts();
   renderContactCreated();
 }
@@ -90,8 +90,8 @@ function toggleDetailClasses(i) {
   }
 }
 
-function contactAddEditInit(action, Event, i) {
-  toggleVisiblility(Event);
+function contactAddEditInit(action, i) {
+  toggleVisiblility();
   if (action == "edit") {
     renderEditContact(i);
   } else {
@@ -100,9 +100,12 @@ function contactAddEditInit(action, Event, i) {
 }
 
 function toggleVisiblility(event) {
-  event.stopPropagation();
-  document.getElementById("contacts-add-edit-bg").classList.toggle("contacts-add-edit-bg-show");
-  document.getElementById("contacts-add-edit").classList.toggle("contacts-translateX");
+  if (event) {
+    event.stopPropagation();
+  } else {
+    document.getElementById("contacts-add-edit-bg").classList.toggle("contacts-add-edit-bg-show");
+    document.getElementById("contacts-add-edit").classList.toggle("contacts-translateX");
+  }
 }
 
 async function addContact(event) {
@@ -206,9 +209,7 @@ async function saveEdit(i) {
 
 async function contactDeleteInit(i) {
   let contactId = contactKeys[i].id;
-  let selectedContactElement = document.getElementById(
-    `selected-contact-${contactId}`
-  );
+  let selectedContactElement = document.getElementById(`selected-contact-${contactId}`);
   if (selectedContactElement) {
     selectedContactElement.remove();
     selectedContacts = selectedContacts.filter(
