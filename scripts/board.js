@@ -1,7 +1,9 @@
-const BASE_URL_TASKS = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_TASKS =
+  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let tasks = [];
 
-const BASE_URL_ASSIGNED = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_ASSIGNED =
+  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let bigassigned = [];
 
 let draggedTo;
@@ -214,7 +216,8 @@ function showBigTask(taskId) {
   if (bigelement) {
     document.getElementById("big_card_bg").classList.remove("d_none");
     document.getElementById("big_card_bg").innerHTML = "";
-    document.getElementById("big_card_bg").innerHTML = renderBigTaskCard(bigelement);
+    document.getElementById("big_card_bg").innerHTML =
+      renderBigTaskCard(bigelement);
     changeArtBackground(`big_art_${bigelement.id}`);
     addPrioBigImg(bigelement);
   }
@@ -251,64 +254,27 @@ function bigAssignedTo() {
   }
 }
 
-// Hauptfunktion zum Öffnen des add task Formulars (Judith)
+// Hauptfunktion zum Öffnen des add task Formulars
 function openForm() {
-  openOverlay(); // Overlay anzeigen
-  loadFormContent(); // Inhalt des Formulars laden
+  openOverlay();
+  const taskForm = document.getElementById("taskForm");
+  taskForm.style.display = "block";
+  taskForm.classList.add("active");
 }
 
 // Funktion, um das Overlay anzuzeigen
 function openOverlay() {
   const overlay = document.getElementById("taskOverlay");
-  overlay.style.display = "block"; // Overlay sichtbar machen
+  overlay.style.display = "block";
 }
 
-// Funktion, um den Inhalt des Formulars zu laden
-function loadFormContent() {
-  fetch("add_task.html") // Lade die Datei
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Netzwerkantwort war nicht ok."); // Fehler behandeln
-      }
-      return response.text(); // Den Textinhalt der Datei zurückgeben
-    })
-    .then((html) => {
-      const sectionContent = extractSection(html); // Extrahiere die gewünschte Section
-      insertFormContent(sectionContent); // Füge den Inhalt ein
-    })
-    .catch((error) => handleFetchError(error)); // Fehler behandeln
-}
-
-// Funktion, um den gewünschten Inhalt der Section zu extrahieren
-function extractSection(html) {
-  const parser = new DOMParser(); // Erstelle einen neuen DOM-Parser
-  const doc = parser.parseFromString(html, "text/html"); // Parse den HTML-Text
-  const section = doc.querySelector("#taskSection"); // Suche die Section anhand der ID
-  return section ? section.outerHTML : ""; // Gib den HTML-Inhalt der Section zurück, falls gefunden
-}
-
-// Funktion, um den geladenen Inhalt in die div einzufügen
-function insertFormContent(html) {
-  const taskForm = document.getElementById("taskForm"); // Die div für das Formular
-  taskForm.innerHTML = html; // Den Inhalt in die div einfügen
-  taskForm.classList.add("active"); // Klasse hinzufügen, um die Animation zu starten
-}
-
-// Funktion, um Fehler beim Fetch-Vorgang zu behandeln
-function handleFetchError(error) {
-  console.error("Es gab ein Problem mit dem Fetch-Vorgang:", error); // Fehler im Konsolenlog
-}
-
-//schließen der add task form
+// Funktion, um das Formular zu schließen
 function closeForm() {
   const taskForm = document.getElementById("taskForm");
-
-  // Zunächst die Klasse entfernen, um die div zu schließen
   taskForm.classList.remove("active");
-
-  // Overlay bleibt sichtbar, während die Animation läuft
   setTimeout(() => {
-    document.getElementById("taskOverlay").style.display = "none"; // Overlay ausblenden
-  }, 500); // Zeit entspricht der Animationsdauer
+    taskForm.style.display = "none";
+    document.getElementById("taskOverlay").style.display = "none";
+  }, 500);
 }
 //Hier Ende addTask Btn Funktionen. Muss ich (Judith) noch hübsch machen.

@@ -139,14 +139,14 @@ body {
   transition: 100ms;
 }
 
-.add_task_btn_txt{
+.add_task_btn_txt {
   height: 24px;
   font-size: 21px;
   font-weight: 700;
   color: #ffffff;
 }
 
-.add_task_plus_div{
+.add_task_plus_div {
   width: 32px;
   height: 32px;
 }
@@ -256,6 +256,7 @@ body {
 }
 
 .task-form {
+  display: none;
   position: fixed;
   top: 50%;
   right: -1116px; /* Start außerhalb des Bildschirms */
