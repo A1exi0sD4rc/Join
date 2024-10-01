@@ -279,6 +279,7 @@ body.no-scroll {
 }
 
 .addTask_overlay_headline {
+  padding: 64px 74px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -298,10 +299,29 @@ body.no-scroll {
 }
 
 .add_task_bottom_overlay {
-  margin-top: 145px;
+  margin-top: 114px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   bottom: 0;
+}
+
+.form_area_overlay {
+  padding: 0 74px 0 74px;
+}
+
+.add_task_fillIn_section_overlay {
+  display: flex;
+  justify-content: space-between;
+}
+.add_task_form_left_overlay {
+  height: 376px;
+  width: 440px;
+}
+
+.add_task_seperator_overlay {
+  height: 450px;
+  width: 1px;
+  background-color: #d1d1d1;
 }
 /* Ende addTask Overlay von Judith */

@@ -124,7 +124,7 @@ function awaitGenerateInitials() {
       if (!userName) {
         userLogo.style.display = "none";
         if (helpUser) helpUser.style.display = "none";
-        if (sidebarUser) sidebarUser.style.display = "none";
+        // if (sidebarUser) sidebarUser.style.display = "none"; //vorübergehend ausgeblendet, weil sonst die sidebar immer weg war auf der addTask Seite (Judith), soll eigtl. nur bei PP und Ln passieren.
       } else {
         generateInitials();
         userLogo.style.display = "flex";
