@@ -157,6 +157,7 @@
   height: 24px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 8px;
   cursor: pointer;
 }
@@ -166,36 +167,26 @@
   height: 24px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 8px;
   cursor: pointer;
 }
 
-.big_del_txt {
-  width: 49px;
-  height: 19px;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-}
-
-.big_edit_txt {
-  width: 30px;
-  height: 19px;
-}
-
-.big_del_icon_div,
-.big_edit_icon_div {
+.big_del_icon,
+.big_edit_icon {
   width: 24px;
   height: 24px;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.big_edit_icon,
-.big_del_icon {
-  width: 18.28px;
-  height: 18.28px;
+.delspan{
+  width: 49px;
+  height: 19px;
+}
+
+.editspan{
+  width: 30px;
+  height: 24px;
 }
 
 .big_assigned {
@@ -250,6 +241,17 @@
   font-size: 20px;
   font-weight: 400;
   color: #000000;
+}
+
+.big_del_edit svg:hover,
+.big_del:hover,
+.big_edit:hover{
+  color: #29abe2;
+}
+
+.big_card_close:hover{
+  border-radius: 52px;
+  background-color: #EEEEEE;
 }
 
 @keyframes slideIn {

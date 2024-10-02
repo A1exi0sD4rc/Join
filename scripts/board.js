@@ -285,13 +285,11 @@ function closeForm() {
 }
 //Hier Ende addTask Btn Funktionen. Muss ich (Judith) noch hübsch machen.
 
-// in progress
-
 async function deleteTask() {
   const taskId = document
     .getElementById("big_card")
     .getAttribute("data-task-id");
-
+    
   if (!taskId) {
     return;
   }
@@ -313,7 +311,5 @@ async function deleteTask() {
     updateHtmlProgress();
     updateHtmlAwait();
     updateHtmlDone();
-  } else {
-    console.error("Failed to delete task from the database.");
   }
 }
