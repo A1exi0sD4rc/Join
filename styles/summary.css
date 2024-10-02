@@ -379,13 +379,10 @@ p {
 
   .greet-user-name {
     font-size: 50px;
-    margin-left: 10px;
   }
 
   .greeting-container {
-    width: 630px;
-    flex-direction: row;
-    align-items: last baseline;
+    padding-left: 60px;
   }
 }
 
@@ -411,19 +408,14 @@ p {
   }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1000px) {
   .summary-main-container {
+    margin-left: 0px;
+    gap: 15px;
     justify-content: center;
     width: 100%;
     padding-left: 0;
     align-items: center;
-  }
-}
-
-@media (max-width: 900px) {
-  .summary-main-container {
-    margin-left: 0px;
-    gap: 15px;
   }
 
   .summary-container {
