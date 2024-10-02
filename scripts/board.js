@@ -1,9 +1,7 @@
-const BASE_URL_TASKS =
-  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_TASKS = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let tasks = [];
 
-const BASE_URL_ASSIGNED =
-  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_ASSIGNED = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let bigassigned = [];
 
 let draggedTo;
@@ -55,8 +53,7 @@ function updateHtmlTodo() {
   } else {
     for (let index = 0; index < todo.length; index++) {
       const elementToDo = todo[index];
-      document.getElementById("small_card_todo").innerHTML +=
-        renderTaskCardToDo(elementToDo);
+      document.getElementById("small_card_todo").innerHTML += renderTaskCardToDo(elementToDo);
       changeArtBackground(`art_small_${elementToDo.id}`);
       addPrioImg(elementToDo);
     }
@@ -70,13 +67,11 @@ function updateHtmlProgress() {
   let progress = tasks.filter((x) => x["category"] == "progress");
   document.getElementById("small_card_progress").innerHTML = "";
   if (progress.length < 1) {
-    document.getElementById("small_card_progress").innerHTML =
-      renderNoTasksProgress();
+    document.getElementById("small_card_progress").innerHTML = renderNoTasksProgress();
   } else {
     for (let index = 0; index < progress.length; index++) {
       const elementProgress = progress[index];
-      document.getElementById("small_card_progress").innerHTML +=
-        renderTaskCardToDo(elementProgress);
+      document.getElementById("small_card_progress").innerHTML += renderTaskCardToDo(elementProgress);
       changeArtBackground(`art_small_${elementProgress.id}`);
       addPrioImg(elementProgress);
     }
@@ -90,13 +85,11 @@ function updateHtmlAwait() {
   let await = tasks.filter((x) => x["category"] == "await");
   document.getElementById("small_card_await").innerHTML = "";
   if (await.length < 1) {
-    document.getElementById("small_card_await").innerHTML =
-      renderNoTasksAwait();
+    document.getElementById("small_card_await").innerHTML = renderNoTasksAwait();
   } else {
     for (let index = 0; index < await.length; index++) {
       const elementAwait = await[index];
-      document.getElementById("small_card_await").innerHTML +=
-        renderTaskCardAwait(elementAwait);
+      document.getElementById("small_card_await").innerHTML += renderTaskCardAwait(elementAwait);
       changeArtBackground(`art_small_${elementAwait.id}`);
       addPrioImg(elementAwait);
     }
@@ -114,8 +107,7 @@ function updateHtmlDone() {
   } else {
     for (let index = 0; index < done.length; index++) {
       const elementDone = done[index];
-      document.getElementById("small_card_done").innerHTML +=
-        renderTaskCardAwait(elementDone);
+      document.getElementById("small_card_done").innerHTML += renderTaskCardAwait(elementDone);
       changeArtBackground(`art_small_${elementDone.id}`);
       addPrioImg(elementDone);
     }
@@ -164,9 +156,7 @@ function addPrioBigImg(bigelement) {
  * filters tasks based on the search input.
  */
 function filterTasks() {
-  const searchValue = document
-    .querySelector(".search_task_input")
-    .value.toLowerCase();
+  const searchValue = document.querySelector(".search_task_input").value.toLowerCase();
   clearAndFilterTasks(searchValue);
 }
 
@@ -216,8 +206,7 @@ function showBigTask(taskId) {
   if (bigelement) {
     document.getElementById("big_card_bg").classList.remove("d_none");
     document.getElementById("big_card_bg").innerHTML = "";
-    document.getElementById("big_card_bg").innerHTML =
-      renderBigTaskCard(bigelement);
+    document.getElementById("big_card_bg").innerHTML = renderBigTaskCard(bigelement);
     changeArtBackground(`big_art_${bigelement.id}`);
     addPrioBigImg(bigelement);
   }
@@ -249,8 +238,7 @@ async function assignedToBigCard(path = "") {
 function bigAssignedTo() {
   for (let index = 0; index < bigassigned.length; index++) {
     const assigned = bigassigned[index];
-    document.getElementById("assigned_big_name").innerHTML +=
-      renderBigTaskCard(assigned);
+    document.getElementById("assigned_big_name").innerHTML += renderBigTaskCard(assigned);
   }
 }
 
@@ -284,3 +272,32 @@ function closeForm() {
   document.body.classList.remove("no-scroll");
 }
 //Hier Ende addTask Btn Funktionen. Muss ich (Judith) noch hübsch machen.
+
+
+// in progress
+
+async function deleteTask() {
+  const taskId = document.getElementById("big_card").getAttribute("data-task-id");
+    if (!taskId) {
+      return;
+    }
+
+  const response = await fetch(`${BASE_URL_TASKS}/${taskId}.json`, {
+    method: "DELETE",
+  });
+
+    if (response.ok) {
+      const taskCard = document.getElementById(taskId);
+    if (taskCard) {
+      taskCard.remove();
+    }
+
+    tasks = tasks.filter(task => task.id !== taskId);
+
+    hideBigTask();
+    updateHtmlTodo();
+    updateHtmlProgress();
+    updateHtmlAwait();
+    updateHtmlDone();
+  }
+}

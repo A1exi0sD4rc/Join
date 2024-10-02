@@ -3,26 +3,25 @@ function renderTaskCardToDo(elementToDo) {
   const subAmountHtml = generateSubAmountHtml(subtasks);
 
   return `
-    <div onclick="showBigTask('${elementToDo["id"]
-    }')" class="task_card_small" id="${elementToDo["id"]
-    }" draggable="true" ondragstart="startDrag('${elementToDo["id"]}')">
+    <div onclick="showBigTask('${elementToDo["id"]}')" class="task_card_small" id="${elementToDo["id"]}" draggable="true" ondragstart="startDrag('${elementToDo["id"]}')">
       <div class="task_card_small_content">
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementToDo["id"]}">${elementToDo["art"]
-    }</div>
-        </div>
-        <div class="title_desc_small_div">
-          <div class="title_small">${elementToDo["title"]}</div>
-          <div class="description_small">${elementToDo["description"]}</div>
-        </div>
+        <div class="art_small" id="art_small_${elementToDo["id"]}">${elementToDo["art"]}
+      </div>
+    </div>
+
+    <div class="title_desc_small_div">
+      <div class="title_small">${elementToDo["title"]}</div>
+      <div class="description_small">${elementToDo["description"]}</div>
+    </div>
+
         ${subAmountHtml}
-        <div class="assigned_prio_small">
-          <div class="assigned_small">
-            ${renderAssignedContacts(elementToDo["assigned"])}
-          </div>
-          <div class="prio_small" id="prio_small_${elementToDo["id"]}">${elementToDo["prio"]
-    }</div>
-        </div>
+
+    <div class="assigned_prio_small">
+      <div class="assigned_small">${renderAssignedContacts(elementToDo["assigned"])}</div>
+      <div class="prio_small" id="prio_small_${elementToDo["id"]}">${elementToDo["prio"]}</div>
+    </div>
+
       </div>
     </div>
   `;
@@ -119,8 +118,7 @@ function renderTaskCardDone(elementDone) {
 }
 
 function renderAssignedContacts(assigned) {
-  return assigned
-    .map((contact) => {
+  return assigned.map((contact) => {
       let initials = getInitials(contact.name.replace(" (You)", ""));
       return `
       <div class="assigned-contact" style="position: relative; display: inline-block;">
@@ -136,78 +134,63 @@ function renderAssignedContacts(assigned) {
 
 function generateSubAmountHtml(subtasks) {
   const totalSubtasks = Object.keys(subtasks).length;
-  const completedSubtasks = Object.values(subtasks).filter(
-    (subtask) => subtask.completed
-  ).length;
-
-  return totalSubtasks > 0
-    ? `
-    <div class="sub_amount_small">
-      <div class="subtasks_bar_small">
-        <div class="subtasks_bar_fill" style="width: ${(completedSubtasks / totalSubtasks) * 100
-    }%; background-color: #4589FF;"></div>
+  const completedSubtasks = Object.values(subtasks).filter((subtask) => subtask.completed).length;
+  return totalSubtasks > 0 ? 
+    `
+      <div class="sub_amount_small">
+        <div class="subtasks_bar_small">
+          <div class="subtasks_bar_fill" style="width: ${(completedSubtasks / totalSubtasks) * 100}%; background-color: #4589FF;"></div>
+        </div>
+        <div class="amount_subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</div>
       </div>
-      <div class="amount_subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</div>
-    </div>
-  `
-    : "";
+    `: 
+    "";
 }
 
 function renderBigTaskCard(bigelement) {
   return `
     <div id="big_card" class="big_card">
-
       <div class="big_card_art_close">
-        <div class="big_art" id="big_art_${bigelement["id"]}">${bigelement["art"]
-    }</div>
-        <div class="big_card_close" onclick="hideBigTask()"><img src="assets/img/close.svg"></div>
-      </div>
+      <div class="big_art" id="big_art_${bigelement["id"]}">${bigelement["art"]}</div>
+      <div class="big_card_close" onclick="hideBigTask()"><img src="assets/img/close.svg"></div>
+    </div>
 
-      <div class="title_big">${bigelement["title"]}</div>
-      <div class="big_description" id="big_description_${
-        bigelement["description"]
-      }">${bigelement["description"]}</div>
+    <div class="title_big">${bigelement["title"]}</div>
+    <div class="big_description" id="big_description_${bigelement["description"]}">${bigelement["description"]}</div>
       
-      <div class="big_due" id="big_due">
-        <div class="big_due_date_txt" id="big_due_date_txt">Due date:</div>
-        <div class="big_due_date" id="big_due_date">${formatDate(
-      bigelement["due_date"]
-    )}</div>
+    <div class="big_due" id="big_due">
+      <div class="big_due_date_txt" id="big_due_date_txt">Due date:</div>
+      <div class="big_due_date" id="big_due_date">${formatDate(bigelement["due_date"])}</div>
+    </div>
+
+    <div class="big_prio">
+      <div class="big_prio_txt" id="big_prio_txt">Priority:</div>
+      <div class="big_prio_img" id="big_prio_img_${bigelement["id"]}"> ${bigelement["prio"]}</div>
+    </div>
+
+    <div class="big_assigned">
+      <div class="big_assigned_txt">Assigned To:</div>
+      <div class="assigned_div">${renderBigAssignedContacts(bigelement.assigned)}</div>
+    </div>
+
+    <div class="big_subs">
+      <div class="big_subs_txt">Subtasks</div>
+      <div class="subtasks_container">${renderSubtasks(bigelement.subtask, bigelement.id)}</div>
+    </div>
+
+    <div class="big_del_edit">
+      <div class="big_del" onclick="deleteTask()">
+        <div class="big_del_icon"><img class="big_del_icon" src="assets/img/delete.svg"></div>
+        <div class="big_del_txt">Delete</div>
       </div>
 
-      <div class="big_prio">
-        <div class="big_prio_txt" id="big_prio_txt">Priority:</div>
-        <div class="big_prio_img" id="big_prio_img_${bigelement["id"]}"> ${bigelement["prio"]
-    }</div>
-      </div>
-
-      <div class="big_assigned">
-        <div class="big_assigned_txt">Assigned To:</div>
-        <div class="assigned_div">${renderBigAssignedContacts(
-          bigelement.assigned
-        )}</div>
-      </div>
-
-
-     <div class="big_subs">
-        <div class="big_subs_txt">Subtasks</div>
-        <div class="subtasks_container">${renderSubtasks(
-          bigelement.subtask,
-          bigelement.id
-        )}</div>
-      </div>
-
-      <div class="big_del_edit">
-        <div class="big_del">
-          <div class="big_del_icon"><img class="big_del_icon" src="assets/img/delete.svg"></div>
-          <div class="big_del_txt">Delete</div>
-        </div>
         <img src="assets/img/line.svg">
-        <div class="big_edit">
-          <div class="big_edit_icon_div"><img class="big_edit_icon" src="assets/img/edit.svg"></div>
-          <div class="big_edit_txt">Edit</div>
-        </div>
+
+    <div class="big_edit">
+      <div class="big_edit_icon_div"><img class="big_edit_icon" src="assets/img/edit.svg"></div>
+      <div class="big_edit_txt">Edit</div>
       </div>
+    </div>
 
     </div>
   `;
