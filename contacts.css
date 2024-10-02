@@ -465,15 +465,16 @@ body {
 }
 
 .contacts-edit-section {
+    position: relative;
+    top: 140px;
+    left: 20px;
     display: flex;
-    margin-bottom: 100px;
-    padding: 50px;
 }
 
 .contacts-edit-section svg {
     margin-left: 50px;
     margin-right: 75px;
-    margin-top: 150px;
+    margin-top: 65px;
 }
 
 .contacts-edit-input-btn {
@@ -481,16 +482,17 @@ body {
 }
 
 .contacts-add-edit-close-btn {
+    position: relative;
+    left: 665px;
+    bottom: 100px;
     width: 32px;
     height: 32px;
-    margin-left: 93%;
     background-image: url("./assets/img/close.svg");
     background-size: 13px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     cursor: pointer;
     border-radius: 56px;
-    margin-bottom: 60px;
 }
 
 .contacts-add-edit-close-btn:hover {
@@ -586,9 +588,9 @@ body {
 }
 
 .contacts-add-section {
+    position: relative;
+    top: 150px;
     display: flex;
-    margin-bottom: 100px;
-    padding: 50px;
 }
 
 .contacts-add-section-img {
@@ -596,7 +598,7 @@ body {
     height: 120px;
     margin-left: 50px;
     margin-right: 75px;
-    margin-top: 150px;
+    margin-top: 65px;
 }
 
 .contacts-img-margin img {
@@ -686,18 +688,33 @@ body {
     }
 
     .contacts-add-section {
-        padding: 25px;
-        margin-bottom: 0;
+        top: 120px;
     }
 
     .contacts-add-section-img {
+        width: 100px;
+        height: 100px;
         margin-left: 25px;
         margin-right: 40px;
     }
 
     .contacts-add-title {
-        width: 550px;
+        min-width: 400px;
         height: 500px;
+    }
+
+    .contacts-add-edit-close-btn {
+        left: 510px;
+        bottom: 75px;
+    }
+
+    .contacts-edit-section {
+        left: 0px;
+        top: 120px;
+    }
+
+    .contacts-edit-input input {
+        width: 300px;
     }
 
     .contacts-edit-title-h h1 {
@@ -706,6 +723,18 @@ body {
 
     .contacts-edit-title-h h3 {
         font-size: 20px;
+    }
+
+    .contacts-edit-title {
+        height: 500px;
+        width: 400px;
+    }
+
+    .contacts-edit-section svg {
+        width: 100px;
+        height: 100px;
+        margin-left: 25px;
+        margin-right: 40px;
     }
 }
 
@@ -787,7 +816,7 @@ body {
     }
 
     .contacts-add-edit-div {
-        width: 850px;
+        width: 900px;
     }
 
     .contacts-edit-input-btn {
@@ -798,8 +827,17 @@ body {
         width: 250px;
     }
 
+    .contacts-add-title {
+        min-width: 350px;
+    }
+
+    .contacts-add-section-img {
+        margin-left: 15px;
+    }
+
     .contacts-add-edit-close-btn {
-        margin-left: 90%;
+        left: 490px;
+        bottom: 90px;
     }
 
     .contacts-add-cancel-btn {
@@ -810,16 +848,20 @@ body {
         padding: 13px;
     }
 
-    .contacts-add-title {
-        width: 300px;
-    }
-
     .contacts-edit-title-h h1 {
         font-size: 40px;
     }
 
     .contacts-edit-title-h h3 {
         font-size: 17px;
+    }
+
+    .contacts-edit-title {
+        width: 350px;
+    }
+
+    .contacts-edit-section svg {
+        margin-left: 15px;
     }
 }
 
@@ -939,7 +981,7 @@ body {
         min-width: 0;
         width: 400px;
         min-height: 350px;
-        border-top-right-radius: 20px;
+        border-top-right-radius: 30px;
         border-bottom-left-radius: 0;
     }
 
@@ -964,26 +1006,35 @@ body {
     .contacts-add-section {
         flex-direction: column;
         flex: 1;
+        display: flex;
+        align-items: center;
+        top: -83px;
+    }
+
+    .contacts-add-section-img {
+        margin: 0;
+        margin-bottom: 20px;
     }
 
     .contacts-add-edit-close-btn {
-        position: relative;
-        top: -475px;
-        right: -165px;
         background-image: url("./assets/img/close_white.svg");
         background-size: 20px;
-        margin: 0;
+        left: 170px;
+        top: -250px;
     }
 
     .contacts-add-edit-close-btn:hover {
         background-color: #29abe2;
     }
 
-    .contacts-add-section-img {
-        margin: 0;
-        position: relative;
-        left: 35%;
-        top: -120px;
+    .contacts-edit-input input {
+        width: 330px;
+        max-height: 40px;
+        padding: 8px 15px;
+    }
+
+    .contacts-edit-input {
+        margin-bottom: 0;
     }
 
     .contacts-edit-input-btn {
@@ -992,18 +1043,8 @@ body {
         flex-direction: column;
     }
 
-    .contacts-edit-input {
-        position: relative;
-        top: -90px;
-    }
-
     .contacts-add-cancel-btn {
         display: none;
-    }
-
-    .contacts-add-create-btn {
-        position: relative;
-        top: -90px;
     }
 }
 
@@ -1082,5 +1123,41 @@ body {
 
     .contacts-d-more-options-btn {
         right: 15px;
+    }
+
+    .contacts-add-title {
+        width: 300px;
+        min-height: 0;
+        max-height: 300px;
+    }
+
+    .contacts-add-edit-div {
+        width: 300px;
+        margin-right: 5px;
+    }
+
+    .contacts-edit-title-h {
+        margin-left: 15px;
+    }
+
+    .contacts-edit-title-h h1 {
+        font-size: 40px;
+    }
+
+    .contacts-edit-title-h h3 {
+        font-size: 16px;
+    }
+
+    .contacts-edit-input input {
+        width: 250px;
+    }
+
+    .contacts-add-edit-close-btn {
+        left: 120px;
+        top: -200px;
+    }
+
+    .contacts-add-section-img {
+        margin-bottom: 50px;
     }
 }

@@ -123,7 +123,7 @@ function renderEditContact(i) {
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
         <div class="contacts-edit-title">
             <img src="./assets/img/logo_white.svg">
-            <div class="contacts-edit-title-h1">
+            <div class="contacts-edit-title-h">
                 <h1>Edit contact</h1>
                 <svg width="94" height="3" viewBox="0 0 94 3" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M92 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
@@ -133,12 +133,12 @@ function renderEditContact(i) {
     `;
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
         <div class="contacts-edit-section">
+            <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility()"></button>
             <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="60" cy="60" r="60" fill="#FF7A00"/>
                 <text x="60" y="73" text-anchor="middle" font-size="47" fill="white">${getInitials(contactKeys[i]['name'])}</text>
             </svg>
             <div class="contacts-edit-input-btn">
-                <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility(${Event})"></button>
                 <div class="contacts-edit-input">
                     <input id="contacts-user-name" class="contacts-edit-name" type="text" value="${contactKeys[i]['name']}">
                     <input id="contacts-user-email" class="contacts-edit-email" type="text" value="${contactKeys[i]['email']}">
@@ -172,7 +172,7 @@ function renderAddNewContact() {
     `;
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
         <div class="contacts-add-section">
-            <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility(${Event})"></button>
+            <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility()"></button>
             <img class="contacts-add-section-img" src="./assets/img/no_user.svg">
             <form class="contacts-edit-input-btn">
                 <div class="contacts-edit-input">
@@ -181,7 +181,7 @@ function renderAddNewContact() {
                     <input required id="contacts-user-number" class="contacts-edit-number" type="tel" placeholder="Phone">
                 </div>
                 <div>
-                    <button class="contacts-add-cancel-btn contacts-img-margin" onclick="toggleVisiblility(${Event})">Cancel <img src="./assets/img/close.svg"></button>
+                    <button class="contacts-add-cancel-btn contacts-img-margin" onclick="toggleVisiblility()">Cancel <img src="./assets/img/close.svg"></button>
                     <button class="contacts-add-create-btn contacts-img-margin" onclick="addContact(event)">Create contact <img src="./assets/img/check.svg"></button>
                 </div>
             </form>

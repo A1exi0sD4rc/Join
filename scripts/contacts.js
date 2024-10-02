@@ -90,7 +90,7 @@ function toggleDetailClasses(i) {
   }
 }
 
-function contactAddEditInit(action, i) {
+function contactAddEditInit(i, action) {
   toggleVisiblility();
   if (action == "edit") {
     renderEditContact(i);
