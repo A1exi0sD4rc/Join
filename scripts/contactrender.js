@@ -18,7 +18,11 @@ function render() {
                 <div class="contacts-headline-seperator-horizontal"></div>
             </div>
             <div id="contact-details" class="contacts-contact-details"></div>
-            <button class="contacts-d-more-options-btn d-none"></button>   
+            <button class="contacts-d-more-options-btn d-none"></button>
+            <div class="contacts-d-more-options-div">
+                <button>Edit</button>
+                <button>Delete</button>
+            </div>   
         </div> 
     `;
     document.getElementById("contacts-div").innerHTML = "";
