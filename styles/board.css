@@ -13,7 +13,7 @@ body {
 }
 
 .board_header {
-  height: 232px;
+  height: 136px;
   width: 1208px;
   padding-top: 96px;
   padding-left: 64px;
@@ -72,7 +72,6 @@ body {
 
 .input_div {
   width: 312px;
-  height: 48px;
   border: 1px solid #a8a8a8;
   background-color: #ffffff;
   border-radius: 10px;
@@ -125,7 +124,7 @@ body {
 
 .add_task_btn {
   width: 160px;
-  height: 48px;
+  height: 32px;
   border: 1px;
   background-color: #2a3647;
   border-radius: 10px;
