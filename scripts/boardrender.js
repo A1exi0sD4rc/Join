@@ -177,12 +177,14 @@ function generateSubAmountHtml(subtasks) {
         <div class="amount_subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</div>
       </div>
     `
-    : "";
+    : `
+     <div class="sub_amount_small"></div>
+    `;
 }
 
 function renderBigTaskCard(bigelement) {
   return `
-    <div id="big_card" class="big_card">
+    <div id="big_card" class="big_card" data-task-id="${bigelement["id"]}">
       <div class="big_card_art_close">
       <div class="big_art" id="big_art_${bigelement["id"]}">${
     bigelement["art"]

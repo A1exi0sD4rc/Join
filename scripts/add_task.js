@@ -424,7 +424,6 @@ const input = document.querySelector(".aT_input_date");
 input.addEventListener("input", function () {
   if (this.value) {
     this.style.color = "#000000";
-    this.style.color = "#d1d1d1";
   }
 });
 
@@ -464,6 +463,7 @@ function clearDate() {
   const dateField = document.getElementById("aT_date");
   if (dateField) {
     dateField.value = "";
+    dateField.style.color = "#d1d1d1";
   }
 }
 

@@ -366,6 +366,7 @@ sup {
   background-size: contain;
   pointer-events: none;
   background-color: white;
+  color: #000000;
 }
 
 .date_error_container {
