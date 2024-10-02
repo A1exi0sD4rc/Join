@@ -87,8 +87,31 @@ function getGreeting() {
  */
 function generateUpcomingDate() {
   let content = document.getElementById("upcomingDate");
-  // content.innerHTML = getClosestUrgentDueDate(); Function can be implemented when tasks have a due date.
-  content.innerHTML = "Oktober 10, 2024"; // Here for dinamic date.
+  content.innerHTML = getClosestUrgentDueDate();
+}
+
+/**
+ * This function calculates the due date of the most urgent task.
+ * @returns the due date of the most urgent task.
+ */
+function getClosestUrgentDueDate() {
+  let urgentTasks = tasks.filter((task) => task.prio === "Urgent");
+  if (!urgentTasks.length) return "";
+  let closestDate = urgentTasks.reduce(
+    (acc, task) => {
+      let dueDate = new Date(task.due_date);
+      let diff = dueDate - new Date();
+      return diff >= 0 && diff < acc.diff ? { date: dueDate, diff: diff } : acc;
+    },
+    { date: null, diff: Infinity }
+  ).date;
+  return closestDate
+    ? closestDate.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "";
 }
 
 /**
