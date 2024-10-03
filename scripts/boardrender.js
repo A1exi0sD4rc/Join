@@ -281,10 +281,9 @@ async function toggleSubtask(taskId, subtaskIndex) {
     const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
     const taskData = await taskResponse.json();
     const subtaskKey = `subtask${subtaskIndex + 1}`;
-    const subtask = taskData.subtask[subtaskKey];
-
+    const subtask = taskData.subtask?.[subtaskKey];
     if (!subtask) {
-      console.error(`Subtask ${subtaskKey} not found`);
+      console.error(`Subtask ${subtaskKey} not found.`);
       return;
     }
 
@@ -303,7 +302,7 @@ async function toggleSubtask(taskId, subtaskIndex) {
     }
 
     updateSubtasksUI(taskId, taskData);
-    await updateTaskInDatabase(taskData);
+    await updateTaskInDatabase({ ...taskData, id: taskId });
   } catch (error) {
     console.error("Error toggling subtask:", error);
   }
