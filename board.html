@@ -40,18 +40,18 @@
 </head>
 
 <body onload="initBoardJs()">
+
   <section w3-include-html="./assets/templates/header.html" class="header"></section>
   <section w3-include-html="./assets/templates/sidebar.html" class="sidebar"></section>
 
   <!-- ab hier addTaskOverlay -->
   <div id="taskOverlay" class="overlay" onclick="closeForm()"></div>
+
   <div id="taskForm" class="task-form">
     <section id="taskSection">
       <div class="addTask_overlay_headline">
         <h1 class="add_task_h1">Add Task</h1>
-        <button class="close_overlay_btn" onclick="closeForm()">
-          <img src=".//assets/img/close_addTask_overlay.svg" alt="close addTask" />
-        </button>
+        <button class="close_overlay_btn" onclick="closeForm()"><img src=".//assets/img/close_addTask_overlay.svg" alt="close addTask"><button>
       </div>
       <form id="myForm" class="form_area_overlay">
         <div class="add_task_fillIn_section_overlay">
@@ -171,68 +171,78 @@
   <!-- hier Ende addTaskOverlay -->
 
   <div class="board_content">
+
     <div class="big_card_bg d_none" id="big_card_bg"></div>
 
     <div class="board_header">
+
       <h1>Board</h1>
 
       <div class="search_add_task">
-        <div class="input_div">
-          <input class="search_task_input" id="search_task_input" oninput="filterTasks()" type="search"
-            placeholder="Find Task" />
+
+        <div class="input_div"><input class="search_task_input" id="search_task_input" oninput="filterTasks()" type="search" placeholder="Find Task">
           <div class="search_icon_div">
-            <div class="search_icon" onclick="filterTasks(); emptySearchInput()">
-              <img src="assets/img/search.svg" />
-            </div>
+            <div class="search_icon" onclick="filterTasks(); emptySearchInput()"><img src="assets/img/search.svg"></div>
           </div>
         </div>
 
         <div class="add_task_btn" id="addTaskBtn" onclick="openForm()">
-          <div class="add_task_btn_txt">
-            <span class="add_task_btn_txt">Add Task</span>
-          </div>
-          <div class="">
-            <img class="add_task_plus" src="assets/img/add.svg" />
-          </div>
+          <div class="add_task_btn_txt"><span class="add_task_btn_txt">Add Task</span></div>
+          <div><img class="add_task_plus" src="assets/img/add.svg"></div>
         </div>
       </div>
     </div>
 
     <div class="board_categorys">
-      <div class="category_topics">
-        To do
-        <div class="plus_btn" onclick="openForm()">+</div>
+
+      <div class="category_topics">To do<div class="plus_btn" onclick="openForm()">+</div>
+        <div 
+          class="slots" id="small_card_todo" ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_todo')"
+          ondragleave="removeHighlightBorder('small_card_todo')">
+        </div>
       </div>
-      <div class="category_topics">
-        In progress
-        <div class="plus_btn" onclick="openForm()">+</div>
+      
+      <div class="category_topics">In progress<div class="plus_btn" onclick="openForm()">+</div>
+        <div 
+          class="slots" id="small_card_progress" ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_progress')"
+          ondragleave="removeHighlightBorder('small_card_progress')">
+        </div>
       </div>
-      <div class="category_topics">
-        Await feedback
-        <div class="plus_btn" onclick="openForm()">+</div>
+      
+      <div class="category_topics">Await feedback<div class="plus_btn" onclick="openForm()">+</div>
+        <div 
+          class="slots" id="small_card_await" ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
+          ondragleave="removeHighlightBorder('small_card_await')">
+        </div>
       </div>
-      <div class="category_topics">Done</div>
+      
+      <div class="category_topics">Done
+        <div 
+          class="slots" id="small_card_done" ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
+          ondragleave="removeHighlightBorder('small_card_done')">
+        </div>
+      </div>
+      
     </div>
 
     <div class="task_slots">
-      <div class="slots" id="small_card_todo" ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
-        ondragover="allowDrop(event); addHighlightBorder('small_card_todo')"
-        ondragleave="removeHighlightBorder('small_card_todo')"></div>
 
-      <div class="slots" id="small_card_progress"
-        ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
-        ondragover="allowDrop(event); addHighlightBorder('small_card_progress')"
-        ondragleave="removeHighlightBorder('small_card_progress')"></div>
 
-      <div class="slots" id="small_card_await" ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
-        ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
-        ondragleave="removeHighlightBorder('small_card_await')"></div>
 
-      <div class="slots" id="small_card_done" ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
-        ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
-        ondragleave="removeHighlightBorder('small_card_done')"></div>
+      
+
+      
+
+
+
     </div>
+
   </div>
+
 </body>
 
 </html>
