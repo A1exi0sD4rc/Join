@@ -28,6 +28,7 @@ async function initBoardJs() {
   updateHtmlAwait();
   updateHtmlDone();
   changeArtBackground();
+  await getContacts();
 }
 
 /**
@@ -289,7 +290,7 @@ async function deleteTask() {
   const taskId = document
     .getElementById("big_card")
     .getAttribute("data-task-id");
-    
+
   if (!taskId) {
     return;
   }

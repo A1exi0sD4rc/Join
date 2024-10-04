@@ -10,7 +10,23 @@ async function getContacts() {
 
   try {
     contactsAddTask = Object.values(responseAsJson);
+    console.log("All contacts:", contactsAddTask);
     contactsAddTask.sort((a, b) => a.name.localeCompare(b.name));
+
+    let userName = sessionStorage.getItem("userName");
+    if (
+      userName &&
+      !contactsAddTask.some((contact) => contact.name === `${userName} (You)`)
+    ) {
+      let userContact = {
+        name: `${userName} (You)`,
+        bgcolor: "#29abe2",
+        initials: getInitials(userName),
+      };
+
+      contactsAddTask.unshift(userContact);
+    }
+
     renderContacts();
     loadSelectedContactsFromSession();
   } catch (error) {
@@ -21,26 +37,13 @@ async function getContacts() {
 function getInitials(name) {
   return name
     .split(" ")
-    .map((word) => word.charAt(0))
+    .map((word) => word.charAt(0).toUpperCase())
     .join("");
 }
 
 function renderContacts() {
   let contactContainer = document.getElementById("contacts_container");
   contactContainer.innerHTML = "";
-
-  let userName = sessionStorage.getItem("userName");
-  if (
-    userName &&
-    !contactsAddTask.some((contact) => contact.name === userName + " (You)")
-  ) {
-    let userContact = {
-      name: `${userName} (You)`,
-      bgcolor: "#29abe2",
-    };
-
-    contactsAddTask.unshift(userContact);
-  }
 
   for (let i = 0; i < contactsAddTask.length; i++) {
     let contact = contactsAddTask[i];
