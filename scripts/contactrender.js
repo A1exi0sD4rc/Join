@@ -105,8 +105,8 @@ function renderContactDetails(i) {
             <b>Phone</b>
             ${contactKeys[i]['number']}
         </div>
-        <div id="contact-details-option" class="contacts-d-more-options-div" onclick="contactShowEditOption(event)">
-                <button class="contact-details-mobil-edit-btn" onclick="contactAddEditInit(${i}, 'edit')">Edit</button>
+        <div id="contact-details-option" class="contacts-d-more-options-div">
+                <button class="contact-details-mobil-edit-btn" onclick="contactShowEditOption(); contactAddEditInit(${i}, 'edit')">Edit</button>
                 <button class="contact-details-mobil-delete-btn">Delete</button>
         </div> 
     `;
