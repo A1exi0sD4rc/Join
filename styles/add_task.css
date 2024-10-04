@@ -310,6 +310,10 @@ sup {
   overflow-y: auto;
 }
 
+.scrollable_container_overlay {
+  max-height: 170px;
+}
+
 .scrollable_container::-webkit-scrollbar {
   background-color: transparent;
   width: 10px;

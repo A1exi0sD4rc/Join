@@ -2,7 +2,7 @@ let contactKeys = [];
 let lastSelected;
 let lastContactCreat;
 let BASE_URL = `https://join-337-userlist-default-rtdb.firebaseio.com/contacts`;
-// let selectedContacts = []; Judith: wurde schon in Datei add_task_contacts.js deklariert, daher hier deaktiviert, sonst Konsolenfehler bei boardSeite.
+let selectedContacts = [];
 
 async function init() {
   await getContactData();
@@ -66,11 +66,17 @@ function getInitials(name) {
 function toggleDetailClasses(i) {
   if (window.innerWidth < 1000) {
     document.getElementById("contacts-div").classList.toggle("d-none");
-    document.getElementById("contacts-h-d-div").classList.toggle("contacts-h-d-mobil");
+    document
+      .getElementById("contacts-h-d-div")
+      .classList.toggle("contacts-h-d-mobil");
   } else {
     if (lastSelected === undefined) {
-      document.getElementById(`${i}`).classList.toggle("contacts-overview-contact-selected");
-      document.getElementById(`${i}`).classList.toggle("contacts-overview-contact-unselected");
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-selected");
+      document
+        .getElementById(`${i}`)
+        .classList.toggle("contacts-overview-contact-unselected");
       lastSelected = i;
     } else {
       document
@@ -103,8 +109,12 @@ function toggleVisiblility(event) {
   if (event) {
     event.stopPropagation();
   } else {
-    document.getElementById("contacts-add-edit-bg").classList.toggle("contacts-add-edit-bg-show");
-    document.getElementById("contacts-add-edit").classList.toggle("contacts-translateX");
+    document
+      .getElementById("contacts-add-edit-bg")
+      .classList.toggle("contacts-add-edit-bg-show");
+    document
+      .getElementById("contacts-add-edit")
+      .classList.toggle("contacts-translateX");
   }
 }
 
@@ -209,7 +219,9 @@ async function saveEdit(i) {
 
 async function contactDeleteInit(i) {
   let contactId = contactKeys[i].id;
-  let selectedContactElement = document.getElementById(`selected-contact-${contactId}`);
+  let selectedContactElement = document.getElementById(
+    `selected-contact-${contactId}`
+  );
   if (selectedContactElement) {
     selectedContactElement.remove();
     selectedContacts = selectedContacts.filter(
