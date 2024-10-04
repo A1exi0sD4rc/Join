@@ -9,7 +9,7 @@ function render() {
         <div id="contacts-div" class="contacts-container"></div>
     `;
     document.getElementById("contacts-site").innerHTML += /*html*/ `
-        <div id="contacts-h-d-div" class="contacts-headline-details-div">
+        <div id="contacts-h-d-div" class="contacts-headline-details-div" onclick="contactShowEditOption()">
             <button class="contacts-details-mobil-close-btn d-none" onclick="toggleDetailClasses()"></button>
             <div class="contacts-headline">
                 <h1>Contacts</h1>
@@ -18,11 +18,7 @@ function render() {
                 <div class="contacts-headline-seperator-horizontal"></div>
             </div>
             <div id="contact-details" class="contacts-contact-details"></div>
-            <button class="contacts-d-more-options-btn d-none"></button>
-            <div class="contacts-d-more-options-div">
-                <button>Edit</button>
-                <button>Delete</button>
-            </div>   
+            <button class="contacts-d-more-options-btn d-none" onclick="contactShowEditOption(event)"></button>  
         </div> 
     `;
     document.getElementById("contacts-div").innerHTML = "";
@@ -109,6 +105,10 @@ function renderContactDetails(i) {
             <b>Phone</b>
             ${contactKeys[i]['number']}
         </div>
+        <div id="contact-details-option" class="contacts-d-more-options-div" onclick="contactShowEditOption(event)">
+                <button class="contact-details-mobil-edit-btn" onclick="contactAddEditInit(${i}, 'edit')">Edit</button>
+                <button class="contact-details-mobil-delete-btn">Delete</button>
+        </div> 
     `;
 }
 

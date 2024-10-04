@@ -371,6 +371,9 @@ body {
     font-size: 16px;
 }
 
+
+/* details mobil */
+
 .contacts-d-more-options-btn {
     position: absolute;
     right: 100px;
@@ -387,11 +390,63 @@ body {
     cursor: pointer;
 }
 
-
-/* details mobil */
-
 .contacts-d-more-options-btn:hover {
     background-color: #29abe2;
+}
+
+.contacts-d-more-options-div {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    max-width: 120px;
+    max-height: 100px;
+    position: absolute;
+    right: 90px;
+    bottom: 40px;
+    background-color: white;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transform: translateX(+1000%);
+    transition: all 125ms ease-in-out;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.contacts-d-more-options-show {
+    transform: translateX(0%) !important;
+}
+
+.contacts-d-more-options-div button {
+    width: 70px;
+    height: 24px;
+    padding: 8px;
+    padding-left: 45px;
+    border-radius: 10px;
+}
+
+.contact-details-mobil-edit-btn {
+    background-image: url("./assets/img/contacts_pen.svg");
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+}
+
+.contact-details-mobil-edit-btn:hover {
+    background-color: #e8e8e8;
+    background-image: url("./assets/img/contacts_pen_hover.svg");
+    color: #29abe2;
+}
+
+.contact-details-mobil-delete-btn {
+    background-image: url("./assets/img/contacts_bin.svg");
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+}
+
+.contact-details-mobil-delete-btn:hover {
+    background-color: #e8e8e8;
+    background-image: url("./assets/img/contacts_bin_hover.svg");
+    color: #29abe2;
 }
 
 
