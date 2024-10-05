@@ -1,379 +1,247 @@
 <!DOCTYPE html>
 
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="shortcut icon"
-      href="./assets/img/logo_white.svg"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="./assets/fonts.css" />
-    <link rel="stylesheet" href="styles/add_task.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="scripts/summary.js"></script>
-    <script src="scripts/add_task.js" defer></script>
-    <script src="scripts/add_task_collectData.js" defer></script>
-    <script src="scripts/add_task_contacts.js" defer></script>
-    <script src="scripts/board.js" defer></script>
-    <script src="scripts/add_task_validate.js"></script>
-    <!-- hier ende von allem nötigen -->
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="styles/board.css" />
-    <link rel="stylesheet" href="styles/taskcardsmall.css" />
-    <link rel="stylesheet" href="assets/templates/sidebar_header_style.css" />
-    <link rel="stylesheet" href="ln_pp_hp_style.css" />
-    <link rel="stylesheet" href="styles/tasccardbig.css" />
-    <link rel="stylesheet" href="styles/boardresponsive.css" />
+  <link rel="shortcut icon" href="./assets/img/logo_white.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="./assets/fonts.css" />
+  <link rel="stylesheet" href="styles/add_task.css" />
 
-    <script src="script.js"></script>
-    <script src="scripts/boardrender.js" defer></script>
-    <script src="scripts/searchborder.js" defer></script>
-    <script src="scripts/boardDragAndDrop.js" defer></script>
+  <script src="scripts/summary.js"></script>
+  <script src="scripts/add_task.js" defer></script>
+  <script src="scripts/add_task_collectData.js" defer></script>
+  <script src="scripts/add_task_contacts.js" defer></script>
+  <script src="scripts/board.js" defer></script>
+  <script src="scripts/add_task_validate.js"></script>
+  <!-- hier ende von allem nötigen -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles/board.css" />
+  <link rel="stylesheet" href="styles/taskcardsmall.css" />
+  <link rel="stylesheet" href="assets/templates/sidebar_header_style.css" />
+  <link rel="stylesheet" href="ln_pp_hp_style.css" />
+  <link rel="stylesheet" href="styles/tasccardbig.css" />
+  <link rel="stylesheet" href="styles/boardresponsive.css" />
 
-    <title>Board</title>
-  </head>
+  <script src="script.js"></script>
+  <script src="scripts/boardrender.js" defer></script>
+  <script src="scripts/searchborder.js" defer></script>
+  <script src="scripts/boardDragAndDrop.js" defer></script>
 
-  <body onload="initBoardJs()">
-    <section
-      w3-include-html="./assets/templates/header.html"
-      class="header"
-    ></section>
-    <section
-      w3-include-html="./assets/templates/sidebar.html"
-      class="sidebar"
-    ></section>
+  <title>Board</title>
+</head>
 
-    <!-- ab hier addTaskOverlay -->
-    <div id="taskOverlay" class="overlay" onclick="closeForm()"></div>
+<body onload="initBoardJs()">
+  <section w3-include-html="./assets/templates/header.html" class="header"></section>
+  <section w3-include-html="./assets/templates/sidebar.html" class="sidebar"></section>
 
-    <div id="taskForm" class="task-form">
-      <section id="taskSection">
-        <div class="addTask_overlay_headline">
-          <h1 class="add_task_h1">Add Task</h1>
-          <button class="close_overlay_btn" onclick="closeForm()">
-            <img
-              src=".//assets/img/close_addTask_overlay.svg"
-              alt="close addTask"
-            />
-          </button>
+  <!-- ab hier addTaskOverlay -->
+  <div id="taskOverlay" class="overlay" onclick="closeForm()"></div>
+
+  <div id="taskForm" class="task-form">
+    <section id="taskSection">
+      <div class="addTask_overlay_headline">
+        <h1 class="add_task_h1">Add Task</h1>
+        <button class="close_overlay_btn" onclick="closeForm()">
+          <img src=".//assets/img/close_addTask_overlay.svg" alt="close addTask" />
+        </button>
+      </div>
+      <form id="myForm" class="form_area_overlay">
+        <div class="add_task_fillIn_section_overlay">
+          <div class="add_task_form_left_overlay">
+            <label class="aT_input_labels" for="aT_title">Title<sup>*</sup></label>
+            <div class="title_input_error_container">
+              <input required class="aT_input_title aT_unset" type="text" id="aT_title" name="title"
+                placeholder="Enter a title" />
+              <span id="titleError" class="error">This field is required</span>
+            </div>
+            <label class="aT_input_labels" for="aT_description">Description</label>
+            <div class="resizable-container">
+              <textarea id="aT_description" class="resizable-textarea" placeholder="Enter a Description"></textarea>
+              <img src="./assets/img/resize_description.svg" class="resize-handle" alt="Resize Handle" />
+            </div>
+
+            <label class="aT_input_labels">Assigned to</label>
+            <div class="aT_select_container">
+              <input id="aT_select_contacts" class="aT_select_dropdown_fields"
+                placeholder="Select contacts to assign" />
+              <div id="select_contacts_arrow_container" class="drop_down_arrow_container" tabindex="0">
+                <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
+              </div>
+            </div>
+            <div id="contact_list" class="contact_list d-none">
+              <div id="contacts_container" class="scrollable_container scrollable_container_overlay"></div>
+            </div>
+
+            <div id="selected_contacts" class="selected-contacts-container"></div>
+          </div>
+          <div class="add_task_seperator_overlay"></div>
+          <div class="add_task_form_right_overlay">
+            <label class="aT_input_labels" for="aT_date">Due date<sup>*</sup></label>
+            <div class="date_error_container">
+              <input required id="aT_date" class="aT_input_date" type="date" />
+              <span id="dateError" class="error">This field is required</span>
+            </div>
+            <div class="aT_input_labels">Prio</div>
+            <div class="aT_set_prio_container" id="aT_set_prio">
+              <div class="aT_set_prio" id="boxUrgent" onclick="activateBox('boxUrgent', 'urgent_box_active')">
+                <span>Urgent</span><img src="./assets/img/Prio_high.svg" alt="urgent_icon" />
+              </div>
+              <div class="medium_box_active" id="boxMedium" onclick="activateBox('boxMedium', 'medium_box_active')">
+                <span>Medium</span><img src="./assets/img/Prio_med.svg" alt="medium_icon" />
+              </div>
+              <div class="aT_set_prio" id="boxLow" onclick="activateBox('boxLow', 'low_box_active')">
+                <span>Low</span><img src="./assets/img/Prio_low.svg" alt="low_icon" />
+              </div>
+            </div>
+            <label class="aT_input_labels">Category<sup>*</sup></label>
+            <div class="category_subtasks_container">
+              <div class="category_input_dropdown_error_container_overlay">
+                <div class="aT_select_container">
+                  <div id="aT_select_category" class="aT_select_dropdown_fields">
+                    Select task category
+                  </div>
+                  <div id="select_category_arrow_container" class="drop_down_arrow_container">
+                    <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
+                  </div>
+                </div>
+                <div id="category_list" class="category_list d-none">
+                  <div>
+                    <div class="categories">Technical Task</div>
+                    <div class="categories">User Story</div>
+                  </div>
+                </div>
+                <span id="categoryError" class="error">Please select a category for your task.</span>
+              </div>
+              <div class="subtasks_input_subs_container">
+                <label class="aT_label_subtasks">Subtasks</label>
+                <div class="aT_select_container">
+                  <input id="aT_add_subtasks" class="aT_input_addSubtask aT_unset" placeholder="Add new subtask" />
+                  <div id="aktive_input_addSubtask" class="drop_down_arrow_container">
+                    <img class="add_subtasks_plus_icon" src="./assets/img/add_subtasks_plus_icon.svg" alt="plus_icon" />
+                  </div>
+                  <div id="close_and_check_btns" class="close_check_container d-none">
+                    <div id="cancel_input_subtasks" class="c_icon_container" onclick="cancel_input_subtask()">
+                      <img class="add_subtasks_close_icon" src="./assets/img/add_subtasks_close_icon.svg"
+                        alt="close_icon" />
+                    </div>
+                    <div class="seperator_close_check"></div>
+                    <div id="check_input_subtask" class="c_icon_container">
+                      <img class="add_subtasks_check_icon" src="./assets/img/add_subtasks_check_icon.svg"
+                        alt="check_icon" />
+                    </div>
+                  </div>
+                </div>
+                <div id="created_subtasks"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <form id="myForm" class="form_area_overlay">
-          <div class="add_task_fillIn_section_overlay">
-            <div class="add_task_form_left_overlay">
-              <label class="aT_input_labels" for="aT_title"
-                >Title<sup>*</sup></label
-              >
-              <div class="title_input_error_container">
-                <input
-                  required
-                  class="aT_input_title aT_unset"
-                  type="text"
-                  id="aT_title"
-                  name="title"
-                  placeholder="Enter a title"
-                />
-                <span id="titleError" class="error"
-                  >This field is required</span
-                >
+        <div class="add_task_bottom_overlay">
+          <div>
+            <p><sup>*</sup>This field is required.</p>
+          </div>
+          <div class="button_container">
+            <div class="clear_check_container clear_form_overlay" onclick="closeForm()">
+              <div>Cancel</div>
+              <div>
+                <img src="./assets/img/clear_form.svg" alt="clear_icon" class="clear_img" />
               </div>
-              <label class="aT_input_labels" for="aT_description"
-                >Description</label
-              >
-              <div class="resizable-container">
-                <textarea
-                  id="aT_description"
-                  class="resizable-textarea"
-                  placeholder="Enter a Description"
-                ></textarea>
-                <img
-                  src="./assets/img/resize_description.svg"
-                  class="resize-handle"
-                  alt="Resize Handle"
-                />
-              </div>
+            </div>
+            <div class="clear_check_container create_task_overlay" onclick="validateForm()">
+              <div>Create Task</div>
+              <img src="./assets/img/create_task_white.svg" alt="create_icon" class="create_img" />
+            </div>
+          </div>
+        </div>
+        <div id="taskMessage" class="task-message">
+          <span>Task added to board</span>
+          <img src="./assets/img/board_message.svg" alt="Task Image" class="task-image" />
+        </div>
+      </form>
+    </section>
+  </div>
+  <!-- hier Ende addTaskOverlay -->
 
-              <label class="aT_input_labels">Assigned to</label>
-              <div class="aT_select_container">
-                <input
-                  id="aT_select_contacts"
-                  class="aT_select_dropdown_fields"
-                  placeholder="Select contacts to assign"
-                />
-                <div
-                  id="select_contacts_arrow_container"
-                  class="drop_down_arrow_container"
-                  tabindex="0"
-                >
-                  <img
-                    src="./assets/img/arrow_drop_down.svg"
-                    alt="drop_down_arrow"
-                    class="arrow"
-                  />
-                </div>
-              </div>
-              <div id="contact_list" class="contact_list d-none">
-                <div
-                  id="contacts_container"
-                  class="scrollable_container scrollable_container_overlay"
-                ></div>
-              </div>
 
-              <div
-                id="selected_contacts"
-                class="selected-contacts-container"
-              ></div>
-            </div>
-            <div class="add_task_seperator_overlay"></div>
-            <div class="add_task_form_right_overlay">
-              <label class="aT_input_labels" for="aT_date"
-                >Due date<sup>*</sup></label
-              >
-              <div class="date_error_container">
-                <input
-                  required
-                  id="aT_date"
-                  class="aT_input_date"
-                  type="date"
-                />
-                <span id="dateError" class="error">This field is required</span>
-              </div>
-              <div class="aT_input_labels">Prio</div>
-              <div class="aT_set_prio_container" id="aT_set_prio">
-                <div
-                  class="aT_set_prio"
-                  id="boxUrgent"
-                  onclick="activateBox('boxUrgent', 'urgent_box_active')"
-                >
-                  <span>Urgent</span
-                  ><img src="./assets/img/Prio_high.svg" alt="urgent_icon" />
-                </div>
-                <div
-                  class="medium_box_active"
-                  id="boxMedium"
-                  onclick="activateBox('boxMedium', 'medium_box_active')"
-                >
-                  <span>Medium</span
-                  ><img src="./assets/img/Prio_med.svg" alt="medium_icon" />
-                </div>
-                <div
-                  class="aT_set_prio"
-                  id="boxLow"
-                  onclick="activateBox('boxLow', 'low_box_active')"
-                >
-                  <span>Low</span
-                  ><img src="./assets/img/Prio_low.svg" alt="low_icon" />
-                </div>
-              </div>
-              <label class="aT_input_labels">Category<sup>*</sup></label>
-              <div class="category_subtasks_container">
-                <div class="category_input_dropdown_error_container_overlay">
-                  <div class="aT_select_container">
-                    <div
-                      id="aT_select_category"
-                      class="aT_select_dropdown_fields"
-                    >
-                      Select task category
-                    </div>
-                    <div
-                      id="select_category_arrow_container"
-                      class="drop_down_arrow_container"
-                    >
-                      <img
-                        src="./assets/img/arrow_drop_down.svg"
-                        alt="drop_down_arrow"
-                        class="arrow"
-                      />
-                    </div>
-                  </div>
-                  <div id="category_list" class="category_list d-none">
-                    <div>
-                      <div class="categories">Technical Task</div>
-                      <div class="categories">User Story</div>
-                    </div>
-                  </div>
-                  <span id="categoryError" class="error"
-                    >Please select a category for your task.</span
-                  >
-                </div>
-                <div class="subtasks_input_subs_container">
-                  <label class="aT_label_subtasks">Subtasks</label>
-                  <div class="aT_select_container">
-                    <input
-                      id="aT_add_subtasks"
-                      class="aT_input_addSubtask aT_unset"
-                      placeholder="Add new subtask"
-                    />
-                    <div
-                      id="aktive_input_addSubtask"
-                      class="drop_down_arrow_container"
-                    >
-                      <img
-                        class="add_subtasks_plus_icon"
-                        src="./assets/img/add_subtasks_plus_icon.svg"
-                        alt="plus_icon"
-                      />
-                    </div>
-                    <div
-                      id="close_and_check_btns"
-                      class="close_check_container d-none"
-                    >
-                      <div
-                        id="cancel_input_subtasks"
-                        class="c_icon_container"
-                        onclick="cancel_input_subtask()"
-                      >
-                        <img
-                          class="add_subtasks_close_icon"
-                          src="./assets/img/add_subtasks_close_icon.svg"
-                          alt="close_icon"
-                        />
-                      </div>
-                      <div class="seperator_close_check"></div>
-                      <div id="check_input_subtask" class="c_icon_container">
-                        <img
-                          class="add_subtasks_check_icon"
-                          src="./assets/img/add_subtasks_check_icon.svg"
-                          alt="check_icon"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div id="created_subtasks"></div>
-                </div>
-              </div>
-            </div>
+  <div class="board_content">
+
+    <div class="big_card_bg d_none" id="big_card_bg"></div>
+
+    <div class="board_header">
+
+    <h1>Board</h1>
+
+      <div class="search_add_task">
+
+        <div class="input_div">
+          <input class="search_task_input" id="search_task_input" oninput="filterTasks()" type="search" placeholder="Find Task">
+          <div class="search_icon_div">
+            <div class="search_icon" onclick="filterTasks(); emptySearchInput()"><img src="assets/img/search.svg"></div>
           </div>
-          <div class="add_task_bottom_overlay">
-            <div>
-              <p><sup>*</sup>This field is required.</p>
-            </div>
-            <div class="button_container">
-              <div
-                class="clear_check_container clear_form_overlay"
-                onclick="closeForm()"
-              >
-                <div>Cancel</div>
-                <div>
-                  <img
-                    src="./assets/img/clear_form.svg"
-                    alt="clear_icon"
-                    class="clear_img"
-                  />
-                </div>
-              </div>
-              <div
-                class="clear_check_container create_task_overlay"
-                onclick="validateForm()"
-              >
-                <div>Create Task</div>
-                <img
-                  src="./assets/img/create_task_white.svg"
-                  alt="create_icon"
-                  class="create_img"
-                />
-              </div>
-            </div>
+        </div>
+
+        <div class="add_task_btn" id="addTaskBtn" onclick="openForm()">
+
+          <div class="add_task_btn_txt">
+            <span class="add_task_btn_txt">Add Task</span>
           </div>
-          <div id="taskMessage" class="task-message">
-            <span>Task added to board</span>
-            <img
-              src="./assets/img/board_message.svg"
-              alt="Task Image"
-              class="task-image"
-            />
-          </div>
-        </form>
-      </section>
+          
+          <div><img class="add_task_plus" src="assets/img/add.svg" /></div>
+        </div>
+      </div>
     </div>
-    <!-- hier Ende addTaskOverlay -->
 
-    <div class="board_content">
-      <div class="big_card_bg d_none" id="big_card_bg"></div>
+  <div class="task_content">
 
-      <div class="board_header">
-        <h1>Board</h1>
+    <div class="task_main">
+      <div class="task_topic">To Do<div class="plus_btn" onclick="openForm()">+</div></div>
+        <div 
+          id="small_card_todo"
+          ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_todo')"
+          ondragleave="removeHighlightBorder('small_card_todo')">
+        </div>
+    </div>
 
-        <div class="search_add_task">
-          <div class="input_div">
-            <input
-              class="search_task_input"
-              id="search_task_input"
-              oninput="filterTasks()"
-              type="search"
-              placeholder="Find Task"
-            />
-            <div class="search_icon_div">
-              <div
-                class="search_icon"
-                onclick="filterTasks(); emptySearchInput()"
-              >
-                <img src="assets/img/search.svg" />
-              </div>
-            </div>
-          </div>
+    <div class="task_main">
+      <div class="task_topic">In Progress<div class="plus_btn" onclick="openForm()">+</div></div>
+        <div 
+          id="small_card_progress"
+          ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_progress')"
+          ondragleave="removeHighlightBorder('small_card_progress')">
+        </div>
+    </div>
 
-          <div class="add_task_btn" id="addTaskBtn" onclick="openForm()">
-            <div class="add_task_btn_txt">
-              <span class="add_task_btn_txt">Add Task</span>
-            </div>
-            <div><img class="add_task_plus" src="assets/img/add.svg" /></div>
-          </div>
+    <div class="task_main">
+      <div class="task_topic">Await feedback<div class="plus_btn" onclick="openForm()">+</div></div>
+        <div 
+          id="small_card_await"
+          ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
+          ondragleave="removeHighlightBorder('small_card_await')">
+        </div>
+    </div>
+
+    <div class="task_main">
+      <div class="task_topic">Done</div>
+        <div 
+          id="small_card_done"
+          ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
+          ondragleave="removeHighlightBorder('small_card_done')">
         </div>
       </div>
 
-      <div class="board_categorys">
-        <div class="category_topics">
-          To do
-          <div class="plus_btn" onclick="openForm()">+</div>
-          <div
-            class="slots"
-            id="small_card_todo"
-            ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
-            ondragover="allowDrop(event); addHighlightBorder('small_card_todo')"
-            ondragleave="removeHighlightBorder('small_card_todo')"
-          ></div>
-        </div>
-
-        <div class="category_topics">
-          In progress
-          <div class="plus_btn" onclick="openForm()">+</div>
-          <div
-            class="slots"
-            id="small_card_progress"
-            ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
-            ondragover="allowDrop(event); addHighlightBorder('small_card_progress')"
-            ondragleave="removeHighlightBorder('small_card_progress')"
-          ></div>
-        </div>
-
-        <div class="category_topics">
-          Await feedback
-          <div class="plus_btn" onclick="openForm()">+</div>
-          <div
-            class="slots"
-            id="small_card_await"
-            ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
-            ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
-            ondragleave="removeHighlightBorder('small_card_await')"
-          ></div>
-        </div>
-
-        <div class="category_topics">
-          Done
-          <div
-            class="slots"
-            id="small_card_done"
-            ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
-            ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
-            ondragleave="removeHighlightBorder('small_card_done')"
-          ></div>
-        </div>
-      </div>
-
-      <div class="task_slots"></div>
     </div>
-  </body>
+
+    </div>
+
+  </div>
+
+</body>
+
 </html>
