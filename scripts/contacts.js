@@ -156,18 +156,22 @@ function getNewContactData() {
 
 function generateColor() {
   const colors = [
-    "red",
-    "yellow",
-    "yellowgreen",
-    "blue",
-    "cyan",
-    "magenta",
-    "orange",
+    "lightcoral",
+    "darkgoldenrod",
+    "green",
+    "blueviolet",
+    "lightblue",
+    "lightcyan",
+    "darkmagenta",
+    "orangered",
     "purple",
-    "lime",
+    "lightgreen",
     "indigo",
     "teal",
-    "violet",
+    "peru",
+    "midnightblue",
+    "aquamarine",
+    "chartreuse"
   ];
 
   const randomIndex = Math.floor(Math.random() * colors.length);
@@ -181,12 +185,8 @@ function contactCreatSuccesfull() {
     .classList.toggle("creation-succesfull");
 }
 
-function focusAddedContact() {
-  return document
-    .getElementById(
-      `${contactKeys.findIndex((contact) => contact.name === lastContactCreat)}`
-    )
-    .focus();
+function focusAddedContact() {  
+  document.getElementById(`${contactKeys.length - 1}`).focus();
 }
 
 async function editSaveInit(i) {
