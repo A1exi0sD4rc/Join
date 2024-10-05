@@ -125,9 +125,9 @@ async function addContact(event) {
   renderContactDetails(
     contactKeys.findIndex((contact) => contact.name === lastContactCreat)
   );
-  focusAddedContact();
   contactCreatSuccesfull();
   setTimeout(contactCreatSuccesfull, 2000);
+  focusAddedContact();
 }
 
 async function addContactToDb() {
