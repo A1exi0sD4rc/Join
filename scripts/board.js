@@ -258,13 +258,18 @@ function bigAssignedTo() {
 //ab hier Funktionen Judith für addTask
 // Hauptfunktion zum Öffnen des add task Formulars
 function openForm() {
-  openOverlay();
-  const taskForm = document.getElementById("taskForm");
-  taskForm.style.display = "block";
-  setTimeout(() => {
-    taskForm.classList.add("active");
-  }, 10);
-  document.body.classList.add("no-scroll");
+  console.log("Aktuelle Bildschirmbreite:", window.innerWidth);
+  if (window.innerWidth <= 1000) {
+    window.location.href = "./add_task.html";
+  } else {
+    openOverlay();
+    const taskForm = document.getElementById("taskForm");
+    taskForm.style.display = "block";
+    setTimeout(() => {
+      taskForm.classList.add("active");
+    }, 10);
+    document.body.classList.add("no-scroll");
+  }
 }
 
 // Funktion, um das Overlay anzuzeigen

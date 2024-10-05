@@ -545,7 +545,7 @@ sup {
   background-color: white;
   box-sizing: border-box;
   padding-left: 21px;
-  padding-right: 70px;
+  padding-right: 75px;
   padding-top: 12px;
   padding-bottom: 12px;
   width: 440px;
@@ -654,9 +654,13 @@ ul:hover {
 }
 
 li {
-  height: 32px;
+  height: 100%;
   font-size: 16px;
   line-height: 32px;
+  width: 30ch; /* Maximale Breite in Zeichen */
+  white-space: normal; /* Normales Zeilenumbruchverhalten */
+  overflow-wrap: break-word; /* Wörter werden bei Bedarf umgebrochen */
+  word-break: normal; /* Verhindert das Umbrechen mitten im Wort */
 }
 
 .separator_subtasks {
@@ -909,12 +913,13 @@ li {
   .aT_select_dropdown_fields {
     padding-right: 15px;
   }
+
   .category_subtasks_container {
     z-index: 1;
   }
 
   .aT_input_addSubtask {
-    padding-right: 15px;
+    padding-right: 65px;
   }
   .aT_set_prio {
     gap: 8px;
@@ -930,6 +935,7 @@ li {
     width: 87px;
     height: 60px;
   }
+
   .medium_box_active {
     gap: 8px;
     flex-direction: column;
@@ -937,12 +943,17 @@ li {
     width: 87px;
     height: 60px;
   }
+
   .low_box_active {
     gap: 8px;
     flex-direction: column;
     font-size: 16px;
     width: 87px;
     height: 60px;
+  }
+
+  .close_check_container {
+    right: 8px;
   }
 
   .add_task_bottom_section {
@@ -954,39 +965,55 @@ li {
   .add_task_h1 {
     font-size: 45px;
   }
+
   .aT_input_labels {
     font-size: 16px;
   }
+
   .aT_input_title {
     font-size: 16px;
   }
+
   .resizable-textarea {
     font-size: 16px;
   }
+
   .resizable-textarea::placeholder {
     font-size: 16px;
   }
+
   .aT_select_dropdown_fields {
     font-size: 16px;
   }
+
   .aT_select_dropdown_fields::placeholder {
     font-size: 16px;
   }
+
   .aT_input_date {
     font-size: 16px;
   }
+
   .categories {
     font-size: 16px;
   }
+
   .aT_label_subtasks {
     font-size: 16px;
   }
+
   .aT_input_addSubtask {
     font-size: 16px;
   }
+
+  .edit-input {
+    width: 300px;
+  }
+
   p {
     margin-left: -46px;
   }
+
   #contact_list_name {
     font-size: 16px;
   }
