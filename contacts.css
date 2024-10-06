@@ -864,7 +864,7 @@ body {
     }
 
     .contacts-container {
-        width: 350px;
+        width: 365px;
     }
 
     .contacts-new-contact-div {
@@ -881,8 +881,9 @@ body {
     }
 
     .contacts-overview-category {
-        min-width: 320px;
+        min-width: 260px;
         margin: 10px 24px;
+        padding-left: 0;
     }
 
     .contacts-seperatore-horizontal {
