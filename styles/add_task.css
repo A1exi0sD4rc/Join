@@ -3,6 +3,8 @@
 }
 
 .add_task_content {
+  overflow: hidden;
+  height: 100vh;
   box-sizing: border-box;
   padding-top: 206px;
   padding-left: 328px;
@@ -41,7 +43,19 @@
   width: 440px;
 }
 
+.aT_subtasks_container {
+  max-height: 150px;
+  padding: 5px;
+  overflow: auto;
+}
+
+.aT_subtasks_container::-webkit-scrollbar {
+  color: transparent;
+  width: 0;
+}
+
 .add_task_bottom_section {
+  z-index: 999;
   width: 976px;
   height: 56px;
   margin-top: 145px;
@@ -146,6 +160,7 @@ sup {
 }
 
 .aT_select_container {
+  padding-bottom: 10px;
   position: relative;
   display: flex;
   align-items: center;
@@ -153,7 +168,7 @@ sup {
 
 .aT_select_dropdown_fields {
   all: unset;
-  width: 440px;
+  width: 476px;
   height: 48px;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
@@ -548,7 +563,7 @@ sup {
   padding-right: 75px;
   padding-top: 12px;
   padding-bottom: 12px;
-  width: 440px;
+  width: 476px;
   height: 48px;
   border-radius: 10px;
   font-size: 20px;
@@ -671,8 +686,9 @@ li {
 }
 
 .task-controls {
+  z-index: 888;
   position: absolute;
-  right: 16px;
+  right: 15px;
   top: 50%;
   transform: translateY(-50%);
   display: none;
@@ -710,7 +726,7 @@ li {
   background-color: #fff;
   border: none;
   border-bottom: 1px solid #005dff;
-  padding: 4px 16px 4px 16px;
+  padding: 4px 86px 4px 16px;
   box-sizing: border-box;
   font-size: 16px;
 }

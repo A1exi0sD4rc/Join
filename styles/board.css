@@ -281,6 +281,9 @@ body.no-scroll {
 }
 
 .add_task_bottom_overlay {
+  background-color: white;
+  z-index: 888;
+  padding-top: 10px;
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -326,7 +329,8 @@ body.no-scroll {
 }
 
 .clear_form_overlay:hover img {
-  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg) brightness(91%) contrast(95%);
+  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg)
+    brightness(91%) contrast(95%);
 }
 
 .create_task_overlay {
@@ -354,7 +358,6 @@ body.no-scroll {
 }
 
 /* Ende addTask Overlay von Judith */
-
 
 .task_content {
   width: 1208px;

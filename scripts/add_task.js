@@ -281,7 +281,7 @@ function createSubtaskHTML(subtaskText, subtaskId) {
       <div class="task-controls">
         <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editTask(this)">
         <div class="separator_subtasks"></div>
-        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteTask(this)">
+        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteSubtask(this)">
       </div>
     </ul>`;
 }
@@ -311,7 +311,7 @@ function updateTaskItemForEditing(taskItem, currentText) {
     <input type="text" maxlength="50" value="${currentText}" class="edit-input">
     <div class="task-controls">
       <div class="edit-modus-btns">
-        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn-input delete-btn-input" onclick="deleteTask(this)">
+        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn-input delete-btn-input" onclick="deleteSubtask(this)">
       </div>
       <div class="separator_subtasks"></div>
       <div class="edit-modus-btns">
@@ -372,11 +372,11 @@ function updateTaskControls(taskControls) {
   taskControls.innerHTML = /*html*/ `
     <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editTask(this)">
     <div class="separator_subtasks"></div>
-    <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteTask(this)">
+    <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteSubtask(this)">
   `;
 }
 
-function deleteTask(deleteButton) {
+function deleteSubtask(deleteButton) {
   const taskItem = deleteButton.closest(".task-item");
   if (taskItem) {
     const subtaskId = taskItem.getAttribute("data-id");
