@@ -157,11 +157,9 @@ function getNewContactData() {
 function generateColor() {
   const colors = [
     "lightcoral",
-    "darkgoldenrod",
     "green",
     "blueviolet",
     "lightblue",
-    "lightcyan",
     "darkmagenta",
     "orangered",
     "purple",

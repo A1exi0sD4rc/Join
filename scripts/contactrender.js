@@ -107,7 +107,7 @@ function renderContactDetails(i) {
         </div>
         <div id="contact-details-option" class="contacts-d-more-options-div">
                 <button class="contact-details-mobil-edit-btn" onclick="contactShowEditOption(); contactAddEditInit(${i}, 'edit')">Edit</button>
-                <button class="contact-details-mobil-delete-btn">Delete</button>
+                <button class="contact-details-mobil-delete-btn" onclick="contactDeleteInit(${i})">Delete</button>
         </div> 
     `;
 }
@@ -137,7 +137,7 @@ function renderEditContact(i) {
     `;
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
         <div class="contacts-edit-section">
-            <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility()"></button>
+            <button class="contacts-edit-close-btn" onclick="toggleVisiblility()"></button>
             <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="60" cy="60" r="60" fill="#FF7A00"/>
                 <text x="60" y="73" text-anchor="middle" font-size="47" fill="white">${getInitials(contactKeys[i]['name'])}</text>
@@ -176,7 +176,7 @@ function renderAddNewContact() {
     `;
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
         <div class="contacts-add-section">
-            <button class="contacts-add-edit-close-btn" onclick="toggleVisiblility()"></button>
+            <button class="contacts-add-close-btn" onclick="toggleVisiblility()"></button>
             <img class="contacts-add-section-img" src="./assets/img/no_user.svg">
             <form class="contacts-edit-input-btn">
                 <div class="contacts-edit-input">
