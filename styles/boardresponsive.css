@@ -1,3 +1,139 @@
 @media (max-width: 1450px) {
-    
+    .board_content {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 1450px) {
+    .task_content {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 1000px) {
+    .board_content {
+        margin-left: 0px;
+        margin-top: 5px;
+    }
+
+    .board_header {
+        padding-top: 96px;
+        padding-left: 64px;
+        display: flex;
+    }
+
+    .big_card {
+        width: 250px;
+    }
+
+    .title_big {
+        width: 200px;
+        font-size: 30px;
+        font-weight: 400;
+    }
+
+    .big_description {
+        width: 200px;
+        font-size: 16px;
+    }
+
+    .big_due,
+    .big_prio,
+    .big_assigned,
+    .big_subs {
+        width: 200px;
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .subtasks_container {
+        width: 200px;
+    }
+
+    .assigned_div {
+        width: 200px;
+    }
+
+    .assigned_big_name {
+        font-size: 16px;
+    }
+
+    .assigned_big_logo {
+        width: 30px;
+        height: 30px;
+        gap: 5px;
+    }
+
+    .big_card_art_close {
+        width: 200px;
+    }
+
+    .big_art {
+        width: 150px;
+        height: 26px;
+        font-size: 18px;
+        font-weight: 200;
+    }
+
+    .big_due_date {
+        font-size: 16px;
+    }
+
+    .big_del_edit {
+        width: 200px;
+        height: 24px;
+        gap: 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 24px;
+    }
+
+    .big_assigned_user {
+        padding: 0px 0px;
+    }
+
+    .big_prio_img {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 550px) {
+    .task_card_small {
+        width: 190px;
+        padding: 16px;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+
+    .task_card_small_content {
+        width: 190px;
+    }
+
+    .title_desc_small_div {
+        width: 190px;
+    }
+
+    .title_small {
+        width: 190px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .description_small {
+        width: 190px;
+    }
+
+    .sub_amount_small {
+        width: 190px;
+    }
+
+    .subtasks_bar_small {
+        width: 100px;
+    }
+
+    .board_content {
+        margin-bottom: 150px;
+    }
 }

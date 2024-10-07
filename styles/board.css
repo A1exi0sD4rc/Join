@@ -361,7 +361,6 @@ body.no-scroll {
 
 .task_content {
   width: 1208px;
-  height: 800px;
   display: flex;
   flex-direction: row;
   justify-content: center;
