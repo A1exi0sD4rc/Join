@@ -267,7 +267,13 @@ function addSubtaskToList() {
     addSubtaskToArray(subtaskText, subtaskId);
     clearInputField(inputField);
     resetDivVisibility();
+    scrollToListEnd();
   }
+}
+
+function scrollToListEnd() {
+  const subtaskContainer = document.getElementById("created_subtasks");
+  subtaskContainer.scrollTop = subtaskContainer.scrollHeight;
 }
 
 function addSubtaskToArray(subtaskText, subtaskId) {
