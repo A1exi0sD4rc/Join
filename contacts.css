@@ -100,6 +100,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 32px 24px;
+    overflow-x: hidden;
 }
 
 .contacts-overview-space {
@@ -208,7 +209,13 @@ body {
 
 .contacts-headline-details-div {
     margin-left: 75px;
-    margin-top: 140px;
+    padding-top: 140px;
+    height: calc(100vh - 96px - 140px);
+    overflow-y: scroll;
+}
+
+.contacts-headline-details-div::-webkit-scrollbar {
+    display: none;
 }
 
 
@@ -283,6 +290,7 @@ body {
     width: fit-content;
     gap: 21px;
     margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 .contacts-contact-logo-name {
@@ -737,6 +745,14 @@ body {
 
 /* media compatibility */
 
+/* @media (max-height: 700px max-width: 1000px) {
+
+    .contacts-add-edit-div {
+        min-width: 70vw;
+        max-height: 400px;
+    }
+} */
+
 @media (max-width: 1400px) {
 
     .contacts-content {
@@ -823,7 +839,8 @@ body {
 @media (max-width: 1350px) {
 
     .contacts-headline-details-div {
-        margin-top: 50px;
+        padding-top: 50px;
+        height: calc(100vh - 96px - 50px);
     }
 
     .contacts-headline {
@@ -983,6 +1000,10 @@ body {
     .contacts-new-contact-div {
         display: none;
     }
+
+    .contacts-overview {
+        overflow-x: visible;
+    }
     
     .contacts-overview-space {
         display: none;
@@ -1029,7 +1050,7 @@ body {
         display: none;
         width: 100vw;
         flex-direction: column;
-        margin-top: 50px;
+        height: 100vh;
     }
 
     .contacts-contact-logo-name {
@@ -1206,20 +1227,23 @@ body {
     }
 
     .contacts-container::-webkit-scrollbar {
-        display: inline;
+        display: flex;
         width: 7px;
     }
 
     .contacts-container::-webkit-scrollbar-button:vertical:decrement {
         background-color: white;
-        background-image: none;
+        background-image: url("./assets/img/contacts_arrow_up.svg");
+        background-repeat: no-repeat;
+        background-position: 50% -30%;
+        background-size: 8px;
     }
     
     .contacts-container::-webkit-scrollbar-button:vertical:increment {
         background-color: white;
         background-image: url("./assets/img/contacts_arrow_down.svg");
         background-repeat: no-repeat;
-        background-position: 50% 10%;
+        background-position: 50% 100%;
         background-size: 8px;
     }
 
