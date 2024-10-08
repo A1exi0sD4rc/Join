@@ -233,7 +233,7 @@ sup {
   border-radius: 10px;
   background-color: white;
   padding: 55px 7px 7px 7px;
-  margin-top: -48px;
+  margin-top: -58px;
   box-shadow: 0px 0px 4px 0px #0000001a;
   overflow: hidden;
 }
@@ -337,6 +337,14 @@ sup {
 .scrollable_container::-webkit-scrollbar-thumb {
   background-color: #a8a8a8;
   border-radius: 8px;
+}
+
+.scrollable_container::-webkit-scrollbar-button:vertical:decrement,
+.scrollable_container::-webkit-scrollbar-button:vertical:increment {
+  height: 15px;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .scrollable_container::-webkit-scrollbar-button:vertical:decrement {

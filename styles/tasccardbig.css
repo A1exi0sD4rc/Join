@@ -69,10 +69,46 @@
 
 .big_description {
   width: 445px;
-  height: 24px;
+  max-height: 100px;
+  min-height: 48px;
+  overflow-y: auto;
   font-size: 20px;
+  padding-right: 10px;
   font-weight: 400;
   color: #000000;
+}
+
+.big_description::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+.big_description::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 8px;
+}
+
+.big_description::-webkit-scrollbar-button:vertical:decrement,
+.big_description::-webkit-scrollbar-button:vertical:increment {
+  height: 15px;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.big_description::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url("../assets/img/scrollbarArrowUp.svg");
+  background-repeat: no-repeat;
+}
+
+.big_description::-webkit-scrollbar-button:vertical:increment {
+  background-image: url("../assets/img/scrollbarArrowDown.svg");
+  background-repeat: no-repeat;
+}
+
+.big_description::-webkit-scrollbar-track,
+.big_description::-webkit-scrollbar-track-piece {
+  background: transparent;
 }
 
 .big_due,
@@ -179,12 +215,12 @@
   display: flex;
 }
 
-.delspan{
+.delspan {
   width: 49px;
   height: 19px;
 }
 
-.editspan{
+.editspan {
   width: 30px;
   height: 24px;
 }
@@ -245,13 +281,13 @@
 
 .big_del_edit svg:hover,
 .big_del:hover,
-.big_edit:hover{
+.big_edit:hover {
   color: #29abe2;
 }
 
-.big_card_close:hover{
+.big_card_close:hover {
   border-radius: 52px;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 
 @keyframes slideIn {

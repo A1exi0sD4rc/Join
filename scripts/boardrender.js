@@ -1,7 +1,7 @@
 function renderTaskCardToDo(elementToDo) {
   const subtasks = elementToDo.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
-  const truncatedDescription = truncateText(elementToDo["description"], 40);
+  const truncatedDescription = truncateText(elementToDo["description"], 35);
 
   return `
     <div onclick="showBigTask('${
@@ -41,7 +41,7 @@ function renderTaskCardToDo(elementToDo) {
 function renderTaskCardProgress(elementProgress) {
   const subtasks = elementProgress.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
-  const truncatedDescription = truncateText(elementProgress["description"], 40);
+  const truncatedDescription = truncateText(elementProgress["description"], 35);
 
   return `
     <div onclick="showBigTask('${
@@ -76,7 +76,7 @@ function renderTaskCardProgress(elementProgress) {
 function renderTaskCardAwait(elementAwait) {
   const subtasks = elementAwait.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
-  const truncatedDescription = truncateText(elementAwait["description"], 40);
+  const truncatedDescription = truncateText(elementAwait["description"], 35);
 
   return `
     <div onclick="showBigTask('${
@@ -111,7 +111,7 @@ function renderTaskCardAwait(elementAwait) {
 function renderTaskCardDone(elementDone) {
   const subtasks = elementDone.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
-  const truncatedDescription = truncateText(elementDone["description"], 40);
+  const truncatedDescription = truncateText(elementDone["description"], 35);
 
   return `
     <div onclick="showBigTask('${
