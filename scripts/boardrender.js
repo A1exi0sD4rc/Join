@@ -1,6 +1,7 @@
 function renderTaskCardToDo(elementToDo) {
   const subtasks = elementToDo.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
+  const truncatedDescription = truncateText(elementToDo["description"], 40);
 
   return `
     <div onclick="showBigTask('${
@@ -18,7 +19,7 @@ function renderTaskCardToDo(elementToDo) {
 
     <div class="title_desc_small_div">
       <div class="title_small">${elementToDo["title"]}</div>
-      <div class="description_small">${elementToDo["description"]}</div>
+      <div class="description_small">${truncatedDescription}</div>
     </div>
 
         ${subAmountHtml}
@@ -40,6 +41,7 @@ function renderTaskCardToDo(elementToDo) {
 function renderTaskCardProgress(elementProgress) {
   const subtasks = elementProgress.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
+  const truncatedDescription = truncateText(elementProgress["description"], 40);
 
   return `
     <div onclick="showBigTask('${
@@ -55,7 +57,7 @@ function renderTaskCardProgress(elementProgress) {
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementProgress["title"]}</div>
-          <div class="description_small">${elementProgress["description"]}</div>
+          <div class="description_small">${truncatedDescription}</div>
         </div>
         ${subAmountHtml}
         <div class="assigned_prio_small">
@@ -74,6 +76,7 @@ function renderTaskCardProgress(elementProgress) {
 function renderTaskCardAwait(elementAwait) {
   const subtasks = elementAwait.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
+  const truncatedDescription = truncateText(elementAwait["description"], 40);
 
   return `
     <div onclick="showBigTask('${
@@ -89,7 +92,7 @@ function renderTaskCardAwait(elementAwait) {
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementAwait["title"]}</div>
-          <div class="description_small">${elementAwait["description"]}</div>
+          <div class="description_small">${truncatedDescription}</div>
         </div>
         ${subAmountHtml}
         <div class="assigned_prio_small">
@@ -108,6 +111,7 @@ function renderTaskCardAwait(elementAwait) {
 function renderTaskCardDone(elementDone) {
   const subtasks = elementDone.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
+  const truncatedDescription = truncateText(elementDone["description"], 40);
 
   return `
     <div onclick="showBigTask('${
@@ -123,7 +127,7 @@ function renderTaskCardDone(elementDone) {
         </div>
         <div class="title_desc_small_div">
           <div class="title_small">${elementDone["title"]}</div>
-          <div class="description_small">${elementDone["description"]}</div>
+          <div class="description_small">${truncatedDescription}</div>
         </div>
         ${subAmountHtml}
         <div class="assigned_prio_small">
@@ -137,6 +141,10 @@ function renderTaskCardDone(elementDone) {
       </div>
     </div>
   `;
+}
+
+function truncateText(text, maxLength) {
+  return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
 }
 
 function renderAssignedContacts(assigned) {
