@@ -385,3 +385,14 @@ body.no-scroll {
   margin-bottom: 16px;
   color: #42526e;
 }
+
+.aT_subtasks_container_overlay {
+  height: 100px;
+  padding: 5px;
+  overflow: auto;
+}
+
+.aT_subtasks_container_overlay::-webkit-scrollbar {
+  color: transparent;
+  width: 0;
+}

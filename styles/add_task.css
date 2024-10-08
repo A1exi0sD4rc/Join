@@ -44,6 +44,7 @@
 }
 
 .aT_subtasks_container {
+  margin-top: 6px;
   max-height: 150px;
   padding: 5px;
   overflow: auto;
@@ -160,7 +161,6 @@ sup {
 }
 
 .aT_select_container {
-  padding-bottom: 10px;
   position: relative;
   display: flex;
   align-items: center;
@@ -729,7 +729,7 @@ li {
 
 .edit-input {
   margin-left: -48px;
-  width: 440px;
+  width: 113%;
   height: 32px;
   background-color: #fff;
   border: none;
@@ -866,7 +866,6 @@ li {
 
   .add_task_form_right {
     margin-top: 30px;
-    margin-bottom: 300px;
   }
 
   .add_task_bottom_section {
