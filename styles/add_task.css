@@ -326,7 +326,7 @@ sup {
 }
 
 .scrollable_container_overlay {
-  max-height: 170px;
+  max-height: 140px;
 }
 
 .scrollable_container::-webkit-scrollbar {

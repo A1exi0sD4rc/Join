@@ -185,9 +185,7 @@ function generateSubAmountHtml(subtasks) {
         <div class="amount_subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</div>
       </div>
     `
-    : `
-     <div class="sub_amount_small"></div>
-    `;
+    : "";
 }
 
 function renderBigTaskCard(bigelement) {
