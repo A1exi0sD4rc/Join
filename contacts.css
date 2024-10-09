@@ -229,9 +229,9 @@ body {
 /* contact headline */
 
 .contacts-details-mobil-close-btn {
-    position: absolute;
-    top: 50px;
-    right: 100px;
+    position: fixed;
+    top: 130px;
+    right: 110px;
     width: 32px;
     height: 32px;
     padding: 8px;
@@ -384,9 +384,9 @@ body {
 /* details mobil */
 
 .contacts-d-more-options-btn {
-    position: absolute;
+    position: fixed;
     right: 100px;
-    bottom: 50px;
+    bottom: 130px;
     width: 56px;
     height: 56px;
     background-image: url("./assets/img/contacts-options.svg");
@@ -409,9 +409,9 @@ body {
     flex-direction: column;
     max-width: 120px;
     max-height: 100px;
-    position: absolute;
-    right: 90px;
-    bottom: 40px;
+    position: fixed;
+    right: 30px;
+    bottom: 120px;
     background-color: white;
     padding: 10px;
     border-top-left-radius: 20px;
@@ -745,13 +745,37 @@ body {
 
 /* media compatibility */
 
-/* @media (max-height: 700px max-width: 1000px) {
+@media (max-height: 900px) {
+
+    .contacts-add-title {
+        min-height: 180px !important;
+    }
+
+    .contacts-add-close-btn {
+        top: -80px !important;
+    }
 
     .contacts-add-edit-div {
-        min-width: 70vw;
-        max-height: 400px;
+        height: 500px !important;
     }
-} */
+
+    .contacts-add-section-img {
+        margin-bottom: 16px !important;
+    }
+
+    .contacts-edit-input {
+        gap: 16px;
+        height: 180px;
+    }
+
+    .contacts-edit-title {
+        min-height: 180px;
+    }
+
+    .contacts-edit-close-btn {
+        top: -80px !important;
+    }
+}
  
 @media (max-width: 1400px) {
 
@@ -1231,24 +1255,16 @@ body {
         width: 7px;
     }
 
-    .contacts-container::-webkit-scrollbar-button:vertical:decrement {
-        background-color: white;
-        background-image: url("./assets/img/contacts_arrow_up.svg");
-        background-repeat: no-repeat;
-        background-position: 50% -30%;
-        background-size: 8px;
+    .contacts-container::-webkit-scrollbar-button:vertical:decrement  {
+        display: none;
     }
-    
-    .contacts-container::-webkit-scrollbar-button:vertical:increment {
-        background-color: white;
-        background-image: url("./assets/img/contacts_arrow_down.svg");
-        background-repeat: no-repeat;
-        background-position: 50% 100%;
-        background-size: 8px;
+
+    .contacts-container::-webkit-scrollbar-button:vertical:increment  {
+        display: none;
     }
 
     .contacts-details-mobil-close-btn {
-        right: 50px;
+        right: 60px;
     }
 
     .contacts-d-more-options-btn {
@@ -1286,7 +1302,7 @@ body {
     }
 
     .contacts-details-mobil-close-btn {
-        right: 10px;
+        right: 20px;
     }
 
     .contacts-d-more-options-btn {
