@@ -2,7 +2,6 @@
     .board_content {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
     }
 
     .task_content {
