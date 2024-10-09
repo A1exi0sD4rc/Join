@@ -148,23 +148,39 @@ function truncateText(text, maxLength) {
 }
 
 function renderAssignedContacts(assigned) {
-  if (assigned) {
-    return assigned
+  if (assigned && assigned.length > 0) {
+    const maxDisplayedContacts = 3;
+    let displayedContacts = assigned.slice(0, maxDisplayedContacts);
+    let extraContacts = assigned.length - maxDisplayedContacts;
+    let contactsHtml = displayedContacts
       .map((contact) => {
         let initials = getInitials(contact.name.replace(" (You)", ""));
         return `
-      <div class="assigned-contact" style="position: relative; display: inline-block;">
-        <svg width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
-          <text x="21" y="27" text-anchor="middle" font-size="16" font-weight="400" fill="white">${initials}</text>
-        </svg>
-      </div>
-    `;
+        <div class="assigned-contact" style="position: relative; display: inline-block;">
+          <svg width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
+            <text x="21" y="27" text-anchor="middle" font-size="16" font-weight="400" fill="white">${initials}</text>
+          </svg>
+        </div>
+      `;
       })
       .join("");
+
+    if (extraContacts > 0) {
+      contactsHtml += `
+        <div class="assigned-contact" style="position: relative; display: inline-block;">
+          <svg width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="21" r="20" fill="#d3d3d3" stroke="white" stroke-width="2"/>
+            <text x="21" y="27" text-anchor="middle" font-size="16" font-weight="400" fill="white">+${extraContacts}</text>
+          </svg>
+        </div>
+      `;
+    }
+
+    return contactsHtml;
   } else {
     return `
-     <div class="assigned-contact" style="position: relative; display: inline-block;"></div>
+      <div class="assigned-contact" style="position: relative; display: inline-block;"></div>
     `;
   }
 }
