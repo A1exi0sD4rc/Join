@@ -170,7 +170,7 @@ function renderAssignedContacts(assigned) {
       contactsHtml += `
         <div class="assigned-contact" style="position: relative; display: inline-block;">
           <svg width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="22" cy="21" r="20" fill="#d3d3d3" stroke="white" stroke-width="2"/>
+            <circle cx="22" cy="21" r="20" fill="lightblue" stroke="white" stroke-width="2"/>
             <text x="21" y="27" text-anchor="middle" font-size="16" font-weight="400" fill="white">+${extraContacts}</text>
           </svg>
         </div>
