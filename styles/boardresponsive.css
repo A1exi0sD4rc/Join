@@ -1,13 +1,25 @@
 @media (max-width: 1450px) {
     .board_content {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
     }
 
     .task_content {
-        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
     }
 
+    .task_main{
+        width: unset;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .small_card_row{
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
 }
 
 @media (max-width: 1000px) {

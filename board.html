@@ -198,8 +198,9 @@
 
     <div class="task_main">
       <div class="task_topic">To Do<div class="plus_btn" onclick="openForm()">+</div>
-      </div>
-      <div id="small_card_todo" ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
+    </div>
+      <div id="small_card_todo" class="small_card_row" 
+        ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
         ondragover="allowDrop(event); addHighlightBorder('small_card_todo')"
         ondragleave="removeHighlightBorder('small_card_todo')">
       </div>
@@ -208,7 +209,8 @@
     <div class="task_main">
       <div class="task_topic">In Progress<div class="plus_btn" onclick="openForm()">+</div>
       </div>
-      <div id="small_card_progress" ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
+      <div id="small_card_progress" class="small_card_row"
+        ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
         ondragover="allowDrop(event); addHighlightBorder('small_card_progress')"
         ondragleave="removeHighlightBorder('small_card_progress')">
       </div>
@@ -217,7 +219,8 @@
     <div class="task_main">
       <div class="task_topic">Await feedback<div class="plus_btn" onclick="openForm()">+</div>
       </div>
-      <div id="small_card_await" ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
+      <div id="small_card_await" class="small_card_row"
+        ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
         ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
         ondragleave="removeHighlightBorder('small_card_await')">
       </div>
@@ -225,7 +228,8 @@
 
     <div class="task_main">
       <div class="task_topic">Done</div>
-      <div id="small_card_done" ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
+      <div id="small_card_done" class="small_card_row"
+        ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
         ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
         ondragleave="removeHighlightBorder('small_card_done')">
       </div>
