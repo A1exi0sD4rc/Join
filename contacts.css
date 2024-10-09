@@ -470,7 +470,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 5;
     background-color: #b8b9ba5d;
     transform: translateX(+200%);
     transition: all 25ms ease-in-out;
@@ -481,7 +481,7 @@ body {
 }
 
 .contacts-add-edit-div {
-    z-index: 3;
+    z-index: 6;
     transform: translateX(+200%);
     transition: all 150ms ease-in-out;
     width: 1220px;
