@@ -39,17 +39,14 @@
 
 .title_desc_small_div {
   width: 220px;
-  height: 46px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-bottom: 10px;
 }
 
 .title_small {
   width: 220px;
-  height: 19px;
   font-size: 16px;
   font-weight: 700;
   color: #2a3647;
@@ -69,7 +66,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
 }
 
 .subtasks_bar_small {
@@ -88,7 +84,7 @@
 }
 
 .amount_subtasks {
-  width: 75px;
+  width: 80px;
   height: 14px;
   left: 139px;
   font-size: 12px;
