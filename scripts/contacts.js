@@ -125,9 +125,9 @@ async function addContact(event) {
   renderContactDetails(
     contactKeys.findIndex((contact) => contact.name === lastContactCreat)
   );
+  focusAddedContact();
   contactCreatSuccesfull();
   setTimeout(contactCreatSuccesfull, 2000);
-  focusAddedContact();
 }
 
 async function addContactToDb() {
@@ -184,7 +184,8 @@ function contactCreatSuccesfull() {
 }
 
 function focusAddedContact() {  
-  document.getElementById(`${contactKeys.length - 1}`).focus();
+  let newContact = document.getElementById(`${contactKeys.findIndex((contact) => contact.name === lastContactCreat)}`);
+  newContact.scrollTop = newContact.scrollHeight;
 }
 
 async function editSaveInit(i) {

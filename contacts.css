@@ -722,8 +722,8 @@ body {
 /* contact created */
 
 .contact-created {
-    position: absolute;
-    bottom: 50px;
+    position: fixed;
+    bottom: 130px;
     right: 100px;
     width: 330px;
     height: 75px;
