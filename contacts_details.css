@@ -1,0 +1,174 @@
+/* contact details */
+
+.contacts-contact-details {
+    height: fit-content;
+    width: fit-content;
+    gap: 21px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.contacts-contact-logo-name {
+    display: flex;
+    justify-content: space-between;
+    max-width: 630px;
+}
+
+.contacts-contact-details-btn-div {
+    display: flex;
+    align-items: center;
+}
+
+.contacts-contact-details-h-edit-delete {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contacts-contact-details-h-edit-delete h2 {
+    min-height: 56px;
+    font-size: 47px;
+    margin: 0;
+}
+
+.contacts-contact-details-h-edit-delete button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 24px;
+    margin-top: 8px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.contacts-contact-details-h-edit-delete button:hover {
+    color: #29abe2;
+    font-weight: 700;
+}
+
+.contacts-contact-details-edit-btn {
+    width: 60px;
+    background-image: url("./assets/img/contacts_pen.svg");
+    background-size: 24px;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+}
+
+.contacts-contact-details-edit-btn:hover {
+    background-image: url("./assets/img/contacts_pen_hover.svg");
+}
+
+.contacts-contact-details-delete-btn {
+    width: 80px;
+    background-image: url("./assets/img/contacts_bin.svg");
+    background-size: 24px;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+}
+
+.contacts-contact-details-delete-btn:hover {
+    background-image: url("./assets/img/contacts_bin_hover.svg");
+}
+
+.contacts-details-info-hl {
+    width: 207px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.contacts-details-info {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.contacts-details-info a {
+    color: #29abe2;
+    cursor: pointer;
+    font-size: 16px;
+    width: fit-content;
+}
+
+
+/* details mobil */
+
+.contacts-d-more-options-btn {
+    position: fixed;
+    right: 100px;
+    bottom: 130px;
+    width: 56px;
+    height: 56px;
+    background-image: url("./assets/img/contacts-options.svg");
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: #2a3647;
+    border-radius: 56px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.contacts-d-more-options-btn:hover {
+    background-color: #29abe2;
+}
+
+.contacts-d-more-options-div {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    max-width: 120px;
+    max-height: 100px;
+    position: fixed;
+    right: 30px;
+    bottom: 120px;
+    background-color: white;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transform: translateX(+1000%);
+    transition: all 125ms ease-in-out;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.contacts-d-more-options-show {
+    transform: translateX(0%) !important;
+}
+
+.contacts-d-more-options-div button {
+    width: 70px;
+    height: 24px;
+    padding: 8px;
+    padding-left: 45px;
+    border-radius: 10px;
+}
+
+.contact-details-mobil-edit-btn {
+    background-image: url("./assets/img/contacts_pen.svg");
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+}
+
+.contact-details-mobil-edit-btn:hover {
+    background-color: #e8e8e8;
+    background-image: url("./assets/img/contacts_pen_hover.svg");
+    color: #29abe2;
+}
+
+.contact-details-mobil-delete-btn {
+    background-image: url("./assets/img/contacts_bin.svg");
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+}
+
+.contact-details-mobil-delete-btn:hover {
+    background-color: #e8e8e8;
+    background-image: url("./assets/img/contacts_bin_hover.svg");
+    color: #29abe2;
+}

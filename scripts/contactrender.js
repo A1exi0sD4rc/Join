@@ -1,3 +1,9 @@
+/**
+ * Renders the contact management interface.
+ * 
+ * @function render
+ * @returns {void} This function does not return a value.
+ */
 function render() {
     document.getElementById("contacts-site").innerHTML = "";
     document.getElementById("contacts-site").innerHTML = /*html*/`
@@ -34,6 +40,12 @@ function render() {
 }
 
 
+/**
+ * Renders the list of contacts grouped by initial letters.
+ * 
+ * @function renderContacts
+ * @returns {void} This function does not return a value.
+ */
 function renderContacts() {
     let clusteredContacts = loadNameCluster();
 
@@ -78,6 +90,13 @@ function renderContacts() {
 }
 
 
+/**
+ * Renders the details of a specific contact.
+ *
+ * @function renderContactDetails
+ * @param {number} i - The index of the contact in the `contactKeys` array.
+ * @returns {void} This function does not return a value.
+ */
 function renderContactDetails(i) {
     toggleDetailClasses(i);
 
@@ -113,6 +132,12 @@ function renderContactDetails(i) {
 }
 
 
+/**
+ * Renders a message indicating that a contact has been successfully created.
+ *
+ * @function renderContactCreated
+ * @returns {void} This function does not return a value.
+ */
 function renderContactCreated() {
     document.getElementById('contacts-site').innerHTML += /*html*/`
         <div id="contact-created" class="contact-created">
@@ -122,6 +147,13 @@ function renderContactCreated() {
 }
 
 
+/**
+ * Renders the edit contact interface for a specific contact.
+ *
+ * @param {number} i - The index of the contact in the `contactKeys` array 
+ *                     that is to be edited.
+ * @returns {void} This function does not return a value.
+ */
 function renderEditContact(i) {
     document.getElementById('contacts-add-edit').innerHTML = '';
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
@@ -158,6 +190,11 @@ function renderEditContact(i) {
 }
 
 
+/**
+ * Renders the interface for adding a new contact.
+ *
+ * @returns {void} This function does not return a value.
+ */
 function renderAddNewContact() {
     document.getElementById('contacts-add-edit').innerHTML = '';
     document.getElementById('contacts-add-edit').innerHTML += /*html*/`
