@@ -40,7 +40,6 @@
 .add_task_form_left_edit {
   height: 376px;
   width: 440px;
-  margin-right: 47.5px;
   padding-top: 40px;
 }
 
@@ -55,7 +54,8 @@
   height: 1px;
   width: 445px;
   background-color: #d1d1d1;
-  margin-right: 47.5px;
+  margin-top: 47.5px;
+  margin-bottom: 40px;
 }
 
 .add_task_form_right {
