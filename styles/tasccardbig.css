@@ -61,6 +61,23 @@
   cursor: pointer;
 }
 
+.big_card_close_edit {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: 40px;
+  top: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.big_card_close_edit:hover {
+  border-radius: 52px;
+  background-color: #eeeeee;
+}
+
 .title_big {
   width: 445px;
   font-size: 61px;

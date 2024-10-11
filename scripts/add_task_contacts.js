@@ -10,7 +10,6 @@ async function getContacts() {
 
   try {
     contactsAddTask = Object.values(responseAsJson);
-    console.log("All contacts:", contactsAddTask);
     contactsAddTask.sort((a, b) => a.name.localeCompare(b.name));
 
     let userName = sessionStorage.getItem("userName");

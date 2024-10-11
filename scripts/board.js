@@ -313,9 +313,6 @@ async function deleteTask() {
     tasks = tasks.filter((task) => task.id !== taskId);
 
     hideBigTask();
-    updateHtmlTodo();
-    updateHtmlProgress();
-    updateHtmlAwait();
-    updateHtmlDone();
+    await refreshTaskBoard();
   }
 }

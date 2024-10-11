@@ -169,7 +169,7 @@ function generateColor() {
     "peru",
     "midnightblue",
     "aquamarine",
-    "chartreuse"
+    "chartreuse",
   ];
 
   const randomIndex = Math.floor(Math.random() * colors.length);
@@ -183,8 +183,10 @@ function contactCreatSuccesfull() {
     .classList.toggle("creation-succesfull");
 }
 
-function focusAddedContact() {  
-  let newContact = document.getElementById(`${contactKeys.findIndex((contact) => contact.name === lastContactCreat)}`);
+function focusAddedContact() {
+  let newContact = document.getElementById(
+    `${contactKeys.findIndex((contact) => contact.name === lastContactCreat)}`
+  );
   newContact.scrollTop = newContact.scrollHeight;
 }
 
@@ -245,8 +247,12 @@ async function deleteContact(i) {
 function contactShowEditOption(event) {
   if (event) {
     event.stopPropagation();
-    document.getElementById('contact-details-option').classList.add('contacts-d-more-options-show');
+    document
+      .getElementById("contact-details-option")
+      .classList.add("contacts-d-more-options-show");
   } else {
-    document.getElementById('contact-details-option').classList.remove('contacts-d-more-options-show');
+    document
+      .getElementById("contact-details-option")
+      .classList.remove("contacts-d-more-options-show");
   }
 }
