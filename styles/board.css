@@ -367,10 +367,8 @@ body.no-scroll {
 }
 
 .task_main {
-  width: 244px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .task_topic {

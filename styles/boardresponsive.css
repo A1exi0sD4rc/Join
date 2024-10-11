@@ -7,18 +7,45 @@
     .task_content {
         display: flex;
         flex-direction: column;
+        margin-left: 48px;
     }
 
-    .task_main{
-        width: unset;
+    .task_main {
         display: flex;
-        flex-direction: row;
     }
 
-    .small_card_row{
+    .small_card_row {
         display: flex;
         flex-direction: row;
         gap: 16px;
+    }
+}
+
+@media (max-width: 1340px) {
+
+    .search_add_task {
+        justify-content: unset;
+    }
+
+    .input_div {
+        margin-left: 30px;
+    }
+
+    .board_header {
+        padding-top: 96px;
+        padding-left: 48px;
+        display: flex;
+        height: 200px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .input_div {
+        width: 220px;
+    }
+
+    .search_task_input {
+        width: 200px;
     }
 }
 
@@ -30,10 +57,9 @@
 
     .board_header {
         padding-top: 96px;
-        padding-left: 0px;
+        padding-left: 30px;
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
         margin-bottom: 24px;
     }
 
@@ -113,22 +139,44 @@
     }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 740px){
     .board_header {
         padding-top: 96px;
         display: flex;
-        height: 200px;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 15px;
     }
 
-    .search_add_task {
+    .input_div {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 580px) {
+
+    .task_content{
+        margin-left: 10px;
+    }
+
+    .board_header {
+        padding-top: 96px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        margin-left: 0px;
+    }
+
+    .search_add_task{
+        flex-direction: column;
+        height: 260px;
+        width: 280px;
+        align-items: flex-start;
+        justify-content: center;
         gap: 15px;
     }
 
-    h1{
+    h1 {
         font-size: 40px;
     }
 }
@@ -139,6 +187,12 @@
         padding: 16px;
         gap: 5px;
         margin-bottom: 10px;
+    }
+
+    .small_card_row {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
     }
 
     .task_card_small_content {
@@ -167,17 +221,25 @@
         width: 100px;
     }
 
+    .search_add_task{
+        flex-direction: column;
+    }
+
+    .board_header{
+        padding-left: 15px;
+    }
+
     .board_content {
         margin-bottom: 150px;
     }
 }
 
-@media (max-width: 360px){
-    .input_div{
+@media (max-width: 360px) {
+    .input_div {
         width: 220px;
     }
 
-    .search_task_input{
+    .search_task_input {
         width: 200px;
     }
 }
