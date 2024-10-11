@@ -35,7 +35,6 @@
         padding-top: 96px;
         padding-left: 48px;
         display: flex;
-        height: 200px;
     }
 }
 
@@ -60,7 +59,6 @@
         padding-left: 30px;
         display: flex;
         justify-content: center;
-        margin-bottom: 24px;
     }
 
     .big_card {
@@ -146,6 +144,7 @@
         flex-direction: column;
         justify-content: center;
         margin-left: 15px;
+        margin-bottom: 30px;
     }
 
     .input_div {
@@ -155,9 +154,7 @@
 
 @media (max-width: 580px) {
 
-    .task_content{
-        margin-left: 10px;
-    }
+
 
     .board_header {
         padding-top: 96px;
@@ -168,20 +165,18 @@
     }
 
     .search_add_task{
-        flex-direction: column;
-        height: 260px;
-        width: 280px;
+        width: 500px;
         align-items: flex-start;
         justify-content: center;
         gap: 15px;
     }
 
     h1 {
+        margin-left: 15px;
+        margin-bottom: 15px;
         font-size: 40px;
     }
-}
 
-@media (max-width: 550px) {
     .task_card_small {
         width: 220px;
         padding: 16px;
