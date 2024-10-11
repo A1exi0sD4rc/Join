@@ -1,10 +1,8 @@
 async function editTask(taskId) {
   try {
-    // Fetch task data from Firebase
     const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
     const taskData = await taskResponse.json();
 
-    // Render the form inside the `big_card` div
     document.getElementById("big_card").innerHTML = "";
     document.getElementById("big_card").innerHTML = `
         <form id="editForm" class="form_area_edit">
@@ -82,7 +80,6 @@ async function editTask(taskId) {
         </form>
       `;
 
-    // Populate contacts in dropdown
     populateContactList(taskData.assigned);
   } catch (error) {
     console.error("Error loading task for editing:", error);
@@ -91,14 +88,12 @@ async function editTask(taskId) {
 
 async function saveTaskChanges(taskId) {
   try {
-    // Collect updated task data from the form
     const updatedTitle = document.getElementById("aT_title").value;
     const updatedDescription = document.getElementById("aT_description").value;
     const updatedDueDate = document.getElementById("aT_due_date").value;
     const updatedPriority = document.getElementById("aT_priority").value;
-    const assignedContacts = getSelectedContacts(); // Implement this function
+    const assignedContacts = getSelectedContacts();
 
-    // Update the task in Firebase
     const updatedTaskData = {
       title: updatedTitle,
       description: updatedDescription,
@@ -109,14 +104,13 @@ async function saveTaskChanges(taskId) {
 
     await updateTaskInDatabase({ ...updatedTaskData, id: taskId });
 
-    // Update the UI
     const taskToUpdate = tasks.find((t) => t.id === taskId);
     if (taskToUpdate) {
       Object.assign(taskToUpdate, updatedTaskData);
-      renderTaskCard(taskToUpdate); // Re-render the task card
+      renderTaskCard(taskToUpdate);
     }
 
-    hideBigTask(); // Close the task editor
+    hideBigTask();
   } catch (error) {
     console.error("Error saving task changes:", error);
   }
