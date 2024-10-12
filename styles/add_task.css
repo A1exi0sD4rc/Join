@@ -867,6 +867,15 @@ li {
   .add_task_content {
     height: 1470px;
   }
+  /* 
+  .form_area {
+    height: calc(100vh - 108px);
+    overflow-y: scroll;
+  }
+
+  .form_area::-webkit-scrollbar {
+    display: none;
+  } */
 
   .add_task_fillIn_section {
     display: flex;
@@ -930,7 +939,7 @@ li {
   }
 
   .form_area {
-    height: 100vh;
+    height: calc(100vh - 105px);
     padding-top: 80px;
   }
 
@@ -958,6 +967,39 @@ li {
 
   .category_subtasks_container {
     z-index: 1;
+  }
+
+  li {
+    height: 100%;
+    font-size: 12px;
+    line-height: 24px;
+    width: 28ch;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  ul {
+    padding-left: 24px;
+    border-radius: 10px;
+    position: relative;
+    margin-top: 5px;
+  }
+
+  .task-controls {
+    z-index: 888;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+  }
+
+  .separator_subtasks {
+    width: 1px;
+    height: 24px;
+    background-color: #ccc;
+    margin: 0 2px;
   }
 
   .aT_input_addSubtask {
@@ -1048,8 +1090,20 @@ li {
     font-size: 16px;
   }
 
+  .add_task_content {
+    padding-left: 3px;
+  }
+
   .edit-input {
-    width: 300px;
+    margin-left: -48px;
+    height: 32px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 1px solid #005dff;
+    padding: 4px 64px 4px 26px;
+    box-sizing: border-box;
+    font-size: 16px;
+    width: 318px;
   }
 
   p {
