@@ -22,7 +22,7 @@
 }
 
 @media (max-width: 1340px) {
-
+    
     .search_add_task {
         justify-content: unset;
     }
@@ -63,6 +63,10 @@
 
     .big_card {
         width: 250px;
+    }
+
+    .subtasks_container {
+        overflow-y: unset;
     }
 
     .title_big {
@@ -137,9 +141,9 @@
     }
 }
 
-@media (max-width: 740px){
+@media (max-width: 740px) {
 
-    .board_content{
+    .board_content {
         margin-left: -15px;
     }
 
@@ -159,7 +163,7 @@
 
 @media (max-width: 580px) {
 
-    .title_span{
+    .title_span {
         width: 250px;
         display: flex;
         justify-content: center;
@@ -174,7 +178,7 @@
         margin-left: 30px;
     }
 
-    .search_add_task{
+    .search_add_task {
         width: 250px;
         align-items: flex-start;
         justify-content: center;
@@ -227,11 +231,11 @@
         width: 100px;
     }
 
-    .search_add_task{
+    .search_add_task {
         flex-direction: column;
     }
 
-    .board_header{
+    .board_header {
         padding-left: 15px;
     }
 
