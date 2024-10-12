@@ -6,9 +6,9 @@ async function editTask(taskId) {
     document.getElementById("big_card").innerHTML = "";
     document.getElementById("big_card").innerHTML = `
         <form id="editForm" class="form_area_edit">
-        <div class="big_card_close_edit" onclick="hideBigTask()">
+          <div class="big_card_close_edit" onclick="hideBigTask()">
             <img src="assets/img/close.svg">
-        </div>
+          </div>
           <div class="add_task_fillIn_section">
             <div class="add_task_form_left_edit">
               <label class="aT_input_labels" for="aT_title">Title</label>
@@ -35,58 +35,58 @@ async function editTask(taskId) {
               </div>
               
               <label class="aT_input_labels">Assigned to</label>
-<div class="aT_select_container">
-  <input
-    id="aT_select_contacts"
-    class="aT_select_dropdown_fields"
-    placeholder="Select contacts to assign"
-    value="${
-      selectedContacts.length > 0
-        ? selectedContacts.length + " contacts selected"
-        : ""
-    }"
-    readonly
-  />
-  <div id="contact_list" class="contact_list">
-    <div id="contacts_container" class="scrollable_container"></div>
-  </div>
-  <div id="selected_contacts" class="selected-contacts-container"></div>
-</div>
+              <div class="aT_select_container">
+                <input
+                  id="aT_select_contacts"
+                  class="aT_select_dropdown_fields"
+                  placeholder="Select contacts to assign"
+                />
+                <div id="contact_list" class="contact_list">
+                  <div id="contacts_container" class="scrollable_container"></div>
+                </div>
+                <div id="selected_contacts" class="selected-contacts-container"></div>
+              </div>
+            </div>
   
             <div class="add_task_seperator_edit"></div>
+
             <div class="add_task_form_right">
-              <label class="aT_input_labels" for="aT_due_date">Due Date</label>
-              <input
-                type="date"
-                id="aT_due_date"
-                name="due_date"
-                value="${taskData.due_date || ""}"
-              />
-  
-               <div class="aT_set_prio_container" id="aT_set_prio">
+              <label class="aT_input_labels" for="aT_date">Due date</label>
+              <div class="date_error_container">
+                <input
+                  required
+                  id="aT_date"
+                  class="aT_input_date"
+                  type="date"
+                  value="${taskData.due_date || ""}"
+                />
+                <span id="dateError" class="error">This field is required</span>
+              </div>
+
+              <div class="aT_set_prio_container" id="aT_set_prio">
                 <div
                   class="aT_set_prio"
                   id="boxUrgent"
                   onclick="activateBox('boxUrgent', 'urgent_box_active')"
                 >
-                  <span>Urgent</span
-                  ><img src="./assets/img/Prio_high.svg" alt="urgent_icon" />
+                  <span>Urgent</span>
+                  <img src="./assets/img/Prio_high.svg" alt="urgent_icon" />
                 </div>
                 <div
                   class="medium_box_active"
                   id="boxMedium"
                   onclick="activateBox('boxMedium', 'medium_box_active')"
                 >
-                  <span>Medium</span
-                  ><img src="./assets/img/Prio_med.svg" alt="medium_icon" />
+                  <span>Medium</span>
+                  <img src="./assets/img/Prio_med.svg" alt="medium_icon" />
                 </div>
                 <div
                   class="aT_set_prio"
                   id="boxLow"
                   onclick="activateBox('boxLow', 'low_box_active')"
                 >
-                  <span>Low</span
-                  ><img src="./assets/img/Prio_low.svg" alt="low_icon" />
+                  <span>Low</span>
+                  <img src="./assets/img/Prio_low.svg" alt="low_icon" />
                 </div>
               </div>
 
@@ -117,9 +117,9 @@ async function editTask(taskId) {
                       <div class="categories">User Story</div>
                     </div>
                   </div>
-                  <span id="categoryError" class="error"
-                    >Please select a category for your task.</span
-                  >
+                  <span id="categoryError" class="error">
+                    Please select a category for your task.
+                  </span>
                 </div>
                 <div class="subtasks_input_subs_container">
                   <label class="aT_label_subtasks">Subtasks</label>
@@ -173,15 +173,16 @@ async function editTask(taskId) {
               </div>
             </div>
           </div>
-            
-  
-          <div class="big_save_cancel_buttons">
-            <button type="button" onclick="saveTaskChanges('${taskId}')">Ok</button>
+
+          <div class="big_save_cancel_buttons edit_button" onclick="saveTaskChanges('${taskId}')">
+            <div>Ok</div>
+            <img src="./assets/img/create_task_white.svg" alt="edit_ok" class="create_img">
           </div>
         </form>
-      `;
+    `;
 
-    populateContactList(taskData.assigned);
+    // Initialize the contact list
+    await getContacts();
   } catch (error) {
     console.error("Error loading task for editing:", error);
   }
