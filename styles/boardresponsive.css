@@ -138,6 +138,11 @@
 }
 
 @media (max-width: 740px){
+
+    .board_content{
+        margin-left: -15px;
+    }
+
     .board_header {
         padding-top: 96px;
         display: flex;
@@ -154,20 +159,26 @@
 
 @media (max-width: 580px) {
 
-
+    .title_span{
+        width: 250px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+    }
 
     .board_header {
         padding-top: 96px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-left: 0px;
+        margin-left: 30px;
     }
 
     .search_add_task{
-        width: 500px;
+        width: 250px;
         align-items: flex-start;
         justify-content: center;
+        align-items: center;
         gap: 15px;
     }
 
