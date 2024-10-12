@@ -323,7 +323,7 @@ function getTaskTextElement(taskItem) {
 
 function updateTaskItemForEditing(taskItem, currentText) {
   taskItem.innerHTML = /*html*/ `
-    <input type="text" maxlength="50" value="${currentText}" class="edit-input">
+    <input type="text" maxlength="100" value="${currentText}" class="edit-input">
     <div class="task-controls">
       <div class="edit-modus-btns" onclick="deleteSubtask(this)">
         <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn-input delete-btn-input">

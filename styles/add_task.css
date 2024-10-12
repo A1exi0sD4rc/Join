@@ -699,7 +699,7 @@ li {
   height: 100%;
   font-size: 16px;
   line-height: 32px;
-  width: 30ch; /* Maximale Breite in Zeichen */
+  width: 33ch; /* Maximale Breite in Zeichen */
   white-space: normal; /* Normales Zeilenumbruchverhalten */
   overflow-wrap: break-word; /* Wörter werden bei Bedarf umgebrochen */
   word-break: normal; /* Verhindert das Umbrechen mitten im Wort */
