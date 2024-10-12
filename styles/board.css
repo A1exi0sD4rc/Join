@@ -314,7 +314,8 @@ body.no-scroll {
 }
 
 .clear_form_overlay:hover img {
-  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg) brightness(91%) contrast(95%);
+  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg)
+    brightness(91%) contrast(95%);
 }
 
 .create_task_overlay {
@@ -377,4 +378,16 @@ body.no-scroll {
 .aT_subtasks_container_overlay::-webkit-scrollbar {
   color: transparent;
   width: 0;
+}
+
+.edit-input_overlay {
+  margin-left: -48px;
+  width: 440px;
+  height: 32px;
+  background-color: #fff;
+  border: none;
+  border-bottom: 1px solid #005dff;
+  padding: 4px 86px 4px 16px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
