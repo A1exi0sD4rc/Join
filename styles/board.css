@@ -146,20 +146,6 @@ body {
   animation: ease-in-out;
 }
 
-.task_slots {
-  width: 1208px;
-  gap: 26px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding-top: 16px;
-}
-
-.slots {
-  width: 252px;
-  gap: 16px;
-}
-
 .add_icon {
   width: 18.67px;
   height: 18.67px;
@@ -328,8 +314,7 @@ body.no-scroll {
 }
 
 .clear_form_overlay:hover img {
-  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg)
-    brightness(91%) contrast(95%);
+  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg) brightness(91%) contrast(95%);
 }
 
 .create_task_overlay {

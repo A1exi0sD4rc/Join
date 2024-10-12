@@ -174,70 +174,74 @@
 
     <div class="board_header">
       <span class="title_span">
-      <h1>Board</h1>
+        <h1>Board</h1>
       </span>
 
       <div class="search_add_task">
         <div class="input_div">
-          <input class="search_task_input" id="search_task_input" oninput="filterTasks()" type="search" placeholder="Find Task">
+          <input class="search_task_input" id="search_task_input" oninput="filterTasks()" type="search"
+            placeholder="Find Task">
           <div class="search_icon_div">
             <div class="search_icon" onclick="filterTasks(); emptySearchInput()"><img src="assets/img/search.svg"></div>
           </div>
         </div>
 
-      <div class="add_task_btn" id="addTaskBtn" onclick="openForm()">
+        <div class="add_task_btn" id="addTaskBtn" onclick="openForm()">
 
-        <div class="add_task_btn_txt">
-          <span class="add_task_btn_txt">Add Task</span>
+          <div class="add_task_btn_txt">
+            <span class="add_task_btn_txt">Add Task</span>
+          </div>
+
+          <div><img class="add_task_plus" src="assets/img/add.svg"></div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="task_content">
+
+      <div class="task_main">
+        <div class="task_topic">To Do<div class="plus_btn" onclick="openForm()">+</div>
         </div>
 
-        <div><img class="add_task_plus" src="assets/img/add.svg" /></div>
-      </div>
-    </div>
-  </div>
+        <div id="small_card_todo" class="small_card_row"
+          ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_todo')"
+          ondragleave="removeHighlightBorder('small_card_todo')">
+        </div>
 
-  <div class="task_content">
+      </div>
 
-    <div class="task_main">
-      <div class="task_topic">To Do<div class="plus_btn" onclick="openForm()">+</div>
-    </div>
-      <div id="small_card_todo" class="small_card_row" 
-        ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
-        ondragover="allowDrop(event); addHighlightBorder('small_card_todo')"
-        ondragleave="removeHighlightBorder('small_card_todo')">
+      <div class="task_main">
+        <div class="task_topic">In Progress<div class="plus_btn" onclick="openForm()">+</div>
+        </div>
+        <div id="small_card_progress" class="small_card_row"
+          ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_progress')"
+          ondragleave="removeHighlightBorder('small_card_progress')">
+        </div>
       </div>
-    </div>
 
-    <div class="task_main">
-      <div class="task_topic">In Progress<div class="plus_btn" onclick="openForm()">+</div>
+      <div class="task_main">
+        <div class="task_topic">Await feedback<div class="plus_btn" onclick="openForm()">+</div>
+        </div>
+        <div id="small_card_await" class="small_card_row"
+          ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
+          ondragleave="removeHighlightBorder('small_card_await')">
+        </div>
       </div>
-      <div id="small_card_progress" class="small_card_row"
-        ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
-        ondragover="allowDrop(event); addHighlightBorder('small_card_progress')"
-        ondragleave="removeHighlightBorder('small_card_progress')">
-      </div>
-    </div>
 
-    <div class="task_main">
-      <div class="task_topic">Await feedback<div class="plus_btn" onclick="openForm()">+</div>
+      <div class="task_main">
+        <div class="task_topic">Done</div>
+        <div id="small_card_done" class="small_card_row"
+          ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
+          ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
+          ondragleave="removeHighlightBorder('small_card_done')">
+        </div>
       </div>
-      <div id="small_card_await" class="small_card_row"
-        ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
-        ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
-        ondragleave="removeHighlightBorder('small_card_await')">
-      </div>
-    </div>
 
-    <div class="task_main">
-      <div class="task_topic">Done</div>
-      <div id="small_card_done" class="small_card_row"
-        ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
-        ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
-        ondragleave="removeHighlightBorder('small_card_done')">
-      </div>
     </div>
-
-  </div>
 
   </div>
 

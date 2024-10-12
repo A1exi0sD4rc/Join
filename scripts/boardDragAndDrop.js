@@ -1,7 +1,7 @@
 let draggedTaskId;
 
 /**
- * startDrag(id) assigns the value of id to the variable draggedTo, to follow the element being dragged in a drag and drop operation.
+ * assigns the value of id to the variable draggedTo, to follow the element being dragged in a drag and drop operation.
  *
  * @param {number} id
  */
@@ -11,13 +11,18 @@ function startDrag(id) {
   card.classList.add("rotate");
 }
 
+/**
+ * stops the drag action and removes the rotate class from the card element.
+ * 
+ * @param {number} id 
+ */
 function endDrag(id) {
   const card = document.getElementById(id);
   card.classList.remove("rotate");
 }
 
 /**
- * enables dropping elements onto the target div
+ * enables dropping elements onto the target div.
  *
  * @param {event} ev
  */
@@ -51,14 +56,29 @@ async function moveTo(newCategory) {
   }
 }
 
+/**
+ * adds an border to the selected/aktive div.
+ * 
+ * @param {number} id 
+ */
 function addHighlightBorder(id) {
   document.getElementById(id).classList.add("drag_area_border");
 }
 
+/**
+ * removes the border if no div is selected/aktive.
+ * 
+ * @param {number} id 
+ */
 function removeHighlightBorder(id) {
   document.getElementById(id).classList.remove("drag_area_border");
 }
 
+/**
+ * updates the task on database.
+ * 
+ * @param {number} task 
+ */
 async function updateTaskInDatabase(task) {
   try {
     const response = await fetch(`${TASKS_URL}/${task.id}.json`, {
