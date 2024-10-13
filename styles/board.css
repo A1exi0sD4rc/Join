@@ -391,3 +391,38 @@ body.no-scroll {
   box-sizing: border-box;
   font-size: 16px;
 }
+
+@media (max-width: 1150px) {
+  .task-form {
+    width: 1096px;
+  }
+
+  .task-form.active {
+    right: calc(50% - 549px);
+  }
+  .add_task_bottom_overlay {
+    width: 947px;
+  }
+}
+
+@media (max-width: 1110px) {
+  .task-form.active {
+    right: calc(50% - 490px);
+  }
+
+  .task-form {
+    width: 980px;
+  }
+
+  .addTask_overlay_headline {
+    padding: 64px 25px 0;
+  }
+
+  .form_area_overlay {
+    padding: 0 25px 0 25px;
+  }
+
+  .add_task_bottom_overlay {
+    width: 929px;
+  }
+}
