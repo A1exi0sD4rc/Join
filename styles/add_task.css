@@ -699,7 +699,7 @@ li {
   height: 100%;
   font-size: 16px;
   line-height: 32px;
-  width: 33ch; /* Maximale Breite in Zeichen */
+  width: 30ch; /* Maximale Breite in Zeichen */
   white-space: normal; /* Normales Zeilenumbruchverhalten */
   overflow-wrap: break-word; /* Wörter werden bei Bedarf umgebrochen */
   word-break: normal; /* Verhindert das Umbrechen mitten im Wort */
@@ -867,15 +867,6 @@ li {
   .add_task_content {
     height: 1470px;
   }
-  /* 
-  .form_area {
-    height: calc(100vh - 108px);
-    overflow-y: scroll;
-  }
-
-  .form_area::-webkit-scrollbar {
-    display: none;
-  } */
 
   .add_task_fillIn_section {
     display: flex;

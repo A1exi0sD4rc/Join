@@ -1,255 +1,249 @@
 @media (max-width: 1450px) {
-    .board_content {
-        display: flex;
-        flex-direction: column;
-    }
+  .board_content {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .task_content {
-        display: flex;
-        flex-direction: column;
-        margin-left: 48px;
-    }
+  .task_content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 48px;
+  }
 
-    .task_main {
-        display: flex;
-    }
+  .task_main {
+    display: flex;
+  }
 
-    .small_card_row {
-        display: flex;
-        flex-direction: row;
-        gap: 16px;
-    }
+  .small_card_row {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
 }
 
 @media (max-width: 1340px) {
+  .search_add_task {
+    justify-content: unset;
+  }
 
-    .search_add_task {
-        justify-content: unset;
-    }
+  .input_div {
+    margin-left: 30px;
+  }
 
-    .input_div {
-        margin-left: 30px;
-    }
-
-    .board_header {
-        padding-top: 96px;
-        padding-left: 48px;
-        display: flex;
-    }
+  .board_header {
+    padding-top: 96px;
+    padding-left: 48px;
+    display: flex;
+  }
 }
 
 @media (max-width: 1100px) {
-    .input_div {
-        width: 220px;
-    }
+  .input_div {
+    width: 220px;
+  }
 
-    .search_task_input {
-        width: 200px;
-    }
+  .search_task_input {
+    width: 200px;
+  }
 }
 
 @media (max-width: 1000px) {
-    .board_content {
-        margin-top: 5px;
-        margin-left: 0px;
-    }
+  .board_content {
+    padding-bottom: 100px;
+    margin-top: 5px;
+    margin-left: 0px;
+  }
 
-    .board_header {
-        padding-top: 96px;
-        padding-left: 30px;
-        display: flex;
-        justify-content: center;
-    }
+  .board_header {
+    padding-top: 96px;
+    padding-left: 30px;
+    display: flex;
+    justify-content: center;
+  }
 
-    .big_card {
-        width: 250px;
-    }
+  .big_card {
+    width: 250px;
+  }
 
-    .subtasks_container {
-        overflow-y: unset;
-    }
+  .subtasks_container {
+    overflow-y: unset;
+  }
 
-    .title_big {
-        width: 200px;
-        font-size: 30px;
-        font-weight: 400;
-    }
+  .title_big {
+    width: 200px;
+    font-size: 30px;
+    font-weight: 400;
+  }
 
-    .big_description {
-        width: 200px;
-        font-size: 16px;
-    }
+  .big_description {
+    width: 200px;
+    font-size: 16px;
+  }
 
-    .big_due,
-    .big_prio,
-    .big_assigned,
-    .big_subs {
-        width: 200px;
-        font-size: 16px;
-        gap: 10px;
-    }
+  .big_due,
+  .big_prio,
+  .big_assigned,
+  .big_subs {
+    width: 200px;
+    font-size: 16px;
+    gap: 10px;
+  }
 
-    .subtasks_container {
-        width: 200px;
-    }
+  .subtasks_container {
+    width: 200px;
+  }
 
-    .assigned_div {
-        width: 200px;
-    }
+  .assigned_div {
+    width: 200px;
+  }
 
-    .assigned_big_name {
-        font-size: 16px;
-    }
+  .assigned_big_name {
+    font-size: 16px;
+  }
 
-    .assigned_big_logo {
-        width: 30px;
-        height: 30px;
-        gap: 5px;
-    }
+  .assigned_big_logo {
+    width: 30px;
+    height: 30px;
+    gap: 5px;
+  }
 
-    .big_card_art_close {
-        width: 200px;
-    }
+  .big_card_art_close {
+    width: 200px;
+  }
 
-    .big_art {
-        width: 150px;
-        height: 26px;
-        font-size: 18px;
-        font-weight: 200;
-    }
+  .big_art {
+    width: 150px;
+    height: 26px;
+    font-size: 18px;
+    font-weight: 200;
+  }
 
-    .big_due_date {
-        font-size: 16px;
-    }
+  .big_due_date {
+    font-size: 16px;
+  }
 
-    .big_del_edit {
-        width: 200px;
-        height: 24px;
-        gap: 8px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 24px;
-    }
+  .big_del_edit {
+    width: 200px;
+    height: 24px;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
 
-    .big_assigned_user {
-        padding: 0px 0px;
-    }
+  .big_assigned_user {
+    padding: 0px 0px;
+  }
 
-    .big_prio_img {
-        font-size: 16px;
-    }
+  .big_prio_img {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 740px) {
+  .board_content {
+    margin-left: -15px;
+  }
 
-    .board_content {
-        margin-left: -15px;
-    }
+  .board_header {
+    padding-top: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+    margin-bottom: 30px;
+  }
 
-    .board_header {
-        padding-top: 96px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-left: 15px;
-        margin-bottom: 30px;
-    }
-
-    .input_div {
-        margin-left: 0px;
-    }
+  .input_div {
+    margin-left: 0px;
+  }
 }
 
 @media (max-width: 580px) {
+  .title_span {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
 
-    .title_span {
-        width: 250px;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 5px;
-    }
+  .board_header {
+    padding-top: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+  }
 
-    .board_header {
-        padding-top: 96px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-left: 30px;
-    }
+  .search_add_task {
+    width: 250px;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
 
-    .search_add_task {
-        width: 250px;
-        align-items: flex-start;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-    }
+  h1 {
+    margin-left: 15px;
+    margin-bottom: 15px;
+    font-size: 40px;
+  }
 
-    h1 {
-        margin-left: 15px;
-        margin-bottom: 15px;
-        font-size: 40px;
-    }
+  .task_card_small {
+    width: 220px;
+    padding: 16px;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
 
-    .task_card_small {
-        width: 220px;
-        padding: 16px;
-        gap: 5px;
-        margin-bottom: 10px;
-    }
+  .small_card_row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-    .small_card_row {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
+  .task_card_small_content {
+    width: 220px;
+  }
 
-    .task_card_small_content {
-        width: 220px;
-    }
+  .title_desc_small_div {
+    width: 220px;
+  }
 
-    .title_desc_small_div {
-        width: 220px;
-    }
+  .title_small {
+    width: 220px;
+    font-size: 16px;
+    font-weight: 700;
+  }
 
-    .title_small {
-        width: 220px;
-        font-size: 16px;
-        font-weight: 700;
-    }
+  .description_small {
+    width: 220px;
+  }
 
-    .description_small {
-        width: 220px;
-    }
+  .sub_amount_small {
+    width: 220px;
+  }
 
-    .sub_amount_small {
-        width: 220px;
-    }
+  .subtasks_bar_small {
+    width: 100px;
+  }
 
-    .subtasks_bar_small {
-        width: 100px;
-    }
+  .search_add_task {
+    flex-direction: column;
+  }
 
-    .search_add_task {
-        flex-direction: column;
-    }
-
-    .board_header {
-        padding-left: 15px;
-    }
-
-    .board_content {
-        margin-bottom: 150px;
-    }
+  .board_header {
+    padding-left: 15px;
+  }
 }
 
 @media (max-width: 360px) {
-    .input_div {
-        width: 220px;
-    }
+  .input_div {
+    width: 220px;
+  }
 
-    .search_task_input {
-        width: 200px;
-    }
+  .search_task_input {
+    width: 200px;
+  }
 }
