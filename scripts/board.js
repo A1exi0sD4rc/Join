@@ -106,8 +106,7 @@ function updateHtmlAwait() {
 function updateHtmlDone() {
   let done = tasks.filter((x) => x["category"] == "done");
   document.getElementById("small_card_done").innerHTML = "";
-  if (done.length < 1) {
-    document.getElementById("small_card_done").innerHTML = renderNoTaskDone();
+  if (done.length < 1) {document.getElementById("small_card_done").innerHTML = renderNoTaskDone();
   } else {
     for (let index = 0; index < done.length; index++) {
       const elementDone = done[index];
@@ -208,10 +207,10 @@ function showBigTask(taskId) {
   if (bigelement) {
     document.getElementById("big_card_bg").classList.remove("d_none");
     document.getElementById("big_card_bg").innerHTML = "";
-    document.getElementById("big_card_bg").innerHTML =
-      renderBigTaskCard(bigelement);
-      changeArtBackground(`big_art_${bigelement.id}`);
-      addPrioBigImg(bigelement);
+    document.getElementById("big_card_bg").innerHTML = renderBigTaskCard(bigelement);
+             changeArtBackground(`big_art_${bigelement.id}`);
+             addPrioBigImg(bigelement);
+             document.body.style.overflow = 'hidden';
   }
 }
 
@@ -221,6 +220,7 @@ function showBigTask(taskId) {
 function hideBigTask() {
   document.getElementById("big_card_bg").classList.add("d_none");
   document.getElementById("big_card_bg").innerHTML = "";
+  document.body.style.overflow = '';
 }
 
 /**
