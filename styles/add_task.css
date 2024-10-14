@@ -27,6 +27,10 @@
   display: flex;
 }
 
+.add_task_fillIn_section_edit {
+  flex-direction: column;
+}
+
 .aT_unset {
   all: unset;
 }

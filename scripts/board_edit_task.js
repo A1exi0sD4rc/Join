@@ -1,3 +1,11 @@
+async function initEditTask(taskId) {
+  includeHTML();
+  await getContacts();
+  await generateInitials();
+  const taskData = await fetchTaskFromDatabase(taskId);
+  populateEditForm(taskData);
+}
+
 async function editTask(taskId) {
   try {
     const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
@@ -9,7 +17,7 @@ async function editTask(taskId) {
           <div class="big_card_close_edit" onclick="hideBigTask()">
             <img src="assets/img/close.svg">
           </div>
-          <div class="add_task_fillIn_section">
+          <div class="add_task_fillIn_section_edit">
             <div class="add_task_form_left_edit">
               <label class="aT_input_labels" for="aT_title">Title</label>
               <div class="title_input_error_container">
