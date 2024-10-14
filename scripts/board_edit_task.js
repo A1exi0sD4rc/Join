@@ -1,11 +1,3 @@
-async function initEditTask(taskId) {
-  includeHTML();
-  await getContacts();
-  await generateInitials();
-  const taskData = await fetchTaskFromDatabase(taskId);
-  populateEditForm(taskData);
-}
-
 async function editTask(taskId) {
   try {
     const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
@@ -43,18 +35,34 @@ async function editTask(taskId) {
               </div>
               
               <label class="aT_input_labels">Assigned to</label>
-              <div class="aT_select_container">
-                <input
-                  id="aT_select_contacts"
-                  class="aT_select_dropdown_fields"
-                  placeholder="Select contacts to assign"
-                />
-                <div id="contact_list" class="contact_list">
-                  <div id="contacts_container" class="scrollable_container"></div>
-                </div>
-                <div id="selected_contacts" class="selected-contacts-container"></div>
+             <div class="aT_select_container">
+  <input
+    id="aT_select_contacts"
+    class="aT_select_dropdown_fields"
+    placeholder="Select contacts to assign"
+    onclick="toggleDropdown(event)"
+  />
+  <div
+    id="select_contacts_arrow_container"
+    class="drop_down_arrow_container"
+    onclick="toggleDropdown(event)"
+  >
+    <img
+      src="./assets/img/arrow_drop_down.svg"
+      alt="drop_down_arrow"
+      class="arrow"
+    />
+  </div>
+</div>
+
+              <div id="contact_list" class="contact_list d-none">
+                <div id="contacts_container" class="scrollable_container"></div>
               </div>
-            </div>
+
+              <div
+                id="selected_contacts"
+                class="selected-contacts-container"
+              ></div>
   
             <div class="add_task_seperator_edit"></div>
 
@@ -81,7 +89,7 @@ async function editTask(taskId) {
                   <img src="./assets/img/Prio_high.svg" alt="urgent_icon" />
                 </div>
                 <div
-                  class="medium_box_active"
+                  class="aT_set_prio"
                   id="boxMedium"
                   onclick="activateBox('boxMedium', 'medium_box_active')"
                 >
@@ -98,15 +106,15 @@ async function editTask(taskId) {
                 </div>
               </div>
 
-              <label class="aT_input_labels">Category<sup>*</sup></label>
+              <label class="aT_input_labels">Category</label>
               <div class="category_subtasks_container">
-                <div class="category_input_dropdown_error_container">
+               <div class="category_input_dropdown_error_container">
                   <div class="aT_select_container">
                     <div
                       id="aT_select_category"
                       class="aT_select_dropdown_fields"
                     >
-                      Select task category
+                    ${taskData.art || ""}
                     </div>
                     <div
                       id="select_category_arrow_container"
@@ -125,9 +133,9 @@ async function editTask(taskId) {
                       <div class="categories">User Story</div>
                     </div>
                   </div>
-                  <span id="categoryError" class="error">
-                    Please select a category for your task.
-                  </span>
+                  <span id="categoryError" class="error"
+                    >Please select a category for your task.</span
+                  >
                 </div>
                 <div class="subtasks_input_subs_container">
                   <label class="aT_label_subtasks">Subtasks</label>
@@ -182,46 +190,64 @@ async function editTask(taskId) {
             </div>
           </div>
 
-          <div class="big_save_cancel_buttons edit_button" onclick="saveTaskChanges('${taskId}')">
+          <div class="big_save_cancel_buttons edit_button" onclick="saveEditedTaskToDatabase('${taskId}')">
             <div>Ok</div>
             <img src="./assets/img/create_task_white.svg" alt="edit_ok" class="create_img">
           </div>
         </form>
     `;
 
-    // Initialize the contact list
-    await getContacts();
+    populateEditForm(taskData);
   } catch (error) {
     console.error("Error loading task for editing:", error);
   }
 }
 
-async function saveTaskChanges(taskId) {
+function populateEditForm(task) {
+  document.getElementById("aT_title").value = task.title;
+  document.getElementById("aT_description").value = task.description;
+  document.getElementById("aT_date").value = task.due_date;
+  document.getElementById("aT_select_category").innerHTML = task.category;
+  setPriority(task.prio);
+
+  subtasks = [];
+  for (const [key, subtask] of Object.entries(task.subtask)) {
+    addSubtaskToArray(subtask.title, key);
+    const newListHTML = createSubtaskHTML(subtask.title, key);
+    appendSubtaskToList(newListHTML);
+  }
+
+  selectedContacts = task.assigned;
+  displaySelectedContacts();
+}
+
+function setPriority(prio) {
+  deactivateAll();
+  if (prio === "Urgent") {
+    activateBox("boxUrgent", "urgent_box_active");
+  } else if (prio === "Medium") {
+    activateBox("boxMedium", "medium_box_active");
+  } else if (prio === "Low") {
+    activateBox("boxLow", "low_box_active");
+  }
+}
+
+async function saveEditedTaskToDatabase(taskId) {
+  const updatedTask = collectTaskData();
   try {
-    const updatedTitle = document.getElementById("aT_title").value;
-    const updatedDescription = document.getElementById("aT_description").value;
-    const updatedDueDate = document.getElementById("aT_due_date").value;
-    const updatedPriority = document.getElementById("aT_priority").value;
-    const assignedContacts = getSelectedContacts();
+    const response = await fetch(`${TASKS_URL}/${taskId}.json`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedTask),
+    });
 
-    const updatedTaskData = {
-      title: updatedTitle,
-      description: updatedDescription,
-      due_date: updatedDueDate,
-      prio: updatedPriority,
-      assigned: assignedContacts,
-    };
-
-    await updateTaskInDatabase({ ...updatedTaskData, id: taskId });
-
-    const taskToUpdate = tasks.find((t) => t.id === taskId);
-    if (taskToUpdate) {
-      Object.assign(taskToUpdate, updatedTaskData);
-      renderTaskCard(taskToUpdate);
+    if (!response.ok) {
+      throw new Error("Error updating task");
     }
 
-    hideBigTask();
+    console.log("Task successfully updated");
+    goToBoard();
   } catch (error) {
-    console.error("Error saving task changes:", error);
+    console.error("Network error:", error);
   }
 }

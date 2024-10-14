@@ -125,18 +125,11 @@ function toggleDropdown(event) {
 }
 
 arrowConContainer.addEventListener("click", toggleDropdown);
-
-inputFieldContacts.addEventListener("click", function (event) {
-  event.stopPropagation();
-  toggleDropdown(event);
-});
+inputFieldContacts.addEventListener("click", toggleDropdown);
 
 inputFieldContacts.addEventListener("input", function () {
   let searchQuery = inputFieldContacts.value.toLowerCase();
-  let filteredContacts = contactsAddTask.filter((contact) =>
-    contact.name.toLowerCase().includes(searchQuery)
-  );
-  renderFilteredContacts(filteredContacts);
+  filterContacts(searchQuery);
 });
 
 function filterContacts(searchTerm) {

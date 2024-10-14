@@ -26,7 +26,7 @@ function collectTaskData() {
   return {
     art: category,
     assigned: contacts,
-    category: "todo", // Default
+    category: category,
     description: description,
     prio: prio,
     due_date: dueDate,
