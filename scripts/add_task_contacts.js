@@ -44,8 +44,7 @@ function renderContacts() {
   let contactContainer = document.getElementById("contacts_container");
   contactContainer.innerHTML = "";
 
-  for (let i = 0; i < contactsAddTask.length; i++) {
-    let contact = contactsAddTask[i];
+  contactsAddTask.forEach((contact, i) => {
     let checked = isSelected(contact);
     let contactClass = checked ? "contact-selected" : "contact-unselected";
     let checkboxImage = checked ? "checkbox-checked-white.png" : "checkbox.png";
@@ -53,7 +52,7 @@ function renderContacts() {
     let initials = getInitials(contact.name.replace(" (You)", ""));
 
     contactContainer.innerHTML += `
-       <div class="contact_container_element ${contactClass}" id="contact_${i}" onclick="toggleContact(${i})">
+      <div class="contact_container_element ${contactClass}" id="contact_${i}" onclick="toggleContact(${i})">
         <div style="display: flex; align-items: center; gap: 20px;" class="${contactTextColorClass}">
           <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
@@ -64,7 +63,7 @@ function renderContacts() {
         <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_${i}">
       </div>
     `;
-  }
+  });
 }
 
 function toggleContact(index) {
