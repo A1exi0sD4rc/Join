@@ -57,9 +57,6 @@ async function editTask(taskId) {
               taskData.assigned
             )}</div>
 
-              <!-- Separator -->
-              <div class="add_task_seperator_edit"></div>
-
               <!-- Right Side: Date, Priority, Category, Subtasks -->
               <div class="add_task_form_right">
                 <!-- Due Date Input -->
@@ -153,7 +150,7 @@ function renderSelectedContactsFromDatabase(assigned) {
         <div class="selected-contact">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="21" cy="21" r="21" fill="${contact.bgcolor}" stroke="white" stroke-width="3"/>
-          <text x="21" y="27" text-anchor="middle" font-size="17" fill="white">${initials}</text>
+          <text x="21" y="27" text-anchor="middle" font-size="15" fill="white">${initials}</text>
         </svg>
       </div>
       `;

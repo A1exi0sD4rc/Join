@@ -4,14 +4,6 @@
   width: 95%;
 }
 
-.add_task_seperator_edit {
-  height: 1px;
-  width: 445px;
-  background-color: #d1d1d1;
-  margin-top: 30px;
-  margin-bottom: 40px;
-}
-
 .add_task_form_left_edit {
   height: 376px;
   width: 440px;
