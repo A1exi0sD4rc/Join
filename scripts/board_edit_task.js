@@ -40,31 +40,22 @@ async function editTask(taskId) {
 
               <!-- Assigned Contacts Dropdown -->
               <label class="aT_input_labels">Assigned to</label>
-              <div class="aT_select_container">
-                <input
-                  id="aT_select_contacts"
-                  class="aT_select_dropdown_fields"
-                  placeholder="Select contacts to assign"
-                  onclick="toggleDropdown(event)"
-                />
-                <div
-                  id="select_contacts_arrow_container"
-                  class="drop_down_arrow_container"
-                  onclick="toggleDropdown(event)"
-                >
-                  <img
-                    src="./assets/img/arrow_drop_down.svg"
-                    alt="drop_down_arrow"
-                    class="arrow"
-                  />
-                </div>
+            <div class="aT_select_container">
+              <input id="aT_select_contacts" class="aT_select_dropdown_fields"
+                placeholder="Select contacts to assign" />
+              <div id="select_contacts_arrow_container" class="drop_down_arrow_container" tabindex="0">
+                <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
               </div>
+            </div>
 
               <!-- Contact List and Selected Contacts -->
-              <div id="contact_list" class="contact_list">
-                <div id="contacts_container" class="scrollable_container"></div>
-              </div>
-              <div id="selected_contacts" class="selected-contacts-container"></div>
+              <div id="contact_list" class="contact_list d-none">
+              <div id="contacts_container" class="scrollable_container scrollable_container_overlay"></div>
+            </div>
+
+            <div id="selected_contacts" class="selected-contacts-container">${renderSelectedContactsFromDatabase(
+              taskData.assigned
+            )}</div>
 
               <!-- Separator -->
               <div class="add_task_seperator_edit"></div>
@@ -149,6 +140,30 @@ async function editTask(taskId) {
     populateEditForm(taskData);
   } catch (error) {
     console.error("Error loading task for editing:", error);
+  }
+}
+
+function renderSelectedContactsFromDatabase(assigned) {
+  if (assigned && assigned.length > 0) {
+    let displayedContacts = assigned;
+    let contactsHtml = displayedContacts
+      .map((contact) => {
+        let initials = getInitials(contact.name.replace(" (You)", ""));
+        return `
+        <div class="selected-contact">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="21" cy="21" r="21" fill="${contact.bgcolor}" stroke="white" stroke-width="3"/>
+          <text x="21" y="27" text-anchor="middle" font-size="17" fill="white">${initials}</text>
+        </svg>
+      </div>
+      `;
+      })
+      .join("");
+    return contactsHtml;
+  } else {
+    return `
+      <div class="assigned-contact" style="position: relative; display: inline-block;"></div>
+    `;
   }
 }
 
