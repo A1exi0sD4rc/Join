@@ -1,0 +1,64 @@
+.form_area_edit {
+  height: 930px;
+  padding-top: 48px;
+  width: 95%;
+}
+
+.add_task_seperator_edit {
+  height: 1px;
+  width: 445px;
+  background-color: #d1d1d1;
+  margin-top: 47.5px;
+  margin-bottom: 40px;
+}
+
+.add_task_form_left_edit {
+  height: 376px;
+  width: 440px;
+}
+
+.add_task_fillIn_section_edit {
+  flex-direction: column;
+  height: 820px;
+  overflow-x: hidden;
+  margin-top: 50px;
+  padding-left: 25px;
+}
+
+.add_task_fillIn_section_edit::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+.add_task_fillIn_section_edit::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 8px;
+}
+
+.add_task_fillIn_section_edit::-webkit-scrollbar-button:vertical:decrement,
+.add_task_fillIn_section_edit::-webkit-scrollbar-button:vertical:increment {
+  height: 50px;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.add_task_fillIn_section_edit::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url("../assets/img/scrollbarArrowUp.svg");
+  background-repeat: no-repeat;
+}
+
+.add_task_fillIn_section_edit::-webkit-scrollbar-button:vertical:increment {
+  background-image: url("../assets/img/scrollbarArrowDown.svg");
+  background-repeat: no-repeat;
+}
+
+.add_task_fillIn_section_edit::-webkit-scrollbar-button:vertical:end:decrement,
+.add_task_fillIn_section_edit::-webkit-scrollbar-button:vertical:start:increment {
+  display: none;
+}
+
+.add_task_fillIn_section_edit::-webkit-scrollbar-track,
+.add_task_fillIn_section_edit::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
