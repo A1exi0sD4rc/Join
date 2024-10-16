@@ -40,18 +40,18 @@ async function editTask(taskId) {
 
               <!-- Assigned Contacts Dropdown -->
               <label class="aT_input_labels">Assigned to</label>
-            <div class="aT_select_container">
+              <div class="aT_select_container">
               <input id="aT_select_contacts" class="aT_select_dropdown_fields"
                 placeholder="Select contacts to assign" />
-              <div id="select_contacts_arrow_container" class="drop_down_arrow_container" tabindex="0" onclick="toggleDropdownEdit()">
+              <div id="select_contacts_arrow_container" class="drop_down_arrow_container" tabindex="0" onclick="toggleDropdownEdit(event)">
                 <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
               </div>
             </div>
 
+
               <!-- Contact List and Selected Contacts -->
               <div id="contact_list" class="contact_list d-none">
-              <div id="contacts_container" class="scrollable_container">
-              </div>
+              <div id="contacts_container" class="scrollable_container scrollable_container_overlay"></div>
             </div>
 
             <div id="selected_contacts" class="selected-contacts-container">${renderSelectedContactsFromDatabase(
@@ -141,9 +141,24 @@ async function editTask(taskId) {
   }
 }
 
-function toggleDropdownEdit() {
+function toggleDropdownEdit(event) {
+  event.stopPropagation();
   console.log("toggleDropdownEdit function triggered");
+
   const inputFieldContacts = document.getElementById("aT_select_contacts");
+  const arrowConConImage = document.querySelector(
+    "#select_contacts_arrow_container img"
+  );
+  const dropDowncontacts = document.getElementById("contact_list");
+  const selectedContactsCon = document.getElementById("selected_contacts");
+
+  console.log(
+    inputFieldContacts,
+    arrowConConImage,
+    dropDowncontacts,
+    selectedContactsCon
+  );
+
   if (inputFieldContacts.classList.contains("active-border")) {
     deactivateFieldContactsEdit();
   } else {
@@ -161,9 +176,11 @@ function activateFieldContactsEdit() {
 
   inputFieldContacts.classList.add("active-border");
   arrowConConImage.classList.add("rotate");
+  console.log("Arrow Classes After Add:", arrowConConImage.classList);
   dropDowncontacts.classList.remove("d-none");
   selectedContactsCon.classList.add("d-none");
 
+  console.log("Contacts to be rendered:", contactsAddTask);
   renderContactsEdit();
   inputFieldContacts.focus();
 }
@@ -178,6 +195,7 @@ function deactivateFieldContactsEdit() {
 
   inputFieldContacts.classList.remove("active-border");
   arrowConConImage.classList.remove("rotate");
+  console.log("Arrow Classes After Remove:", arrowConConImage.classList);
   dropDowncontacts.classList.add("d-none");
   selectedContactsCon.classList.remove("d-none");
 
