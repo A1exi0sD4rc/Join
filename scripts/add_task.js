@@ -533,6 +533,10 @@ function updateTaskControls(taskControls) {
   `;
 }
 
+/**
+ * Deletes a subtask from the list when the delete button is clicked.
+ * @param {HTMLImageElement} deleteButton - The button that triggers the deletion.
+ */
 function deleteSubtask(deleteButton) {
   const taskItem = deleteButton.closest(".task-item");
   if (taskItem) {
@@ -542,14 +546,25 @@ function deleteSubtask(deleteButton) {
   }
 }
 
+/**
+ * Removes a subtask from the subtasks array by its ID.
+ * @param {string} subtaskId - The ID of the subtask to be removed.
+ */
 function removeSubtaskFromArray(subtaskId) {
   subtasks = subtasks.filter((subtask) => subtask.id !== subtaskId);
 }
 
+/**
+ * Generates a unique ID for a new subtask based on the current timestamp.
+ * @returns {string} - The generated subtask ID.
+ */
 function generateSubtaskId() {
   return `subtask_${new Date().getTime()}`;
 }
 
+/**
+ * Event listeners for handling UI interactions related to subtasks
+ */
 document
   .getElementById("aT_add_subtasks")
   .addEventListener("click", toggleDivVisibility);
@@ -577,6 +592,9 @@ document
     }
   });
 
+/**
+ * Handles input events for the date input field and changes its text color if filled.
+ */
 const input = document.querySelector(".aT_input_date");
 input.addEventListener("input", function () {
   if (this.value) {
@@ -584,6 +602,9 @@ input.addEventListener("input", function () {
   }
 });
 
+/**
+ * Clears all input fields and resets the form state.
+ */
 function clearAll() {
   clearTitle();
   clearDescription();
@@ -595,6 +616,9 @@ function clearAll() {
   resetValidationErrors();
 }
 
+/**
+ * Clears the title input field.
+ */
 function clearTitle() {
   const inputField = document.getElementById("aT_title");
   if (inputField) {
@@ -602,6 +626,9 @@ function clearTitle() {
   }
 }
 
+/**
+ * Clears the description textarea.
+ */
 function clearDescription() {
   const textarea = document.getElementById("aT_description");
   if (textarea) {
@@ -609,6 +636,9 @@ function clearDescription() {
   }
 }
 
+/**
+ * Clears the selected contacts and updates the UI.
+ */
 function clearSelectedContacts() {
   selectedContacts = [];
   sessionStorage.removeItem("selectedContacts");
@@ -616,6 +646,9 @@ function clearSelectedContacts() {
   displaySelectedContacts();
 }
 
+/**
+ * Clears the date input field and resets its color.
+ */
 function clearDate() {
   const dateField = document.getElementById("aT_date");
   if (dateField) {
@@ -624,6 +657,9 @@ function clearDate() {
   }
 }
 
+/**
+ * Resets the priority selection to default state.
+ */
 function clearPrio() {
   deactivateAll();
   const boxMedium = document.getElementById("boxMedium");
@@ -631,6 +667,9 @@ function clearPrio() {
   boxMedium.classList.add("medium_box_active");
 }
 
+/**
+ * Clears all subtasks from the list and resets the input field.
+ */
 function clearSubtasks() {
   const subtaskList = document.getElementById("created_subtasks");
   subtaskList.innerHTML = "";
@@ -639,6 +678,9 @@ function clearSubtasks() {
   resetDivVisibility();
 }
 
+/**
+ * Clears the selected category and resets the category dropdown.
+ */
 function clearCategory() {
   const arrowCatConImage = document
     .getElementById("select_category_arrow_container")
