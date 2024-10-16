@@ -1,78 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="icon" href="./assets/img/logo_white.svg" />
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="./assets/fonts.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Join</title>
-  <link rel="icon" href="./assets/img/logo_white.svg" />
-  <link rel="stylesheet" href="login.css" />
-  <link rel="stylesheet" href="./assets/fonts.css" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-  <div class="starting-screen" id="startingScreen">
-    <img id="responsiveImage" src="./assets/img/logo_black.svg" alt="responsive image" />
-  </div>
-  <div class="signup-container">
-    <div>
-      <p>Not a Join User?</p>
-      <button class="btn pdng1516 signup-button" id="signupButton">
-        Sign Up
-      </button>
+  <body>
+    <div class="starting-screen" id="startingScreen">
+      <img
+        id="responsiveImage"
+        src="./assets/img/logo_black.svg"
+        alt="responsive image"
+      />
     </div>
-  </div>
-  <div class="content">
-    <div class="login-window">
-      <div class="h1-blueline">
-        <h1>Log in</h1>
-        <div class="blue-underline"></div>
+    <div class="signup-container">
+      <div>
+        <p>Not a Join User?</p>
+        <button class="btn pdng1516 signup-button" id="signupButton">
+          Sign Up
+        </button>
       </div>
-      <form class="login-form" id="signinForm">
-        <div class="input-fields">
-          <div class="input-container">
-            <input type="text" placeholder="Email" class="login-input" id="loginEmail" autocomplete="off" /><img
-              class="mail-img" src="./assets/img/mail.svg" />
-            <div class="error-position"></div>
-          </div>
-          <div class="input-container" id="passwordContainer">
-            <input type="password" placeholder="Password" class="login-input" onclick="changeImage()"
-              id="loginPassword" />
-            <div class="password-image-container">
-              <img src="./assets/img/lock.svg" class="password-img" onclick="toggle()" id="toggleButton" />
-            </div>
-            <div class="error-position" style="top: 145px"></div>
-          </div>
-        </div>
-
-        <div class="checkbox-container">
-          <div class="check-box">
-            <img src="./assets/img/checkbox.png" id="checkbox" />
-          </div>
-          <div>
-            <p>Remember me</p>
-          </div>
-        </div>
-        <div class="login-buttons-container">
-          <button class="btn pdng1524 heigt48 btn-bck-hover" type="submit" id="signinButton">
-            Log in
-          </button>
-          <button class="btn-gst pdng1524 font-inter heigt48" id="guestLoginButton">
-            Guest Log in
-          </button>
-        </div>
-      </form>
     </div>
-  </div>
-  <div class="links-container">
-    <a href="./privacy_policy.html">Privacy Policy</a>
-    <a href="./legal_notice.html">Legal notice</a>
-  </div>
-</body>
-<script src="./scripts/toggle.js"></script>
-<script src="./scripts/start_img.js"></script>
-<script type="module" src="./scripts/login.js"></script>
-<script src="script.js"></script>
+    <div class="content">
+      <div class="login-window">
+        <div class="h1-blueline">
+          <h1>Log in</h1>
+          <div class="blue-underline"></div>
+        </div>
+        <form class="login-form" id="signinForm">
+          <div class="input-fields">
+            <div class="input-container">
+              <input
+                type="text"
+                placeholder="Email"
+                class="login-input"
+                id="loginEmail"
+                autocomplete="off"
+              /><img class="mail-img" src="./assets/img/mail.svg" />
+              <div class="error-position"></div>
+            </div>
+            <div class="input-container" id="passwordContainer">
+              <input
+                type="password"
+                placeholder="Password"
+                class="login-input"
+                onclick="changeImage()"
+                id="loginPassword"
+              />
+              <div class="password-image-container">
+                <img
+                  src="./assets/img/lock.svg"
+                  class="password-img"
+                  onclick="toggle()"
+                  id="toggleButton"
+                />
+              </div>
+              <div class="error-position" style="top: 145px"></div>
+            </div>
+          </div>
 
+          <div class="checkbox-container">
+            <div class="check-box">
+              <img src="./assets/img/checkbox.png" id="checkbox" />
+            </div>
+            <div>
+              <p>Remember me</p>
+            </div>
+          </div>
+          <div class="login-buttons-container">
+            <button
+              class="btn pdng1524 heigt48 btn-bck-hover"
+              type="submit"
+              id="signinButton"
+            >
+              Log in
+            </button>
+            <button
+              class="btn-gst pdng1524 font-inter heigt48"
+              id="guestLoginButton"
+            >
+              Guest Log in
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="links-container">
+      <a href="./privacy_policy_nologin.html">Privacy Policy</a>
+      <a href="./legal_notice_nologin.html">Legal notice</a>
+    </div>
+  </body>
+  <script src="./scripts/toggle.js"></script>
+  <script src="./scripts/start_img.js"></script>
+  <script type="module" src="./scripts/login.js"></script>
+  <script src="script.js"></script>
 </html>
