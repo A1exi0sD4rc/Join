@@ -243,49 +243,6 @@ const dropDownCategories = document.getElementById("category_list");
 const categoryOptions = document.querySelectorAll(".categories");
 const originalText = "Select task category";
 
-/**
- * Activates the category field by rotating the arrow and showing the dropdown.
- */
-function activateCatField() {
-  arrowImage.classList.add("rotate");
-  dropDownCategories.classList.remove("d-none");
-}
-
-/**
- * Deactivates the category field by hiding the dropdown and resetting the arrow icon.
- */
-function deactivateFieldCategory() {
-  arrowImage.classList.remove("rotate");
-  dropDownCategories.classList.add("d-none");
-}
-
-/**
- * Toggles the category field dropdown based on the current state.
- * @param {MouseEvent} event - The click event.
- */
-function toggleField(event) {
-  event.stopPropagation();
-  if (inputFieldCategeory.textContent !== originalText) {
-    inputFieldCategeory.textContent = originalText;
-  }
-  if (arrowImage.classList.contains("rotate")) {
-    deactivateFieldCategory();
-  } else {
-    activateCatField();
-  }
-}
-
-/**
- * Selects a category from the dropdown list and validates the selection.
- * @param {MouseEvent} event - The click event on the category element.
- */
-function selectCategory(event) {
-  const selectedCategory = event.target.textContent;
-  inputFieldCategeory.textContent = selectedCategory;
-  deactivateFieldCategory();
-  validateCategory();
-}
-
 function handleClickOutside(event) {
   if (
     !inputFieldCategeory.contains(event.target) &&
@@ -302,69 +259,6 @@ document.addEventListener("click", handleClickOutside);
 categoryOptions.forEach(function (option) {
   option.addEventListener("click", selectCategory);
 });
-
-/**
- * Clears the input field for subtasks.
- */
-function cancel_input_subtask() {
-  document.getElementById("aT_add_subtasks").value = "";
-}
-
-/**
- * Hides the subtask input field and shows the buttons for canceling and saving.
- */
-function toggleDivVisibility() {
-  document.getElementById("aktive_input_addSubtask").classList.add("d-none");
-  document.getElementById("close_and_check_btns").classList.remove("d-none");
-}
-
-/**
- * Resets the visibility of the subtask input field and hides the buttons for canceling and saving.
- */
-function resetDivVisibility() {
-  document.getElementById("aktive_input_addSubtask").classList.remove("d-none");
-  document.getElementById("close_and_check_btns").classList.add("d-none");
-}
-
-let subtasks = [];
-/**
- * Adds a subtask to the list if the input is valid.
- */
-function addSubtaskToList() {
-  const inputField = document.getElementById("aT_add_subtasks");
-  const subtaskText = getTrimmedSubtaskText(inputField);
-  if (subtaskText !== "") {
-    const subtaskId = generateSubtaskId();
-    const newListHTML = createSubtaskHTML(subtaskText, subtaskId);
-    appendSubtaskToList(newListHTML);
-    addSubtaskToArray(subtaskText, subtaskId);
-    clearInputField(inputField);
-    resetDivVisibility();
-    scrollToListEnd();
-  }
-}
-
-/**
- * Scrolls the subtask container to the bottom of the list.
- */
-function scrollToListEnd() {
-  const subtaskContainer = document.getElementById("created_subtasks");
-  subtaskContainer.scrollTop = subtaskContainer.scrollHeight;
-}
-
-/**
- * Adds a subtask to the array of subtasks.
- * @param {string} subtaskText - The text of the subtask.
- * @param {string} subtaskId - The unique ID of the subtask.
- */
-function addSubtaskToArray(subtaskText, subtaskId) {
-  const subtask = {
-    id: subtaskId,
-    title: subtaskText,
-    completed: false,
-  };
-  subtasks.push(subtask);
-}
 
 /**
  * Trims the input field value and returns the trimmed subtask text.
@@ -563,6 +457,16 @@ function generateSubtaskId() {
 }
 
 /**
+ * Handles input events for the date input field and changes its text color if filled.
+ */
+const input = document.querySelector(".aT_input_date");
+input.addEventListener("input", function () {
+  if (this.value) {
+    this.style.color = "#000000";
+  }
+});
+
+/**
  * Event listeners for handling UI interactions related to subtasks
  */
 document
@@ -592,100 +496,65 @@ document
     }
   });
 
+let subtasks = [];
 /**
- * Handles input events for the date input field and changes its text color if filled.
+ * Adds a subtask to the list if the input is valid.
  */
-const input = document.querySelector(".aT_input_date");
-input.addEventListener("input", function () {
-  if (this.value) {
-    this.style.color = "#000000";
-  }
-});
-
-/**
- * Clears all input fields and resets the form state.
- */
-function clearAll() {
-  clearTitle();
-  clearDescription();
-  clearSelectedContacts();
-  clearDate();
-  clearPrio();
-  clearSubtasks();
-  clearCategory();
-  resetValidationErrors();
-}
-
-/**
- * Clears the title input field.
- */
-function clearTitle() {
-  const inputField = document.getElementById("aT_title");
-  if (inputField) {
-    inputField.value = "";
-  }
-}
-
-/**
- * Clears the description textarea.
- */
-function clearDescription() {
-  const textarea = document.getElementById("aT_description");
-  if (textarea) {
-    textarea.value = "";
-  }
-}
-
-/**
- * Clears the selected contacts and updates the UI.
- */
-function clearSelectedContacts() {
-  selectedContacts = [];
-  sessionStorage.removeItem("selectedContacts");
-  renderContacts();
-  displaySelectedContacts();
-}
-
-/**
- * Clears the date input field and resets its color.
- */
-function clearDate() {
-  const dateField = document.getElementById("aT_date");
-  if (dateField) {
-    dateField.value = "";
-    dateField.style.color = "#d1d1d1";
-  }
-}
-
-/**
- * Resets the priority selection to default state.
- */
-function clearPrio() {
-  deactivateAll();
-  const boxMedium = document.getElementById("boxMedium");
-  boxMedium.classList.remove("aT_set_prio");
-  boxMedium.classList.add("medium_box_active");
-}
-
-/**
- * Clears all subtasks from the list and resets the input field.
- */
-function clearSubtasks() {
-  const subtaskList = document.getElementById("created_subtasks");
-  subtaskList.innerHTML = "";
+function addSubtaskToList() {
   const inputField = document.getElementById("aT_add_subtasks");
-  inputField.value = "";
-  resetDivVisibility();
+  const subtaskText = getTrimmedSubtaskText(inputField);
+  if (subtaskText !== "") {
+    const subtaskId = generateSubtaskId();
+    const newListHTML = createSubtaskHTML(subtaskText, subtaskId);
+    appendSubtaskToList(newListHTML);
+    addSubtaskToArray(subtaskText, subtaskId);
+    clearInputField(inputField);
+    resetDivVisibility();
+    scrollToListEnd();
+  }
 }
 
 /**
- * Clears the selected category and resets the category dropdown.
+ * Clears the input field for subtasks.
  */
-function clearCategory() {
-  const arrowCatConImage = document
-    .getElementById("select_category_arrow_container")
-    .querySelector("img");
-  inputFieldCategeory.textContent = originalText;
-  arrowCatConImage.classList.remove("rotate");
-  dropDownCategories.classList.add("d-none");
+function cancel_input_subtask() {
+  document.getElementById("aT_add_subtasks").value = "";
+}
+
+/**
+ * Hides the subtask input field and shows the buttons for canceling and saving.
+ */
+function toggleDivVisibility() {
+  document.getElementById("aktive_input_addSubtask").classList.add("d-none");
+  document.getElementById("close_and_check_btns").classList.remove("d-none");
+}
+
+/**
+ * Resets the visibility of the subtask input field and hides the buttons for canceling and saving.
+ */
+function resetDivVisibility() {
+  document.getElementById("aktive_input_addSubtask").classList.remove("d-none");
+  document.getElementById("close_and_check_btns").classList.add("d-none");
+}
+
+/**
+ * Scrolls the subtask container to the bottom of the list.
+ */
+function scrollToListEnd() {
+  const subtaskContainer = document.getElementById("created_subtasks");
+  subtaskContainer.scrollTop = subtaskContainer.scrollHeight;
+}
+
+/**
+ * Adds a subtask to the array of subtasks.
+ * @param {string} subtaskText - The text of the subtask.
+ * @param {string} subtaskId - The unique ID of the subtask.
+ */
+function addSubtaskToArray(subtaskText, subtaskId) {
+  const subtask = {
+    id: subtaskId,
+    title: subtaskText,
+    completed: false,
+  };
+  subtasks.push(subtask);
 }
