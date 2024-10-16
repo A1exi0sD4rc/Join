@@ -1,9 +1,18 @@
+/**
+ * Initializes the Add Task page by including HTML and fetching contacts.
+ * Also generates the initials for each contact.
+ */
 async function initAddTask() {
   includeHTML();
   await getContacts();
   awaitGenerateInitials();
 }
 
+/**
+ * Adds resize functionality to a textarea within a container.
+ * Resizes the textarea based on mouse movements while dragging the handle.
+ * Ensures that the height stays within the range of 136px to 200px.
+ */
 document.addEventListener("DOMContentLoaded", function () {
   const handle = document.querySelector(".resize-handle");
   const textarea = document.getElementById("aT_description");
@@ -13,6 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
     handle.addEventListener("mousedown", function (e) {
       e.preventDefault();
 
+      /**
+       * Adjusts the height of the textarea and container based on mouse movement.
+       * @param {MouseEvent} e - The mousemove event.
+       */
       function onMouseMove(e) {
         const containerRect = container.getBoundingClientRect();
         const newHeight = e.clientY - containerRect.top;
@@ -22,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
+      /**
+       * Removes the mousemove and mouseup event listeners when mouse button is released.
+       */
       function onMouseUp() {
         document.removeEventListener("mousemove", onMouseMove);
         document.removeEventListener("mouseup", onMouseUp);
@@ -34,6 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+/**
+ * Activates a specific box by adding an active class and removing the inactive class.
+ * @param {string} boxId - The ID of the box to be activated.
+ * @param {string} activeClass - The class to be added to activate the box.
+ */
 function activateBox(boxId, activeClass) {
   deactivateAll();
   const box = document.getElementById(boxId);
@@ -41,6 +62,10 @@ function activateBox(boxId, activeClass) {
   box.classList.add(activeClass);
 }
 
+/**
+ * Deactivates all priority boxes by removing their active classes.
+ * Adds a default priority class to each box.
+ */
 function deactivateAll() {
   document.getElementById("boxUrgent").classList.remove("urgent_box_active");
   document.getElementById("boxUrgent").classList.add("aT_set_prio");
@@ -60,6 +85,10 @@ const arrowConConImage = arrowConContainer.querySelector("img");
 const dropDowncontacts = document.getElementById("contact_list");
 const selectedContactsCon = document.getElementById("selected_contacts");
 
+/**
+ * Handles click events on the document to determine if certain UI elements (e.g. contacts or categories) should be closed or deactivated.
+ * @param {MouseEvent} event - The click event.
+ */
 function handleDocumentClick(event) {
   const isInsideInputFieldContacts = inputFieldContacts.contains(event.target);
   const isInsideArrowConContainer = arrowConContainer.contains(event.target);
@@ -75,6 +104,10 @@ function handleDocumentClick(event) {
   }
 }
 
+/**
+ * Deactivates the contacts field if a click occurs outside of the contacts input field and dropdown list.
+ * @param {MouseEvent} event - The click event.
+ */
 function handleContactsClick(event) {
   if (
     !inputFieldContacts.contains(event.target) &&
@@ -85,6 +118,10 @@ function handleContactsClick(event) {
   }
 }
 
+/**
+ * Deactivates the category field if a click occurs outside of the category input field and dropdown list.
+ * @param {MouseEvent} event - The click event.
+ */
 function handleCategoryClick(event) {
   if (
     !inputFieldCategeory.contains(event.target) &&
@@ -95,6 +132,9 @@ function handleCategoryClick(event) {
   }
 }
 
+/**
+ * Activates the contacts input field by showing the dropdown, focusing the input, and rotating the arrow icon.
+ */
 function activateFieldContacts() {
   inputFieldContacts.classList.add("active-border");
   arrowConConImage.classList.add("rotate");
@@ -104,6 +144,9 @@ function activateFieldContacts() {
   inputFieldContacts.focus();
 }
 
+/**
+ * Deactivates the contacts input field by hiding the dropdown and resetting the input.
+ */
 function deactivateFieldContacts() {
   inputFieldContacts.classList.remove("active-border");
   arrowConConImage.classList.remove("rotate");
@@ -114,6 +157,10 @@ function deactivateFieldContacts() {
   inputFieldContacts.blur();
 }
 
+/**
+ * Toggles the visibility of the contacts dropdown based on the current state.
+ * @param {MouseEvent} event - The click event.
+ */
 function toggleDropdown(event) {
   event.stopPropagation();
 
@@ -132,6 +179,10 @@ inputFieldContacts.addEventListener("input", function () {
   filterContacts(searchQuery);
 });
 
+/**
+ * Filters the contacts list based on the search term entered in the input field.
+ * @param {string} searchTerm - The search term to filter contacts by.
+ */
 function filterContacts(searchTerm) {
   let filteredContacts = contactsAddTask.filter((contact) =>
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -139,6 +190,10 @@ function filterContacts(searchTerm) {
   renderFilteredContacts(filteredContacts);
 }
 
+/**
+ * Renders the filtered list of contacts in the contacts container.
+ * @param {Array} filteredContacts - An array of contact objects to be displayed.
+ */
 function renderFilteredContacts(filteredContacts) {
   let contactContainer = document.getElementById("contacts_container");
   contactContainer.innerHTML = "";
@@ -188,16 +243,26 @@ const dropDownCategories = document.getElementById("category_list");
 const categoryOptions = document.querySelectorAll(".categories");
 const originalText = "Select task category";
 
+/**
+ * Activates the category field by rotating the arrow and showing the dropdown.
+ */
 function activateCatField() {
   arrowImage.classList.add("rotate");
   dropDownCategories.classList.remove("d-none");
 }
 
+/**
+ * Deactivates the category field by hiding the dropdown and resetting the arrow icon.
+ */
 function deactivateFieldCategory() {
   arrowImage.classList.remove("rotate");
   dropDownCategories.classList.add("d-none");
 }
 
+/**
+ * Toggles the category field dropdown based on the current state.
+ * @param {MouseEvent} event - The click event.
+ */
 function toggleField(event) {
   event.stopPropagation();
   if (inputFieldCategeory.textContent !== originalText) {
@@ -210,6 +275,10 @@ function toggleField(event) {
   }
 }
 
+/**
+ * Selects a category from the dropdown list and validates the selection.
+ * @param {MouseEvent} event - The click event on the category element.
+ */
 function selectCategory(event) {
   const selectedCategory = event.target.textContent;
   inputFieldCategeory.textContent = selectedCategory;
@@ -234,22 +303,33 @@ categoryOptions.forEach(function (option) {
   option.addEventListener("click", selectCategory);
 });
 
+/**
+ * Clears the input field for subtasks.
+ */
 function cancel_input_subtask() {
   document.getElementById("aT_add_subtasks").value = "";
 }
 
+/**
+ * Hides the subtask input field and shows the buttons for canceling and saving.
+ */
 function toggleDivVisibility() {
   document.getElementById("aktive_input_addSubtask").classList.add("d-none");
   document.getElementById("close_and_check_btns").classList.remove("d-none");
 }
 
+/**
+ * Resets the visibility of the subtask input field and hides the buttons for canceling and saving.
+ */
 function resetDivVisibility() {
   document.getElementById("aktive_input_addSubtask").classList.remove("d-none");
   document.getElementById("close_and_check_btns").classList.add("d-none");
 }
 
 let subtasks = [];
-
+/**
+ * Adds a subtask to the list if the input is valid.
+ */
 function addSubtaskToList() {
   const inputField = document.getElementById("aT_add_subtasks");
   const subtaskText = getTrimmedSubtaskText(inputField);
@@ -264,11 +344,19 @@ function addSubtaskToList() {
   }
 }
 
+/**
+ * Scrolls the subtask container to the bottom of the list.
+ */
 function scrollToListEnd() {
   const subtaskContainer = document.getElementById("created_subtasks");
   subtaskContainer.scrollTop = subtaskContainer.scrollHeight;
 }
 
+/**
+ * Adds a subtask to the array of subtasks.
+ * @param {string} subtaskText - The text of the subtask.
+ * @param {string} subtaskId - The unique ID of the subtask.
+ */
 function addSubtaskToArray(subtaskText, subtaskId) {
   const subtask = {
     id: subtaskId,
@@ -278,10 +366,21 @@ function addSubtaskToArray(subtaskText, subtaskId) {
   subtasks.push(subtask);
 }
 
+/**
+ * Trims the input field value and returns the trimmed subtask text.
+ * @param {HTMLInputElement} inputField - The input field element.
+ * @returns {string} - The trimmed subtask text.
+ */
 function getTrimmedSubtaskText(inputField) {
   return inputField.value.trim();
 }
 
+/**
+ * Creates HTML for a new subtask item.
+ * @param {string} subtaskText - The text of the subtask.
+ * @param {string} subtaskId - The unique ID of the subtask.
+ * @returns {string} - The HTML string for the subtask.
+ */
 function createSubtaskHTML(subtaskText, subtaskId) {
   return /*html*/ `
     <ul class="task-item" data-id="${subtaskId}">
@@ -294,14 +393,26 @@ function createSubtaskHTML(subtaskText, subtaskId) {
     </ul>`;
 }
 
+/**
+ * Appends a new subtask to the subtask list.
+ * @param {string} newListHTML - The HTML string for the new subtask.
+ */
 function appendSubtaskToList(newListHTML) {
   document.getElementById("created_subtasks").innerHTML += newListHTML;
 }
 
+/**
+ * Clears the value of the input field.
+ * @param {HTMLInputElement} inputField - The input field element.
+ */
 function clearInputField(inputField) {
   inputField.value = "";
 }
 
+/**
+ * Enables editing of the subtask by replacing the text with an input field.
+ * @param {HTMLImageElement} editButton - The edit button clicked.
+ */
 function editSubtask(editButton) {
   const taskItem = editButton.closest(".task-item");
   const taskTextElement = getTaskTextElement(taskItem);
@@ -310,10 +421,20 @@ function editSubtask(editButton) {
   focusAndSetCursorAtEnd(taskItem);
 }
 
+/**
+ * Retrieves the task text element from a task item.
+ * @param {HTMLElement} taskItem - The subtask item element.
+ * @returns {HTMLElement} - The task text element.
+ */
 function getTaskTextElement(taskItem) {
   return taskItem.querySelector(".task-text");
 }
 
+/**
+ * Updates the task item to show the editing input field.
+ * @param {HTMLElement} taskItem - The subtask item element.
+ * @param {string} currentText - The current text of the subtask.
+ */
 function updateTaskItemForEditing(taskItem, currentText) {
   taskItem.innerHTML = /*html*/ `
     <input type="text" maxlength="100" value="${currentText}" class="edit-input">
@@ -328,6 +449,10 @@ function updateTaskItemForEditing(taskItem, currentText) {
     </div>`;
 }
 
+/**
+ * Sets focus on the input field and positions the cursor at the end of the text.
+ * @param {HTMLElement} taskItem - The subtask item element being edited.
+ */
 function focusAndSetCursorAtEnd(taskItem) {
   const inputField = taskItem.querySelector(".edit-input");
   inputField.focus();
@@ -335,6 +460,10 @@ function focusAndSetCursorAtEnd(taskItem) {
   inputField.setSelectionRange(textLength, textLength);
 }
 
+/**
+ * Saves the edited subtask title and updates the DOM.
+ * @param {HTMLImageElement} saveButton - The save button clicked.
+ */
 function saveTask(saveButton) {
   const taskItem = saveButton.closest(".task-item");
   const inputElement = getInputElement(taskItem);
@@ -359,10 +488,20 @@ function saveTask(saveButton) {
   updateTaskControls(taskControls);
 }
 
+/**
+ * Retrieves the input element from a task item being edited.
+ * @param {HTMLElement} taskItem - The subtask item element.
+ * @returns {HTMLInputElement} - The input element.
+ */
 function getInputElement(taskItem) {
   return taskItem.querySelector(".edit-input");
 }
 
+/**
+ * Creates an HTML element for the updated subtask text.
+ * @param {string} newTitle - The new title of the subtask.
+ * @returns {HTMLLIElement} - The task text element.
+ */
 function createTaskTextElement(newTitle) {
   const taskTextElement = document.createElement("li");
   taskTextElement.className = "task-text";
@@ -370,12 +509,22 @@ function createTaskTextElement(newTitle) {
   return taskTextElement;
 }
 
+/**
+ * Updates the task item in the DOM after editing.
+ * @param {HTMLElement} taskItem - The subtask item element.
+ * @param {HTMLElement} taskTextElement - The new task text element.
+ * @param {HTMLElement} taskControls - The task controls element.
+ */
 function updateTaskItem(taskItem, taskTextElement, taskControls) {
   taskItem.innerHTML = "";
   taskItem.appendChild(taskTextElement);
   taskItem.appendChild(taskControls);
 }
 
+/**
+ * Updates the task controls in the DOM after editing.
+ * @param {HTMLElement} taskControls - The task controls element.
+ */
 function updateTaskControls(taskControls) {
   taskControls.innerHTML = /*html*/ `
     <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editSubtask(this)">

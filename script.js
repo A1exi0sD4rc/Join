@@ -1,18 +1,26 @@
+/**
+ * Initializes the page by including HTML content and generating initials.
+ */
 function init_ll_pp_hp() {
   includeHTML();
   awaitGenerateInitials();
 }
 
+/**
+ * Loads and includes external HTML content into elements with the attribute "w3-include-html".
+ *
+ * This function scans the document for elements with the "w3-include-html" attribute.
+ * It fetches the specified HTML file and injects its content into the element.
+ * If the file is not found, a "Page not found" message is displayed.
+ * Recursively processes other elements after each load.
+ */
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
-  /* Loop through a collection of all HTML elements: */
   z = document.getElementsByTagName("*");
   for (i = 0; i < z.length; i++) {
     elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
     file = elmnt.getAttribute("w3-include-html");
     if (file) {
-      /* Make an HTTP request using the attribute value as the file name: */
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
@@ -22,14 +30,12 @@ function includeHTML() {
           if (this.status == 404) {
             elmnt.innerHTML = "Page not found.";
           }
-          /* Remove the attribute, and call this function once more: */
           elmnt.removeAttribute("w3-include-html");
           includeHTML();
         }
       };
       xhttp.open("GET", file, true);
       xhttp.send();
-      /* Exit the function: */
       return;
     }
   }
@@ -79,6 +85,9 @@ function highlightBottomContainers(currentUrl) {
   });
 }
 
+/**
+ * Brings the user back to the last visited page.
+ */
 function goBack() {
   window.history.back();
 }
@@ -143,6 +152,10 @@ function logOut() {
   }
 }
 
+/**
+ * Toggles the display of the "user-content" element.
+ * Shows the element if hidden, and hides it if visible.
+ */
 function toggleMenu() {
   const userContent = document.getElementById("user-content");
   if (userContent.style.display === "block") {

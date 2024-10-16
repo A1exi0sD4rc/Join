@@ -107,7 +107,7 @@ h3 {
 }
 
 ol {
-  list-style: none; /* Entfernt die Standard-Nummerierung */
+  list-style: none;
   counter-reset: section;
   margin: 16px 0px 32px 0;
 }
@@ -121,9 +121,9 @@ ol {
 .hp_li::before {
   content: counter(section) ".";
   position: absolute;
-  left: 0px; /* Verschiebt die Nummerierung nach links */
-  font-size: 27px; /* Größe der Zahlen */
-  font-weight: bold; /* Fettgedruckte Zahlen */
+  left: 0px;
+  font-size: 27px;
+  font-weight: bold;
 }
 
 @media (max-width: 920px) {
