@@ -2,7 +2,7 @@ async function editTask(taskId) {
   try {
     const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
     const taskData = await taskResponse.json();
-    await loadAssignedContactsFromDatabase(taskId);
+    await getContacts();
 
     document.getElementById("big_card").innerHTML = `
         <form id="editForm" class="form_area_edit">
@@ -43,14 +43,15 @@ async function editTask(taskId) {
             <div class="aT_select_container">
               <input id="aT_select_contacts" class="aT_select_dropdown_fields"
                 placeholder="Select contacts to assign" />
-              <div id="select_contacts_arrow_container" class="drop_down_arrow_container" tabindex="0">
+              <div id="select_contacts_arrow_container" class="drop_down_arrow_container" tabindex="0" onclick="toggleDropdownEdit()">
                 <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
               </div>
             </div>
 
               <!-- Contact List and Selected Contacts -->
               <div id="contact_list" class="contact_list d-none">
-              <div id="contacts_container" class="scrollable_container scrollable_container_overlay"></div>
+              <div id="contacts_container" class="scrollable_container">
+              </div>
             </div>
 
             <div id="selected_contacts" class="selected-contacts-container">${renderSelectedContactsFromDatabase(
@@ -140,6 +141,76 @@ async function editTask(taskId) {
   }
 }
 
+function toggleDropdownEdit() {
+  console.log("toggleDropdownEdit function triggered");
+  const inputFieldContacts = document.getElementById("aT_select_contacts");
+  if (inputFieldContacts.classList.contains("active-border")) {
+    deactivateFieldContactsEdit();
+  } else {
+    activateFieldContactsEdit();
+  }
+}
+
+function activateFieldContactsEdit() {
+  const inputFieldContacts = document.getElementById("aT_select_contacts");
+  const arrowConConImage = document.querySelector(
+    "#select_contacts_arrow_container img"
+  );
+  const dropDowncontacts = document.getElementById("contact_list");
+  const selectedContactsCon = document.getElementById("selected_contacts");
+
+  inputFieldContacts.classList.add("active-border");
+  arrowConConImage.classList.add("rotate");
+  dropDowncontacts.classList.remove("d-none");
+  selectedContactsCon.classList.add("d-none");
+
+  renderContactsEdit();
+  inputFieldContacts.focus();
+}
+
+function deactivateFieldContactsEdit() {
+  const inputFieldContacts = document.getElementById("aT_select_contacts");
+  const arrowConConImage = document.querySelector(
+    "#select_contacts_arrow_container img"
+  );
+  const dropDowncontacts = document.getElementById("contact_list");
+  const selectedContactsCon = document.getElementById("selected_contacts");
+
+  inputFieldContacts.classList.remove("active-border");
+  arrowConConImage.classList.remove("rotate");
+  dropDowncontacts.classList.add("d-none");
+  selectedContactsCon.classList.remove("d-none");
+
+  inputFieldContacts.value = "";
+  inputFieldContacts.blur();
+}
+
+function renderContactsEdit() {
+  let contactContainer = document.getElementById("contacts_container");
+  contactContainer.innerHTML = "";
+
+  contactsAddTask.forEach((contact, i) => {
+    let checked = isSelected(contact);
+    let contactClass = checked ? "contact-selected" : "contact-unselected";
+    let checkboxImage = checked ? "checkbox-checked-white.png" : "checkbox.png";
+    let contactTextColorClass = checked ? "text-white" : "text-black";
+    let initials = getInitials(contact.name.replace(" (You)", ""));
+
+    contactContainer.innerHTML += `
+      <div class="contact_container_element ${contactClass}" id="contact_${i}" onclick="toggleContact(${i})">
+        <div style="display: flex; align-items: center; gap: 20px;" class="${contactTextColorClass}">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
+            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${initials}</text>
+          </svg>
+          <div id="contact_list_name">${contact.name}</div>
+        </div>
+        <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_${i}">
+      </div>
+    `;
+  });
+}
+
 function renderSelectedContactsFromDatabase(assigned) {
   if (assigned && assigned.length > 0) {
     let displayedContacts = assigned;
@@ -170,26 +241,6 @@ function populateEditForm(task) {
   document.getElementById("aT_date").value = task.due_date;
   document.getElementById("aT_select_category").innerHTML = task.category || "";
   setPriority(task.prio);
-
-  task.subtask &&
-    Object.entries(task.subtask).forEach(([key, subtask]) => {
-      const newListHTML = createSubtaskHTML(subtask.title, key);
-      appendSubtaskToList(newListHTML);
-    });
-
-  selectedContacts = task.assigned;
-  displaySelectedContacts();
-}
-
-async function loadAssignedContactsFromDatabase(taskId) {
-  let taskUrl = `https://join-337-userlist-default-rtdb.firebaseio.com/tasks/${taskId}.json`;
-  let response = await fetch(taskUrl);
-  let taskData = await response.json();
-
-  if (taskData && taskData.assignedContacts) {
-    selectedContacts = taskData.assignedContacts;
-    displaySelectedContacts();
-  }
 }
 
 function setPriority(prio) {

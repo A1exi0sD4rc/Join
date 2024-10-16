@@ -236,6 +236,7 @@ sup {
   flex-wrap: wrap;
   position: relative;
   margin-top: 10px;
+  margin-bottom: 20px;
   display: flex;
   gap: 5px;
 }
