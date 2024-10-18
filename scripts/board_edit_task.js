@@ -76,15 +76,15 @@ async function editTask(taskId) {
 
                 <!-- Priority Options -->
                 <div class="aT_set_prio_container" id="aT_set_prio">
-                  <div class="aT_set_prio" id="boxUrgentEdit" onclick="activateBox('boxUrgentEdit', 'urgent_box_active')">
+                  <div class="aT_set_prio" id="boxUrgentEdit" onclick="activateBoxEdit('boxUrgentEdit', 'urgent_box_active')">
                     <span>Urgent</span>
                     <img src="./assets/img/Prio_high.svg" alt="urgent_icon" />
                   </div>
-                  <div class="aT_set_prio" id="boxMediumEdit" onclick="activateBox('boxMediumEdit', 'medium_box_active')">
+                  <div class="aT_set_prio" id="boxMediumEdit" onclick="activateBoxEdit('boxMediumEdit', 'medium_box_active')">
                     <span>Medium</span>
                     <img src="./assets/img/Prio_med.svg" alt="medium_icon" />
                   </div>
-                  <div class="aT_set_prio" id="boxLowEdit" onclick="activateBox('boxLowEdit', 'low_box_active')">
+                  <div class="aT_set_prio" id="boxLowEdit" onclick="activateBoxEdit('boxLowEdit', 'low_box_active')">
                     <span>Low</span>
                     <img src="./assets/img/Prio_low.svg" alt="low_icon" />
                   </div>
@@ -310,14 +310,34 @@ function populateEditForm(task) {
 }
 
 function setPriority(prio) {
-  deactivateAll();
+  deactivateAllEdit();
   if (prio === "Urgent") {
-    activateBox("boxUrgentEdit", "urgent_box_active");
+    activateBoxEdit("boxUrgentEdit", "urgent_box_active");
   } else if (prio === "Medium") {
-    activateBox("boxMediumEdit", "medium_box_active");
+    activateBoxEdit("boxMediumEdit", "medium_box_active");
   } else if (prio === "Low") {
-    activateBox("boxLowEdit", "low_box_active");
+    activateBoxEdit("boxLowEdit", "low_box_active");
   }
+}
+
+function activateBoxEdit(boxId, activeClass) {
+  deactivateAllEdit();
+  const box = document.getElementById(boxId);
+  box.classList.remove("aT_set_prio");
+  box.classList.add(activeClass);
+}
+
+function deactivateAllEdit() {
+  document
+    .getElementById("boxUrgentEdit")
+    .classList.remove("urgent_box_active");
+  document.getElementById("boxUrgentEdit").classList.add("aT_set_prio");
+  document
+    .getElementById("boxMediumEdit")
+    .classList.remove("medium_box_active");
+  document.getElementById("boxMediumEdit").classList.add("aT_set_prio");
+  document.getElementById("boxLowEdit").classList.remove("low_box_active");
+  document.getElementById("boxLowEdit").classList.add("aT_set_prio");
 }
 
 async function saveEditedTaskToDatabase(taskId) {
