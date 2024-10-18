@@ -54,3 +54,7 @@
 .add_task_fillIn_section_edit::-webkit-scrollbar-track-piece {
   background: transparent;
 }
+
+#contacts_container_edit {
+  max-height: 230px;
+}

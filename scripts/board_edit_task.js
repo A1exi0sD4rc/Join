@@ -3,6 +3,7 @@ async function editTask(taskId) {
     const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
     const taskData = await taskResponse.json();
     await getContacts();
+    selectedContacts = taskData.assigned || [];
 
     document.getElementById("big_card").innerHTML = `
         <form id="editForm" class="form_area_edit">
@@ -75,15 +76,15 @@ async function editTask(taskId) {
 
                 <!-- Priority Options -->
                 <div class="aT_set_prio_container" id="aT_set_prio">
-                  <div class="aT_set_prio" id="boxUrgent" onclick="activateBox('boxUrgent', 'urgent_box_active')">
+                  <div class="aT_set_prio" id="boxUrgentEdit" onclick="activateBox('boxUrgentEdit', 'urgent_box_active')">
                     <span>Urgent</span>
                     <img src="./assets/img/Prio_high.svg" alt="urgent_icon" />
                   </div>
-                  <div class="aT_set_prio" id="boxMedium" onclick="activateBox('boxMedium', 'medium_box_active')">
+                  <div class="aT_set_prio" id="boxMediumEdit" onclick="activateBox('boxMediumEdit', 'medium_box_active')">
                     <span>Medium</span>
                     <img src="./assets/img/Prio_med.svg" alt="medium_icon" />
                   </div>
-                  <div class="aT_set_prio" id="boxLow" onclick="activateBox('boxLow', 'low_box_active')">
+                  <div class="aT_set_prio" id="boxLowEdit" onclick="activateBox('boxLowEdit', 'low_box_active')">
                     <span>Low</span>
                     <img src="./assets/img/Prio_low.svg" alt="low_icon" />
                   </div>
@@ -196,7 +197,7 @@ function renderContactsEdit() {
     let initials = getInitials(contact.name.replace(" (You)", ""));
 
     contactContainer.innerHTML += `
-      <div class="contact_container_element ${contactClass}" id="contact_${i}" onclick="toggleContact(${i})">
+      <div class="contact_container_element ${contactClass}" id="contact_edit_${i}" onclick="toggleContactEdit(${i})">
         <div style="display: flex; align-items: center; gap: 20px;" class="${contactTextColorClass}">
           <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
@@ -204,20 +205,89 @@ function renderContactsEdit() {
           </svg>
           <div id="contact_list_name">${contact.name}</div>
         </div>
-        <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_${i}">
+        <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_edit_${i}">
       </div>
     `;
   });
 }
 
+function toggleContactEdit(index) {
+  let contact = contactsAddTask[index];
+  let contactElement = document.getElementById(`contact_edit_${index}`);
+  let checkboxImage = document.getElementById(`checkbox_edit_${index}`);
+  let textContainer = contactElement.querySelector("div");
+
+  if (isSelected(contact)) {
+    contactElement.classList.remove("contact-selected");
+    contactElement.classList.add("contact-unselected");
+    textContainer.classList.remove("text-white");
+    textContainer.classList.add("text-black");
+    contactElement.style.backgroundColor = "#FFFFFF";
+    checkboxImage.src = "./assets/img/checkbox.png";
+    selectedContacts = selectedContacts.filter((c) => c.name !== contact.name);
+    removeSelectedContact(contact.name);
+  } else {
+    contactElement.classList.add("contact-selected");
+    contactElement.classList.remove("contact-unselected");
+    textContainer.classList.remove("text-black");
+    textContainer.classList.add("text-white");
+    contactElement.style.backgroundColor = "#2A3647";
+    checkboxImage.src = "./assets/img/checkbox-checked-white.png";
+    selectedContacts.push(contact);
+    addSelectedContact(contact);
+  }
+
+  updateSelectedContactsDisplayEdit();
+}
+
+function addSelectedContact(contact) {
+  let selectedContactsContainer = document.getElementById(
+    "selected_contacts_edit"
+  );
+  let initials = getInitials(contact.name.replace(" (You)", ""));
+
+  selectedContactsContainer.innerHTML += `
+    <div class="selected-contact" id="selected_contact_${contact.name}">
+      <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="21" cy="21" r="21" fill="${contact.bgcolor}" stroke="white" stroke-width="3"/>
+        <text x="21" y="27" text-anchor="middle" font-size="15" fill="white">${initials}</text>
+      </svg>
+    </div>
+  `;
+}
+
+function removeSelectedContact(contactName) {
+  let selectedContactElement = document.getElementById(
+    `selected_contact_${contactName}`
+  );
+  if (selectedContactElement) {
+    selectedContactElement.remove();
+  }
+}
+
+function updateSelectedContactsDisplayEdit() {
+  let selectedContactsContainer = document.getElementById(
+    "selected_contacts_edit"
+  );
+  selectedContactsContainer.innerHTML = "";
+  selectedContacts.forEach((contact) => {
+    addSelectedContact(contact);
+  });
+}
+
+function isSelected(contact) {
+  return selectedContacts.some(
+    (selectedContact) => selectedContact.name === contact.name
+  );
+}
+
 function renderSelectedContactsFromDatabase(assigned) {
   if (assigned && assigned.length > 0) {
-    let displayedContacts = assigned;
-    let contactsHtml = displayedContacts
+    let contactsHtml = assigned
       .map((contact) => {
         let initials = getInitials(contact.name.replace(" (You)", ""));
         return `
-        <div class="selected-contact">
+        <div class="selected-contact" id="selected_contact_edit_${contact.name}">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="21" cy="21" r="21" fill="${contact.bgcolor}" stroke="white" stroke-width="3"/>
           <text x="21" y="27" text-anchor="middle" font-size="15" fill="white">${initials}</text>
@@ -228,9 +298,7 @@ function renderSelectedContactsFromDatabase(assigned) {
       .join("");
     return contactsHtml;
   } else {
-    return `
-      <div class="assigned-contact" style="position: relative; display: inline-block;"></div>
-    `;
+    return `<div class="assigned-contact" style="position: relative; display: inline-block;"></div>`;
   }
 }
 
@@ -244,16 +312,17 @@ function populateEditForm(task) {
 function setPriority(prio) {
   deactivateAll();
   if (prio === "Urgent") {
-    activateBox("boxUrgent", "urgent_box_active");
+    activateBox("boxUrgentEdit", "urgent_box_active");
   } else if (prio === "Medium") {
-    activateBox("boxMedium", "medium_box_active");
+    activateBox("boxMediumEdit", "medium_box_active");
   } else if (prio === "Low") {
-    activateBox("boxLow", "low_box_active");
+    activateBox("boxLowEdit", "low_box_active");
   }
 }
 
 async function saveEditedTaskToDatabase(taskId) {
   const updatedTask = collectTaskData();
+  updatedTask.assigned = selectedContacts;
   try {
     const response = await fetch(`${TASKS_URL}/${taskId}.json`, {
       method: "PUT",
