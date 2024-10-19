@@ -43,7 +43,7 @@ async function editTask(taskId) {
               <label class="aT_input_labels">Assigned to</label>
               <div class="aT_select_container">
               <input id="aT_select_contacts_edit" class="aT_select_dropdown_fields"
-                placeholder="Select contacts to assign" />
+                placeholder="Select contacts to assign" onclick="toggleDropdownEdit(event)" oninput="filterContactsEdit()"/>
               <div id="select_contacts_arrow_container_edit" class="drop_down_arrow_container" tabindex="0" onclick="toggleDropdownEdit(event)">
                 <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
               </div>
@@ -95,11 +95,11 @@ async function editTask(taskId) {
                 <div class="category_subtasks_container">
                   <div class="category_input_dropdown_error_container">
                     <div class="aT_select_container">
-                      <div id="aT_select_category_edit" class="aT_select_dropdown_fields">
+                      <div id="aT_select_category_edit" class="aT_select_dropdown_fields" onclick="toggleCategoryEdit(event)">
                         ${taskData.art || ""}
                       </div>
                       <div id="select_category_arrow_container_edit" class="drop_down_arrow_container" onclick="toggleCategoryEdit(event)">
-                        <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
+                        <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow edit_arrow" />
                       </div>
                     </div>
                     <div id="category_list_edit" class="category_list d-none">
@@ -246,6 +246,16 @@ function toggleContactEdit(index) {
   updateSelectedContactsDisplayEdit();
 }
 
+function updateSelectedContactsDisplayEdit() {
+  let selectedContactsContainer = document.getElementById(
+    "selected_contacts_edit"
+  );
+  selectedContactsContainer.innerHTML = "";
+  selectedContacts.forEach((contact) => {
+    addSelectedContact(contact);
+  });
+}
+
 function addSelectedContact(contact) {
   let selectedContactsContainer = document.getElementById(
     "selected_contacts_edit"
@@ -269,16 +279,6 @@ function removeSelectedContact(contactName) {
   if (selectedContactElement) {
     selectedContactElement.remove();
   }
-}
-
-function updateSelectedContactsDisplayEdit() {
-  let selectedContactsContainer = document.getElementById(
-    "selected_contacts_edit"
-  );
-  selectedContactsContainer.innerHTML = "";
-  selectedContacts.forEach((contact) => {
-    addSelectedContact(contact);
-  });
 }
 
 function isSelected(contact) {
@@ -307,6 +307,57 @@ function renderSelectedContactsFromDatabase(assigned) {
     return `<div class="assigned-contact" style="position: relative; display: inline-block;"></div>`;
   }
 }
+
+function filterContactsEdit() {
+  let inputFieldContacts = document.getElementById("aT_select_contacts_edit");
+  let searchQuery = inputFieldContacts.value.toLowerCase();
+  let filteredContacts = contactsAddTask.filter((contact) =>
+    contact.name.toLowerCase().includes(searchQuery)
+  );
+  renderFilteredContactsEdit(filteredContacts);
+}
+
+function renderFilteredContactsEdit(filteredContacts) {
+  let contactContainer = document.getElementById("contacts_container_edit");
+  contactContainer.innerHTML = "";
+
+  if (filteredContacts.length > 0) {
+    filteredContacts.forEach((contact, i) => {
+      let originalIndex = contactsAddTask.indexOf(contact);
+      let checked = isSelected(contact);
+      let backgroundColor = checked ? "#2A3647" : "#FFFFFF";
+      let checkboxImage = checked
+        ? "checkbox-checked-white.png"
+        : "checkbox.png";
+      let contactTextColor = checked ? "#FFFFFF" : "#000000";
+      let contactClass = checked ? "contact-selected" : "contact-unselected";
+      let initials = getInitials(contact.name.replace(" (You)", ""));
+
+      contactContainer.innerHTML += `
+      <div class="contact_container_element ${contactClass}" id="contact_edit_${i}" onclick="toggleContactEdit(${i})">
+        <div style="display: flex; align-items: center; gap: 20px;" class="${contactTextColor}">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
+            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${initials}</text>
+          </svg>
+          <div id="contact_list_name">${contact.name}</div>
+        </div>
+        <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_edit_${i}">
+      </div>
+    `;
+    });
+  } else {
+    contactContainer.innerHTML += `
+      <div class="contact_container_element" style="background-color: #FFFFFF"> 
+        <div style="display: flex; align-items: center; gap: 20px; color: #000000">
+          <div id="contact_list_name">No Contact found with this name.</div> 
+        </div> 
+      </div>
+    `;
+  }
+}
+
+// START PRIORITY CHANGE ON THE EDIT TASK //
 
 function setPriority(prio) {
   deactivateAllEdit();
@@ -342,7 +393,9 @@ function deactivateAllEdit() {
 function toggleCategoryEdit(event) {
   event.stopPropagation();
 
-  const inputFieldCategeoryEdit = document.getElementById("aT_select_category");
+  const inputFieldCategeoryEdit = document.getElementById(
+    "aT_select_category_edit"
+  );
   const arrowCatContainerEdit = document.getElementById(
     "select_category_arrow_container_edit"
   );
@@ -357,18 +410,34 @@ function toggleCategoryEdit(event) {
   }
 }
 
-function deactivateFieldCategory() {
+function assignCategoryListeners() {
+  const categoryOptions = document.querySelectorAll(".categories");
+  categoryOptions.forEach(function (option) {
+    option.addEventListener("click", selectCategoryEdit);
+  });
+}
+
+function selectCategoryEdit(event) {
+  const inputFieldCategeoryEdit = document.getElementById(
+    "aT_select_category_edit"
+  );
+  const selectedCategory = event.target.textContent;
+  inputFieldCategeoryEdit.textContent = selectedCategory;
+  deactivateFieldCategoryEdit();
+}
+
+function deactivateFieldCategoryEdit() {
   const arrowCatContainerEdit = document.getElementById(
     "select_category_arrow_container_edit"
   );
   const arrowImageEdit = arrowCatContainerEdit.querySelector("img");
-  const dropDownCategories = document.getElementById("category_list_edit");
-  if (arrowConConImage) {
-    arrowConConImage.classList.remove("rotate");
+  const dropDownCategoriesEdit = document.getElementById("category_list_edit");
+  if (arrowImageEdit) {
+    arrowImageEdit.classList.remove("rotate");
   } else {
     console.error("Arrow container image not found");
   }
-  dropDownCategories.classList.add("d-none");
+  dropDownCategoriesEdit.classList.add("d-none");
 }
 
 function activateFieldCategoryEdit() {
@@ -376,9 +445,10 @@ function activateFieldCategoryEdit() {
     "select_category_arrow_container_edit"
   );
   const arrowImageEdit = arrowCatContainerEdit.querySelector("img");
-  const dropDownCategories = document.getElementById("category_list_edit");
+  const dropDownCategoriesEdit = document.getElementById("category_list_edit");
   arrowImageEdit.classList.add("rotate");
-  dropDownCategories.classList.remove("d-none");
+  dropDownCategoriesEdit.classList.remove("d-none");
+  assignCategoryListeners();
 }
 
 async function saveEditedTaskToDatabase(taskId) {
