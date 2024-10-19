@@ -95,13 +95,19 @@ async function editTask(taskId) {
                 <div class="category_subtasks_container">
                   <div class="category_input_dropdown_error_container">
                     <div class="aT_select_container">
-                      <div id="aT_select_category" class="aT_select_dropdown_fields">
+                      <div id="aT_select_category_edit" class="aT_select_dropdown_fields">
                         ${taskData.art || ""}
                       </div>
-                      <div id="select_category_arrow_container" class="drop_down_arrow_container">
+                      <div id="select_category_arrow_container_edit" class="drop_down_arrow_container" onclick="toggleCategoryEdit(event)">
                         <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
                       </div>
                     </div>
+                    <div id="category_list_edit" class="category_list d-none">
+                  <div>
+                    <div class="categories">Technical Task</div>
+                    <div class="categories">User Story</div>
+                  </div>
+                </div>
                   </div>
                 </div>
 
@@ -136,7 +142,7 @@ async function editTask(taskId) {
         </form>
     `;
 
-    populateEditForm(taskData);
+    setPriority(taskData.prio);
   } catch (error) {
     console.error("Error loading task for editing:", error);
   }
@@ -302,13 +308,6 @@ function renderSelectedContactsFromDatabase(assigned) {
   }
 }
 
-function populateEditForm(task) {
-  document.getElementById("aT_title").value = task.title;
-  document.getElementById("aT_description").value = task.description;
-  document.getElementById("aT_date").value = task.due_date;
-  setPriority(task.prio);
-}
-
 function setPriority(prio) {
   deactivateAllEdit();
   if (prio === "Urgent") {
@@ -338,6 +337,48 @@ function deactivateAllEdit() {
   document.getElementById("boxMediumEdit").classList.add("aT_set_prio");
   document.getElementById("boxLowEdit").classList.remove("low_box_active");
   document.getElementById("boxLowEdit").classList.add("aT_set_prio");
+}
+
+function toggleCategoryEdit(event) {
+  event.stopPropagation();
+
+  const inputFieldCategeoryEdit = document.getElementById("aT_select_category");
+  const arrowCatContainerEdit = document.getElementById(
+    "select_category_arrow_container_edit"
+  );
+  const arrowImageEdit = arrowCatContainerEdit.querySelector("img");
+  if (inputFieldCategeoryEdit.textContent !== originalText) {
+    inputFieldCategeoryEdit.textContent = originalText;
+  }
+  if (arrowImageEdit.classList.contains("rotate")) {
+    deactivateFieldCategoryEdit();
+  } else {
+    activateFieldCategoryEdit();
+  }
+}
+
+function deactivateFieldCategory() {
+  const arrowCatContainerEdit = document.getElementById(
+    "select_category_arrow_container_edit"
+  );
+  const arrowImageEdit = arrowCatContainerEdit.querySelector("img");
+  const dropDownCategories = document.getElementById("category_list_edit");
+  if (arrowConConImage) {
+    arrowConConImage.classList.remove("rotate");
+  } else {
+    console.error("Arrow container image not found");
+  }
+  dropDownCategories.classList.add("d-none");
+}
+
+function activateFieldCategoryEdit() {
+  const arrowCatContainerEdit = document.getElementById(
+    "select_category_arrow_container_edit"
+  );
+  const arrowImageEdit = arrowCatContainerEdit.querySelector("img");
+  const dropDownCategories = document.getElementById("category_list_edit");
+  arrowImageEdit.classList.add("rotate");
+  dropDownCategories.classList.remove("d-none");
 }
 
 async function saveEditedTaskToDatabase(taskId) {
