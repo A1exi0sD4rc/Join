@@ -9,15 +9,6 @@ async function initAddTask() {
 }
 
 /**
- * Trims the input field value and returns the trimmed subtask text.
- * @param {HTMLInputElement} inputField - The input field element.
- * @returns {string} - The trimmed subtask text.
- */
-function getTrimmedSubtaskText(inputField) {
-  return inputField.value.trim();
-}
-
-/**
  * Creates HTML for a new subtask item.
  * @param {string} subtaskText - The text of the subtask.
  * @param {string} subtaskId - The unique ID of the subtask.
@@ -41,14 +32,6 @@ function createSubtaskHTML(subtaskText, subtaskId) {
  */
 function appendSubtaskToList(newListHTML) {
   document.getElementById("created_subtasks").innerHTML += newListHTML;
-}
-
-/**
- * Clears the value of the input field.
- * @param {HTMLInputElement} inputField - The input field element.
- */
-function clearInputField(inputField) {
-  inputField.value = "";
 }
 
 /**
@@ -118,27 +101,64 @@ function focusAndSetCursorAtEnd(taskItem) {
  */
 function saveTask(saveButton) {
   const taskItem = saveButton.closest(".task-item");
-  const inputElement = getInputElement(taskItem);
+  const inputElement = getTaskInputElement(taskItem);
   if (!inputElement) {
     console.error("Input element not found");
     return;
   }
 
-  const subtaskId = taskItem.getAttribute("data-id");
+  const subtaskId = getSubtaskId(taskItem);
   const newTitle = inputElement.value.trim();
 
+  updateSubtaskTitle(subtaskId, newTitle);
+  updateDOM(taskItem, newTitle);
+}
+
+/**
+ * Retrieves the input element from the task item.
+ * @param {HTMLElement} taskItem - The task item element.
+ * @returns {HTMLInputElement|null} - The input element or null if not found.
+ */
+function getTaskInputElement(taskItem) {
+  return taskItem.querySelector("input");
+}
+
+/**
+ * Gets the subtask ID from the task item.
+ * @param {HTMLElement} taskItem - The task item element.
+ * @returns {string} - The subtask ID.
+ */
+function getSubtaskId(taskItem) {
+  return taskItem.getAttribute("data-id");
+}
+
+/**
+ * Updates the subtask title in the data structure.
+ * @param {string} subtaskId - The ID of the subtask.
+ * @param {string} newTitle - The new title of the subtask.
+ */
+function updateSubtaskTitle(subtaskId, newTitle) {
   const subtaskIndex = subtasks.findIndex(
     (subtask) => subtask.id === subtaskId
   );
   if (subtaskIndex !== -1) {
     subtasks[subtaskIndex].title = newTitle;
   }
+}
 
+/**
+ * Updates the DOM for the edited task item.
+ * @param {HTMLElement} taskItem - The task item element.
+ * @param {string} newTitle - The new title of the subtask.
+ */
+function updateDOM(taskItem, newTitle) {
   const taskTextElement = createTaskTextElement(newTitle);
   const taskControls = taskItem.querySelector(".task-controls");
   updateTaskItem(taskItem, taskTextElement, taskControls);
   updateTaskControls(taskControls);
 }
+
+//hier ENDE funktions Kürzung:
 
 /**
  * Retrieves the input element from a task item being edited.
@@ -199,22 +219,6 @@ function deleteSubtask(deleteButton) {
 }
 
 /**
- * Removes a subtask from the subtasks array by its ID.
- * @param {string} subtaskId - The ID of the subtask to be removed.
- */
-function removeSubtaskFromArray(subtaskId) {
-  subtasks = subtasks.filter((subtask) => subtask.id !== subtaskId);
-}
-
-/**
- * Generates a unique ID for a new subtask based on the current timestamp.
- * @returns {string} - The generated subtask ID.
- */
-function generateSubtaskId() {
-  return `subtask_${new Date().getTime()}`;
-}
-
-/**
  * Handles input events for the date input field and changes its text color if filled.
  */
 const input = document.querySelector(".aT_input_date");
@@ -255,6 +259,15 @@ document
   });
 
 let subtasks = [];
+
+/**
+ * Clears the value of the subtask input field.
+ * @param {HTMLInputElement} inputField - The input field element.
+ */
+function clearInputField(inputField) {
+  inputField.value = "";
+}
+
 /**
  * Adds a subtask to the list if the input is valid.
  */
@@ -301,20 +314,6 @@ function resetDivVisibility() {
 function scrollToListEnd() {
   const subtaskContainer = document.getElementById("created_subtasks");
   subtaskContainer.scrollTop = subtaskContainer.scrollHeight;
-}
-
-/**
- * Adds a subtask to the array of subtasks.
- * @param {string} subtaskText - The text of the subtask.
- * @param {string} subtaskId - The unique ID of the subtask.
- */
-function addSubtaskToArray(subtaskText, subtaskId) {
-  const subtask = {
-    id: subtaskId,
-    title: subtaskText,
-    completed: false,
-  };
-  subtasks.push(subtask);
 }
 
 /**
