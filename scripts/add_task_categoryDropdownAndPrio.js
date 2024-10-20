@@ -40,3 +40,28 @@ function selectCategory(event) {
   deactivateFieldCategory();
   validateCategory();
 }
+
+/**
+ * Activates a specific box by adding an active class and removing the inactive class.
+ * @param {string} boxId - The ID of the box to be activated.
+ * @param {string} activeClass - The class to be added to activate the box.
+ */
+function activateBox(boxId, activeClass) {
+  deactivateAll();
+  const box = document.getElementById(boxId);
+  box.classList.remove("aT_set_prio");
+  box.classList.add(activeClass);
+}
+
+/**
+ * Deactivates all priority boxes by removing their active classes.
+ * Adds a default priority class to each box.
+ */
+function deactivateAll() {
+  document.getElementById("boxUrgent").classList.remove("urgent_box_active");
+  document.getElementById("boxUrgent").classList.add("aT_set_prio");
+  document.getElementById("boxMedium").classList.remove("medium_box_active");
+  document.getElementById("boxMedium").classList.add("aT_set_prio");
+  document.getElementById("boxLow").classList.remove("low_box_active");
+  document.getElementById("boxLow").classList.add("aT_set_prio");
+}

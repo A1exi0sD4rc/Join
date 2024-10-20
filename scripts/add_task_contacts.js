@@ -164,3 +164,47 @@ function clearSelectedContacts() {
   renderContacts();
   displaySelectedContacts();
 }
+
+/**
+ * Renders the filtered list of contacts in the contacts container.
+ * @param {Array} filteredContacts - An array of contact objects to be displayed.
+ */
+function renderFilteredContacts(filteredContacts) {
+  let contactContainer = document.getElementById("contacts_container");
+  contactContainer.innerHTML = "";
+
+  if (filteredContacts.length > 0) {
+    filteredContacts.forEach((contact) => {
+      let originalIndex = contactsAddTask.indexOf(contact);
+      let checked = isSelected(contact);
+      let backgroundColor = checked ? "#2A3647" : "#FFFFFF";
+      let checkboxImage = checked
+        ? "checkbox-checked-white.png"
+        : "checkbox.png";
+      let contactTextColor = checked ? "#FFFFFF" : "#000000";
+      let contactClass = checked ? "contact-selected" : "contact-unselected";
+      let initials = getInitials(contact.name.replace(" (You)", ""));
+
+      contactContainer.innerHTML += `
+      <div class="contact_container_element ${contactClass}" id="contact_${originalIndex}" style="background-color: ${backgroundColor}" onclick="toggleContact(${originalIndex})">
+        <div style="display: flex; align-items: center; gap: 20px; color: ${contactTextColor}">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
+            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${initials}</text>
+          </svg>
+          <div id="contact_list_name">${contact.name}</div>
+        </div>
+        <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_${originalIndex}">
+      </div>
+    `;
+    });
+  } else {
+    contactContainer.innerHTML += `
+      <div class="contact_container_element" style="background-color: #FFFFFF"> 
+        <div style="display: flex; align-items: center; gap: 20px; color: #000000">
+          <div id="contact_list_name">No Contact found with this name.</div> 
+        </div> 
+      </div>
+    `;
+  }
+}
