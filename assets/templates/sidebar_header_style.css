@@ -234,6 +234,10 @@ table {
     top: unset;
   }
 
+  .sidebar_nologin_res {
+    display: none;
+  }
+
   .sidebar_join_logo_container {
     display: none;
   }
