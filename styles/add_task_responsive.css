@@ -218,10 +218,6 @@
     font-size: 16px;
   }
 
-  .aT_input_addSubtask {
-    font-size: 16px;
-  }
-
   .add_task_content {
     padding-left: 3px;
   }
@@ -232,7 +228,7 @@
     background-color: #fff;
     border: none;
     border-bottom: 1px solid #005dff;
-    padding: 4px 64px 4px 26px;
+    padding: 4px 70px 4px 26px;
     box-sizing: border-box;
     font-size: 16px;
     width: 318px;
