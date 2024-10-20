@@ -43,7 +43,7 @@ async function editTask(taskId) {
               <label class="aT_input_labels">Assigned to</label>
               <div class="aT_select_container">
               <input id="aT_select_contacts_edit" class="aT_select_dropdown_fields"
-                placeholder="Select contacts to assign" onclick="toggleDropdownEdit(event)" oninput="filterContactsEdit()"/>
+                placeholder="Select contacts to assign" autocomplete="off" onclick="toggleDropdownEdit(event)" oninput="filterContactsEdit()"/>
               <div id="select_contacts_arrow_container_edit" class="drop_down_arrow_container" tabindex="0" onclick="toggleDropdownEdit(event)">
                 <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
               </div>
