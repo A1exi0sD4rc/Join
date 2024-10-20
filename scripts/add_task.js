@@ -106,10 +106,8 @@ function saveTask(saveButton) {
     console.error("Input element not found");
     return;
   }
-
   const subtaskId = getSubtaskId(taskItem);
   const newTitle = inputElement.value.trim();
-
   updateSubtaskTitle(subtaskId, newTitle);
   updateDOM(taskItem, newTitle);
 }
@@ -157,8 +155,6 @@ function updateDOM(taskItem, newTitle) {
   updateTaskItem(taskItem, taskTextElement, taskControls);
   updateTaskControls(taskControls);
 }
-
-//hier ENDE funktions Kürzung:
 
 /**
  * Retrieves the input element from a task item being edited.
@@ -398,6 +394,8 @@ function handleContactsClick(event) {
     deactivateFieldContacts();
   }
 }
+
+//folgende Funktion soll kürzer werden:
 
 /**
  * Deactivates the category field if a click occurs outside of the category input field and dropdown list.
