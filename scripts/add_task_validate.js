@@ -1,3 +1,7 @@
+/**
+ * Validates the title input field.
+ * @returns {boolean} - Returns true if the title is valid, otherwise false.
+ */
 function validateTitle() {
   const titleInput = document.getElementById("aT_title");
   const titleError = document.getElementById("titleError");
@@ -14,6 +18,10 @@ function validateTitle() {
   return true;
 }
 
+/**
+ * Validates the date input field.
+ * @returns {boolean} - Returns true if the date is valid, otherwise false.
+ */
 function validateDate() {
   const dateInput = document.getElementById("aT_date");
   const dateError = document.getElementById("dateError");
@@ -30,6 +38,10 @@ function validateDate() {
   return true;
 }
 
+/**
+ * Validates the category selection.
+ * @returns {boolean} - Returns true if a valid category is selected, otherwise false.
+ */
 function validateCategory() {
   const categoryDiv = document.getElementById("aT_select_category");
   const categoryError = document.getElementById("categoryError");
@@ -45,6 +57,9 @@ function validateCategory() {
   }
 }
 
+/**
+ * Validates the entire form (title, date, and category).
+ */
 function validateForm() {
   const isTitleValid = validateTitle();
   const isDateValid = validateDate();
@@ -61,12 +76,18 @@ function validateForm() {
   }
 }
 
+/**
+ * Resets all form validation errors (title, date, and category).
+ */
 function resetValidationErrors() {
   resetTitleValidation();
   resetDateValidation();
   resetCategoryValidation();
 }
 
+/**
+ * Resets the validation state for the title field.
+ */
 function resetTitleValidation() {
   const titleInput = document.getElementById("aT_title");
   const titleError = document.getElementById("titleError");
@@ -76,6 +97,9 @@ function resetTitleValidation() {
   }
 }
 
+/**
+ * Resets the validation state for the date field.
+ */
 function resetDateValidation() {
   const dateInput = document.getElementById("aT_date");
   const dateError = document.getElementById("dateError");
@@ -85,6 +109,9 @@ function resetDateValidation() {
   }
 }
 
+/**
+ * Resets the validation state for the category selection.
+ */
 function resetCategoryValidation() {
   const categoryDiv = document.getElementById("aT_select_category");
   const categoryError = document.getElementById("categoryError");
@@ -94,6 +121,10 @@ function resetCategoryValidation() {
   }
 }
 
+/**
+ * Shows a message indicating that a task was added to the board,
+ * then adds the task to the database and hides the message after a delay.
+ */
 function showTaskAddedToBoardMessage() {
   const taskMessage = document.getElementById("taskMessage");
   taskMessage.classList.add("show");
