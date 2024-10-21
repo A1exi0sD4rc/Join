@@ -132,7 +132,7 @@ async function editTask(taskId) {
                     </div>
                   </div>
                 </div>
-                <div class="aT_subtasks_container_overlay" id="created_subtasks_edit"></div>
+                <div class="aT_subtasks_container" id="created_subtasks_edit"></div>
               </div>
 
             <!-- Save Button -->
@@ -148,7 +148,11 @@ async function editTask(taskId) {
     if (taskData.subtask) {
       const subtasks = await fetchSubtasksFromDatabase(taskId);
       console.log("Subtasks fetched:", subtasks);
-      renderSubtasks(subtasks);
+      if (subtasks.length > 0) {
+        renderSubtasks(subtasks);
+      } else {
+        console.log("No subtasks to render.");
+      }
     }
   } catch (error) {
     console.error("Error loading task for editing:", error);
@@ -481,31 +485,26 @@ async function saveEditedTaskToDatabase(taskId) {
 
 // START FUNCTIONS FOR THE SUBTASKS //
 
-function renderSubtasks(task) {
+function renderSubtasks(subtasks) {
+  console.log("Rendering subtasks:", subtasks); // Log the subtasks received
+
   const subtaskContainer = document.getElementById("created_subtask_edit");
-  subtaskContainer.innerHTML = "";
+  subtaskContainer.innerHTML = ""; // Clear existing subtasks
 
-  const subtasks = task.subtask;
+  // Ensure subtasks is an array and iterate over it
+  if (Array.isArray(subtasks) && subtasks.length > 0) {
+    subtasks.forEach((subtask) => {
+      console.log("Subtask to render:", subtask); // Log each subtask being rendered
 
-  for (let key in subtasks) {
-    if (subtasks.hasOwnProperty(key)) {
-      const subtask = subtasks[key];
-      const subtaskId = key;
-
+      const subtaskId = subtask.id; // Get the ID from the fetched subtasks
       const subtaskHTML = createSubtaskHTML(subtask.title, subtaskId);
-
-      subtaskContainer.innerHTML += subtaskHTML;
-    }
+      subtaskContainer.innerHTML += subtaskHTML; // Add to the container
+    });
+  } else {
+    console.log("No subtasks to render."); // Log if no subtasks
   }
 
-  addSubtaskListeners();
-}
-
-function subtaskKeyHandler(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    addSubtaskToListEdit();
-  }
+  addSubtaskListeners(); // Add event listeners for the newly created subtasks
 }
 
 function divFocus() {
@@ -604,17 +603,23 @@ async function deleteSubtaskFromDatabase(subtaskId) {
 }
 
 async function fetchSubtasksFromDatabase(taskId) {
-  console.log("Fetching subtasks for task ID:", taskId);
-  const response = await fetch(`${TASKS_URL}/${taskId}/subtasks.json`);
+  const response = await fetch(`${TASKS_URL}/${taskId}/subtask.json`);
   const subtasks = await response.json();
-  console.log("Fetched subtasks:", subtasks);
+
+  console.log("Fetched data:", subtasks);
 
   if (!subtasks) return [];
 
-  return Object.entries(subtasks).map(([id, subtask]) => ({
+  console.log("Subtasks before mapping:", subtasks);
+
+  const mappedSubtasks = Object.entries(subtasks).map(([id, subtask]) => ({
     id,
     ...subtask,
   }));
+
+  console.log("Mapped subtasks:", mappedSubtasks);
+
+  return mappedSubtasks;
 }
 
 /**
@@ -805,11 +810,11 @@ function removeSubtaskFromArray(subtaskId) {
  */
 function createSubtaskHTML(title, id) {
   return `
-    <div class="task-item" data-id="${id}">
+    <div class="task-item" data-id="${id}" id="${id}"> <!-- Ensure each subtask has its own ID -->
       <span class="task-text">${title}</span>
       <div class="task-controls">
-        <img src="./assets/img/edit.svg" alt="edit_icon" onclick="editSubtaskEdit(this)">
-        <img src="./assets/img/delete.svg" alt="delete_icon" onclick="deleteSubtaskEdit(this)">
+        <img src="./assets/img/edit.svg" alt="edit_icon" class="edit-subtask-btn" data-id="${id}">
+        <img src="./assets/img/delete.svg" alt="delete_icon" class="delete-subtask-btn" data-id="${id}">
       </div>
     </div>
   `;
@@ -861,20 +866,24 @@ function addSubtaskListeners() {
       const subtaskId = this.getAttribute("data-id");
       const subtaskTitleElement = document
         .getElementById(subtaskId)
-        .querySelector(".subtask-title");
-      const newTitle = subtaskTitleElement.value;
+        .querySelector(".task-text");
+      const newTitle = prompt(
+        "Enter new title:",
+        subtaskTitleElement.textContent
+      );
 
-      updateSubtaskTitle(subtaskId, newTitle);
+      if (newTitle) {
+        updateSubtaskTitle(subtaskId, newTitle);
+        subtaskTitleElement.textContent = newTitle; // Update the displayed title immediately
+      }
     });
   });
 
   document.querySelectorAll(".delete-subtask-btn").forEach((button) => {
     button.addEventListener("click", function () {
       const subtaskId = this.getAttribute("data-id");
-
       deleteSubtask(subtaskId);
-
-      document.getElementById(subtaskId).remove();
+      document.getElementById(subtaskId).remove(); // Remove the subtask from the DOM
     });
   });
 }
