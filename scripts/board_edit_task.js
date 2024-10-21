@@ -481,20 +481,24 @@ async function saveEditedTaskToDatabase(taskId) {
 
 // START FUNCTIONS FOR THE SUBTASKS //
 
-async function renderSubtasks(subtasks) {
-  console.log("Rendering subtasks:", subtasks);
-  const subtaskContainer = document.getElementById("created_subtasks_edit");
+function renderSubtasks(task) {
+  const subtaskContainer = document.getElementById("created_subtask_edit");
   subtaskContainer.innerHTML = "";
 
-  if (!subtasks || subtasks.length === 0) {
-    console.log("No subtasks to render.");
-    return;
+  const subtasks = task.subtask;
+
+  for (let key in subtasks) {
+    if (subtasks.hasOwnProperty(key)) {
+      const subtask = subtasks[key];
+      const subtaskId = key;
+
+      const subtaskHTML = createSubtaskHTML(subtask.title, subtaskId);
+
+      subtaskContainer.innerHTML += subtaskHTML;
+    }
   }
 
-  subtasks.forEach((subtask) => {
-    const subtaskHTML = createSubtaskHTML(subtask.title, subtask.id);
-    subtaskContainer.innerHTML += subtaskHTML;
-  });
+  addSubtaskListeners();
 }
 
 function subtaskKeyHandler(event) {
@@ -516,8 +520,9 @@ function divBlur() {
  * Enables editing of the subtask by replacing the text with an input field.
  * @param {HTMLImageElement} editButton - The edit button clicked.
  */
-const taskItem = editButton.closest(".task-item");
-  console.log("Editing subtask:", taskItem);
+function editSubtaskEdit(editButton) {
+  const taskItem = editButton.closest(".task-item");
+  console.log("Editing subtask:", taskItem); // Debugging log
   const taskTextElement = getTaskTextElement(taskItem);
   const currentText = taskTextElement.textContent;
   updateTaskItemForEditing(taskItem, currentText);
@@ -567,11 +572,15 @@ async function saveSubtaskEdit(saveButton) {
 
 async function updateSubtaskInDatabase(subtaskId, newTitle) {
   const taskId = getSubtaskId(subtaskId);
-  await fetch(`${TASKS_URL}/${taskId}/subtasks/${subtaskId}.json`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: newTitle }),
-  });
+  const response = await fetch(
+    `${TASKS_URL}/${taskId}/subtasks/${subtaskId}.json`,
+    {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: newTitle }),
+    }
+  );
+  console.log("Update response:", response);
 }
 
 /**
@@ -599,7 +608,9 @@ async function fetchSubtasksFromDatabase(taskId) {
   const response = await fetch(`${TASKS_URL}/${taskId}/subtasks.json`);
   const subtasks = await response.json();
   console.log("Fetched subtasks:", subtasks);
+
   if (!subtasks) return [];
+
   return Object.entries(subtasks).map(([id, subtask]) => ({
     id,
     ...subtask,
@@ -637,6 +648,7 @@ function updateSubtaskTitle(subtaskId, newTitle) {
   if (subtaskIndex !== -1) {
     subtasks[subtaskIndex].title = newTitle;
   }
+  console.log(`Subtask ${subtaskId} updated to: ${newTitle}`);
 }
 
 /**
@@ -840,4 +852,29 @@ function createTaskTextElement(newTitle) {
   taskTextElement.className = "task-text";
   taskTextElement.textContent = newTitle;
   return taskTextElement;
+}
+
+// Function to add event listeners for edit and delete buttons
+function addSubtaskListeners() {
+  document.querySelectorAll(".edit-subtask-btn").forEach((button) => {
+    button.addEventListener("click", function () {
+      const subtaskId = this.getAttribute("data-id");
+      const subtaskTitleElement = document
+        .getElementById(subtaskId)
+        .querySelector(".subtask-title");
+      const newTitle = subtaskTitleElement.value;
+
+      updateSubtaskTitle(subtaskId, newTitle);
+    });
+  });
+
+  document.querySelectorAll(".delete-subtask-btn").forEach((button) => {
+    button.addEventListener("click", function () {
+      const subtaskId = this.getAttribute("data-id");
+
+      deleteSubtask(subtaskId);
+
+      document.getElementById(subtaskId).remove();
+    });
+  });
 }
