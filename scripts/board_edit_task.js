@@ -145,7 +145,7 @@ async function editTask(taskId) {
 
     setPriority(taskData.prio);
 
-    if (taskData.subtask) {
+    if (taskData.subtask && Object.keys(taskData.subtask).length > 0) {
       const subtasks = await fetchSubtasksFromDatabase(taskId);
       console.log("Subtasks fetched:", subtasks);
       if (subtasks.length > 0) {
@@ -487,15 +487,13 @@ async function saveEditedTaskToDatabase(taskId) {
 
 function renderSubtasks(subtasks) {
   console.log("Rendering subtasks:", subtasks); // Log the subtasks received
-
-  const subtaskContainer = document.getElementById("created_subtask_edit");
+  const subtaskContainer = document.getElementById("created_subtasks_edit");
   subtaskContainer.innerHTML = ""; // Clear existing subtasks
 
   // Ensure subtasks is an array and iterate over it
   if (Array.isArray(subtasks) && subtasks.length > 0) {
     subtasks.forEach((subtask) => {
       console.log("Subtask to render:", subtask); // Log each subtask being rendered
-
       const subtaskId = subtask.id; // Get the ID from the fetched subtasks
       const subtaskHTML = createSubtaskHTML(subtask.title, subtaskId);
       subtaskContainer.innerHTML += subtaskHTML; // Add to the container
@@ -614,7 +612,8 @@ async function fetchSubtasksFromDatabase(taskId) {
 
   const mappedSubtasks = Object.entries(subtasks).map(([id, subtask]) => ({
     id,
-    ...subtask,
+    title: subtask.title, // Ensure the keys match the fetched structure
+    completed: subtask.completed, // Ensure this matches the fetched structure
   }));
 
   console.log("Mapped subtasks:", mappedSubtasks);
@@ -809,15 +808,17 @@ function removeSubtaskFromArray(subtaskId) {
  * @returns {string} - The HTML string for the subtask.
  */
 function createSubtaskHTML(title, id) {
-  return `
-    <div class="task-item" data-id="${id}" id="${id}"> <!-- Ensure each subtask has its own ID -->
-      <span class="task-text">${title}</span>
-      <div class="task-controls">
-        <img src="./assets/img/edit.svg" alt="edit_icon" class="edit-subtask-btn" data-id="${id}">
-        <img src="./assets/img/delete.svg" alt="delete_icon" class="delete-subtask-btn" data-id="${id}">
+  const html = `
+      <div class="task-item" data-id="${id}" id="${id}">
+          <span class="task-text">${title}</span>
+          <div class="task-controls">
+              <img src="./assets/img/edit.svg" alt="edit_icon" class="edit-subtask-btn" data-id="${id}">
+              <img src="./assets/img/delete.svg" alt="delete_icon" class="delete-subtask-btn" data-id="${id}">
+          </div>
       </div>
-    </div>
   `;
+  console.log("Subtask HTML:", html); // Log the generated HTML
+  return html;
 }
 
 /**
