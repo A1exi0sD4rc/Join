@@ -190,7 +190,7 @@ body {
   transition: right 0.5s ease-in-out;
 }
 
-/* Der ausgegraute Hintergrund */
+/* Der ausgegraute Hintergrund
 #overlay {
   display: none;
   position: fixed;
@@ -200,7 +200,7 @@ body {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
-}
+} */
 
 /* Wenn die Section angezeigt wird */
 .show-section {
@@ -218,6 +218,10 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
   z-index: 500;
+}
+
+.overlay.active {
+  display: block;
 }
 
 body.no-scroll {
@@ -241,6 +245,7 @@ body.no-scroll {
 }
 
 .task-form.active {
+  display: block;
   right: calc(50% - 558px);
 }
 
@@ -423,5 +428,15 @@ body.no-scroll {
 
   .add_task_bottom_overlay {
     width: 929px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .task-form.active {
+    display: none;
+  }
+
+  .overlay.active {
+    display: none;
   }
 }

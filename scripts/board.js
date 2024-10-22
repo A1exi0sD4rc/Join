@@ -274,8 +274,12 @@ async function deleteTask() {
   await refreshTaskBoard();
 }
 
-//ab hier Funktionen Judith für addTask
-// Hauptfunktion zum Öffnen des add task Formulars
+/**
+ * Opens the task form or navigates to the 'add_task.html' page depending on screen width.
+ *
+ * @function openForm
+ * @returns {void} No return value.
+ */
 function openForm() {
   console.log("Aktuelle Bildschirmbreite:", window.innerWidth);
   if (window.innerWidth <= 1000) {
@@ -283,21 +287,28 @@ function openForm() {
   } else {
     openOverlay();
     const taskForm = document.getElementById("taskForm");
-    taskForm.style.display = "block";
-    setTimeout(() => {
-      taskForm.classList.add("active");
-    }, 10);
+    taskForm.classList.add("active");
     document.body.classList.add("no-scroll");
   }
 }
 
-// Funktion, um das Overlay anzuzeigen
+/**
+ * Activates the overlay for the task form.
+ *
+ * @function openOverlay
+ * @returns {void} No return value.
+ */
 function openOverlay() {
   const overlay = document.getElementById("taskOverlay");
-  overlay.style.display = "block";
+  overlay.classList.add("active");
 }
 
-// Funktion, um das Formular zu schließen
+/**
+ * Closes the task form and overlay, and resets the page.
+ *
+ * @function closeForm
+ * @returns {void} No return value.
+ */
 function closeForm() {
   clearAll();
   const taskForm = document.getElementById("taskForm");
@@ -308,4 +319,3 @@ function closeForm() {
   }, 300);
   document.body.classList.remove("no-scroll");
 }
-//Hier Ende addTask Btn Funktionen. Muss ich (Judith) noch hübsch machen.
