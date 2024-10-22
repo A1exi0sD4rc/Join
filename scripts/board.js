@@ -281,7 +281,6 @@ async function deleteTask() {
  * @returns {void} No return value.
  */
 function openForm() {
-  console.log("Aktuelle Bildschirmbreite:", window.innerWidth);
   if (window.innerWidth <= 1000) {
     window.location.href = "./add_task.html";
   } else {
