@@ -328,9 +328,9 @@ function closeForm() {
  */
 function scrollOnDrag(id) {
   let bounding = document.documentElement.getBoundingClientRect();
-  if (id.clientY < bounding.top + 450) {
+  if (id.clientY < bounding.top + 500) {
     window.scrollBy(0, -scrollSpeed);
-  } else if (id.clientY > bounding.bottom - 450) {
+  } else if (id.clientY > bounding.bottom - 500) {
     window.scrollBy(0, scrollSpeed);
   }
 }
