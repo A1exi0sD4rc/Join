@@ -112,27 +112,28 @@ async function editTask(taskId) {
                 </div>
 
                 <!-- Subtasks Section -->
-                <div class="subtasks_input_subs_container">
-                  <label class="aT_label_subtasks">Subtasks</label>
-                  <div class="aT_select_container">
-                    <input id="aT_add_subtasks" maxlength="100" class="aT_input_addSubtask aT_unset" placeholder="Add new subtask" />
-                    <div id="aktive_input_addSubtask" class="drop_down_arrow_container">
-                      <img class="add_subtasks_plus_icon" src="./assets/img/add_subtasks_plus_icon.svg" alt="plus_icon" />
+                 <div class="subtasks_input_subs_container">
+                <label class="aT_label_subtasks">Subtasks</label>
+                <div class="aT_select_container">
+                  <input id="aT_add_subtasks_edit" maxlength="100" class="aT_input_addSubtask aT_unset"
+                    placeholder="Add new subtask" onclick="toggleDivVisibilityEdit()"/>
+                  <div id="aktive_input_addSubtask_edit" class="drop_down_arrow_container" onclick="toggleDivVisibilityEdit(); divFocus();">
+                    <img class="add_subtasks_plus_icon" src="./assets/img/add_subtasks_plus_icon.svg" alt="plus_icon" />
+                  </div>
+                  <div id="close_and_check_btns_edit" class="close_check_container d-none">
+                    <div id="cancel_input_subtasks_edit" class="c_icon_container" onclick="resetDivVisibilityEdit(); divBlur()">
+                      <img class="add_subtasks_close_icon" src="./assets/img/add_subtasks_close_icon.svg"
+                        alt="close_icon" />
                     </div>
-                    <div id="close_and_check_btns" class="close_check_container d-none">
-                      <div id="cancel_input_subtasks" class="c_icon_container" onclick="cancel_input_subtask()">
-                        <img class="add_subtasks_close_icon" src="./assets/img/add_subtasks_close_icon.svg" alt="close_icon" />
-                      </div>
-                      <div class="seperator_close_check"></div>
-                      <div id="check_input_subtask" class="c_icon_container">
-                        <img class="add_subtasks_check_icon" src="./assets/img/add_subtasks_check_icon.svg" alt="check_icon" />
-                      </div>
+                    <div class="seperator_close_check"></div>
+                    <div id="check_input_subtask_edit" class="c_icon_container" onclick="addSubtaskToListEdit()">
+                      <img class="add_subtasks_check_icon" src="./assets/img/add_subtasks_check_icon.svg"
+                        alt="check_icon" />
                     </div>
                   </div>
-                  <div class="aT_subtasks_container" id="created_subtasks"></div>
                 </div>
+                <div class="aT_subtasks_container" id="created_subtasks_edit"></div>
               </div>
-            </div>
 
             <!-- Save Button -->
             <div class="big_save_cancel_buttons edit_button" onclick="saveEditedTaskToDatabase('${taskId}')">
@@ -143,6 +144,13 @@ async function editTask(taskId) {
     `;
 
     setPriority(taskData.prio);
+
+    if (taskData.subtask && Object.keys(taskData.subtask).length > 0) {
+      const subtasks = await fetchSubtasksFromDatabase(taskId);
+      if (subtasks.length > 0) {
+        renderSubtasksEdit(subtasks);
+      }
+    }
   } catch (error) {
     console.error("Error loading task for editing:", error);
   }
@@ -470,4 +478,283 @@ async function saveEditedTaskToDatabase(taskId) {
   } catch (error) {
     console.error("Network error:", error);
   }
+}
+
+// START FUNCTIONS FOR THE SUBTASKS //
+
+function renderSubtasksEdit(subtasks) {
+  const subtaskContainer = document.getElementById("created_subtasks_edit");
+  subtaskContainer.innerHTML = "";
+
+  subtasks.forEach((subtask) => {
+    const subtaskHTML = createSubtaskHTMLEdit(subtask.title, subtask.id);
+    subtaskContainer.innerHTML += subtaskHTML;
+  });
+
+  addSubtaskListeners();
+}
+
+function divFocus() {
+  document.getElementById("aT_add_subtasks_edit").focus();
+}
+
+function divBlur() {
+  document.getElementById("aT_add_subtasks_edit").blur();
+}
+
+/**
+ * Saves the edited subtask title and updates the DOM.
+ * @param {HTMLImageElement} saveButton - The save button clicked.
+ */
+async function saveSubtaskEdit(saveButton) {
+  const taskItem = saveButton.closest(".task-item");
+  const inputElement = getTaskInputElement(taskItem);
+  if (!inputElement) return;
+
+  const subtaskId = getSubtaskId(taskItem);
+  const newTitle = inputElement.value.trim();
+
+  if (newTitle) {
+    updateDOM(taskItem, newTitle);
+
+    try {
+      await updateSubtaskInDatabase(subtaskId, newTitle);
+    } catch (error) {
+      console.error("Failed to update subtask in database:", error);
+    }
+  }
+}
+
+async function updateSubtaskInDatabase(subtaskId, newTitle) {
+  const taskId = getSubtaskId(subtaskId);
+  const response = await fetch(
+    `${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: newTitle }),
+    }
+  );
+  console.log("Update response:", response);
+}
+
+/**
+ * Deletes a subtask from the list when the delete button is clicked.
+ * @param {HTMLImageElement} deleteButton - The button that triggers the deletion.
+ */
+async function deleteSubtaskEdit(deleteButton) {
+  const taskItem = deleteButton.closest(".task-item");
+  const subtaskId = getSubtaskId(taskItem);
+
+  await deleteSubtaskFromDatabase(subtaskId);
+  const updatedSubtasks = await fetchSubtasksFromDatabase(subtaskId);
+  renderSubtasksEdit(updatedSubtasks);
+}
+
+async function deleteSubtaskFromDatabase(subtaskId) {
+  const taskId = getSubtaskId(subtaskId);
+  await fetch(`${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`, {
+    method: "DELETE",
+  });
+}
+
+async function fetchSubtasksFromDatabase(taskId) {
+  const response = await fetch(`${TASKS_URL}/${taskId}/subtask.json`);
+  const subtasks = await response.json();
+
+  console.log("Fetched data:", subtasks);
+
+  if (!subtasks) return [];
+
+  console.log("Subtasks before mapping:", subtasks);
+
+  const mappedSubtasks = Object.keys(subtasks).map((key) => ({
+    id: key,
+    title: subtasks[key].title,
+    completed: subtasks[key].completed,
+  }));
+
+  console.log("Mapped subtasks:", mappedSubtasks);
+
+  return mappedSubtasks;
+}
+
+/**
+ * Retrieves the input element from the task item.
+ * @param {HTMLElement} taskItem - The task item element.
+ * @returns {HTMLInputElement|null} - The input element or null if not found.
+ */
+function getTaskInputElement(taskItem) {
+  return taskItem.querySelector("input");
+}
+
+/**
+ * Gets the subtask ID from the task item.
+ * @param {HTMLElement} taskItem - The task item element.
+ * @returns {string} - The subtask ID.
+ */
+function getSubtaskId(taskItem) {
+  const subtaskId = taskItem.getAttribute("data-id");
+  console.log("Subtask ID:", subtaskId);
+  return subtaskId;
+}
+/**
+ * Updates the subtask title in the data structure.
+ * @param {string} subtaskId - The ID of the subtask.
+ * @param {string} newTitle - The new title of the subtask.
+ */
+function updateSubtaskTitle(subtaskId, newTitle) {
+  const subtaskIndex = subtasks.findIndex(
+    (subtask) => subtask.id === subtaskId
+  );
+  if (subtaskIndex !== -1) {
+    subtasks[subtaskIndex].title = newTitle;
+  }
+  console.log(`Subtask ${subtaskId} updated to: ${newTitle}`);
+}
+
+/**
+ * Updates the DOM for the edited task item.
+ * @param {HTMLElement} taskItem - The task item element.
+ * @param {string} newTitle - The new title of the subtask.
+ */
+function updateDOM(taskItem, newTitle) {
+  const taskTextElement = createTaskTextElement(newTitle);
+  taskItem.querySelector(".task-text").innerText = newTitle;
+}
+
+/**
+ * Adds a subtask to the list if the input is valid.
+ */
+function addSubtaskToListEdit() {
+  const subtaskInput = document.getElementById("aT_add_subtasks_edit");
+  const subtaskTitle = subtaskInput.value.trim();
+
+  if (subtaskTitle) {
+    const newSubtask = { title: subtaskTitle, id: generateSubtaskId() };
+    const subtaskHTML = createSubtaskHTMLEdit(newSubtask.title, newSubtask.id);
+    document.getElementById("created_subtasks_edit").innerHTML += subtaskHTML;
+
+    subtasks.push(newSubtask);
+    saveSubtasksToDatabase(subtasks);
+
+    subtaskInput.value = "";
+    scrollToListEnd();
+  }
+}
+
+function saveSubtasksToDatabase(subtasks) {
+  const subtaskId = getSubtaskId(taskItem);
+  fetch(`${TASKS_URL}/${subtaskId}/subtask.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(subtasks),
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("Subtasks saved successfully.");
+      } else {
+        console.error("Failed to save subtasks:", response.statusText);
+      }
+    })
+    .catch((error) => {
+      console.error("Error saving subtasks:", error);
+    });
+}
+
+/**
+ * Hides the subtask input field and shows the buttons for canceling and saving.
+ */
+function toggleDivVisibilityEdit() {
+  document
+    .getElementById("aktive_input_addSubtask_edit")
+    .classList.add("d-none");
+  document
+    .getElementById("close_and_check_btns_edit")
+    .classList.remove("d-none");
+}
+
+/**
+ * Resets the visibility of the subtask input field and hides the buttons for canceling and saving.
+ */
+function resetDivVisibilityEdit() {
+  document
+    .getElementById("aktive_input_addSubtask_edit")
+    .classList.remove("d-none");
+  document.getElementById("close_and_check_btns_edit").classList.add("d-none");
+}
+
+/**
+ * Scrolls the subtask container to the bottom of the list.
+ */
+function scrollToListEnd() {
+  const subtaskContainer = document.getElementById("created_subtasks_edit");
+  subtaskContainer.scrollTop = subtaskContainer.scrollHeight;
+}
+
+/**
+ * Generates a unique ID for a new subtask based on the current timestamp.
+ * @returns {string} - The generated subtask ID.
+ */
+function generateSubtaskId() {
+  return `subtask_${new Date().getTime()}`;
+}
+
+/**
+ * Creates HTML for a new subtask item.
+ * @param {string} subtaskText - The text of the subtask.
+ * @param {string} subtaskId - The unique ID of the subtask.
+ * @returns {string} - The HTML string for the subtask.
+ */
+function createSubtaskHTMLEdit(title, id) {
+  return /*html*/ `
+    <ul class="task-item" data-id="${id}">
+      <li class="task-text">${title}</li>
+      <div class="task-controls">
+        <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editSubtask(this)">
+        <div class="separator_subtasks"></div>
+        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteSubtask(this)">
+      </div>
+    </ul>`;
+}
+
+/**
+ * Creates an HTML element for the updated subtask text.
+ * @param {string} newTitle - The new title of the subtask.
+ * @returns {HTMLLIElement} - The task text element.
+ */
+function createTaskTextElement(newTitle) {
+  const taskTextElement = document.createElement("li");
+  taskTextElement.className = "task-text";
+  taskTextElement.textContent = newTitle;
+  return taskTextElement;
+}
+
+// Function to add event listeners for edit and delete buttons
+function addSubtaskListeners() {
+  document.querySelectorAll(".edit-subtask-btn").forEach((button) => {
+    button.addEventListener("click", function () {
+      const subtaskId = this.getAttribute("data-id");
+      const subtaskTitleElement = document
+        .getElementById(subtaskId)
+        .querySelector(".task-text");
+      const newTitle = prompt(
+        "Enter new title:",
+        subtaskTitleElement.textContent
+      );
+
+      if (newTitle) {
+        updateSubtaskTitle(subtaskId, newTitle);
+        subtaskTitleElement.textContent = newTitle;
+      }
+    });
+  });
+
+  document.querySelectorAll(".delete-subtask-btn").forEach((button) => {
+    button.addEventListener("click", function () {
+      const subtaskId = this.getAttribute("data-id");
+      deleteSubtaskEdit(subtaskId);
+      document.getElementById(subtaskId).remove();
+    });
+  });
 }
