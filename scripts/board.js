@@ -8,6 +8,8 @@ let bigassigned = [];
 
 let draggedTo;
 
+let scrollSpeed = 10;
+
 const artColors = {
   "Technical Task": "#1FD7C1",
   "User Story": "#0038FF",
@@ -318,3 +320,15 @@ function closeForm() {
   }, 300);
   document.body.classList.remove("no-scroll");
 }
+
+
+function startAutoScrollOnDrag(e) {
+  let bounding = document.documentElement.getBoundingClientRect();
+  if (e.clientY < bounding.top + 450) {
+    window.scrollBy(0, -scrollSpeed);
+  } else if (e.clientY > bounding.bottom - 450) {
+    window.scrollBy(0, scrollSpeed);
+  }
+}
+
+document.addEventListener('drag', startAutoScrollOnDrag);
