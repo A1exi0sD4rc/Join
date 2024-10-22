@@ -116,7 +116,7 @@ async function editTask(taskId) {
                 <label class="aT_label_subtasks">Subtasks</label>
                 <div class="aT_select_container">
                   <input id="aT_add_subtasks_edit" maxlength="100" class="aT_input_addSubtask aT_unset"
-                    placeholder="Add new subtask" onclick="toggleDivVisibilityEdit()" onkeydown="subtaskKeyHandler(event)"/>
+                    placeholder="Add new subtask" onclick="toggleDivVisibilityEdit()"/>
                   <div id="aktive_input_addSubtask_edit" class="drop_down_arrow_container" onclick="toggleDivVisibilityEdit(); divFocus();">
                     <img class="add_subtasks_plus_icon" src="./assets/img/add_subtasks_plus_icon.svg" alt="plus_icon" />
                   </div>
@@ -132,9 +132,7 @@ async function editTask(taskId) {
                     </div>
                   </div>
                 </div>
-                <div class="aT_subtasks_container" id="created_subtasks_edit">${renderSubtasks(
-                  taskData.subtask || []
-                )}</div>
+                <div class="aT_subtasks_container" id="created_subtasks_edit"></div>
               </div>
 
             <!-- Save Button -->
@@ -150,7 +148,7 @@ async function editTask(taskId) {
     if (taskData.subtask && Object.keys(taskData.subtask).length > 0) {
       const subtasks = await fetchSubtasksFromDatabase(taskId);
       if (subtasks.length > 0) {
-        renderSubtasks(subtasks);
+        renderSubtasksEdit(subtasks);
       }
     }
   } catch (error) {
@@ -484,7 +482,7 @@ async function saveEditedTaskToDatabase(taskId) {
 
 // START FUNCTIONS FOR THE SUBTASKS //
 
-function renderSubtasks(subtasks) {
+function renderSubtasksEdit(subtasks) {
   const subtaskContainer = document.getElementById("created_subtasks_edit");
   subtaskContainer.innerHTML = "";
 
@@ -550,7 +548,7 @@ async function deleteSubtaskEdit(deleteButton) {
 
   await deleteSubtaskFromDatabase(subtaskId);
   const updatedSubtasks = await fetchSubtasksFromDatabase(subtaskId);
-  renderSubtasks(updatedSubtasks);
+  renderSubtasksEdit(updatedSubtasks);
 }
 
 async function deleteSubtaskFromDatabase(subtaskId) {
@@ -646,13 +644,22 @@ function addSubtaskToListEdit() {
 }
 
 function saveSubtasksToDatabase(subtasks) {
-  const taskItem = saveButton.closest(".task-item");
   const subtaskId = getSubtaskId(taskItem);
   fetch(`${TASKS_URL}/${subtaskId}/subtask.json`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(subtasks),
-  });
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("Subtasks saved successfully.");
+      } else {
+        console.error("Failed to save subtasks:", response.statusText);
+      }
+    })
+    .catch((error) => {
+      console.error("Error saving subtasks:", error);
+    });
 }
 
 /**
