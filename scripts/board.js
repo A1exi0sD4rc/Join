@@ -321,14 +321,18 @@ function closeForm() {
   document.body.classList.remove("no-scroll");
 }
 
-
-function startAutoScrollOnDrag(e) {
+/**
+ * scrolls the window up7down when the mouse is within 450 pixels of the top or bottom during the drag event.
+ * 
+ * @param {id} x 
+ */
+function scrollOnDrag(id) {
   let bounding = document.documentElement.getBoundingClientRect();
-  if (e.clientY < bounding.top + 450) {
+  if (id.clientY < bounding.top + 450) {
     window.scrollBy(0, -scrollSpeed);
-  } else if (e.clientY > bounding.bottom - 450) {
+  } else if (id.clientY > bounding.bottom - 450) {
     window.scrollBy(0, scrollSpeed);
   }
 }
 
-document.addEventListener('drag', startAutoScrollOnDrag);
+document.addEventListener('drag', scrollOnDrag);
