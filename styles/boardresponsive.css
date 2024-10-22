@@ -65,39 +65,11 @@
     justify-content: center;
   }
 
-  .big_card {
-    width: 280px;
-  }
-
   .subtasks_container {
     overflow-y: unset;
   }
 
-  .title_big {
-    width: 200px;
-    font-size: 30px;
-    font-weight: 400;
-  }
-
-  .big_description {
-    width: 200px;
-    font-size: 16px;
-  }
-
-  .big_due,
-  .big_prio,
-  .big_assigned,
-  .big_subs {
-    width: 200px;
-    font-size: 16px;
-    gap: 10px;
-  }
-
   .subtasks_container {
-    width: 200px;
-  }
-
-  .assigned_div {
     width: 200px;
   }
 
@@ -109,10 +81,6 @@
     width: 30px;
     height: 30px;
     gap: 5px;
-  }
-
-  .big_card_art_close {
-    width: 200px;
   }
 
   .big_art {
@@ -165,6 +133,39 @@
 }
 
 @media (max-width: 580px) {
+
+  .big_card {
+    width: 310px;
+  }
+
+  .title_big {
+    width: 300px;
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  .big_description {
+    width: 300px;
+    font-size: 16px;
+  }
+
+  .big_due,
+  .big_prio,
+  .big_assigned,
+  .big_subs {
+    width: 300px;
+    font-size: 16px;
+    gap: 10px;
+  }
+
+  .assigned_div {
+    width: 300px;
+  }
+
+  .big_card_art_close {
+    width: 300px;
+  }
+
   .title_span {
     width: 250px;
     display: flex;
