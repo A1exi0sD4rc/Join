@@ -35,6 +35,34 @@ function collectTaskData() {
   };
 }
 
+function collectTaskDataEdit() {
+  const title = getInputValueById("aT_title_edit");
+  const description = getInputValueById("aT_description_edit");
+  const dueDate = getInputValueById("aT_date_edit");
+  const categorySelect = getCategoryEdit();
+  const prio = getActivePriorityEdit();
+  const contacts = selectedContacts;
+
+  let subtasksObject = {};
+  subtasks.forEach((subtask, index) => {
+    subtasksObject[`subtask${index + 1}`] = {
+      completed: subtask.completed,
+      title: subtask.title,
+    };
+  });
+
+  return {
+    art: categorySelect,
+    assigned: contacts,
+    category: category,
+    description: description,
+    prio: prio,
+    due_date: dueDate,
+    subtask: subtasksObject,
+    title: title,
+  };
+}
+
 function getInputValueById(id) {
   return document.getElementById(id).value;
 }
@@ -44,6 +72,28 @@ function getCategory() {
 }
 
 function getActivePriority() {
+  if (
+    document
+      .querySelector("#boxUrgentEdit")
+      .classList.contains("urgent_box_active")
+  ) {
+    return "Urgent";
+  } else if (
+    document
+      .querySelector("#boxMediumEdit")
+      .classList.contains("medium_box_active")
+  ) {
+    return "Medium";
+  } else if (
+    document.querySelector("#boxLowEdit").classList.contains("low_box_active")
+  ) {
+    return "Low";
+  } else {
+    return "Medium";
+  }
+}
+
+function getActivePriorityEdit() {
   if (
     document.querySelector("#boxUrgent").classList.contains("urgent_box_active")
   ) {
