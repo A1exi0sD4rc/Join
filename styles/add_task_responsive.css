@@ -57,13 +57,14 @@
     padding-top: 128px;
   }
   .add_task_h1 {
+    justify-content: center;
+    display: flex;
     position: fixed;
-    z-index: 2;
+    z-index: 1;
     background-color: #f6f7f8;
     width: 100%;
     top: 80px;
-    left: 0;
-    padding: 13px;
+    padding-top: 20px;
   }
 
   .resize-handle {
