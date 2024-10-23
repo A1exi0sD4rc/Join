@@ -534,6 +534,10 @@ input[type="password"]::-ms-clear {
 }
 
 @media (max-height: 870px) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
   .login-window {
     height: 420px;
     margin-top: 15px !important;
@@ -550,5 +554,9 @@ input[type="password"]::-ms-clear {
 
   .error-position {
     left: 30px;
+  }
+
+  .links-container {
+    display: none;
   }
 }

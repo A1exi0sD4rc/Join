@@ -436,6 +436,14 @@ p {
   .summary-main-container {
     padding-top: 100px;
   }
+
+  .greet-user-name {
+    width: 350px;
+  }
+
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 @media (max-width: 800px) {

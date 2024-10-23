@@ -353,7 +353,7 @@ input[type="password"]::-ms-clear {
   padding: 0px;
 }
 
-@media (max-height: 700px) {
+@media (max-height: 870px) {
   .signup-window {
     gap: 16px !important;
   }
@@ -363,8 +363,13 @@ input[type="password"]::-ms-clear {
   .input-container {
     gap: 12px !important;
   }
+
   .links-container {
-    bottom: 2% !important;
+    display: none;
+  }
+
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
