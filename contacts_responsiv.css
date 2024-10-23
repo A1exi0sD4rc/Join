@@ -460,10 +460,6 @@
         margin-bottom: 20px;
     }
 
-    .contacts-edit-delete-btn {
-        display: none;
-    }
-
     .contacts-edit-close-btn {
         background-image: url("./assets/img/close_white.svg");
         background-size: 20px;
@@ -558,6 +554,10 @@
 
     .contacts-details-mobil-close-btn {
         right: 20px;
+    }
+
+    .contacts-d-more-options-div {
+        right: 15px;
     }
 
     .contacts-d-more-options-btn {
