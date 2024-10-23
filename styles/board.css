@@ -318,7 +318,8 @@ body.no-scroll {
 }
 
 .clear_form_overlay:hover img {
-  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg) brightness(91%) contrast(95%);
+  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg)
+    brightness(91%) contrast(95%);
 }
 
 .create_task_overlay {
