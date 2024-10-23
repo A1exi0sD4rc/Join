@@ -1,5 +1,7 @@
 let TASKS_URL = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 
+let taskCategory = "";
+
 async function addTaskToDatabase() {
   const newTask = collectTaskData();
   await saveTaskToDatabase(newTask);
@@ -26,7 +28,7 @@ function collectTaskData() {
   return {
     art: category,
     assigned: contacts,
-    category: "todo", //default
+    category: "todo",
     description: description,
     prio: prio,
     due_date: dueDate,
@@ -42,6 +44,7 @@ function collectTaskDataEdit() {
   const categorySelect = getCategoryEdit();
   const prio = getActivePriorityEdit();
   const contacts = selectedContacts;
+  const category = taskCategory;
 
   let subtasksObject = {};
   subtasks.forEach((subtask, index) => {
@@ -73,6 +76,24 @@ function getCategory() {
 
 function getActivePriority() {
   if (
+    document.querySelector("#boxUrgent").classList.contains("urgent_box_active")
+  ) {
+    return "Urgent";
+  } else if (
+    document.querySelector("#boxMedium").classList.contains("medium_box_active")
+  ) {
+    return "Medium";
+  } else if (
+    document.querySelector("#boxLow").classList.contains("low_box_active")
+  ) {
+    return "Low";
+  } else {
+    return "Medium";
+  }
+}
+
+function getActivePriorityEdit() {
+  if (
     document
       .querySelector("#boxUrgentEdit")
       .classList.contains("urgent_box_active")
@@ -86,24 +107,6 @@ function getActivePriority() {
     return "Medium";
   } else if (
     document.querySelector("#boxLowEdit").classList.contains("low_box_active")
-  ) {
-    return "Low";
-  } else {
-    return "Medium";
-  }
-}
-
-function getActivePriorityEdit() {
-  if (
-    document.querySelector("#boxUrgent").classList.contains("urgent_box_active")
-  ) {
-    return "Urgent";
-  } else if (
-    document.querySelector("#boxMedium").classList.contains("medium_box_active")
-  ) {
-    return "Medium";
-  } else if (
-    document.querySelector("#boxLow").classList.contains("low_box_active")
   ) {
     return "Low";
   } else {

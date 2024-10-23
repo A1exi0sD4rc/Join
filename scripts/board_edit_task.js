@@ -4,6 +4,7 @@ async function editTask(taskId) {
     const taskData = await taskResponse.json();
     await getContacts();
     selectedContacts = taskData.assigned || [];
+    taskCategory = taskData.category || "todo";
 
     document.getElementById("big_card").innerHTML = `
         <form id="editForm" class="form_area_edit">
@@ -472,12 +473,11 @@ async function saveEditedTaskToDatabase(taskId) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedTask),
     });
-
     if (!response.ok) {
       throw new Error("Error updating task");
     }
-
     console.log("Task successfully updated");
+    taskCategory = "";
     goToBoard();
   } catch (error) {
     console.error("Network error:", error);
@@ -534,7 +534,6 @@ async function updateSubtaskInDatabase(subtaskId, newTitle) {
       body: JSON.stringify({ title: newTitle }),
     }
   );
-  console.log("Update response:", response);
 }
 
 /**
@@ -560,20 +559,13 @@ async function deleteSubtaskFromDatabase(subtaskId) {
 async function fetchSubtasksFromDatabase(taskId) {
   const response = await fetch(`${TASKS_URL}/${taskId}/subtask.json`);
   const subtasks = await response.json();
-
-  console.log("Fetched data:", subtasks);
-
   if (!subtasks) return [];
-
-  console.log("Subtasks before mapping:", subtasks);
 
   const mappedSubtasks = Object.keys(subtasks).map((key) => ({
     id: key,
     title: subtasks[key].title,
     completed: subtasks[key].completed,
   }));
-
-  console.log("Mapped subtasks:", mappedSubtasks);
 
   return mappedSubtasks;
 }
@@ -594,7 +586,6 @@ function getTaskInputElement(taskItem) {
  */
 function getSubtaskId(taskItem) {
   const subtaskId = taskItem.getAttribute("data-id");
-  console.log("Subtask ID:", subtaskId);
   return subtaskId;
 }
 /**
