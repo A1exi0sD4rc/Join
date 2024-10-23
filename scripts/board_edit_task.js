@@ -20,7 +20,7 @@ async function editTask(taskId) {
                   required
                   class="aT_input_title aT_unset"
                   type="text"
-                  id="aT_title"
+                  id="aT_title_edit"
                   name="title"
                   maxlength="50"
                   value="${taskData.title || ""}"
@@ -33,7 +33,7 @@ async function editTask(taskId) {
               <label class="aT_input_labels" for="aT_description">Description</label>
               <div class="resizable-container">
                 <textarea
-                  id="aT_description"
+                  id="aT_description_edit"
                   class="resizable-textarea"
                   placeholder="Enter a description"
                 >${taskData.description || ""}</textarea>
@@ -66,7 +66,7 @@ async function editTask(taskId) {
                 <div class="date_error_container">
                   <input
                     required
-                    id="aT_date"
+                    id="aT_date_edit"
                     class="aT_input_date"
                     type="date"
                     value="${taskData.due_date || ""}"
@@ -459,8 +459,12 @@ function activateFieldCategoryEdit() {
   assignCategoryListeners();
 }
 
+function getCategoryEdit() {
+  return document.getElementById("aT_select_category_edit").innerHTML.trim();
+}
+
 async function saveEditedTaskToDatabase(taskId) {
-  const updatedTask = collectTaskData();
+  const updatedTask = collectTaskDataEdit();
   updatedTask.assigned = selectedContacts;
   try {
     const response = await fetch(`${TASKS_URL}/${taskId}.json`, {
@@ -515,13 +519,8 @@ async function saveSubtaskEdit(saveButton) {
   const newTitle = inputElement.value.trim();
 
   if (newTitle) {
+    updateSubtaskTitle(subtaskId, newTitle);
     updateDOM(taskItem, newTitle);
-
-    try {
-      await updateSubtaskInDatabase(subtaskId, newTitle);
-    } catch (error) {
-      console.error("Failed to update subtask in database:", error);
-    }
   }
 }
 
@@ -610,7 +609,6 @@ function updateSubtaskTitle(subtaskId, newTitle) {
   if (subtaskIndex !== -1) {
     subtasks[subtaskIndex].title = newTitle;
   }
-  console.log(`Subtask ${subtaskId} updated to: ${newTitle}`);
 }
 
 /**
@@ -630,15 +628,17 @@ function addSubtaskToListEdit() {
   const subtaskInput = document.getElementById("aT_add_subtasks_edit");
   const subtaskTitle = subtaskInput.value.trim();
 
-  if (subtaskTitle) {
-    const newSubtask = { title: subtaskTitle, id: generateSubtaskId() };
+  if (subtaskTitle !== "") {
+    const newSubtask = {
+      title: subtaskTitle,
+      id: generateSubtaskId(),
+      completed: false,
+    };
     const subtaskHTML = createSubtaskHTMLEdit(newSubtask.title, newSubtask.id);
     document.getElementById("created_subtasks_edit").innerHTML += subtaskHTML;
-
     subtasks.push(newSubtask);
-    saveSubtasksToDatabase(subtasks);
-
     subtaskInput.value = "";
+    resetDivVisibilityEdit();
     scrollToListEnd();
   }
 }
@@ -709,13 +709,40 @@ function generateSubtaskId() {
 function createSubtaskHTMLEdit(title, id) {
   return /*html*/ `
     <ul class="task-item" data-id="${id}">
-      <li class="task-text">${title}</li>
+      <li class="task-text" onclick="editSubtaskEdit(this)">${title}</li>
       <div class="task-controls">
-        <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editSubtask(this)">
+        <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editSubtaskEdit(this)">
         <div class="separator_subtasks"></div>
         <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteSubtask(this)">
       </div>
     </ul>`;
+}
+
+/**
+ * Updates the task item to show the editing input field.
+ * @param {HTMLElement} taskItem - The subtask item element.
+ * @param {string} currentText - The current text of the subtask.
+ */
+function updateTaskItemForEditingEdit(taskItem, currentText) {
+  taskItem.innerHTML = /*html*/ `
+    <input type="text" maxlength="100" value="${currentText}" class="edit-input">
+    <div class="task-controls">
+      <div class="edit-modus-btns" onclick="deleteSubtask(this)">
+        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn-input delete-btn-input">
+      </div>
+      <div class="separator_subtasks"></div>
+      <div class="edit-modus-btns"  onclick="saveSubtaskEdit(this)">
+        <img src="./assets/img/edit_subtask_check.svg" alt="Save" class="task-btn-input save-btn-input">
+      </div>
+    </div>`;
+}
+
+function editSubtaskEdit(editButton) {
+  const taskItem = editButton.closest(".task-item");
+  const taskTextElement = getTaskTextElement(taskItem);
+  const currentText = taskTextElement.textContent;
+  updateTaskItemForEditingEdit(taskItem, currentText);
+  focusAndSetCursorAtEnd(taskItem);
 }
 
 /**
