@@ -548,9 +548,6 @@ li {
   display: block;
 }
 
-.invalid {
-  border: 1px solid red;
-}
 .aT_select_dropdown_fields.invalid {
   border: 1px solid red !important;
 }

@@ -251,6 +251,10 @@
   cursor: pointer;
 }
 
+.invalid {
+  border: 1px solid red;
+}
+
 @media (max-width: 480px) {
   .aT_input_addSubtask {
     width: 300px;
