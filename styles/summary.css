@@ -432,13 +432,25 @@ p {
   }
 }
 
-@media (max-height: 960px) {
+@media (max-height: 900px) {
   .summary-main-container {
     padding-top: 100px;
   }
 
   .greet-user-name {
     width: 350px;
+  }
+
+  .title-contact {
+    font-size: 35px !important;
+  }
+
+  .summary-card-container {
+    margin: 0 !important;
+  }
+
+  .summary-title-container {
+    margin-bottom: 25px !important;
   }
 
   body {

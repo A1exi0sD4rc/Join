@@ -311,3 +311,9 @@ table {
     display: none;
   }
 }
+
+@media (max-height: 900px) {
+  .user-content {
+    top: 68px !important;
+  }
+}
