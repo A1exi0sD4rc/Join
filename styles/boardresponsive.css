@@ -19,6 +19,10 @@
     flex-direction: row;
     gap: 16px;
   }
+
+  .task_card_small {
+    height: max-content;
+  }
 }
 
 @media (max-width: 1340px) {
@@ -199,8 +203,6 @@
   }
 
   .small_card_row {
-    display: flex;
-    gap: 16px;
     overflow-x: auto;
     width: 100%;
     padding: 10px;
