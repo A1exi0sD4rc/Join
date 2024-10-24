@@ -133,6 +133,15 @@
     width: 310px;
   }
 
+  .add_task_btn_txt {
+    display: none;
+  }
+
+  .add_task_btn {
+    width: 40px;
+    height: 40px;
+  }
+
   .title_big {
     width: 300px;
     font-size: 30px;
@@ -169,11 +178,8 @@
   }
 
   .board_header {
-    padding-top: 96px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 30px;
+    width: 320px;
+    margin-left: unset;
   }
 
   .search_add_task {
