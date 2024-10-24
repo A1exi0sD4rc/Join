@@ -112,6 +112,7 @@
 @media (max-width: 740px) {
   .board_content {
     margin-left: -15px;
+    overflow: hidden;
   }
 
   .board_header {
@@ -199,8 +200,14 @@
 
   .small_card_row {
     display: flex;
-    flex-direction: column;
     gap: 16px;
+    overflow-x: auto;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .task_main {
+    width: 28%;
   }
 
   .task_card_small_content {
