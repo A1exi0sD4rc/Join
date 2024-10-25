@@ -12,7 +12,7 @@
   z-index: 5;
   background-color: #b8b9ba5d;
   transform: translateX(+200%);
-  transition: all 25ms ease-in-out;
+  transition: all 125ms ease-in-out;
 }
 
 .contacts-add-edit-bg-show {
@@ -22,7 +22,7 @@
 .contacts-add-edit-div {
   z-index: 6;
   transform: translateX(+200%);
-  transition: all 150ms ease-in-out;
+  transition: all 125ms ease-in-out;
   width: 1220px;
   height: 590px;
   background-color: white;
@@ -128,7 +128,7 @@
   padding: 15px 24px;
   border-radius: 8px;
   border: solid 1px #2a3647;
-  transition: all 150ms ease-in-out;
+  transition: all 125ms ease-in-out;
   margin-right: 16px;
   cursor: pointer;
 }
@@ -144,7 +144,7 @@
   padding: 16px;
   border-radius: 8px;
   background-color: #2a3647;
-  transition: all 150ms ease-in-out;
+  transition: all 125ms ease-in-out;
   cursor: pointer;
 }
 
@@ -233,7 +233,7 @@
   padding: 15px 24px;
   border-radius: 8px;
   border: solid 1px #2a3647;
-  transition: all 150ms ease-in-out;
+  transition: all 125ms ease-in-out;
   margin-right: 16px;
   cursor: pointer;
 }
@@ -249,7 +249,7 @@
   padding: 16px;
   border-radius: 8px;
   background-color: #2a3647;
-  transition: all 150ms ease-in-out;
+  transition: all 125ms ease-in-out;
   cursor: pointer;
 }
 
@@ -274,7 +274,7 @@
   font-size: 20px;
   color: white;
   transform: translateX(500%);
-  transition: all 150ms ease-in-out;
+  transition: all 125ms ease-in-out;
 }
 
 .creation-succesfull {

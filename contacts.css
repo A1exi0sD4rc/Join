@@ -84,6 +84,7 @@ body {
     margin-left: 20px;
     color: white;
     background-color: #2a3647;
+    transition: all 125ms ease-in-out;
     cursor: pointer;
 }
 
