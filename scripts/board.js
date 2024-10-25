@@ -31,6 +31,8 @@ async function initBoardJs() {
   await getContacts();
 }
 
+
+
 /**
  * retrieves data from API , converts them to JSON format and pushs the result to the tasks variable.
  *
@@ -44,6 +46,7 @@ async function fetchTasks(path = "") {
     tasks.push({ id: key, ...data[key] });
   }
 }
+
 
 /**
  * filters tasks marked as "todo" and dynamically updates the section with task cards including their background-color and priority img.
@@ -63,6 +66,7 @@ function updateHtmlTodo() {
   }
 }
 
+
 /**
  * filters tasks marked as "progress" and dynamically updates the section with task cards including their background-color and priority img.
  */
@@ -80,6 +84,7 @@ function updateHtmlProgress() {
     }
   }
 }
+
 
 /**
  * filters tasks marked as "await" and dynamically updates the section with task cards including their background-color and priority img.
@@ -99,6 +104,7 @@ function updateHtmlAwait() {
   }
 }
 
+
 /**
  * filters tasks marked as "done" and dynamically updates the section with task cards including their background-color and priority img.
  */
@@ -117,6 +123,7 @@ function updateHtmlDone() {
   }
 }
 
+
 /**
  * changes the background-color of a div depending on his catergory/textContent
  *
@@ -128,6 +135,7 @@ function changeArtBackground(id) {
     toChangeBg.style.backgroundColor = artColors[toChangeBg.textContent.trim()];
   }
 }
+
 
 /**
  * adds a specific priority Icon/img to the task card.
@@ -142,6 +150,7 @@ function addPrioImg(tasks) {
   }
 }
 
+
 /**
  * adds a specific priority Icon/img to the big task card.
  *
@@ -155,6 +164,7 @@ function addPrioBigImg(bigelement) {
   }
 }
 
+
 /**
  * filters tasks based on the search input.
  */
@@ -165,6 +175,7 @@ function filterTasks() {
   clearAndFilterTasks(searchValue);
 }
 
+
 /**
  * displays a window with a warning message if the search field is empty.
  */
@@ -172,6 +183,7 @@ function emptySearchInput() {
   const emptySearchInput = document.getElementById("search_task_input").value;
   if (emptySearchInput == "") alert("You must enter a search term.");
 }
+
 
 /**
  * updates the task sections after filter function.
@@ -200,6 +212,7 @@ function clearAndFilterTasks(searchValue) {
     });
 }
 
+
 /**
  * this function looks through each task to see if its id matches the taskId that was passed in and displays the big task card.
  *
@@ -217,6 +230,7 @@ function showBigTask(taskId) {
   }
 }
 
+
 /**
  * function to close the big card.
  */
@@ -225,6 +239,7 @@ function hideBigTask() {
   document.getElementById("big_card_bg").innerHTML = "";
   document.body.style.overflow = "";
 }
+
 
 /**
  * retrieves data from API , converts them to JSON format and pushs the result to the bigassigned variable.
@@ -236,6 +251,7 @@ async function assignedToBigCard(path = "") {
   bigassigned = await assigned.json();
 }
 
+
 /**
  *
  */
@@ -245,6 +261,7 @@ function bigAssignedTo() {
     document.getElementById("assigned_big_name").innerHTML += renderBigTaskCard(assigned);
   }
 }
+
 
 /**
  * deletes aktive card from board and database.
@@ -265,6 +282,7 @@ async function deleteTask() {
   await refreshTaskBoard();
 }
 
+
 /**
  * Opens the task form or navigates to the 'add_task.html' page depending on screen width.
  *
@@ -283,6 +301,7 @@ function openForm() {
   }
 }
 
+
 /**
  * Activates the overlay for the task form.
  *
@@ -293,6 +312,7 @@ function openOverlay() {
   const overlay = document.getElementById("taskOverlay");
   overlay.classList.add("active");
 }
+
 
 /**
  * Closes the task form and overlay, and resets the page.
@@ -311,6 +331,7 @@ function closeForm() {
   document.body.classList.remove("no-scroll");
 }
 
+
 /**
  * scrolls the window up7down when the mouse is within 450 pixels of the top or bottom during the drag event.
  *
@@ -324,5 +345,4 @@ function scrollOnDrag(id) {
     window.scrollBy(0, scrollSpeed);
   }
 }
-
 document.addEventListener("drag", scrollOnDrag);

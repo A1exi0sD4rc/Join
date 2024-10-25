@@ -31,6 +31,7 @@ function renderTaskCardToDo(elementToDo) {
   `;
 }
 
+
 function renderTaskCardProgress(elementProgress) {
   const subtasks = elementProgress.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
@@ -65,6 +66,7 @@ function renderTaskCardProgress(elementProgress) {
     </div>
   `;
 }
+
 
 function renderTaskCardAwait(elementAwait) {
   const subtasks = elementAwait.subtask || {};
@@ -101,6 +103,7 @@ function renderTaskCardAwait(elementAwait) {
   `;
 }
 
+
 function renderTaskCardDone(elementDone) {
   const subtasks = elementDone.subtask || {};
   const subAmountHtml = generateSubAmountHtml(subtasks);
@@ -136,9 +139,11 @@ function renderTaskCardDone(elementDone) {
   `;
 }
 
+
 function truncateText(text, maxLength) {
   return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
 }
+
 
 function renderAssignedContacts(assigned) {
   if (assigned && assigned.length > 0) {
@@ -178,6 +183,7 @@ function renderAssignedContacts(assigned) {
   }
 }
 
+
 function generateSubAmountHtml(subtasks) {
   const totalSubtasks = Object.keys(subtasks).length;
   const completedSubtasks = Object.values(subtasks).filter(
@@ -197,6 +203,7 @@ function generateSubAmountHtml(subtasks) {
     `
     : "";
 }
+
 
 function renderBigTaskCard(bigelement) {
   return `
@@ -260,6 +267,7 @@ function renderBigTaskCard(bigelement) {
   `;
 }
 
+
 function renderSubtasks(subtasks, taskId) {
   if (!subtasks || typeof subtasks !== "object") {
     return `<span class="subtask_title"></span>`;
@@ -280,6 +288,7 @@ function renderSubtasks(subtasks, taskId) {
     })
     .join("");
 }
+
 
 async function toggleSubtask(taskId, subtaskIndex) {
   try {
@@ -313,6 +322,7 @@ async function toggleSubtask(taskId, subtaskIndex) {
   }
 }
 
+
 function updateSubtasksUI(taskId, taskData) {
   const subtasks = taskData.subtask;
   const totalSubtasks = Object.keys(subtasks).length;
@@ -336,6 +346,7 @@ function updateSubtasksUI(taskId, taskData) {
     subAmountElement.innerHTML = `${completedSubtasks}/${totalSubtasks} Subtasks`;
   }
 }
+
 
 function renderBigAssignedContacts(assigned) {
   if (assigned) {
@@ -363,10 +374,12 @@ function renderBigAssignedContacts(assigned) {
   }
 }
 
+
 function formatDate(dateString) {
   const [year, month, day] = dateString.split("-");
   return `${day}/${month}/${year}`;
 }
+
 
 function renderNoTasksToDo() {
   return `
@@ -374,17 +387,20 @@ function renderNoTasksToDo() {
   `;
 }
 
+
 function renderNoTasksProgress() {
   return `
     <div class="no_tasks"><div class="no_tasks_txt">No tasks in Progress</div></div>
   `;
 }
 
+
 function renderNoTasksAwait() {
   return `
     <div class="no_tasks"><div class="no_tasks_txt">No feedback awaited</div></div>
   `;
 }
+
 
 function renderNoTaskDone() {
   return `
