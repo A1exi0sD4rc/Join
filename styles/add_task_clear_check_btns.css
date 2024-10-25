@@ -93,7 +93,7 @@ li {
 .task-btn {
   width: 24px;
   height: 24px;
-  transition: transform 0.2s;
+  transition: transform 0.1s;
 }
 
 .task-item:hover .task-controls {
@@ -156,7 +156,7 @@ li {
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  transition: background-color 0.3s;
+  transition: background-color 0.1s;
 }
 
 .edit-modus-btns:hover {
