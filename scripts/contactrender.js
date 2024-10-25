@@ -174,7 +174,7 @@ function renderEditContact(i) {
                 <circle cx="60" cy="60" r="60" fill="#FF7A00"/>
                 <text x="60" y="73" text-anchor="middle" font-size="47" fill="white">${getInitials(contactKeys[i]['name'])}</text>
             </svg>
-            <div class="contacts-edit-input-btn">
+            <form class="contacts-edit-input-btn">
                 <div class="contacts-edit-input">
                     <input id="contacts-user-name" class="contacts-edit-name" type="text" value="${contactKeys[i]['name']}">
                     <input id="contacts-user-email" class="contacts-edit-email" type="text" value="${contactKeys[i]['email']}">
@@ -182,9 +182,9 @@ function renderEditContact(i) {
                 </div>
                 <div>
                     <button class="contacts-edit-delete-btn"  onclick="contactDeleteInit(${i})">Delete</button>
-                    <button class="contacts-edit-save-btn contacts-img-margin" onclick="editSaveInit(${i})">Save <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-edit-save-btn contacts-img-margin" onsubmit="editSaveInit(${i})">Save <img src="./assets/img/check.svg"></button>
                 </div>
-            </div>
+            </form>
         </div>
     `;
 }
@@ -223,7 +223,7 @@ function renderAddNewContact() {
                 </div>
                 <div>
                     <button class="contacts-add-cancel-btn contacts-img-margin" onclick="toggleVisiblility()">Cancel <img src="./assets/img/close.svg"></button>
-                    <button class="contacts-add-create-btn contacts-img-margin" onclick="addContact(event)">Create contact <img src="./assets/img/check.svg"></button>
+                    <button class="contacts-add-create-btn contacts-img-margin" onsubmit="addContact(event)">Create contact <img src="./assets/img/check.svg"></button>
                 </div>
             </form>
         </div>
