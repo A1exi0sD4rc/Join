@@ -288,6 +288,7 @@ function openForm() {
   } else {
     openOverlay();
     const taskForm = document.getElementById("taskForm");
+    taskForm.style.display = "block";
     taskForm.classList.add("active");
     document.body.classList.add("no-scroll");
   }
@@ -323,8 +324,8 @@ function closeForm() {
 
 /**
  * scrolls the window up7down when the mouse is within 450 pixels of the top or bottom during the drag event.
- * 
- * @param {id} x 
+ *
+ * @param {id} x
  */
 function scrollOnDrag(id) {
   let bounding = document.documentElement.getBoundingClientRect();
@@ -335,4 +336,4 @@ function scrollOnDrag(id) {
   }
 }
 
-document.addEventListener('drag', scrollOnDrag);
+document.addEventListener("drag", scrollOnDrag);
