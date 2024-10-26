@@ -421,3 +421,7 @@ body.no-scroll {
   box-sizing: border-box;
   font-size: 16px;
 }
+
+.small_card_row{
+  height: 70vh;
+}
