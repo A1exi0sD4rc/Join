@@ -1,7 +1,9 @@
-const BASE_URL_TASKS = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_TASKS =
+  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let tasks = [];
 
-const BASE_URL_ASSIGNED = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_ASSIGNED =
+  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let bigassigned = [];
 
 let draggedTo;
@@ -169,7 +171,9 @@ function addPrioBigImg(bigelement) {
  * filters tasks based on the search input.
  */
 function filterTasks() {
-  const searchValue = document.querySelector(".search_task_input").value.toLowerCase();
+  const searchValue = document
+    .querySelector(".search_task_input")
+    .value.toLowerCase();
   clearAndFilterTasks(searchValue);
 }
 
@@ -177,7 +181,9 @@ function filterTasks() {
  * filters tasks based on the search input.
  */
 function filterTasksResponsive() {
-  const searchValue = document.querySelector(".search_task_input_responsive").value.toLowerCase();
+  const searchValue = document
+    .querySelector(".search_task_input_responsive")
+    .value.toLowerCase();
   clearAndFilterTasks(searchValue);
 }
 
@@ -202,7 +208,8 @@ function clearAndFilterTasks(searchValue) {
   tasks
     .filter(
       (task) =>
-        task.title.toLowerCase().includes(searchValue) || task.description.toLowerCase().includes(searchValue)
+        task.title.toLowerCase().includes(searchValue) ||
+        task.description.toLowerCase().includes(searchValue)
     )
     .forEach((task) => {
       const categoryElement = document.getElementById(
@@ -226,7 +233,8 @@ function showBigTask(taskId) {
   if (bigelement) {
     document.getElementById("big_card_bg").classList.remove("d_none");
     document.getElementById("big_card_bg").innerHTML = "";
-    document.getElementById("big_card_bg").innerHTML = renderBigTaskCard(bigelement);
+    document.getElementById("big_card_bg").innerHTML =
+      renderBigTaskCard(bigelement);
     changeArtBackground(`big_art_${bigelement.id}`);
     addPrioBigImg(bigelement);
     document.body.style.overflow = "hidden";
@@ -258,7 +266,8 @@ async function assignedToBigCard(path = "") {
 function bigAssignedTo() {
   for (let index = 0; index < bigassigned.length; index++) {
     const assigned = bigassigned[index];
-    document.getElementById("assigned_big_name").innerHTML += renderBigTaskCard(assigned);
+    document.getElementById("assigned_big_name").innerHTML +=
+      renderBigTaskCard(assigned);
   }
 }
 
@@ -282,6 +291,7 @@ async function deleteTask() {
 }
 
 function openForm() {
+  clearAll();
   if (window.innerWidth <= 1000) {
     window.location.href = "./add_task.html";
   } else {
@@ -295,6 +305,7 @@ function openForm() {
 }
 
 function closeForm() {
+  clearAll();
   const taskForm = document.getElementById("taskForm");
   taskForm.classList.add("closing");
   taskForm.classList.remove("active");
