@@ -24,7 +24,22 @@ body {
   padding-left: 64px;
 }
 
+<<<<<<< HEAD
+.board_header_responsive,
+.title_span_responsive,
+.search_add_task_responsive,
+.add_task_btn_responsive{
+  display: none;
+}
+
+.board_header_responsive{
+  display: none;
+}
+
+.title_span{
+=======
 .title_span {
+>>>>>>> dbd78be1cfcb61c68845cba4a07d655878ffb52a
   height: 73px;
 }
 
@@ -57,7 +72,8 @@ body {
   gap: 32px;
 }
 
-.search_task_input {
+.search_task_input,
+.search_task_input_responsive {
   width: 280px;
   height: 32px;
   padding: 8px 16px;
@@ -67,7 +83,8 @@ body {
   border: 0px;
 }
 
-.input_div {
+.input_div,
+.input_div_responsive {
   width: 312px;
   height: 48px;
   border: 1px solid #a8a8a8;
@@ -114,13 +131,27 @@ body {
   outline: none;
 }
 
+.search_task_input_responsive:focus {
+  border: 0;
+  outline: none;
+}
+
+.input_div_responsive.default-border {
+  border-color: #a8a8a8;
+}
+
+.input_div_responsive.focused-border {
+  border-color: #29abe2;
+}
+
 ::placeholder {
   color: #d1d1d1;
   font-size: 20px;
   font-weight: 400;
 }
 
-.add_task_btn {
+.add_task_btn,
+.add_task_btn_responsive {
   width: 160px;
   height: 48px;
   border-radius: 10px;
@@ -148,7 +179,8 @@ body {
   height: 32px;
 }
 
-.add_task_btn:hover {
+.add_task_btn:hover,
+.add_task_btn_responsive:hover {
   background-color: #29abe2;
   box-shadow: 0px 4px 4px 0px #00000040;
   animation: ease-in-out;

@@ -177,12 +177,15 @@
 
     <div class="big_card_bg d_none" id="big_card_bg"></div>
 
+    <!-- Start normal header -->
     <div class="board_header">
+
       <span class="title_span">
         <h1>Board</h1>
       </span>
 
       <div class="search_add_task">
+
         <div class="input_div">
           <input class="search_task_input" id="search_task_input" oninput="filterTasks()" type="search"
             placeholder="Find Task">
@@ -200,8 +203,41 @@
           <div><img class="add_task_plus" src="assets/img/add.svg"></div>
 
         </div>
+
       </div>
+
     </div>
+    <!-- End normal header -->
+
+    <!-- start normal header -->
+    <div class="board_header_responsive">
+
+        <div class="title_button_container_responsive">
+          
+          <span class="title_span_responsive">
+            <h1>Board</h1>
+          </span>
+
+          <div class="add_task_btn_responsive" id="addTaskBtn" onclick="openForm()">
+            <div class="add_task_btn_txt">
+              <span class="add_task_btn_txt">Add Task</span>
+            </div>
+            <div><img class="add_task_plus" src="assets/img/add.svg"></div>
+          </div>
+
+        </div>
+
+        <div class="input_div_responsive">
+          <input class="search_task_input_responsive" id="search_task_input_responsive" oninput="filterTasksResponsive()" type="search" placeholder="Find Task">
+          <div class="search_icon_div">
+            <div class="search_icon" onclick="filterTasks(); emptySearchInput()"><img src="assets/img/search.svg"></div>
+          </div>  
+        </div>
+
+    </div>
+    <!-- End normal header -->
+
+
 
     <div class="task_content">
 

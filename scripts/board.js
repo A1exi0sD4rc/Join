@@ -171,9 +171,15 @@ function addPrioBigImg(bigelement) {
  * filters tasks based on the search input.
  */
 function filterTasks() {
-  const searchValue = document
-    .querySelector(".search_task_input")
-    .value.toLowerCase();
+  const searchValue = document.querySelector(".search_task_input").value.toLowerCase();
+  clearAndFilterTasks(searchValue);
+}
+
+/**
+ * filters tasks based on the search input.
+ */
+function filterTasksResponsive() {
+  const searchValue = document.querySelector(".search_task_input_responsive").value.toLowerCase();
   clearAndFilterTasks(searchValue);
 }
 

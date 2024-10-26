@@ -4,7 +4,7 @@
     flex-direction: column;
   }
 
-  .board_header{
+  .board_header {
     width: 850px;
   }
 
@@ -40,7 +40,7 @@
 }
 
 @media (max-width: 1170px) {
-  .board_header{
+  .board_header {
     width: 650px;
   }
 }
@@ -124,19 +124,10 @@
   .board_header {
     padding-top: 96px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 30px;
   }
 
   .input_div {
-    margin-left: 0px;
-  }
-}
-
-@media (max-width: 650px) {
-  .big_card {
-    width: 310px;
+    gap: 16px;
   }
 
   .add_task_btn_txt {
@@ -146,6 +137,70 @@
   .add_task_btn {
     width: 40px;
     height: 40px;
+    padding: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input_div {
+    width: 260px;
+    height: 32px;
+    margin-left: 16px;
+  }
+
+  .search_task_input {
+    width: 200px;
+  }
+}
+
+@media (max-width: 655px) {
+
+  .board_header,
+  .title_span,
+  .search_add_task,
+  .add_task_btn {
+    display: none;
+  }
+
+  .board_header_responsive,
+  .title_span_responsive,
+  .search_add_task_responsive,
+  .add_task_btn_responsive {
+    display: unset;
+  }
+
+  .board_header_responsive {
+    display: flex;
+    flex-direction: column;
+    padding-top: 96px;
+    padding-bottom: 48px;
+    padding-left: 32px;
+  }
+
+  .title_button_container_responsive{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 320px;
+  }
+
+  .big_card {
+    width: 310px;
+  }
+
+  .add_task_btn_txt {
+    display: none;
+  }
+
+  .add_task_btn,
+  .add_task_btn_responsive {
+    width: 40px;
+    height: 40px;
+    padding: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .title_big {
@@ -174,26 +229,6 @@
 
   .big_card_art_close {
     width: 300px;
-  }
-
-  .title_span {
-    width: 250px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 5px;
-  }
-
-  .board_header {
-    width: 320px;
-    margin-left: unset;
-  }
-
-  .search_add_task {
-    width: 250px;
-    align-items: flex-start;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
   }
 
   h1 {
@@ -251,18 +286,33 @@
 }
 
 @media (max-width: 360px) {
-  .input_div {
-    width: 220px;
+
+  .board_header_responsive {
+    width: 320px;
+    padding-top: 96px;
+    padding-bottom: 48px;
+    padding-left: 16px;
   }
 
-  .search_task_input {
+  .title_button_container_responsive{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 310px;
+  }
+
+  .input_div,
+  .input_div_responsive {
+    width: 260px;
+    height: 32px;
+    margin-left: 10px;
+  }
+
+  .search_task_input,
+  .search_task_input_responsive {
     width: 200px;
   }
 }
-
-
-
-
 
 @media (max-width: 1150px) {
   .task-form {
