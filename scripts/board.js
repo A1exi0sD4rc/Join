@@ -280,51 +280,39 @@ async function deleteTask() {
   await refreshTaskBoard();
 }
 
-/**
- * Opens the task form or navigates to the 'add_task.html' page depending on screen width.
- *
- */
 function openForm() {
   if (window.innerWidth <= 1000) {
     window.location.href = "./add_task.html";
   } else {
     openOverlay();
     const taskForm = document.getElementById("taskForm");
+    taskForm.style.visibility = "visible";
+    taskForm.classList.remove("closing");
     taskForm.classList.add("active");
     document.body.classList.add("no-scroll");
   }
 }
 
-/**
- * Activates the overlay for the task form.
- *
- */
+function closeForm() {
+  const taskForm = document.getElementById("taskForm");
+  taskForm.classList.add("closing");
+  taskForm.classList.remove("active");
+  setTimeout(() => {
+    taskForm.classList.remove("closing");
+    taskForm.style.visibility = "hidden";
+    closeOverlay();
+  }, 400);
+  document.body.classList.remove("no-scroll");
+}
+
 function openOverlay() {
   const overlay = document.getElementById("taskOverlay");
   overlay.classList.add("active");
 }
 
-/**
- * Deactivates the overlay for the task form.
- *
- */
 function closeOverlay() {
   const overlay = document.getElementById("taskOverlay");
   overlay.classList.remove("active");
-}
-
-/**
- * Closes the task form and overlay, and resets the page.
- *
- */
-function closeForm() {
-  clearAll();
-  const taskForm = document.getElementById("taskForm");
-  taskForm.classList.remove("active");
-  setTimeout(() => {
-    closeOverlay(); // Das Overlay wird über closeOverlay geschlossen
-  }, 70);
-  document.body.classList.remove("no-scroll");
 }
 
 /**
