@@ -27,15 +27,15 @@ body {
 .board_header_responsive,
 .title_span_responsive,
 .search_add_task_responsive,
-.add_task_btn_responsive{
+.add_task_btn_responsive {
   display: none;
 }
 
-.board_header_responsive{
+.board_header_responsive {
   display: none;
 }
 
-.title_span{
+.title_span {
   height: 73px;
 }
 
@@ -258,21 +258,18 @@ body.no-scroll {
   border-radius: 30px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
   transform: translateY(-50%);
-  transition: right 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: right 0.125s ease-in-out, opacity 0.125s ease-in-out;
   z-index: 502;
-  opacity: 0;
   visibility: hidden;
 }
 
 .task-form.active {
   right: calc(50% - 558px);
-  opacity: 1;
-  visibility: visible;
 }
 
 .task-form.closing {
   right: -1116px;
-  opacity: 0;
+  opacity: 1;
 }
 
 .addTask_overlay_headline {
@@ -422,6 +419,6 @@ body.no-scroll {
   font-size: 16px;
 }
 
-.small_card_row{
+.small_card_row {
   height: 90%;
 }
