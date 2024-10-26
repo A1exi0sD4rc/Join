@@ -126,7 +126,7 @@ ol {
   font-weight: bold;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1000px) {
   .ln_pp_hp_content {
     padding: 128px 16px 0 16px;
   }

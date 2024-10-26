@@ -186,7 +186,7 @@ li {
   z-index: 2000;
   padding: 12px;
   position: fixed;
-  bottom: -50px;
+  bottom: -200px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #2a3647;
