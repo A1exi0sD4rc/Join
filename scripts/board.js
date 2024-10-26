@@ -1,9 +1,7 @@
-const BASE_URL_TASKS =
-  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_TASKS = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let tasks = [];
 
-const BASE_URL_ASSIGNED =
-  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_ASSIGNED = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let bigassigned = [];
 
 let draggedTo;
@@ -322,7 +320,7 @@ function closeOverlay() {
 }
 
 /**
- * scrolls the window up7down when the mouse is within 450 pixels of the top or bottom during the drag event.
+ * scrolls the window up/down when the mouse is within 450 pixels of the top or bottom during the drag event.
  *
  * @param {id} x
  */
@@ -334,4 +332,5 @@ function scrollOnDrag(id) {
     window.scrollBy(0, scrollSpeed);
   }
 }
+
 document.addEventListener("drag", scrollOnDrag);
