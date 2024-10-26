@@ -479,15 +479,19 @@ h1 {
 .links-container {
   position: absolute;
   bottom: 5%;
-  width: 246px;
+  width: 300px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   opacity: 0;
   animation: showContent 1.5s forwards 2s ease;
 }
 
 .links-container a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin: 0 5px;
   text-decoration: none;
   font-weight: 400;
