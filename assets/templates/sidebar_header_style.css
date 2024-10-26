@@ -129,28 +129,26 @@
 }
 
 table {
-  margin: 0 auto; /* Zentriert die Tabelle horizontal im Link */
+  margin: 0 auto;
   width: auto;
   height: 46px;
 }
 
 .img-cell {
-  text-align: center; /* Bild mittig in der Zelle */
-  vertical-align: middle; /* Vertikale Ausrichtung des Bildes in der Zelle */
+  text-align: center;
+  vertical-align: middle;
 }
 
 .text-cell {
-  text-align: left; /* Text linksbündig in der rechten Spalte */
-  padding-left: 6px; /* Abstand zwischen Bild und Text */
+  text-align: left;
+  padding-left: 6px;
   width: 80px;
 }
 
 .sidebar_current_link {
   background-color: #091931;
-  pointer-events: none; /* Optional: Deaktiviert den Hover-Effekt */
+  pointer-events: none;
 }
-
-/* TEST ALEX FOR THE GENERATE INITIALS FUNCTION */
 
 .header-user-name {
   height: 50px;
@@ -246,8 +244,6 @@ table {
     justify-content: space-around;
     margin-bottom: 0;
     margin: 0 10px 0 10px;
-    /* evtl. hier statt margin padding rechts/links verwenden, je nachdem wie sich die scrollbar verhält, wenn ich sie ausblende am Ende.
-    margin bottom muss drin bleiben! */
     height: 100%;
     gap: 4px;
   }

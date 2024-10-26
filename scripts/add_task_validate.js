@@ -60,7 +60,19 @@ function validateCategory() {
 /**
  * Validates the entire form (title, date, and category).
  */
-function validateForm() {
+async function validateForm() {
+  const submitButton = document.getElementById("createTaskBtn");
+
+  // Überprüfen, ob der Submit-Prozess bereits läuft
+  if (submitButton.style.pointerEvents === "none") {
+    console.log("Der Submit-Prozess läuft bereits."); // Debugging
+    return; // Wenn der Button bereits deaktiviert ist, beende die Funktion
+  }
+
+  // Deaktivieren des Klicks auf das Element
+  console.log("Button wird deaktiviert."); // Debugging
+  submitButton.style.pointerEvents = "none"; // Klicks deaktivieren
+
   const isTitleValid = validateTitle();
   const isDateValid = validateDate();
   const isCategoryValid = validateCategory();
@@ -71,9 +83,15 @@ function validateForm() {
     categoryDiv.classList.remove("invalid");
     categoryError.classList.remove("error-show");
   }
+
   if (isTitleValid && isDateValid && isCategoryValid) {
-    showTaskAddedToBoardMessage();
+    console.log("Validierung erfolgreich, zeige Nachricht an."); // Debugging
+    await showTaskAddedToBoardMessage();
   }
+
+  // Reaktivieren des Klicks auf das Element
+  console.log("Button wird reaktiviert."); // Debugging
+  submitButton.style.pointerEvents = "auto"; // Klicks wieder aktivieren
 }
 
 /**
@@ -125,13 +143,28 @@ function resetCategoryValidation() {
  * Shows a message indicating that a task was added to the board,
  * then adds the task to the database and hides the message after a delay.
  */
+// function showTaskAddedToBoardMessage() {
+//   const taskMessage = document.getElementById("taskMessage");
+//   taskMessage.classList.add("show");
+//   setTimeout(() => {
+//     addTaskToDatabase();
+//     setTimeout(() => {
+//       taskMessage.classList.remove("show");
+//     }, 500);
+//   }, 1000);
+// }
+
 function showTaskAddedToBoardMessage() {
-  const taskMessage = document.getElementById("taskMessage");
-  taskMessage.classList.add("show");
-  setTimeout(() => {
-    addTaskToDatabase();
-    setTimeout(() => {
-      taskMessage.classList.remove("show");
-    }, 500);
-  }, 1000);
+  return new Promise((resolve) => {
+    const taskMessage = document.getElementById("taskMessage");
+    taskMessage.classList.add("show");
+
+    setTimeout(async () => {
+      await addTaskToDatabase(); // Warten bis die Daten gespeichert sind
+      setTimeout(() => {
+        taskMessage.classList.remove("show");
+        resolve(); // Promise beenden und zur nächsten Aktion gehen
+      }, 500);
+    }, 1000);
+  });
 }
