@@ -1,8 +1,9 @@
 /**
  * Initializes the Add Task page by including HTML and fetching contacts.
- * Also generates the initials for each contact.
+ *
  */
 async function initAddTask() {
+  clearAll();
   includeHTML();
   await getContacts();
   awaitGenerateInitials();
@@ -371,7 +372,6 @@ const originalText = "Select task category";
 
 /**
  * Handles clicks outside of specific elements to deactivate the category field.
- *
  * @param {Event} event - The click event triggered when the user clicks on the document.
  */
 function handleClickOutside(event) {

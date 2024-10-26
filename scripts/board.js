@@ -290,6 +290,22 @@ async function deleteTask() {
   await refreshTaskBoard();
 }
 
+/**
+ * scrolls the window up/down when the mouse is within 450 pixels of the top or bottom during the drag event.
+ *
+ * @param {id} x
+ */
+function scrollOnDrag(id) {
+  let bounding = document.documentElement.getBoundingClientRect();
+  if (id.clientY < bounding.top + 500) {
+    window.scrollBy(0, -scrollSpeed);
+  } else if (id.clientY > bounding.bottom - 500) {
+    window.scrollBy(0, scrollSpeed);
+  }
+}
+
+document.addEventListener("drag", scrollOnDrag);
+
 function openForm() {
   clearAll();
   if (window.innerWidth <= 1000) {
@@ -327,18 +343,14 @@ function closeOverlay() {
   overlay.classList.remove("active");
 }
 
-/**
- * scrolls the window up/down when the mouse is within 450 pixels of the top or bottom during the drag event.
- *
- * @param {id} x
- */
-function scrollOnDrag(id) {
-  let bounding = document.documentElement.getBoundingClientRect();
-  if (id.clientY < bounding.top + 500) {
-    window.scrollBy(0, -scrollSpeed);
-  } else if (id.clientY > bounding.bottom - 500) {
-    window.scrollBy(0, scrollSpeed);
+const mediaQuery = window.matchMedia("(max-width: 1000px)");
+
+function handleWidthChange(e) {
+  const taskForm = document.getElementById("taskForm");
+  if (e.matches && taskForm.classList.contains("active")) {
+    closeForm();
   }
 }
 
-document.addEventListener("drag", scrollOnDrag);
+mediaQuery.addEventListener("change", handleWidthChange);
+handleWidthChange(mediaQuery);
