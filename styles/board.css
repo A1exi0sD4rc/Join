@@ -24,6 +24,7 @@ body {
   padding-left: 64px;
 }
 
+<<<<<<< HEAD
 .board_header_responsive,
 .title_span_responsive,
 .search_add_task_responsive,
@@ -36,6 +37,9 @@ body {
 }
 
 .title_span{
+=======
+.title_span {
+>>>>>>> dbd78be1cfcb61c68845cba4a07d655878ffb52a
   height: 73px;
 }
 
@@ -249,7 +253,6 @@ body.no-scroll {
 }
 
 .task-form {
-  display: none;
   position: fixed;
   top: 50%;
   right: -1116px;
@@ -259,13 +262,21 @@ body.no-scroll {
   border-radius: 30px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
   transform: translateY(-50%);
-  transition: right 0.2s ease-in-out;
+  transition: right 0.4s ease-in-out, opacity 0.4s ease-in-out;
   z-index: 502;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .task-form.active {
-  display: block;
   right: calc(50% - 558px);
+  opacity: 1;
+  visibility: visible;
+}
+
+.task-form.closing {
+  right: -1116px;
+  opacity: 0;
 }
 
 .addTask_overlay_headline {

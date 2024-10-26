@@ -248,13 +248,17 @@ a {
 .links-container {
   position: absolute;
   bottom: 5%;
-  width: 246px;
+  width: 300px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .links-container a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin: 0 5px;
   text-decoration: none;
   font-weight: 400;

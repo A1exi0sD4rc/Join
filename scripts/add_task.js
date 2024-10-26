@@ -338,8 +338,6 @@ function handleContactsClick(event) {
   }
 }
 
-//folgende Funktion soll kürzer werden:
-
 /**
  * Deactivates the category field if a click occurs outside of the category input field and dropdown list.
  * @param {MouseEvent} event - The click event.
@@ -373,10 +371,6 @@ const originalText = "Select task category";
 
 /**
  * Handles clicks outside of specific elements to deactivate the category field.
- *
- * This function checks if the clicked target is outside of the category input field,
- * arrow container, and the dropdown list. If the click is outside of these elements,
- * the category field is deactivated.
  *
  * @param {Event} event - The click event triggered when the user clicks on the document.
  */

@@ -8,11 +8,6 @@ function init_ll_pp_hp() {
 
 /**
  * Loads and includes external HTML content into elements with the attribute "w3-include-html".
- *
- * This function scans the document for elements with the "w3-include-html" attribute.
- * It fetches the specified HTML file and injects its content into the element.
- * If the file is not found, a "Page not found" message is displayed.
- * Recursively processes other elements after each load.
  */
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -133,7 +128,7 @@ function awaitGenerateInitials() {
       if (!userName) {
         userLogo.style.display = "none";
         if (helpUser) helpUser.style.display = "none";
-        // if (sidebarUser) sidebarUser.style.display = "none"; //vorübergehend ausgeblendet, weil sonst die sidebar immer weg war auf der addTask Seite (Judith), soll eigtl. nur bei PP und Ln passieren.
+        if (sidebarUser) sidebarUser.style.display = "none";
       } else {
         generateInitials();
         userLogo.style.display = "flex";
