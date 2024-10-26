@@ -5,7 +5,6 @@
 function validateTitle() {
   const titleInput = document.getElementById("aT_title");
   const titleError = document.getElementById("titleError");
-
   titleInput.addEventListener("input", () => {
     titleInput.classList.remove("invalid");
     titleError.classList.remove("error-show");
@@ -25,7 +24,6 @@ function validateTitle() {
 function validateDate() {
   const dateInput = document.getElementById("aT_date");
   const dateError = document.getElementById("dateError");
-
   dateInput.addEventListener("input", () => {
     dateInput.classList.remove("invalid");
     dateError.classList.remove("error-show");
@@ -45,7 +43,6 @@ function validateDate() {
 function validateCategory() {
   const categoryDiv = document.getElementById("aT_select_category");
   const categoryError = document.getElementById("categoryError");
-
   if (categoryDiv.innerText.trim() === "Select task category") {
     categoryDiv.classList.add("invalid");
     categoryError.classList.add("error-show");
@@ -62,36 +59,51 @@ function validateCategory() {
  */
 async function validateForm() {
   const submitButton = document.getElementById("createTaskBtn");
-
-  // Überprüfen, ob der Submit-Prozess bereits läuft
-  if (submitButton.style.pointerEvents === "none") {
-    console.log("Der Submit-Prozess läuft bereits."); // Debugging
-    return; // Wenn der Button bereits deaktiviert ist, beende die Funktion
+  if (isSubmitDisabled(submitButton)) {
+    return;
   }
-
-  // Deaktivieren des Klicks auf das Element
-  console.log("Button wird deaktiviert."); // Debugging
-  submitButton.style.pointerEvents = "none"; // Klicks deaktivieren
-
+  disableSubmitButton(submitButton);
   const isTitleValid = validateTitle();
   const isDateValid = validateDate();
   const isCategoryValid = validateCategory();
+  handleCategoryError(isCategoryValid);
+  if (isTitleValid && isDateValid && isCategoryValid) {
+    await showTaskAddedToBoardMessage();
+  }
+  enableSubmitButton(submitButton);
+}
+
+/**
+ * Checks if the submit button is disabled.
+ */
+function isSubmitDisabled(button) {
+  return button.style.pointerEvents === "none";
+}
+
+/**
+ * Disables the submit button.
+ */
+function disableSubmitButton(button) {
+  button.style.pointerEvents = "none";
+}
+
+/**
+ * Enables the submit button.
+ */
+function enableSubmitButton(button) {
+  button.style.pointerEvents = "auto";
+}
+
+/**
+ * Handles the category error display.
+ */
+function handleCategoryError(isValid) {
   const categoryDiv = document.getElementById("aT_select_category");
   const categoryError = document.getElementById("categoryError");
-
-  if (isCategoryValid) {
+  if (isValid) {
     categoryDiv.classList.remove("invalid");
     categoryError.classList.remove("error-show");
   }
-
-  if (isTitleValid && isDateValid && isCategoryValid) {
-    console.log("Validierung erfolgreich, zeige Nachricht an."); // Debugging
-    await showTaskAddedToBoardMessage();
-  }
-
-  // Reaktivieren des Klicks auf das Element
-  console.log("Button wird reaktiviert."); // Debugging
-  submitButton.style.pointerEvents = "auto"; // Klicks wieder aktivieren
 }
 
 /**
@@ -140,30 +152,18 @@ function resetCategoryValidation() {
 }
 
 /**
- * Shows a message indicating that a task was added to the board,
- * then adds the task to the database and hides the message after a delay.
+ * Displays a message indicating that a task has been added to the board.
+ * @returns {Promise<void>} A promise that resolves when the task message has been hidden.
  */
-// function showTaskAddedToBoardMessage() {
-//   const taskMessage = document.getElementById("taskMessage");
-//   taskMessage.classList.add("show");
-//   setTimeout(() => {
-//     addTaskToDatabase();
-//     setTimeout(() => {
-//       taskMessage.classList.remove("show");
-//     }, 500);
-//   }, 1000);
-// }
-
 function showTaskAddedToBoardMessage() {
   return new Promise((resolve) => {
     const taskMessage = document.getElementById("taskMessage");
     taskMessage.classList.add("show");
-
     setTimeout(async () => {
-      await addTaskToDatabase(); // Warten bis die Daten gespeichert sind
+      await addTaskToDatabase();
       setTimeout(() => {
         taskMessage.classList.remove("show");
-        resolve(); // Promise beenden und zur nächsten Aktion gehen
+        resolve();
       }, 500);
     }, 1000);
   });
