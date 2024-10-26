@@ -301,7 +301,7 @@ function closeForm() {
     taskForm.classList.remove("closing");
     taskForm.style.visibility = "hidden";
     closeOverlay();
-  }, 400);
+  }, 200);
   document.body.classList.remove("no-scroll");
 }
 
