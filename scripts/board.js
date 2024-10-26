@@ -202,8 +202,7 @@ function clearAndFilterTasks(searchValue) {
   tasks
     .filter(
       (task) =>
-        task.title.toLowerCase().includes(searchValue) ||
-        task.description.toLowerCase().includes(searchValue)
+        task.title.toLowerCase().includes(searchValue) || task.description.toLowerCase().includes(searchValue)
     )
     .forEach((task) => {
       const categoryElement = document.getElementById(
@@ -227,8 +226,7 @@ function showBigTask(taskId) {
   if (bigelement) {
     document.getElementById("big_card_bg").classList.remove("d_none");
     document.getElementById("big_card_bg").innerHTML = "";
-    document.getElementById("big_card_bg").innerHTML =
-      renderBigTaskCard(bigelement);
+    document.getElementById("big_card_bg").innerHTML = renderBigTaskCard(bigelement);
     changeArtBackground(`big_art_${bigelement.id}`);
     addPrioBigImg(bigelement);
     document.body.style.overflow = "hidden";
@@ -260,8 +258,7 @@ async function assignedToBigCard(path = "") {
 function bigAssignedTo() {
   for (let index = 0; index < bigassigned.length; index++) {
     const assigned = bigassigned[index];
-    document.getElementById("assigned_big_name").innerHTML +=
-      renderBigTaskCard(assigned);
+    document.getElementById("assigned_big_name").innerHTML += renderBigTaskCard(assigned);
   }
 }
 
