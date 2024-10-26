@@ -306,6 +306,10 @@ function scrollOnDrag(id) {
 
 document.addEventListener("drag", scrollOnDrag);
 
+/**
+ * Opens the task form.
+ *
+ */
 function openForm() {
   clearAll();
   if (window.innerWidth <= 1000) {
@@ -320,6 +324,10 @@ function openForm() {
   }
 }
 
+/**
+ * Closes the task form
+ *
+ */
 function closeForm() {
   clearAll();
   const taskForm = document.getElementById("taskForm");
@@ -333,11 +341,19 @@ function closeForm() {
   document.body.classList.remove("no-scroll");
 }
 
+/**
+ * Activates the overlay by adding an 'active' class to it.
+ *
+ */
 function openOverlay() {
   const overlay = document.getElementById("taskOverlay");
   overlay.classList.add("active");
 }
 
+/**
+ * Deactivates the overlay by removing the 'active' class from it.
+ *
+ */
 function closeOverlay() {
   const overlay = document.getElementById("taskOverlay");
   overlay.classList.remove("active");
@@ -345,12 +361,21 @@ function closeOverlay() {
 
 const mediaQuery = window.matchMedia("(max-width: 1000px)");
 
+/**
+ * Handles changes in the window width and closes the task form
+ * if the width is less than or equal to 1000 pixels.
+ *
+ * @param {MediaQueryListEvent} e - The event object containing the media query's current state.
+ */
 function handleWidthChange(e) {
   const taskForm = document.getElementById("taskForm");
-  if (e.matches && taskForm.classList.contains("active")) {
-    closeForm();
+  if (taskForm) {
+    if (e.matches && taskForm.classList.contains("active")) {
+      closeForm();
+    }
   }
 }
 
 mediaQuery.addEventListener("change", handleWidthChange);
+
 handleWidthChange(mediaQuery);
