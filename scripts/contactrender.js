@@ -60,10 +60,10 @@ function renderContacts() {
                 <div class="contacts-overview-category">${letter}</div>
                 <div class="contacts-seperatore-horizontal"></div>
             `;
-    
-            clusteredContacts[letter].forEach(contact => {    
+
+            clusteredContacts[letter].forEach(contact => {
                 let originalIndex = contactKeys.indexOf(contact);
-    
+
                 document.getElementById('contacts-overview').innerHTML += /*html*/ `
                     <div id="${originalIndex}" class="contacts-overview-contact contacts-overview-contact-unselected" onclick="renderContactDetails(${originalIndex})">
                         <div class="contacts-initials">
@@ -176,13 +176,13 @@ function renderEditContact(i) {
             </svg>
             <form class="contacts-edit-input-btn">
                 <div class="contacts-edit-input">
-                    <input id="contacts-user-name" class="contacts-edit-name" type="text" value="${contactKeys[i]['name']}">
-                    <input id="contacts-user-email" class="contacts-edit-email" type="text" value="${contactKeys[i]['email']}">
-                    <input id="contacts-user-number" class="contacts-edit-number" type="text" value="${contactKeys[i]['number']}">
+                    <input id="contacts-user-name" class="contacts-edit-name contacts-edit-inputfield" type="text" value="${contactKeys[i]['name']}">
+                    <input id="contacts-user-email" class="contacts-edit-email contacts-edit-inputfield" type="text" value="${contactKeys[i]['email']}">
+                    <input id="contacts-user-number" class="contacts-edit-number contacts-edit-inputfield" type="text" value="${contactKeys[i]['number']}">
                 </div>
                 <div>
                     <button class="contacts-edit-delete-btn"  onclick="contactDeleteInit(${i})">Delete</button>
-                    <button class="contacts-edit-save-btn contacts-img-margin" onsubmit="editSaveInit(${i})">Save <img src="./assets/img/check.svg"></button>
+                    <input type="submit" value="Save" id="contacts-edit-save-btn${i}" class="contacts-edit-save-btn contacts-img-margin" onclick="editSaveInit(${i})">
                 </div>
             </form>
         </div>
@@ -217,13 +217,13 @@ function renderAddNewContact() {
             <img class="contacts-add-section-img" src="./assets/img/no_user.svg">
             <form class="contacts-edit-input-btn">
                 <div class="contacts-edit-input">
-                    <input required id="contacts-user-name" class="contacts-edit-name" type="text" placeholder="Name">
-                    <input required id="contacts-user-email" class="contacts-edit-email" type="email" placeholder="Email">
-                    <input required id="contacts-user-number" class="contacts-edit-number" type="tel" placeholder="Phone">
+                    <input required id="contacts-user-name" class="contacts-edit-name contacts-edit-inputfield" type="text" placeholder="Name">
+                    <input required id="contacts-user-email" class="contacts-edit-email contacts-edit-inputfield" type="email" placeholder="Email">
+                    <input required id="contacts-user-number" class="contacts-edit-number contacts-edit-inputfield" type="tel" placeholder="Phone">
                 </div>
                 <div>
                     <button class="contacts-add-cancel-btn contacts-img-margin" onclick="toggleVisiblility()">Cancel <img src="./assets/img/close.svg"></button>
-                    <button class="contacts-add-create-btn contacts-img-margin" onsubmit="addContact(event)">Create contact <img src="./assets/img/check.svg"></button>
+                    <input type="submit" value="Create contact" class="contacts-add-create-btn contacts-img-margin" onclick="addContact(event)">
                 </div>
             </form>
         </div>

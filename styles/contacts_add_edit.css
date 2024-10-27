@@ -108,12 +108,11 @@
 .contacts-edit-input {
   display: flex;
   flex-direction: column;
-  height: 215px;
+  height: 280px;
   gap: 32px;
-  margin-bottom: 30px;
 }
 
-.contacts-edit-input input {
+.contacts-edit-inputfield {
   width: 376px;
   max-height: 50px;
   border-radius: 10px;
@@ -141,11 +140,14 @@
 
 .contacts-edit-save-btn {
   color: white;
-  padding: 16px;
+  padding: 16px 20px;
   border-radius: 8px;
+  border: none;
   background-color: #2a3647;
   transition: all 125ms ease-in-out;
   cursor: pointer;
+  font-family: "Inter", system-ui;
+  font-size: 16px;
 }
 
 .contacts-edit-save-btn:hover {
@@ -246,11 +248,14 @@
 
 .contacts-add-create-btn {
   color: white;
-  padding: 16px;
+  padding: 16px 20px;
   border-radius: 8px;
+  border: none;
   background-color: #2a3647;
   transition: all 125ms ease-in-out;
   cursor: pointer;
+  font-family: "Inter", system-ui;
+  font-size: 16px;
 }
 
 .contacts-add-create-btn:hover {
