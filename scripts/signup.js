@@ -239,6 +239,8 @@ function signupUser(name, email, password) {
     name: name,
     email: email,
     password: password,
+    number: "",
+    bgcolor: generateColor(),
   })
     .then(() => {
       signupSuccessfully();
@@ -246,6 +248,35 @@ function signupUser(name, email, password) {
     .catch(() => {
       alert("Error signing up, please try again.");
     });
+}
+
+/**
+ * Generates a random color from a predefined list of colors.
+ *
+ * @function generateColor
+ * @returns {string} A randomly selected color from the predefined list.
+ */
+function generateColor() {
+  const colors = [
+    "lightcoral",
+    "green",
+    "blueviolet",
+    "lightblue",
+    "darkmagenta",
+    "orangered",
+    "purple",
+    "lightgreen",
+    "indigo",
+    "teal",
+    "peru",
+    "midnightblue",
+    "aquamarine",
+    "chartreuse",
+  ];
+
+  const randomIndex = Math.floor(Math.random() * colors.length);
+
+  return colors[randomIndex];
 }
 
 /**

@@ -148,9 +148,8 @@ async function editTask(taskId) {
 
     if (taskData.subtask && Object.keys(taskData.subtask).length > 0) {
       const subtasks = await fetchSubtasksFromDatabase(taskId);
-      if (subtasks.length > 0) {
-        renderSubtasksEdit(subtasks);
-      }
+      renderSubtasksEdit(subtasks);
+      window.originalSubtasks = subtasks.map((subtask) => ({ ...subtask }));
     }
   } catch (error) {
     console.error("Error loading task for editing:", error);
@@ -464,6 +463,8 @@ function getCategoryEdit() {
   return document.getElementById("aT_select_category_edit").innerHTML.trim();
 }
 
+// START FUNCTIONS FOR THE SUBTASKS //
+
 async function saveEditedTaskToDatabase(taskId) {
   const updatedTask = collectTaskDataEdit();
   updatedTask.assigned = selectedContacts;
@@ -473,9 +474,14 @@ async function saveEditedTaskToDatabase(taskId) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedTask),
     });
+
     if (!response.ok) {
-      throw new Error("Error updating task");
+      const errorData = await response.json();
+      throw new Error(
+        `Error updating task: ${errorData.message || "Unknown error"}`
+      );
     }
+
     console.log("Task successfully updated");
     taskCategory = "";
     goToBoard();
@@ -483,8 +489,6 @@ async function saveEditedTaskToDatabase(taskId) {
     console.error("Network error:", error);
   }
 }
-
-// START FUNCTIONS FOR THE SUBTASKS //
 
 function renderSubtasksEdit(subtasks) {
   const subtaskContainer = document.getElementById("created_subtasks_edit");
@@ -630,7 +634,6 @@ function addSubtaskToListEdit() {
     subtasks.push(newSubtask);
     subtaskInput.value = "";
     resetDivVisibilityEdit();
-    scrollToListEnd();
   }
 }
 
@@ -673,14 +676,6 @@ function resetDivVisibilityEdit() {
     .getElementById("aktive_input_addSubtask_edit")
     .classList.remove("d-none");
   document.getElementById("close_and_check_btns_edit").classList.add("d-none");
-}
-
-/**
- * Scrolls the subtask container to the bottom of the list.
- */
-function scrollToListEnd() {
-  const subtaskContainer = document.getElementById("created_subtasks_edit");
-  subtaskContainer.scrollTop = subtaskContainer.scrollHeight;
 }
 
 /**
