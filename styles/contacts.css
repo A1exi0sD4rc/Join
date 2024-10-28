@@ -36,7 +36,6 @@ body {
 }
 
 .contacts-container::-webkit-scrollbar-button:vertical:decrement {
-<<<<<<< HEAD
     background-color: white;
     background-image: url("../assets/img/contacts_arrow_up.svg");
     background-repeat: no-repeat;
@@ -50,21 +49,6 @@ body {
     background-repeat: no-repeat;
     background-position: 50% 10%;
     background-size: 8px;
-=======
-  background-color: white;
-  background-image: url("../assets/img/contacts_arrow_up.svg");
-  background-repeat: no-repeat;
-  background-position: 50% 90%;
-  background-size: 8px;
-}
-
-.contacts-container::-webkit-scrollbar-button:vertical:increment {
-  background-color: white;
-  background-image: url("../assets/img/contacts_arrow_down.svg");
-  background-repeat: no-repeat;
-  background-position: 50% 10%;
-  background-size: 8px;
->>>>>>> 5c1919650362ca605bd5347595f6febb25128f15
 }
 
 .contacts-container::-webkit-scrollbar-track {
@@ -199,7 +183,6 @@ body {
 /* overview mobil */
 
 .contacts-add-contact-mobil {
-<<<<<<< HEAD
     display: none;
     position: absolute;
     bottom: 50px;
@@ -214,22 +197,6 @@ body {
     background-size: 36px;
     background-position: 50% 50%;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-=======
-  display: none;
-  position: absolute;
-  bottom: 50px;
-  right: 100px;
-  width: 56px;
-  height: 56px;
-  border-radius: 46px;
-  cursor: pointer;
-  background-color: #2a3647;
-  background-image: url("./assets/img/contacts_new_contact.svg");
-  background-repeat: no-repeat;
-  background-size: 36px;
-  background-position: 50% 50%;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
->>>>>>> 5c1919650362ca605bd5347595f6febb25128f15
 }
 
 .contacts-add-contact-mobil:hover {
@@ -258,7 +225,6 @@ body {
 /* contact headline */
 
 .contacts-details-mobil-close-btn {
-<<<<<<< HEAD
     position: fixed;
     top: 130px;
     right: 110px;
@@ -271,20 +237,6 @@ body {
     background-position: 50% 50%;
     cursor: pointer;
     border-radius: 32px;
-=======
-  position: fixed;
-  top: 130px;
-  right: 110px;
-  width: 32px;
-  height: 32px;
-  padding: 8px;
-  background-image: url("./assets/img/backarrow.svg");
-  background-size: 32px;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  cursor: pointer;
-  border-radius: 32px;
->>>>>>> 5c1919650362ca605bd5347595f6febb25128f15
 }
 
 .contacts-details-mobil-close-btn:hover {
