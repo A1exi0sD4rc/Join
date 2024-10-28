@@ -93,7 +93,7 @@
   bottom: 100px;
   width: 32px;
   height: 32px;
-  background-image: url("./assets/img/close.svg");
+  background-image: url("../assets/img/close.svg");
   background-size: 13px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -140,7 +140,8 @@
 
 .contacts-edit-save-btn {
   color: white;
-  padding: 16px 20px;
+  padding: 16px;
+  padding-right: 42px;
   border-radius: 8px;
   border: none;
   background-color: #2a3647;
@@ -148,6 +149,10 @@
   cursor: pointer;
   font-family: "Inter", system-ui;
   font-size: 16px;
+  background-image: url("../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 80% 50%;
 }
 
 .contacts-edit-save-btn:hover {
@@ -156,21 +161,21 @@
 }
 
 .contacts-edit-name {
-  background-image: url("./assets/img/person.svg");
+  background-image: url("../assets/img/person.svg");
   background-repeat: no-repeat;
   background-size: 16px;
   background-position: 95% 50%;
 }
 
 .contacts-edit-email {
-  background-image: url("./assets/img/mail.svg");
+  background-image: url("../assets/img/mail.svg");
   background-repeat: no-repeat;
   background-size: 35px;
   background-position: 97% 50%;
 }
 
 .contacts-edit-number {
-  background-image: url("./assets/img/phone.svg");
+  background-image: url("../assets/img/phone.svg");
   background-repeat: no-repeat;
   background-size: 18px;
   background-position: 95% 50%;
@@ -207,7 +212,7 @@
   bottom: 100px;
   width: 32px;
   height: 32px;
-  background-image: url("./assets/img/close.svg");
+  background-image: url("../assets/img/close.svg");
   background-size: 13px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -248,7 +253,8 @@
 
 .contacts-add-create-btn {
   color: white;
-  padding: 16px 20px;
+  padding: 16px;
+  padding-right: 40px;
   border-radius: 8px;
   border: none;
   background-color: #2a3647;
@@ -256,6 +262,10 @@
   cursor: pointer;
   font-family: "Inter", system-ui;
   font-size: 16px;
+  background-image: url("../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 90% 50%;
 }
 
 .contacts-add-create-btn:hover {

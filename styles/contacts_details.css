@@ -48,26 +48,26 @@
 
 .contacts-contact-details-edit-btn {
     width: 60px;
-    background-image: url("./assets/img/contacts_pen.svg");
+    background-image: url("../assets/img/contacts_pen.svg");
     background-size: 24px;
     background-position: 0% 0%;
     background-repeat: no-repeat;
 }
 
 .contacts-contact-details-edit-btn:hover {
-    background-image: url("./assets/img/contacts_pen_hover.svg");
+    background-image: url("../assets/img/contacts_pen_hover.svg");
 }
 
 .contacts-contact-details-delete-btn {
     width: 80px;
-    background-image: url("./assets/img/contacts_bin.svg");
+    background-image: url("../assets/img/contacts_bin.svg");
     background-size: 24px;
     background-position: 0% 0%;
     background-repeat: no-repeat;
 }
 
 .contacts-contact-details-delete-btn:hover {
-    background-image: url("./assets/img/contacts_bin_hover.svg");
+    background-image: url("../assets/img/contacts_bin_hover.svg");
 }
 
 .contacts-details-info-hl {
@@ -103,7 +103,7 @@
     bottom: 130px;
     width: 56px;
     height: 56px;
-    background-image: url("./assets/img/contacts-options.svg");
+    background-image: url("../assets/img/contacts-options.svg");
     background-size: 32px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -149,25 +149,25 @@
 }
 
 .contact-details-mobil-edit-btn {
-    background-image: url("./assets/img/contacts_pen.svg");
+    background-image: url("../assets/img/contacts_pen.svg");
     background-repeat: no-repeat;
     background-position: 10% 50%;
 }
 
 .contact-details-mobil-edit-btn:hover {
     background-color: #e8e8e8;
-    background-image: url("./assets/img/contacts_pen_hover.svg");
+    background-image: url("../assets/img/contacts_pen_hover.svg");
     color: #29abe2;
 }
 
 .contact-details-mobil-delete-btn {
-    background-image: url("./assets/img/contacts_bin.svg");
+    background-image: url("../assets/img/contacts_bin.svg");
     background-repeat: no-repeat;
     background-position: 10% 50%;
 }
 
 .contact-details-mobil-delete-btn:hover {
     background-color: #e8e8e8;
-    background-image: url("./assets/img/contacts_bin_hover.svg");
+    background-image: url("../assets/img/contacts_bin_hover.svg");
     color: #29abe2;
 }

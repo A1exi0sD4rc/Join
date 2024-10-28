@@ -37,7 +37,7 @@ body {
 
 .contacts-container::-webkit-scrollbar-button:vertical:decrement {
     background-color: white;
-    background-image: url("./assets/img/contacts_arrow_up.svg");
+    background-image: url("../assets/img/contacts_arrow_up.svg");
     background-repeat: no-repeat;
     background-position: 50% 90%;
     background-size: 8px;
@@ -45,7 +45,7 @@ body {
 
 .contacts-container::-webkit-scrollbar-button:vertical:increment {
     background-color: white;
-    background-image: url("./assets/img/contacts_arrow_down.svg");
+    background-image: url("../assets/img/contacts_arrow_down.svg");
     background-repeat: no-repeat;
     background-position: 50% 10%;
     background-size: 8px;
@@ -193,7 +193,7 @@ body {
     border-radius: 46px;
     cursor: pointer;
     background-color: #2a3647;
-    background-image: url("./assets/img/contacts_new_contact.svg");
+    background-image: url("../assets/img/contacts_new_contact.svg");
     background-repeat: no-repeat;
     background-size: 36px;
     background-position: 50% 50%;
@@ -236,7 +236,7 @@ body {
     width: 32px;
     height: 32px;
     padding: 8px;
-    background-image: url("./assets/img/backarrow.svg");
+    background-image: url("../assets/img/backarrow.svg");
     background-size: 32px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
