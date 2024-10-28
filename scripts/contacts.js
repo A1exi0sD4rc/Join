@@ -349,7 +349,6 @@ async function contactDeleteInit(i) {
     saveSelectedContactsToSession();
   }
   await deleteContact(i);
-  await getContactData();
   await init();
 }
 

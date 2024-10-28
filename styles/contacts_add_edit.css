@@ -140,7 +140,8 @@
 
 .contacts-edit-save-btn {
   color: white;
-  padding: 16px 20px;
+  padding: 16px;
+  padding-right: 42px;
   border-radius: 8px;
   border: none;
   background-color: #2a3647;
@@ -148,6 +149,10 @@
   cursor: pointer;
   font-family: "Inter", system-ui;
   font-size: 16px;
+  background-image: url("../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 80% 50%;
 }
 
 .contacts-edit-save-btn:hover {
@@ -248,7 +253,8 @@
 
 .contacts-add-create-btn {
   color: white;
-  padding: 16px 20px;
+  padding: 16px;
+  padding-right: 40px;
   border-radius: 8px;
   border: none;
   background-color: #2a3647;
@@ -256,6 +262,10 @@
   cursor: pointer;
   font-family: "Inter", system-ui;
   font-size: 16px;
+  background-image: url("../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 90% 50%;
 }
 
 .contacts-add-create-btn:hover {
