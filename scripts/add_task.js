@@ -246,8 +246,10 @@ document
   });
 
 function handleClickCheckInputSubtask() {
-  addSubtaskToList();
-  resetDivVisibility();
+  const wasAdded = addSubtaskToList();
+  if (wasAdded) {
+    resetDivVisibility();
+  }
 }
 
 let subtasks = [];
@@ -273,7 +275,9 @@ function addSubtaskToList() {
     addSubtaskToArray(subtaskText, subtaskId);
     clearInputField(inputField);
     scrollToListEnd();
+    return true;
   }
+  return false;
 }
 
 /**
