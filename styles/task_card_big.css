@@ -166,6 +166,11 @@
   padding: 7px 16px;
 }
 
+.subtask_item:hover{
+  background-color: rgb(238, 238, 238);
+  border-radius: 15px;
+}
+
 .subtask_checkbox {
   width: 24px;
   height: 24px;
