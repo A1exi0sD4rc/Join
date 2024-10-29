@@ -381,7 +381,8 @@
   color: #29abe2;
 }
 
-.big_card_close:hover {
+.big_card_close:hover,
+.search_icon:hover {
   border-radius: 52px;
   background-color: #eeeeee;
 }
