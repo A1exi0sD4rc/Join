@@ -312,7 +312,7 @@ async function saveEdit(i) {
     BASE_URL + `/${contactKeys[i]["id"]}` + ".json",
     {
       method: "PUT",
-      header: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(
         (data = {
           name: `${changeUserName}`,
