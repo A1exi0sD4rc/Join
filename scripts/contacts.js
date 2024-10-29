@@ -391,7 +391,9 @@ function contactShowEditOption(event) {
   if (event) {
     event.stopPropagation();
     document.getElementById("contact-details-option").classList.add("contacts-d-more-options-show");
+    document.getElementById("contacts-details-options-bg").classList.add("contacts-d-more-options-show");
   } else {
     document.getElementById("contact-details-option").classList.remove("contacts-d-more-options-show");
+    document.getElementById("contacts-details-options-bg").classList.add("contacts-d-more-options-show");
   }
 }

@@ -15,7 +15,7 @@ function render() {
         <div id="contacts-div" class="contacts-container"></div>
     `;
     document.getElementById("contacts-site").innerHTML += /*html*/ `
-        <div id="contacts-h-d-div" class="contacts-headline-details-div" onclick="contactShowEditOption()">
+        <div id="contacts-h-d-div" class="contacts-headline-details-div">
             <button class="contacts-details-mobil-close-btn d-none" onclick="toggleDetailClasses()"></button>
             <div class="contacts-headline">
                 <h1>Contacts</h1>
@@ -27,6 +27,9 @@ function render() {
             <button class="contacts-d-more-options-btn d-none" onclick="contactShowEditOption(event)"></button>  
         </div> 
     `;
+    // document.getElementById("contact-site").innerHTML += /*html*/ `
+    //     <div id="contacts-details-options-bg" class="contacts-d-more-options-bg" onclick="contactShowEditOption()"></div>  
+    // `;
     document.getElementById("contacts-div").innerHTML = "";
     document.getElementById("contacts-div").innerHTML += /*html*/ `
         <div class="contacts-new-contact-div">
@@ -171,7 +174,7 @@ function renderEditContact(i) {
         <div class="contacts-edit-section">
             <button class="contacts-edit-close-btn" onclick="toggleVisiblility()"></button>
             <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="60" cy="60" r="60" fill="#FF7A00"/>
+                <circle cx="60" cy="60" r="60" fill="${contactKeys[i]['bgcolor']}"/>
                 <text x="60" y="73" text-anchor="middle" font-size="47" fill="white">${getInitials(contactKeys[i]['name'])}</text>
             </svg>
             <form class="contacts-edit-input-btn">
