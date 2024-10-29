@@ -178,10 +178,6 @@ li {
   border: 1px solid red !important;
 }
 
-.aT_select_container:hover .aT_select_dropdown_fields:not(.invalid) {
-  border: 1px solid #a8a8a8;
-}
-
 .task-message {
   z-index: 2000;
   padding: 12px;
