@@ -484,11 +484,16 @@ async function saveEditedTaskToDatabase(taskId) {
 
   try {
     for (const subtaskId in updatedSubtasks) {
-      await updateSubtaskInDatabase(
-        taskId,
-        subtaskId,
-        updatedSubtasks[subtaskId]
-      );
+      const original = originalSubtasks[subtaskId];
+      const updated = updatedSubtasks[subtaskId];
+
+      if (
+        !original ||
+        original.title !== updated.title ||
+        original.completed !== updated.completed
+      ) {
+        await updateSubtaskInDatabase(taskId, subtaskId, updated);
+      }
     }
 
     for (const subtaskId of subtasksToDelete) {
@@ -703,10 +708,16 @@ function addSubtaskToListEdit() {
   const subtaskInput = document.getElementById("aT_add_subtasks_edit");
   const subtaskTitle = subtaskInput.value.trim();
 
-  const existingSubtasks = subtaskContainer.querySelectorAll(".task-item");
-  const nextSubtaskId = `subtask${existingSubtasks.length + 1}`;
-
   if (subtaskTitle !== "") {
+    const maxSubtaskIndex = Math.max(
+      ...Object.keys({ ...originalSubtasks, ...newSubtasks }).map((key) => {
+        const match = key.match(/subtask(\d+)/);
+        return match ? parseInt(match[1], 10) : 0;
+      })
+    );
+
+    const nextSubtaskId = `subtask${maxSubtaskIndex + 1}`;
+
     const newSubtask = {
       title: subtaskTitle,
       completed: false,
