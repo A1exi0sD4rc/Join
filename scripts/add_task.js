@@ -235,7 +235,7 @@ document
   });
 document
   .getElementById("check_input_subtask")
-  .addEventListener("click", addSubtaskToList);
+  .addEventListener("click", handleClickCheckInputSubtask);
 document
   .getElementById("aT_add_subtasks")
   .addEventListener("keydown", function (event) {
@@ -244,6 +244,11 @@ document
       addSubtaskToList();
     }
   });
+
+function handleClickCheckInputSubtask() {
+  addSubtaskToList();
+  resetDivVisibility();
+}
 
 let subtasks = [];
 
