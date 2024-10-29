@@ -154,7 +154,7 @@
   }
 }
 
-@media (max-width: 655px) {
+@media (max-width: 675px) {
 
   .board_header,
   .title_span,
@@ -285,7 +285,7 @@
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 385px) {
 
   .board_header_responsive {
     width: 320px;
@@ -298,7 +298,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 310px;
+    width: 300px;
   }
 
   .input_div,
