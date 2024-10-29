@@ -39,6 +39,7 @@ const arrowConContainer = document.getElementById(
 const arrowConConImage = arrowConContainer.querySelector("img");
 const dropDowncontacts = document.getElementById("contact_list");
 const selectedContactsCon = document.getElementById("selected_contacts");
+const inputFieldSubtask = document.getElementById("aT_add_subtasks");
 
 /**
  * Handles click events on the document to determine if certain UI elements (e.g. contacts or categories) should be closed or deactivated.
@@ -56,6 +57,12 @@ function handleDocumentClick(event) {
     if (!isInsideCategoryList) {
       handleCategoryClick(event);
     }
+  } // Überprüfen, ob das Klick-Target das Input-Feld oder ein Kind davon ist
+  else if (!inputFieldSubtask.contains(event.target)) {
+    // Den Fokus vom Input-Feld entfernen
+    inputFieldSubtask.blur();
+    // Die Funktion zum Zurücksetzen der Sichtbarkeit aufrufen
+    resetDivVisibility();
   }
 }
 
@@ -221,12 +228,14 @@ input.addEventListener("input", function () {
 document
   .getElementById("aT_add_subtasks")
   .addEventListener("click", toggleDivVisibility);
+
 document
   .getElementById("aktive_input_addSubtask")
   .addEventListener("click", function () {
     document.getElementById("aT_add_subtasks").focus();
     toggleDivVisibility();
   });
+
 document
   .getElementById("cancel_input_subtasks")
   .addEventListener("click", function () {
@@ -301,6 +310,7 @@ function toggleDivVisibility() {
 function resetDivVisibility() {
   document.getElementById("aktive_input_addSubtask").classList.remove("d-none");
   document.getElementById("close_and_check_btns").classList.add("d-none");
+  console.log("Div visibility has been reset.");
 }
 
 /**
