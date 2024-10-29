@@ -46,10 +46,13 @@ function collectTaskDataEdit() {
   const contacts = selectedContacts;
   const category = taskCategory;
 
-  const subtasksArray = subtasks.map((subtask) => ({
-    completed: subtask.completed,
-    title: subtask.title,
-  }));
+  let subtasksObject = {};
+  subtasks.forEach((subtask, index) => {
+    subtasksObject[`subtask${index + 1}`] = {
+      completed: subtask.completed,
+      title: subtask.title,
+    };
+  });
 
   return {
     art: categorySelect,
@@ -58,7 +61,7 @@ function collectTaskDataEdit() {
     description: description,
     prio: prio,
     due_date: dueDate,
-    subtask: subtasksArray,
+    subtask: subtasksObject,
     title: title,
   };
 }

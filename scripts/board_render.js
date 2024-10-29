@@ -11,7 +11,9 @@ function renderTaskCardToDo(elementToDo) {
       <div class="task_card_small_content">
 
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementToDo["id"]}">${elementToDo["art"]}</div>
+          <div class="art_small" id="art_small_${elementToDo["id"]}">${
+    elementToDo["art"]
+  }</div>
         </div>
 
       <div class="title_desc_small_div">
@@ -22,15 +24,18 @@ function renderTaskCardToDo(elementToDo) {
         ${subAmountHtml}
 
     <div class="assigned_prio_small">
-      <div class="assigned_small">${renderAssignedContacts(elementToDo["assigned"])}</div>
-      <div class="prio_small" id="prio_small_${elementToDo["id"]}">${elementToDo["prio"]}</div>
+      <div class="assigned_small">${renderAssignedContacts(
+        elementToDo["assigned"]
+      )}</div>
+      <div class="prio_small" id="prio_small_${elementToDo["id"]}">${
+    elementToDo["prio"]
+  }</div>
     </div>
 
       </div>
     </div>
   `;
 }
-
 
 function renderTaskCardProgress(elementProgress) {
   const subtasks = elementProgress.subtask || {};
@@ -45,7 +50,9 @@ function renderTaskCardProgress(elementProgress) {
       <div class="task_card_small_content">
 
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementProgress["id"]}">${elementProgress["art"]}</div>
+          <div class="art_small" id="art_small_${elementProgress["id"]}">${
+    elementProgress["art"]
+  }</div>
         </div>
 
         <div class="title_desc_small_div">
@@ -59,14 +66,15 @@ function renderTaskCardProgress(elementProgress) {
           <div class="assigned_small">${renderAssignedContacts(
             elementProgress["assigned"]
           )}</div>
-          <div class="prio_small" id="prio_small_${elementProgress["id"]}">${elementProgress["prio"]}</div>
+          <div class="prio_small" id="prio_small_${elementProgress["id"]}">${
+    elementProgress["prio"]
+  }</div>
         </div>
 
       </div>
     </div>
   `;
 }
-
 
 function renderTaskCardAwait(elementAwait) {
   const subtasks = elementAwait.subtask || {};
@@ -81,7 +89,9 @@ function renderTaskCardAwait(elementAwait) {
       <div class="task_card_small_content">
 
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementAwait["id"]}">${elementAwait["art"]}</div>
+          <div class="art_small" id="art_small_${elementAwait["id"]}">${
+    elementAwait["art"]
+  }</div>
         </div>
 
         <div class="title_desc_small_div">
@@ -95,14 +105,15 @@ function renderTaskCardAwait(elementAwait) {
           <div class="assigned_small">${renderAssignedContacts(
             elementAwait["assigned"]
           )}</div>
-          <div class="prio_small" id="prio_small_${elementAwait["id"]}">${elementAwait["prio"]}</div>
+          <div class="prio_small" id="prio_small_${elementAwait["id"]}">${
+    elementAwait["prio"]
+  }</div>
         </div>
 
       </div>
     </div>
   `;
 }
-
 
 function renderTaskCardDone(elementDone) {
   const subtasks = elementDone.subtask || {};
@@ -117,7 +128,9 @@ function renderTaskCardDone(elementDone) {
       <div class="task_card_small_content">
 
         <div class="art_task_small">
-          <div class="art_small" id="art_small_${elementDone["id"]}">${elementDone["art"]}</div>
+          <div class="art_small" id="art_small_${elementDone["id"]}">${
+    elementDone["art"]
+  }</div>
         </div>
 
         <div class="title_desc_small_div">
@@ -131,7 +144,9 @@ function renderTaskCardDone(elementDone) {
           <div class="assigned_small">${renderAssignedContacts(
             elementDone["assigned"]
           )}</div>
-          <div class="prio_small" id="prio_small_${elementDone["id"]}">${elementDone["prio"]}</div>
+          <div class="prio_small" id="prio_small_${elementDone["id"]}">${
+    elementDone["prio"]
+  }</div>
         </div>
 
       </div>
@@ -139,11 +154,9 @@ function renderTaskCardDone(elementDone) {
   `;
 }
 
-
 function truncateText(text, maxLength) {
   return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
 }
-
 
 function renderAssignedContacts(assigned) {
   if (assigned && assigned.length > 0) {
@@ -183,7 +196,6 @@ function renderAssignedContacts(assigned) {
   }
 }
 
-
 function generateSubAmountHtml(subtasks) {
   const totalSubtasks = Object.keys(subtasks).length;
   const completedSubtasks = Object.values(subtasks).filter(
@@ -194,7 +206,9 @@ function generateSubAmountHtml(subtasks) {
       <div class="sub_amount_small">
 
         <div class="subtasks_bar_small">
-          <div class="subtasks_bar_fill" style="width: ${(completedSubtasks / totalSubtasks) * 100}%; background-color: #4589FF;"></div>
+          <div class="subtasks_bar_fill" style="width: ${
+            (completedSubtasks / totalSubtasks) * 100
+          }%; background-color: #4589FF;"></div>
         </div>
 
         <div class="amount_subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</div>
@@ -204,36 +218,48 @@ function generateSubAmountHtml(subtasks) {
     : "";
 }
 
-
 function renderBigTaskCard(bigelement) {
   return `
     <div id="big_card" class="big_card" data-task-id="${bigelement["id"]}">
       <div class="big_card_art_close">
-      <div class="big_art" id="big_art_${bigelement["id"]}">${bigelement["art"]}</div>
+      <div class="big_art" id="big_art_${bigelement["id"]}">${
+    bigelement["art"]
+  }</div>
       <div class="big_card_close" onclick="hideBigTask()"><img src="assets/img/close.svg"></div>
     </div>
 
     <div class="title_big">${bigelement["title"]}</div>
-    <div class="big_description" id="big_description_${bigelement["description"]}">${bigelement["description"]}</div>
+    <div class="big_description" id="big_description_${
+      bigelement["description"]
+    }">${bigelement["description"]}</div>
       
     <div class="big_due" id="big_due">
       <div class="big_due_date_txt" id="big_due_date_txt">Due date:</div>
-      <div class="big_due_date" id="big_due_date">${formatDate(bigelement["due_date"])}</div>
+      <div class="big_due_date" id="big_due_date">${formatDate(
+        bigelement["due_date"]
+      )}</div>
     </div>
 
     <div class="big_prio">
       <div class="big_prio_txt" id="big_prio_txt">Priority:</div>
-      <div class="big_prio_img" id="big_prio_img_${bigelement["id"]}"> ${bigelement["prio"]}</div>
+      <div class="big_prio_img" id="big_prio_img_${bigelement["id"]}"> ${
+    bigelement["prio"]
+  }</div>
     </div>
 
     <div class="big_assigned">
       <div class="big_assigned_txt">Assigned To:</div>
-      <div class="assigned_div">${renderBigAssignedContacts(bigelement.assigned)}</div>
+      <div class="assigned_div">${renderBigAssignedContacts(
+        bigelement.assigned
+      )}</div>
     </div>
 
     <div class="big_subs">
       <div class="big_subs_txt">Subtasks</div>
-      <div class="subtasks_container">${renderSubtasks(bigelement.subtask, bigelement.id)}</div>
+      <div class="subtasks_container">${renderSubtasks(
+        bigelement.subtask,
+        bigelement.id
+      )}</div>
     </div>
 
     <div class="big_del_edit">
@@ -267,21 +293,20 @@ function renderBigTaskCard(bigelement) {
   `;
 }
 
-
 function renderSubtasks(subtasks, taskId) {
   if (!subtasks || typeof subtasks !== "object") {
     return `<span class="subtask_title"></span>`;
   }
 
   return Object.keys(subtasks)
-    .map((key, index) => {
+    .map((key) => {
       const subtask = subtasks[key];
       const checkboxSrc = subtask.completed
         ? "assets/img/checkbox-checked.png"
         : "assets/img/checkbox.png";
       return `
-        <div class="subtask_item" id="subtask_${taskId}_${index}">
-          <img src="${checkboxSrc}" class="subtask_checkbox" id="subtask_checkbox_${taskId}_${index}" onclick="toggleSubtask('${taskId}', ${index})">
+        <div class="subtask_item" id="subtask_${taskId}_${key}">
+          <img src="${checkboxSrc}" class="subtask_checkbox" id="subtask_checkbox_${taskId}_${key}" onclick="toggleSubtask('${taskId}', '${key}')">
           <span class="subtask_title">${subtask.title}</span>
         </div>
       `;
@@ -289,22 +314,21 @@ function renderSubtasks(subtasks, taskId) {
     .join("");
 }
 
-
-async function toggleSubtask(taskId, subtaskIndex) {
+async function toggleSubtask(taskId, subtaskKey) {
   try {
     const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
     const taskData = await taskResponse.json();
-    const subtaskKey = `subtask${subtaskIndex + 1}`;
+
     const subtask = taskData.subtask?.[subtaskKey];
+
     if (!subtask) {
       console.error(`Subtask ${subtaskKey} not found.`);
       return;
     }
-
     subtask.completed = !subtask.completed;
 
     const checkboxImage = document.getElementById(
-      `subtask_checkbox_${taskId}_${subtaskIndex}`
+      `subtask_checkbox_${taskId}_${subtaskKey}`
     );
     checkboxImage.src = subtask.completed
       ? "assets/img/checkbox-checked.png"
@@ -321,7 +345,6 @@ async function toggleSubtask(taskId, subtaskIndex) {
     console.error("Error toggling subtask:", error);
   }
 }
-
 
 function updateSubtasksUI(taskId, taskData) {
   const subtasks = taskData.subtask;
@@ -346,7 +369,6 @@ function updateSubtasksUI(taskId, taskData) {
     subAmountElement.innerHTML = `${completedSubtasks}/${totalSubtasks} Subtasks`;
   }
 }
-
 
 function renderBigAssignedContacts(assigned) {
   if (assigned) {
@@ -374,12 +396,10 @@ function renderBigAssignedContacts(assigned) {
   }
 }
 
-
 function formatDate(dateString) {
   const [year, month, day] = dateString.split("-");
   return `${day}/${month}/${year}`;
 }
-
 
 function renderNoTasksToDo() {
   return `
@@ -387,20 +407,17 @@ function renderNoTasksToDo() {
   `;
 }
 
-
 function renderNoTasksProgress() {
   return `
     <div class="no_tasks"><div class="no_tasks_txt">No tasks in Progress</div></div>
   `;
 }
 
-
 function renderNoTasksAwait() {
   return `
     <div class="no_tasks"><div class="no_tasks_txt">No feedback awaited</div></div>
   `;
 }
-
 
 function renderNoTaskDone() {
   return `

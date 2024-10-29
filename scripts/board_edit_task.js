@@ -3,6 +3,7 @@ async function editTask(taskId) {
     const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
     const taskData = await taskResponse.json();
     await getContacts();
+    currentTaskId = taskId;
     selectedContacts = taskData.assigned || [];
     taskCategory = taskData.category || "todo";
 
@@ -147,10 +148,12 @@ async function editTask(taskId) {
     setPriority(taskData.prio);
 
     if (taskData.subtask && Object.keys(taskData.subtask).length > 0) {
-      const subtasks = await fetchSubtasksFromDatabase(taskId);
-      renderSubtasksEdit(subtasks);
-      window.originalSubtasks = subtasks.map((subtask) => ({ ...subtask }));
+      const fetchedSubtasks = await fetchSubtasksFromDatabase(taskId);
+      originalSubtasks = fetchedSubtasks;
+      renderSubtasksEdit(fetchedSubtasks);
     }
+
+    newSubtasks = {};
   } catch (error) {
     console.error("Error loading task for editing:", error);
   }
@@ -465,10 +468,34 @@ function getCategoryEdit() {
 
 // START FUNCTIONS FOR THE SUBTASKS //
 
+let originalSubtasks = {};
+let newSubtasks = {};
+let currentTaskId = null;
+
 async function saveEditedTaskToDatabase(taskId) {
   const updatedTask = collectTaskDataEdit();
   updatedTask.assigned = selectedContacts;
+
+  const updatedSubtasks = { ...originalSubtasks, ...newSubtasks };
+
+  const subtasksToDelete = Object.keys(originalSubtasks).filter(
+    (originalId) => !updatedSubtasks[originalId]
+  );
+
   try {
+    for (const subtaskId in updatedSubtasks) {
+      await updateSubtaskInDatabase(
+        taskId,
+        subtaskId,
+        updatedSubtasks[subtaskId]
+      );
+    }
+
+    for (const subtaskId of subtasksToDelete) {
+      await deleteSubtaskFromDatabase(taskId, subtaskId);
+    }
+
+    updatedTask.subtask = updatedSubtasks;
     const response = await fetch(`${TASKS_URL}/${taskId}.json`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -482,8 +509,10 @@ async function saveEditedTaskToDatabase(taskId) {
       );
     }
 
+    originalSubtasks = { ...updatedSubtasks };
+    newSubtasks = {};
+
     console.log("Task successfully updated");
-    taskCategory = "";
     goToBoard();
   } catch (error) {
     console.error("Network error:", error);
@@ -494,8 +523,8 @@ function renderSubtasksEdit(subtasks) {
   const subtaskContainer = document.getElementById("created_subtasks_edit");
   subtaskContainer.innerHTML = "";
 
-  subtasks.forEach((subtask) => {
-    const subtaskHTML = createSubtaskHTMLEdit(subtask.title, subtask.id);
+  Object.entries(subtasks).forEach(([subtaskId, subtask]) => {
+    const subtaskHTML = createSubtaskHTMLEdit(subtask.title, subtaskId);
     subtaskContainer.innerHTML += subtaskHTML;
   });
 
@@ -517,27 +546,32 @@ function divBlur() {
 async function saveSubtaskEdit(saveButton) {
   const taskItem = saveButton.closest(".task-item");
   const inputElement = getTaskInputElement(taskItem);
-  if (!inputElement) return;
+  if (!inputElement || !currentTaskId) return;
 
   const subtaskId = getSubtaskId(taskItem);
   const newTitle = inputElement.value.trim();
 
   if (newTitle) {
-    updateSubtaskTitle(subtaskId, newTitle);
+    newSubtasks[subtaskId] = {
+      title: newTitle,
+      completed: newSubtasks[subtaskId]?.completed || false,
+    };
+
+    await updateSubtaskInDatabase(
+      currentTaskId,
+      subtaskId,
+      newSubtasks[subtaskId]
+    );
     updateDOM(taskItem, newTitle);
   }
 }
 
-async function updateSubtaskInDatabase(subtaskId, newTitle) {
-  const taskId = getSubtaskId(subtaskId);
-  const response = await fetch(
-    `${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`,
-    {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: newTitle }),
-    }
-  );
+async function updateSubtaskInDatabase(taskId, subtaskId, subtask) {
+  await fetch(`${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(subtask),
+  });
 }
 
 /**
@@ -547,31 +581,76 @@ async function updateSubtaskInDatabase(subtaskId, newTitle) {
 async function deleteSubtaskEdit(deleteButton) {
   const taskItem = deleteButton.closest(".task-item");
   const subtaskId = getSubtaskId(taskItem);
+  if (!currentTaskId) return;
 
-  await deleteSubtaskFromDatabase(subtaskId);
-  const updatedSubtasks = await fetchSubtasksFromDatabase(subtaskId);
+  const deletionSuccessful = await deleteSubtaskFromDatabase(
+    currentTaskId,
+    subtaskId
+  );
+
+  if (deletionSuccessful) {
+    taskItem.remove();
+    delete originalSubtasks[subtaskId];
+    delete newSubtasks[subtaskId];
+    console.log(`Subtask ${subtaskId} successfully deleted.`);
+  } else {
+    console.error(`Failed to delete subtask ${subtaskId} from the database.`);
+  }
+}
+
+async function deleteSubtaskFromDatabase(taskId, subtaskId) {
+  try {
+    const response = await fetch(
+      `${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`,
+      {
+        method: "DELETE",
+      }
+    );
+    return response.ok;
+  } catch (error) {
+    console.error(`Error in deleteSubtaskFromDatabase: ${error}`);
+    return false;
+  }
+}
+
+async function reassignSubtaskIds(taskId) {
+  const subtasks = await fetchSubtasksFromDatabase(taskId);
+  if (!subtasks) return;
+
+  const updatedSubtasks = {};
+  let index = 1;
+
+  for (const [oldSubtaskId, subtask] of Object.entries(subtasks)) {
+    const newSubtaskId = `subtask${index}`;
+    updatedSubtasks[newSubtaskId] = subtask;
+    index++;
+  }
+
+  await saveReorderedSubtasksToDatabase(taskId, updatedSubtasks);
   renderSubtasksEdit(updatedSubtasks);
 }
 
-async function deleteSubtaskFromDatabase(subtaskId) {
-  const taskId = getSubtaskId(subtaskId);
-  await fetch(`${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`, {
-    method: "DELETE",
-  });
+async function saveReorderedSubtasksToDatabase(taskId, reorderedSubtasks) {
+  try {
+    const response = await fetch(`${TASKS_URL}/${taskId}/subtask.json`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reorderedSubtasks),
+    });
+    if (!response.ok) {
+      console.error("Failed to update subtasks order:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error in saveReorderedSubtasksToDatabase:", error);
+  }
 }
 
 async function fetchSubtasksFromDatabase(taskId) {
   const response = await fetch(`${TASKS_URL}/${taskId}/subtask.json`);
   const subtasks = await response.json();
-  if (!subtasks) return [];
+  if (!subtasks) return {};
 
-  const mappedSubtasks = Object.keys(subtasks).map((key) => ({
-    id: key,
-    title: subtasks[key].title,
-    completed: subtasks[key].completed,
-  }));
-
-  return mappedSubtasks;
+  return subtasks;
 }
 
 /**
@@ -589,9 +668,9 @@ function getTaskInputElement(taskItem) {
  * @returns {string} - The subtask ID.
  */
 function getSubtaskId(taskItem) {
-  const subtaskId = taskItem.getAttribute("data-id");
-  return subtaskId;
+  return taskItem.getAttribute("data-id");
 }
+
 /**
  * Updates the subtask title in the data structure.
  * @param {string} subtaskId - The ID of the subtask.
@@ -620,18 +699,24 @@ function updateDOM(taskItem, newTitle) {
  * Adds a subtask to the list if the input is valid.
  */
 function addSubtaskToListEdit() {
+  const subtaskContainer = document.getElementById("created_subtasks_edit");
   const subtaskInput = document.getElementById("aT_add_subtasks_edit");
   const subtaskTitle = subtaskInput.value.trim();
+
+  const existingSubtasks = subtaskContainer.querySelectorAll(".task-item");
+  const nextSubtaskId = `subtask${existingSubtasks.length + 1}`;
 
   if (subtaskTitle !== "") {
     const newSubtask = {
       title: subtaskTitle,
-      id: generateSubtaskId(),
       completed: false,
     };
-    const subtaskHTML = createSubtaskHTMLEdit(newSubtask.title, newSubtask.id);
-    document.getElementById("created_subtasks_edit").innerHTML += subtaskHTML;
-    subtasks.push(newSubtask);
+
+    newSubtasks[nextSubtaskId] = newSubtask;
+
+    const subtaskHTML = createSubtaskHTMLEdit(newSubtask.title, nextSubtaskId);
+    subtaskContainer.innerHTML += subtaskHTML;
+
     subtaskInput.value = "";
     resetDivVisibilityEdit();
   }
@@ -679,14 +764,6 @@ function resetDivVisibilityEdit() {
 }
 
 /**
- * Generates a unique ID for a new subtask based on the current timestamp.
- * @returns {string} - The generated subtask ID.
- */
-function generateSubtaskId() {
-  return `subtask_${new Date().getTime()}`;
-}
-
-/**
  * Creates HTML for a new subtask item.
  * @param {string} subtaskText - The text of the subtask.
  * @param {string} subtaskId - The unique ID of the subtask.
@@ -699,7 +776,7 @@ function createSubtaskHTMLEdit(title, id) {
       <div class="task-controls">
         <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editSubtaskEdit(this)">
         <div class="separator_subtasks"></div>
-        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteSubtask(this)">
+        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteSubtaskEdit(this)">
       </div>
     </ul>`;
 }
@@ -713,7 +790,7 @@ function updateTaskItemForEditingEdit(taskItem, currentText) {
   taskItem.innerHTML = /*html*/ `
     <input type="text" maxlength="100" value="${currentText}" class="edit-input">
     <div class="task-controls">
-      <div class="edit-modus-btns" onclick="deleteSubtask(this)">
+      <div class="edit-modus-btns" onclick="deleteSubtaskEdit(this)">
         <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn-input delete-btn-input">
       </div>
       <div class="separator_subtasks"></div>
@@ -760,6 +837,15 @@ function addSubtaskListeners() {
         updateSubtaskTitle(subtaskId, newTitle);
         subtaskTitleElement.textContent = newTitle;
       }
+    });
+  });
+
+  const subtaskCheckboxes = document.querySelectorAll(".subtask-checkbox");
+  subtaskCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener("click", (event) => {
+      const taskId = event.target.dataset.taskId;
+      const subtaskId = event.target.dataset.subtaskId;
+      toggleSubtask(taskId, subtaskId);
     });
   });
 

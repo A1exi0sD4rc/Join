@@ -13,8 +13,8 @@ function startDrag(id) {
 
 /**
  * stops the drag action and removes the rotate class from the card element.
- * 
- * @param {number} id 
+ *
+ * @param {number} id
  */
 function endDrag(id) {
   const card = document.getElementById(id);
@@ -58,8 +58,8 @@ async function moveTo(newCategory) {
 
 /**
  * adds an border to the selected/aktive div.
- * 
- * @param {number} id 
+ *
+ * @param {number} id
  */
 function addHighlightBorder(id) {
   document.getElementById(id).classList.add("drag_area_border");
@@ -67,8 +67,8 @@ function addHighlightBorder(id) {
 
 /**
  * removes the border if no div is selected/aktive.
- * 
- * @param {number} id 
+ *
+ * @param {number} id
  */
 function removeHighlightBorder(id) {
   document.getElementById(id).classList.remove("drag_area_border");
@@ -76,8 +76,8 @@ function removeHighlightBorder(id) {
 
 /**
  * updates the task on database.
- * 
- * @param {number} task 
+ *
+ * @param {number} task
  */
 async function updateTaskInDatabase(task) {
   try {
