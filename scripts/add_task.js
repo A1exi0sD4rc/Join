@@ -41,6 +41,53 @@ const dropDowncontacts = document.getElementById("contact_list");
 const selectedContactsCon = document.getElementById("selected_contacts");
 
 /**
+ * Handles click events on the document to determine if certain UI elements (e.g. contacts or categories) should be closed or deactivated.
+ * @param {MouseEvent} event - The click event.
+ */
+function handleDocumentClick(event) {
+  const isInsideInputFieldContacts = inputFieldContacts.contains(event.target);
+  const isInsideArrowConContainer = arrowConContainer.contains(event.target);
+  const isInsideCategoryList = categoryList.contains(event.target);
+  if (inputFieldContacts.classList.contains("active-border")) {
+    if (!isInsideInputFieldContacts && !isInsideArrowConContainer) {
+      handleContactsClick(event);
+    }
+  } else if (!categoryList.classList.contains("d-none")) {
+    if (!isInsideCategoryList) {
+      handleCategoryClick(event);
+    }
+  }
+}
+
+/**
+ * Deactivates the category field if a click occurs outside of the category input field and dropdown list.
+ * @param {MouseEvent} event - The click event.
+ */
+function handleCategoryClick(event) {
+  if (
+    !inputFieldCategeory.contains(event.target) &&
+    !arrowCatContainer.contains(event.target) &&
+    !dropDownCategories.contains(event.target)
+  ) {
+    deactivateFieldCategory();
+  }
+}
+
+/**
+ * Deactivates the contacts field if a click occurs outside of the contacts input field and dropdown list.
+ * @param {MouseEvent} event - The click event.
+ */
+function handleContactsClick(event) {
+  if (
+    !inputFieldContacts.contains(event.target) &&
+    !arrowConContainer.contains(event.target) &&
+    !dropDowncontacts.contains(event.target)
+  ) {
+    deactivateFieldContacts();
+  }
+}
+
+/**
  * Sets focus on the input field and positions the cursor at the end of the text.
  * @param {HTMLElement} taskItem - The subtask item element being edited.
  */
@@ -220,7 +267,6 @@ function addSubtaskToList() {
     appendSubtaskToList(newListHTML);
     addSubtaskToArray(subtaskText, subtaskId);
     clearInputField(inputField);
-    resetDivVisibility();
     scrollToListEnd();
   }
 }
@@ -254,25 +300,6 @@ function resetDivVisibility() {
 function scrollToListEnd() {
   const subtaskContainer = document.getElementById("created_subtasks");
   subtaskContainer.scrollTop = subtaskContainer.scrollHeight;
-}
-
-/**
- * Handles click events on the document to determine if certain UI elements (e.g. contacts or categories) should be closed or deactivated.
- * @param {MouseEvent} event - The click event.
- */
-function handleDocumentClick(event) {
-  const isInsideInputFieldContacts = inputFieldContacts.contains(event.target);
-  const isInsideArrowConContainer = arrowConContainer.contains(event.target);
-  const isInsideCategoryList = categoryList.contains(event.target);
-  if (inputFieldContacts.classList.contains("active-border")) {
-    if (!isInsideInputFieldContacts && !isInsideArrowConContainer) {
-      handleContactsClick(event);
-    }
-  } else if (!categoryList.classList.contains("d-none")) {
-    if (!isInsideCategoryList) {
-      handleCategoryClick(event);
-    }
-  }
 }
 
 /**
@@ -323,34 +350,6 @@ function deactivateFieldContacts() {
   inputFieldContacts.value = "";
   renderContacts();
   inputFieldContacts.blur();
-}
-
-/**
- * Deactivates the contacts field if a click occurs outside of the contacts input field and dropdown list.
- * @param {MouseEvent} event - The click event.
- */
-function handleContactsClick(event) {
-  if (
-    !inputFieldContacts.contains(event.target) &&
-    !arrowConContainer.contains(event.target) &&
-    !dropDowncontacts.contains(event.target)
-  ) {
-    deactivateFieldContacts();
-  }
-}
-
-/**
- * Deactivates the category field if a click occurs outside of the category input field and dropdown list.
- * @param {MouseEvent} event - The click event.
- */
-function handleCategoryClick(event) {
-  if (
-    !inputFieldCategeory.contains(event.target) &&
-    !arrowCatContainer.contains(event.target) &&
-    !dropDownCategories.contains(event.target)
-  ) {
-    deactivateFieldCategory();
-  }
 }
 
 arrowConContainer.addEventListener("click", toggleDropdown);
