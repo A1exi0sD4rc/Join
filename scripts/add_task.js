@@ -226,14 +226,14 @@ function addSubtaskToList() {
 }
 
 /**
- * Clears the input field for subtasks.
+ * Clears the input field for subtasks by click on the close Btn.
  */
 function cancel_input_subtask() {
   document.getElementById("aT_add_subtasks").value = "";
 }
 
 /**
- * Hides the subtask input field and shows the buttons for canceling and saving.
+ * Hides the subtask input field activate Btn and shows the buttons for canceling and saving.
  */
 function toggleDivVisibility() {
   document.getElementById("aktive_input_addSubtask").classList.add("d-none");

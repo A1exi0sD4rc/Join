@@ -143,6 +143,7 @@ sup {
 .aT_input_title:focus,
 .resizable-textarea:focus,
 .aT_input_date:focus {
+  cursor: text;
   border-color: #29abe2;
   outline: none;
 }

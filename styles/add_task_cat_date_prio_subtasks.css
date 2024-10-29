@@ -130,6 +130,7 @@
 }
 
 .aT_input_addSubtask:focus {
+  cursor: text;
   border-color: #29abe2;
   outline: none;
 }
