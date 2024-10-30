@@ -45,7 +45,7 @@ function removeSubtaskFromArray(subtaskId) {
  */
 function createSubtaskHTML(subtaskText, subtaskId) {
   return /*html*/ `
-    <ul class="task-item" data-id="${subtaskId}">
+    <ul class="task-item" data-id="${subtaskId}" ondblclick="editSubtask(this)">
       <li class="task-text">${subtaskText}</li>
       <div class="task-controls">
         <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editSubtask(this)">

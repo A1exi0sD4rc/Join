@@ -21,6 +21,14 @@ function editSubtask(editButton) {
   focusAndSetCursorAtEnd(taskItem);
 }
 
+// function editSubtask(editButton) {
+//   const taskItem = editButton.closest(".task-item");
+//   const taskTextElement = taskItem.querySelector(".task-text");
+//   const currentText = taskTextElement.textContent;
+//   updateTaskItemForEditing(taskItem, currentText);
+//   focusAndSetCursorAtEnd(taskItem);
+// }
+
 /**
  * Retrieves the task text element from a task item.
  * @param {HTMLElement} taskItem - The subtask item element.
