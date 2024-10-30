@@ -236,9 +236,6 @@ document
     resetDivVisibility();
   });
 document
-  .getElementById("check_input_subtask")
-  .addEventListener("click", handleClickCheckInputSubtask);
-document
   .getElementById("aT_add_subtasks")
   .addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
@@ -248,6 +245,12 @@ document
   });
 
 function handleClickCheckInputSubtask() {
+  const inputField = document.getElementById("aT_add_subtasks");
+  const subtaskText = inputField.value.trim();
+  if (subtaskText === "") {
+    inputField.focus();
+    return;
+  }
   const wasAdded = addSubtaskToList();
   if (wasAdded) {
     resetDivVisibility();
