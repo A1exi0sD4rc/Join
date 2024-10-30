@@ -404,3 +404,13 @@ document.addEventListener("click", handleClickOutside);
 categoryOptions.forEach(function (option) {
   option.addEventListener("click", selectCategory);
 });
+
+function handleClickOutsideSubtaskContainer(event) {
+  const subtaskContainer = document.getElementById(
+    "aT_input_subtasks_container"
+  );
+  if (subtaskContainer && !subtaskContainer.contains(event.target)) {
+    resetDivVisibility();
+  }
+}
+document.addEventListener("click", handleClickOutsideSubtaskContainer);
