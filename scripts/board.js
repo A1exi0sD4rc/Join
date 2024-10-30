@@ -291,20 +291,20 @@ async function deleteTask() {
 }
 
 /**
- * scrolls the window up/down when the mouse is within 450 pixels of the top or bottom during the drag event.
+ * scrolls the window in the direction of the mouse drag when the cursor is near the edges of the viewport.
  *
  * @param {event} event
  */
 function scrollOnDrag(event) {
   let bounding = document.documentElement.getBoundingClientRect();
 
-  if (event.clientY < bounding.top + 1000) {
+  if (event.clientY < bounding.top + 500) {
     window.scrollBy(0, -scrollSpeed);
   }
-  else if (event.clientY > bounding.bottom - 1000) {
+  else if (event.clientY > bounding.bottom - 500) {
     window.scrollBy(0, scrollSpeed);
   }
-  
+
   if (event.clientX < bounding.left + 10) {
     window.scrollBy(-scrollSpeed, 0);
   }

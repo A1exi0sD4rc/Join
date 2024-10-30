@@ -341,8 +341,7 @@ body.no-scroll {
 }
 
 .clear_form_overlay:hover img {
-  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg)
-    brightness(91%) contrast(95%);
+  filter: invert(54%) sepia(92%) saturate(409%) hue-rotate(155deg) brightness(91%) contrast(95%);
 }
 
 .create_task_overlay {
@@ -417,8 +416,4 @@ body.no-scroll {
   padding: 4px 86px 4px 16px;
   box-sizing: border-box;
   font-size: 16px;
-}
-
-.small_card_row {
-  height: 90%;
 }

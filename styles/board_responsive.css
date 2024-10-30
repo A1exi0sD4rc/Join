@@ -178,7 +178,7 @@
     padding-left: 32px;
   }
 
-  .title_button_container_responsive{
+  .title_button_container_responsive {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -294,7 +294,7 @@
     padding-left: 16px;
   }
 
-  .title_button_container_responsive{
+  .title_button_container_responsive {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
