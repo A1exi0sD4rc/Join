@@ -227,9 +227,12 @@
 
       </div>
 
-      <div class="input_div_responsive">
-        <input class="search_task_input_responsive" id="search_task_input_responsive" oninput="filterTasksResponsive()"
-          type="search" placeholder="Find Task">
+      <div class="input_div_responisve">
+        <input class="search_task_input_responsive" 
+               id="search_task_input_responsive" 
+               oninput="filterTasksResponsive()"
+               type="search" 
+               placeholder="Find Task">
         <div class="search_icon_div">
           <div class="search_icon" onclick="filterTasks(); emptySearchInput()"><img src="assets/img/search.svg"></div>
         </div>
@@ -267,19 +270,21 @@
       <div class="task_main">
         <div class="task_topic">Await feedback<div class="plus_btn" onclick="openForm()">+</div>
         </div>
-        <div id="small_card_await" class="small_card_row"
-          ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
-          ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
-          ondragleave="removeHighlightBorder('small_card_await')">
+        <div id="small_card_await" 
+             class="small_card_row"
+             ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
+             ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
+             ondragleave="removeHighlightBorder('small_card_await')">
         </div>
       </div>
 
       <div class="task_main">
         <div class="task_topic">Done</div>
-        <div id="small_card_done" class="small_card_row"
-          ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
-          ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
-          ondragleave="removeHighlightBorder('small_card_done')">
+        <div id="small_card_done" 
+             class="small_card_row"
+             ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
+             ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
+             ondragleave="removeHighlightBorder('small_card_done')">
         </div>
       </div>
 
