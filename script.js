@@ -99,10 +99,10 @@ function generateInitials() {
   if (userName) {
     let nameParts = userName.split(" ");
     if (nameParts.length >= 2) {
-      let initials = nameParts[0][0] + nameParts[1][0];
+      let initials = (nameParts[0][0] + nameParts[1][0]).toUpperCase();
       content.innerHTML = initials;
     } else if (nameParts.length === 1) {
-      let initials = nameParts[0][0];
+      let initials = nameParts[0][0].toUpperCase();
       content.innerHTML = initials;
     } else {
       content.innerHTML = "G";

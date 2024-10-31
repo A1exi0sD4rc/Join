@@ -228,6 +228,18 @@ function validateName(name) {
 }
 
 /**
+ * Capitalizes the first letter of each word in a string.
+ * @param {string} string - The string to capitalize.
+ * @returns {string} The capitalized string.
+ */
+function capitalizeName(string) {
+  return string
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
+
+/**
  * Signs up the user by pushing their data to the Firebase Realtime Database.
  * @param {string} name - The user's name.
  * @param {string} email - The user's email address.
@@ -236,7 +248,7 @@ function validateName(name) {
 function signupUser(name, email, password) {
   const usersRef = ref(database, "users");
   push(usersRef, {
-    name: name,
+    name: capitalizeName(name),
     email: email,
     password: password,
     number: "",
