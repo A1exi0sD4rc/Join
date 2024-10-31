@@ -27,9 +27,6 @@ function render() {
             <button class="contacts-d-more-options-btn d-none" onclick="contactShowEditOption(event)"></button>  
         </div> 
     `;
-    // document.getElementById("contact-site").innerHTML += /*html*/ `
-    //     <div id="contacts-details-options-bg" class="contacts-d-more-options-bg" onclick="contactShowEditOption()"></div>  
-    // `;
     document.getElementById("contacts-div").innerHTML = "";
     document.getElementById("contacts-div").innerHTML += /*html*/ `
         <div class="contacts-new-contact-div">
