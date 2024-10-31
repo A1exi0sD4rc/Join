@@ -18,7 +18,6 @@ async function init() {
   renderContactCreated();
 }
 
-
 /**
  * Asynchronously fetches and processes contact data into a sorted list.
  *
@@ -46,7 +45,6 @@ async function getContactData() {
   }
 }
 
-
 /**
  * Asynchronously fetches contacts data from a remote server.
  *
@@ -62,7 +60,6 @@ async function getContacts() {
     console.log(error);
   }
 }
-
 
 /**
  * Organizes contacts into clusters based on the first letter of their names.
@@ -86,7 +83,6 @@ function loadNameCluster() {
   return nameClusters;
 }
 
-
 /**
  * Returns the initials of a given name.
  *
@@ -100,7 +96,6 @@ function getInitials(name) {
     .map((word) => word.charAt(0))
     .join("");
 }
-
 
 /**
  * Toggles CSS classes for contact detail view based on the screen width.
@@ -141,7 +136,6 @@ function toggleDetailClasses(i) {
   }
 }
 
-
 /**
  * Initializes the process of adding or editing a contact.
  *
@@ -158,7 +152,6 @@ function contactAddEditInit(i, action) {
   }
 }
 
-
 /**
  * Toggles the visibility of the contact add/edit interface.
  *
@@ -169,11 +162,21 @@ function toggleVisiblility(event) {
   if (event) {
     event.stopPropagation();
   } else {
-    document.getElementById("contacts-add-edit-bg").classList.toggle("contacts-add-edit-bg-show");
-    document.getElementById("contacts-add-edit").classList.toggle("contacts-translateX");
+    document
+      .getElementById("contacts-add-edit-bg")
+      .classList.toggle("contacts-add-edit-bg-show");
+    document
+      .getElementById("contacts-add-edit")
+      .classList.toggle("contacts-translateX");
   }
 }
 
+function capitalizeName(name) {
+  return name
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
 
 /**
  * Handles the addition of a new contact.
@@ -195,7 +198,6 @@ async function addContact(event) {
   setTimeout(contactCreatSuccesfull, 2000);
 }
 
-
 /**
  * Adds a new contact to the database via a POST request.
  *
@@ -204,18 +206,20 @@ async function addContact(event) {
  * @returns {Promise<Object>} A promise that resolves to the response data as a JSON object.
  */
 async function addContactToDb() {
+  lastContactCreat = document.getElementById("contacts-user-name").value;
+  lastContactCreat = capitalizeName(lastContactCreat);
+
   let response = await fetch(BASE_URL + ".json", {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(getNewContactData()),
   });
+
   lastSelected = undefined;
-  lastContactCreat = document.getElementById("contacts-user-name").value;
   return (responseToJson = await response.json());
 }
-
 
 /**
  * Retrieves the data for a new contact from the input fields.
@@ -226,14 +230,13 @@ async function addContactToDb() {
  */
 function getNewContactData() {
   let data = {
-    name: document.getElementById("contacts-user-name").value,
+    name: capitalizeName(document.getElementById("contacts-user-name").value),
     email: document.getElementById("contacts-user-email").value,
     number: document.getElementById("contacts-user-number").value,
     bgcolor: generateColor(),
   };
   return data;
 }
-
 
 /**
  * Generates a random color from a predefined list of colors.
@@ -262,7 +265,6 @@ function generateColor() {
   return colors[randomIndex];
 }
 
-
 /**
  * Toggles the success indicator for contact creation.
  *
@@ -274,7 +276,6 @@ function contactCreatSuccesfull() {
     .getElementById("contact-created")
     .classList.toggle("creation-succesfull");
 }
-
 
 /**
  * Focuses on the newly added contact in the contact list.
@@ -289,7 +290,6 @@ function focusAddedContact() {
   newContact.scrollTop = newContact.scrollHeight;
 }
 
-
 /**
  * Initializes the process of saving edited contact data.
  *
@@ -303,7 +303,6 @@ async function editSaveInit(i) {
   await init();
 }
 
-
 /**
  * Saves the edited contact information to the database.
  *
@@ -313,7 +312,9 @@ async function editSaveInit(i) {
  * @returns {Promise<Object>} A promise that resolves to the response data as a JSON object.
  */
 async function saveEdit(i) {
-  let changeUserName = document.getElementById("contacts-user-name").value;
+  let changeUserName = capitalizeName(
+    document.getElementById("contacts-user-name").value
+  );
   let changeUserEmail = document.getElementById("contacts-user-email").value;
   let changeUserNumber = document.getElementById("contacts-user-number").value;
   const response = await fetch(
@@ -334,7 +335,6 @@ async function saveEdit(i) {
   lastSelected = undefined;
   return (responseToJson = await response.json());
 }
-
 
 /**
  * Initializes the process of deleting a contact.
@@ -361,7 +361,6 @@ async function contactDeleteInit(i) {
   await init();
 }
 
-
 /**
  * Deletes a contact from the database.
  *
@@ -372,12 +371,13 @@ async function contactDeleteInit(i) {
  *                            as a JSON object.
  */
 async function deleteContact(i) {
-  let response = await fetch(BASE_URL + `/${contactKeys[i]["id"]}` + ".json", {method: "DELETE",});
+  let response = await fetch(BASE_URL + `/${contactKeys[i]["id"]}` + ".json", {
+    method: "DELETE",
+  });
 
   lastSelected = undefined;
   return (responseToJson = await response.json());
 }
-
 
 /**
  * Toggles the visibility of the edit options for a contact.
@@ -390,10 +390,14 @@ async function deleteContact(i) {
 function contactShowEditOption(event) {
   if (event) {
     event.stopPropagation();
-    document.getElementById("contact-details-option").classList.add("contacts-d-more-options-show");
+    document
+      .getElementById("contact-details-option")
+      .classList.add("contacts-d-more-options-show");
     // document.getElementById("contacts-details-options-bg").classList.add("contacts-d-more-options-show");
   } else {
-    document.getElementById("contact-details-option").classList.remove("contacts-d-more-options-show");
+    document
+      .getElementById("contact-details-option")
+      .classList.remove("contacts-d-more-options-show");
     // document.getElementById("contacts-details-options-bg").classList.add("contacts-d-more-options-show");
   }
 }
