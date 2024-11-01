@@ -124,7 +124,7 @@ function renderContactDetails(i) {
             <b>Phone</b>
             ${contactKeys[i]['number']}
         </div>
-        <div id="contact-details-option" class="contacts-d-more-options-div">
+        <div id="contact-details-option" class="contacts-d-more-options-div" onclick="contactShowEditOption()">
                 <button class="contact-details-mobil-edit-btn" onclick="contactShowEditOption(); contactAddEditInit(${i}, 'edit')">Edit</button>
                 <button class="contact-details-mobil-delete-btn" onclick="contactDeleteInit(${i})">Delete</button>
         </div> 
@@ -176,9 +176,17 @@ function renderEditContact(i) {
             </svg>
             <form class="contacts-edit-input-btn">
                 <div class="contacts-edit-input">
-                    <input id="contacts-user-name" class="contacts-edit-name contacts-edit-inputfield" type="text" value="${contactKeys[i]['name']}">
+                    <div><input id="contacts-user-name" class="contacts-edit-name contacts-edit-inputfield" type="text" value="${contactKeys[i]['name']}">
+                    <div id="conacts-name-error" class="contacts-input-error"></div>
+                </div>
+                <div>
                     <input id="contacts-user-email" class="contacts-edit-email contacts-edit-inputfield" type="text" value="${contactKeys[i]['email']}">
+                    <div id="conacts-email-error" class="contacts-input-error"></div>
+                </div>
+                <div>
                     <input id="contacts-user-number" class="contacts-edit-number contacts-edit-inputfield" type="text" value="${contactKeys[i]['number']}">
+                    <div id="conacts-number-error" class="contacts-input-error"></div>
+                </div>
                 </div>
                 <div>
                     <button class="contacts-edit-delete-btn"  onclick="contactDeleteInit(${i})">Delete</button>
@@ -217,9 +225,18 @@ function renderAddNewContact() {
             <img class="contacts-add-section-img" src="./assets/img/no_user.svg">
             <form class="contacts-edit-input-btn">
                 <div class="contacts-edit-input">
-                    <input required id="contacts-user-name" class="contacts-edit-name contacts-edit-inputfield" type="text" placeholder="Name">
-                    <input required id="contacts-user-email" class="contacts-edit-email contacts-edit-inputfield" type="email" placeholder="Email">
-                    <input required id="contacts-user-number" class="contacts-edit-number contacts-edit-inputfield" type="tel" placeholder="Phone">
+                    <div>
+                        <input required id="contacts-user-name" class="contacts-edit-name contacts-edit-inputfield" type="text" placeholder="Name">
+                        <div id="conacts-name-error" class="contacts-input-error"></div>
+                    </div>
+                    <div>
+                        <input required id="contacts-user-email" class="contacts-edit-email contacts-edit-inputfield" type="email" placeholder="Email">
+                        <div id="conacts-email-error" class="contacts-input-error"></div>
+                    </div>
+                    <div>
+                        <input required id="contacts-user-number" class="contacts-edit-number contacts-edit-inputfield" type="tel" placeholder="Phone">
+                        <div id="conacts-number-error" class="contacts-input-error"></div>
+                    </div>
                 </div>
                 <div>
                     <button class="contacts-add-cancel-btn contacts-img-margin" onclick="toggleVisiblility()">Cancel <img src="./assets/img/close.svg"></button>
@@ -228,4 +245,9 @@ function renderAddNewContact() {
             </form>
         </div>
     `;
+}
+
+
+function addCloseFunctionToDetails() {
+    window.screen.width('1000px')
 }

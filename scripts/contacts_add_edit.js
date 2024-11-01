@@ -115,6 +115,7 @@ function getNewContactData() {
 * @returns {Promise<void>} A promise that resolves once the edit is saved and the data is reinitialized.
 */
 async function editSaveInit(i) {
+    // await validateName();
     await saveEdit(i);
     init();
 }
@@ -151,13 +152,4 @@ async function saveEdit(i) {
     );
     lastSelected = undefined;
     return (responseToJson = await response.json());
-}
-
-
-function validateName() {
-    let name = document.getElementById('contacts-user-name').value;
-
-    if (name == "") {
-        setError(name, "Name is required")
-    }
 }
