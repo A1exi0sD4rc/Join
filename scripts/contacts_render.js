@@ -1,3 +1,6 @@
+window.addEventListener('resize', addCloseFunctionToDetails);
+
+
 /**
  * Renders the contact management interface.
  * 
@@ -249,5 +252,10 @@ function renderAddNewContact() {
 
 
 function addCloseFunctionToDetails() {
-    window.screen.width('1000px')
+    const contactsDiv = document.getElementById('contacts-h-d-div');
+    if (window.innerWidth < 1000) {
+        contactsDiv.setAttribute("onclick", "contactShowEditOption()");
+    } else {
+        contactsDiv.setAttribute("onclick", "");
+    }
 }
