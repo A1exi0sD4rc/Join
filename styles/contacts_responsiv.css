@@ -140,7 +140,7 @@
         align-items: center;
         flex-direction: column;
         margin-top: 48px;
-        min-width: 300px;
+        min-width: fit-content;
     }
 
     .contacts-contact-details-h-edit-delete {
