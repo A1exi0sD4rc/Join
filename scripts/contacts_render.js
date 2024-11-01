@@ -169,6 +169,21 @@ function renderContactCreated() {
 
 
 /**
+ * Renders a message indicating that a contact has been successfully edited.
+ *
+ * @function renderContactCreated
+ * @returns {void} This function does not return a value.
+ */
+function renderContactEditSucessfull() {
+    document.getElementById('contacts-site').innerHTML += /*html*/`
+        <div id="contact-edited" class="contact-created">
+            Contact succesfully edited
+        </div>  
+    `;
+}
+
+
+/**
  * Renders the edit contact interface for a specific contact.
  *
  * @param {number} i - The index of the contact in the `contactKeys` array 
@@ -278,9 +293,12 @@ function renderAddNewContact() {
  */
 function addCloseFunctionToDetails() {
     const contactsDiv = document.getElementById('contacts-h-d-div');
+    let attributeSet = false;
     if (window.innerWidth < 1000) {
         contactsDiv.setAttribute("onclick", "contactShowEditOption()");
-    } else {
+        attributeSet = true;
+    } 
+    if (window.innerWidth > 1000 && attributeSet == true) {
         contactsDiv.setAttribute("onclick", "");
     }
 }

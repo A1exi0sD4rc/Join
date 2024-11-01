@@ -16,6 +16,7 @@ async function init() {
   render();
   renderContacts();
   renderContactCreated();
+  renderContactEditSucessfull();
 }
 
 /**
@@ -176,17 +177,17 @@ function contactCreatSuccesfull() {
     .classList.toggle("creation-succesfull");
 }
 
+
 /**
- * Focuses on the newly added contact in the contact list.
+ * Toggles the success indicator for contact editing.
  *
- * @function focusAddedContact
+ * @function contactCreatSuccesfull
  * @returns {void} This function does not return a value.
  */
-function focusAddedContact() {
-  let newContact = document.getElementById(
-    `${contactKeys.findIndex((contact) => contact.name === lastContactCreat)}`
-  );
-  newContact.scrollTop = newContact.scrollHeight;
+function contactEditSuccesfull() {
+  document
+    .getElementById("contact-edited")
+    .classList.toggle("creation-succesfull");
 }
 
 
@@ -247,11 +248,9 @@ function contactShowEditOption(event) {
     document
       .getElementById("contact-details-option")
       .classList.add("contacts-d-more-options-show");
-    // document.getElementById("contacts-details-options-bg").classList.add("contacts-d-more-options-show");
   } else {
     document
       .getElementById("contact-details-option")
       .classList.remove("contacts-d-more-options-show");
-    // document.getElementById("contacts-details-options-bg").classList.add("contacts-d-more-options-show");
   }
 }

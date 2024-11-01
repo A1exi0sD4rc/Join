@@ -65,7 +65,6 @@ async function addContact(event) {
     renderContactDetails(
         contactKeys.findIndex((contact) => contact.name === lastContactCreat)
     );
-    focusAddedContact();
     contactCreatSuccesfull();
     setTimeout(contactCreatSuccesfull, 2000);
 }
@@ -122,9 +121,11 @@ function getNewContactData() {
 * @returns {Promise<void>} A promise that resolves once the edit is saved and the data is reinitialized.
 */
 async function editSaveInit(i) {
-    // await validateName();
     await saveEdit(i);
-    init();
+    await init();
+    renderContactDetails(i);
+    contactEditSuccesfull();
+    setTimeout(contactEditSuccesfull, 2000);
 }
 
 
