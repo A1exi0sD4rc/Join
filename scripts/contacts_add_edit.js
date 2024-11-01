@@ -35,6 +35,13 @@ function toggleVisiblility(event) {
 }
 
 
+/**
+ * Capitalizes the first letter of each word in a given name string.
+ * The function converts all other letters to lowercase.
+ *
+ * @param {string} name - The name string to capitalize.
+ * @returns {string} The capitalized name.
+ */
 function capitalizeName(name) {
     return name
         .split(" ")

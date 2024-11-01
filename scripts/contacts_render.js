@@ -1,3 +1,21 @@
+/**
+ * Calls the `addCloseFunctionToDetails` function to update the `onclick` 
+ * attribute of the contacts div based on the current window width.
+ *
+ * @function
+ * @returns {void}
+ */
+addCloseFunctionToDetails();
+
+
+/**
+ * Adds an event listener to the window that triggers the specified function
+ * whenever the window is resized.
+ *
+ * @function
+ * @param {string} 'resize' - The event type to listen for.
+ * @param {Function} addCloseFunctionToDetails - The function to execute when the event occurs.
+ */
 window.addEventListener('resize', addCloseFunctionToDetails);
 
 
@@ -250,7 +268,14 @@ function renderAddNewContact() {
     `;
 }
 
-
+/**
+ * Updates the `onclick` attribute of the contacts div based on the current window width.
+ * If the window width is less than 1000 pixels, it sets the `onclick` attribute to call 
+ * `contactShowEditOption()`. Otherwise, it clears the `onclick` attribute.
+ *
+ * @function
+ * @returns {void}
+ */
 function addCloseFunctionToDetails() {
     const contactsDiv = document.getElementById('contacts-h-d-div');
     if (window.innerWidth < 1000) {
