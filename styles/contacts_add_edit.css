@@ -80,6 +80,7 @@
 }
 
 .contacts-edit-section {
+  height: 100px;
   position: relative;
   top: 140px;
   left: 20px;
@@ -93,6 +94,7 @@
 }
 
 .contacts-edit-input-btn {
+  height: 100px;
   max-width: 422px;
 }
 
