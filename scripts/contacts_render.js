@@ -275,7 +275,7 @@ function renderAddNewContact() {
       `;
   contactsAddEditDiv.innerHTML += /*html*/ `
           <div class="contacts-add-section">
-              <button class="contacts-add-close-btn" onclick="toggleVisibility()"></button>
+              <button class="contacts-add-close-btn" onclick="toggleVisiblility()"></button>
               <img class="contacts-add-section-img" src="./assets/img/no_user.svg">
               <form id="contactForm" class="contacts-edit-input-btn" novalidate>
                   <div class="contacts-edit-input">
@@ -293,7 +293,7 @@ function renderAddNewContact() {
                       </div>
                   </div>
                   <div>
-                      <button class="contacts-add-cancel-btn contacts-img-margin" onclick="toggleVisibility()">Cancel <img src="./assets/img/close.svg"></button>
+                      <button class="contacts-add-cancel-btn contacts-img-margin" onclick="toggleVisiblility()">Cancel <img src="./assets/img/close.svg"></button>
                       <input type="submit" value="Create contact" class="contacts-add-create-btn contacts-img-margin">
                   </div>
               </form>
