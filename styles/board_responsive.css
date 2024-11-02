@@ -116,6 +116,64 @@
   }
 }
 
+@media (max-height: 900px) {
+  .big_card {
+    width: 85% !important;
+    max-height: 70% !important;
+    margin-top: 10%;
+    padding: 10px !important;
+    padding-bottom: 0 !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .big_card_close {
+    margin-right: 15px !important;
+  }
+
+  .big_card_bg {
+    align-items: normal !important;
+  }
+
+  .big_card::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+  }
+
+  .big_card::-webkit-scrollbar-thumb {
+    background-color: #a8a8a8;
+    border-radius: 8px;
+  }
+
+  .big_card::-webkit-scrollbar-button:vertical:decrement,
+  .big_card::-webkit-scrollbar-button:vertical:increment {
+    height: 15px;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .big_card::-webkit-scrollbar-button:vertical:decrement {
+    background-image: url("../assets/img/scrollbarArrowUp.svg");
+    background-repeat: no-repeat;
+  }
+
+  .big_card::-webkit-scrollbar-button:vertical:increment {
+    background-image: url("../assets/img/scrollbarArrowDown.svg");
+    background-repeat: no-repeat;
+  }
+
+  .big_card::-webkit-scrollbar-button:vertical:end:decrement,
+  .big_card::-webkit-scrollbar-button:vertical:start:increment {
+    display: none;
+  }
+
+  .big_card::-webkit-scrollbar-track,
+  .big_card::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+}
+
 @media (max-width: 750px) {
   .board_content {
     margin-left: -15px;
@@ -155,7 +213,6 @@
 }
 
 @media (max-width: 675px) {
-
   .board_header,
   .title_span,
   .search_add_task,
@@ -225,6 +282,7 @@
 
   .assigned_div {
     width: 300px;
+    max-height: fit-content;
   }
 
   .big_card_art_close {
@@ -286,7 +344,6 @@
 }
 
 @media (max-width: 385px) {
-
   .board_header_responsive {
     width: 320px;
     padding-top: 96px;
