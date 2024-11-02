@@ -6,14 +6,13 @@
  * @param {string} action - The action to perform, either "edit" for editing a contact or any other value for adding a new contact.
  */
 function contactAddEditInit(i, action) {
-    toggleVisiblility();
-    if (action == "edit") {
-        renderEditContact(i);
-    } else {
-        renderAddNewContact();
-    }
+  toggleVisiblility();
+  if (action == "edit") {
+    renderEditContact(i);
+  } else {
+    renderAddNewContact();
+  }
 }
-
 
 /**
  * Toggles the visibility of the contact add/edit interface.
@@ -22,18 +21,17 @@ function contactAddEditInit(i, action) {
  * @param {Event} [event] - An optional event object to prevent event propagation.
  */
 function toggleVisiblility(event) {
-    if (event) {
-        event.stopPropagation();
-    } else {
-        document
-            .getElementById("contacts-add-edit-bg")
-            .classList.toggle("contacts-add-edit-bg-show");
-        document
-            .getElementById("contacts-add-edit")
-            .classList.toggle("contacts-translateX");
-    }
+  if (event) {
+    event.stopPropagation();
+  } else {
+    document
+      .getElementById("contacts-add-edit-bg")
+      .classList.toggle("contacts-add-edit-bg-show");
+    document
+      .getElementById("contacts-add-edit")
+      .classList.toggle("contacts-translateX");
+  }
 }
-
 
 /**
  * Capitalizes the first letter of each word in a given name string.
@@ -43,12 +41,11 @@ function toggleVisiblility(event) {
  * @returns {string} The capitalized name.
  */
 function capitalizeName(name) {
-    return name
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(" ");
+  return name
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
 }
-
 
 /**
  * Handles the addition of a new contact.
@@ -59,16 +56,16 @@ function capitalizeName(name) {
  * @returns {Promise<void>} A promise that resolves once the contact is added and the UI is updated.
  */
 async function addContact(event) {
-    event.preventDefault();
-    await addContactToDb();
-    await init();
-    renderContactDetails(
-        contactKeys.findIndex((contact) => contact.name === lastContactCreat)
-    );
-    contactCreatSuccesfull();
-    setTimeout(contactCreatSuccesfull, 2000);
+  if (event) event.preventDefault();
+  await addContactToDb();
+  await init();
+  renderContactDetails(
+    contactKeys.findIndex((contact) => contact.name === lastContactCreat)
+  );
+  contactCreatSuccesfull();
+  console.log("Contact created successfully!");
+  setTimeout(contactCreatSuccesfull, 2000);
 }
-
 
 /**
  * Adds a new contact to the database via a POST request.
@@ -78,21 +75,20 @@ async function addContact(event) {
  * @returns {Promise<Object>} A promise that resolves to the response data as a JSON object.
  */
 async function addContactToDb() {
-    lastContactCreat = document.getElementById("contacts-user-name").value;
-    lastContactCreat = capitalizeName(lastContactCreat);
+  lastContactCreat = document.getElementById("contacts-user-name").value;
+  lastContactCreat = capitalizeName(lastContactCreat);
 
-    let response = await fetch(BASE_URL + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(getNewContactData()),
-    });
+  let response = await fetch(BASE_URL + ".json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(getNewContactData()),
+  });
 
-    lastSelected = undefined;
-    return (responseToJson = await response.json());
+  lastSelected = undefined;
+  return (responseToJson = await response.json());
 }
-
 
 /**
  * Retrieves the data for a new contact from the input fields.
@@ -102,32 +98,30 @@ async function addContactToDb() {
  *                   `name`, `email`, `number`, and `bgcolor`.
  */
 function getNewContactData() {
-    let data = {
-        name: capitalizeName(document.getElementById("contacts-user-name").value),
-        email: document.getElementById("contacts-user-email").value,
-        number: document.getElementById("contacts-user-number").value,
-        bgcolor: generateColor(),
-    };
-    return data;
+  let data = {
+    name: capitalizeName(document.getElementById("contacts-user-name").value),
+    email: document.getElementById("contacts-user-email").value,
+    number: document.getElementById("contacts-user-number").value,
+    bgcolor: generateColor(),
+  };
+  return data;
 }
-
 
 /**
-* Initializes the process of saving edited contact data.
-*
-* @async
-* @function editSaveInit
-* @param {number|string} i - The index or ID of the contact to be edited.
-* @returns {Promise<void>} A promise that resolves once the edit is saved and the data is reinitialized.
-*/
+ * Initializes the process of saving edited contact data.
+ *
+ * @async
+ * @function editSaveInit
+ * @param {number|string} i - The index or ID of the contact to be edited.
+ * @returns {Promise<void>} A promise that resolves once the edit is saved and the data is reinitialized.
+ */
 async function editSaveInit(i) {
-    await saveEdit(i);
-    await init();
-    renderContactDetails(i);
-    contactEditSuccesfull();
-    setTimeout(contactEditSuccesfull, 2000);
+  await saveEdit(i);
+  await init();
+  renderContactDetails(i);
+  contactEditSuccesfull();
+  setTimeout(contactEditSuccesfull, 2000);
 }
-
 
 /**
  * Saves the edited contact information to the database.
@@ -138,26 +132,26 @@ async function editSaveInit(i) {
  * @returns {Promise<Object>} A promise that resolves to the response data as a JSON object.
  */
 async function saveEdit(i) {
-    let changeUserName = capitalizeName(
-        document.getElementById("contacts-user-name").value
-    );
-    let changeUserEmail = document.getElementById("contacts-user-email").value;
-    let changeUserNumber = document.getElementById("contacts-user-number").value;
-    const response = await fetch(
-        BASE_URL + `/${contactKeys[i]["id"]}` + ".json",
-        {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(
-                (data = {
-                    name: `${changeUserName}`,
-                    email: `${changeUserEmail}`,
-                    number: `${changeUserNumber}`,
-                    bgcolor: contactKeys[i]["bgcolor"],
-                })
-            ),
-        }
-    );
-    lastSelected = undefined;
-    return (responseToJson = await response.json());
+  let changeUserName = capitalizeName(
+    document.getElementById("contacts-user-name").value
+  );
+  let changeUserEmail = document.getElementById("contacts-user-email").value;
+  let changeUserNumber = document.getElementById("contacts-user-number").value;
+  const response = await fetch(
+    BASE_URL + `/${contactKeys[i]["id"]}` + ".json",
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(
+        (data = {
+          name: `${changeUserName}`,
+          email: `${changeUserEmail}`,
+          number: `${changeUserNumber}`,
+          bgcolor: contactKeys[i]["bgcolor"],
+        })
+      ),
+    }
+  );
+  lastSelected = undefined;
+  return (responseToJson = await response.json());
 }

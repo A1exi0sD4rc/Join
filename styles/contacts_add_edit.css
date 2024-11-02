@@ -37,7 +37,10 @@
 .contacts-input-error {
   height: 12px;
   width: 100%;
+  color: #ff8190;
   font-size: 12px;
+  padding-top: 5px;
+  padding-left: 10px;
 }
 
 /* contact edit */
