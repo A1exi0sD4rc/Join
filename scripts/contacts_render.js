@@ -7,6 +7,7 @@
  */
 addCloseFunctionToDetails();
 
+
 /**
  * Adds an event listener to the window that triggers the specified function
  * whenever the window is resized.
@@ -16,6 +17,7 @@ addCloseFunctionToDetails();
  * @param {Function} addCloseFunctionToDetails - The function to execute when the event occurs.
  */
 window.addEventListener("resize", addCloseFunctionToDetails);
+
 
 /**
  * Renders the contact management interface.
@@ -57,6 +59,7 @@ function render() {
         <button class="contacts-add-contact-mobil" onclick="contactAddEditInit('add')"></button>
     `;
 }
+
 
 /**
  * Renders the list of contacts grouped by initial letters.
@@ -111,6 +114,7 @@ function renderContacts() {
   }
 }
 
+
 /**
  * Renders the details of a specific contact.
  *
@@ -158,6 +162,7 @@ function renderContactDetails(i) {
     `;
 }
 
+
 /**
  * Renders a message indicating that a contact has been successfully created.
  *
@@ -172,6 +177,7 @@ function renderContactCreated() {
     `;
 }
 
+
 /**
  * Renders a message indicating that a contact has been successfully edited.
  *
@@ -185,6 +191,7 @@ function renderContactEditSucessfull() {
         </div>  
     `;
 }
+
 
 /**
  * Renders the edit contact interface for a specific contact.
@@ -250,6 +257,7 @@ function renderEditContact(i) {
     i
   );
 }
+
 
 /**
  * Renders the interface for adding a new contact.

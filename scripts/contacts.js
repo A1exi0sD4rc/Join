@@ -4,6 +4,7 @@ let lastContactCreat;
 let BASE_URL = `https://join-337-userlist-default-rtdb.firebaseio.com/contacts`;
 let selectedContacts = [];
 
+
 /**
  * Initializes the application by performing the necessary setup operations.
  *
@@ -18,6 +19,7 @@ async function init() {
   renderContactCreated();
   renderContactEditSucessfull();
 }
+
 
 /**
  * Asynchronously fetches and processes contact data into a sorted list.
@@ -42,9 +44,9 @@ async function getContactData() {
       });
     }
     contactKeys.sort((a, b) => a.name.localeCompare(b.name));
-    console.log(contactKeys);
   }
 }
+
 
 /**
  * Asynchronously fetches contacts data from a remote server.
@@ -61,6 +63,7 @@ async function getContacts() {
     console.log(error);
   }
 }
+
 
 /**
  * Organizes contacts into clusters based on the first letter of their names.
@@ -84,6 +87,7 @@ function loadNameCluster() {
   return nameClusters;
 }
 
+
 /**
  * Returns the initials of a given name.
  *
@@ -97,6 +101,7 @@ function getInitials(name) {
     .map((word) => word.charAt(0))
     .join("");
 }
+
 
 /**
  * Toggles CSS classes for contact detail view based on the screen width.
@@ -145,25 +150,11 @@ function toggleDetailClasses(i) {
  * @returns {string} A randomly selected color from the predefined list.
  */
 function generateColor() {
-  const colors = [
-    "lightcoral",
-    "green",
-    "blueviolet",
-    "lightblue",
-    "darkmagenta",
-    "orangered",
-    "purple",
-    "lightgreen",
-    "indigo",
-    "teal",
-    "peru",
-    "midnightblue",
-    "aquamarine",
-    "chartreuse",
-  ];
+  const colors = ["lightcoral", "green", "blueviolet", "lightblue", "darkmagenta", "orangered", "purple", "lightgreen", "indigo", "teal", "peru", "midnightblue", "aquamarine", "chartreuse"];
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
+
 
 /**
  * Toggles the success indicator for contact creation.
@@ -216,6 +207,7 @@ async function contactDeleteInit(i) {
   await init();
 }
 
+
 /**
  * Deletes a contact from the database.
  *
@@ -233,6 +225,7 @@ async function deleteContact(i) {
   lastSelected = undefined;
   return (responseToJson = await response.json());
 }
+
 
 /**
  * Toggles the visibility of the edit options for a contact.

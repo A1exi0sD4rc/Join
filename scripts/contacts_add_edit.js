@@ -14,6 +14,7 @@ function contactAddEditInit(i, action) {
   }
 }
 
+
 /**
  * Toggles the visibility of the contact add/edit interface.
  *
@@ -33,6 +34,7 @@ function toggleVisiblility(event) {
   }
 }
 
+
 /**
  * Capitalizes the first letter of each word in a given name string.
  * The function converts all other letters to lowercase.
@@ -46,6 +48,7 @@ function capitalizeName(name) {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
 }
+
 
 /**
  * Handles the addition of a new contact.
@@ -63,9 +66,9 @@ async function addContact(event) {
     contactKeys.findIndex((contact) => contact.name === lastContactCreat)
   );
   contactCreatSuccesfull();
-  console.log("Contact created successfully!");
   setTimeout(contactCreatSuccesfull, 2000);
 }
+
 
 /**
  * Adds a new contact to the database via a POST request.
@@ -90,6 +93,7 @@ async function addContactToDb() {
   return (responseToJson = await response.json());
 }
 
+
 /**
  * Retrieves the data for a new contact from the input fields.
  *
@@ -107,6 +111,7 @@ function getNewContactData() {
   return data;
 }
 
+
 /**
  * Initializes the process of saving edited contact data.
  *
@@ -122,6 +127,7 @@ async function editSaveInit(i) {
   contactEditSuccesfull();
   setTimeout(contactEditSuccesfull, 2000);
 }
+
 
 /**
  * Saves the edited contact information to the database.
