@@ -225,7 +225,7 @@ function renderEditContact(i) {
                 </div>
                 </div>
                 <div>
-                    <button class="contacts-edit-delete-btn"  onclick="contactDeleteInit(${i})">Delete</button>
+                    <input type="button" value="Delete" class="contacts-edit-delete-btn"  onclick="contactDeleteInit(${i})">
                     <input type="button" value="Save" id="contacts-edit-save-btn${i}" class="contacts-edit-save-btn contacts-img-margin" onclick="editSaveInit(${i})">
                 </div>
             </form>

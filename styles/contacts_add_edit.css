@@ -136,6 +136,8 @@
   transition: all 125ms ease-in-out;
   margin-right: 16px;
   cursor: pointer;
+  font-family: "Inter", system-ui;
+  font-size: 16px;
 }
 
 .contacts-edit-delete-btn:hover {
