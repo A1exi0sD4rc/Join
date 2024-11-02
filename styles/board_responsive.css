@@ -243,7 +243,7 @@
   }
 
   .big_card {
-    width: 310px;
+    width: 380px;
   }
 
   .add_task_btn_txt {
@@ -349,6 +349,11 @@
     padding-top: 96px;
     padding-bottom: 48px;
     padding-left: 16px;
+  }
+
+  .big_card {
+    width: 300px;
+    padding: 15px;
   }
 
   .title_button_container_responsive {
