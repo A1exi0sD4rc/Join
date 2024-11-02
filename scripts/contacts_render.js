@@ -283,6 +283,7 @@ function renderAddNewContact() {
     `;
 }
 
+
 /**
  * Updates the `onclick` attribute of the contacts div based on the current window width.
  * If the window width is less than 1000 pixels, it sets the `onclick` attribute to call 
