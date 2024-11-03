@@ -195,8 +195,8 @@ body {
   }
 
   h1 {
-    font-size: 47px !important;
-    line-height: 56.4px !important;
+    font-size: 40px !important;
+    line-height: 50px !important;
   }
 
   .login-buttons-container {
@@ -287,10 +287,6 @@ body {
     width: 290px !important;
   }
 
-  .login-window {
-    width: 310px;
-  }
-
   .checkbox-container {
     width: 290px !important;
   }
@@ -325,6 +321,7 @@ body {
 }
 
 .login-window {
+  width: 310px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -543,8 +540,30 @@ input[type="password"]::-ms-clear {
   }
 
   .login-window {
+    height: 350px;
+    gap: 5px !important;
+    margin-top: 20px !important;
+  }
+
+  .content {
     height: 420px;
-    margin-top: 15px !important;
+    width: 396px;
+    margin-top: 30px;
+  }
+
+  .h1-blueline {
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .heigt48 {
+    height: 40px;
+  }
+  .pdng1524 {
+    padding: 0;
   }
 
   .input-fields {
