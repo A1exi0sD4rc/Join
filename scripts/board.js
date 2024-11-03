@@ -317,23 +317,8 @@ document.addEventListener("drag", scrollOnDrag);
  * Opens the task form.
  *
  */
-// function openForm() {
-//   clearAll();
-//   if (window.innerWidth <= 400) {
-//     window.location.href = "./add_task.html";
-//   } else {
-//     openOverlay();
-//     const taskForm = document.getElementById("taskForm");
-//     taskForm.style.visibility = "visible";
-//     taskForm.classList.remove("closing");
-//     taskForm.classList.add("active");
-//     document.body.classList.add("no-scroll");
-//   }
-// }
-
 function openForm() {
   clearAll();
-
   if (window.innerWidth <= 400) {
     window.location.href = "./add_task.html";
   } else {
@@ -343,9 +328,7 @@ function openForm() {
     taskForm.classList.remove("closing");
     taskForm.classList.add("active");
     document.body.classList.add("no-scroll");
-
-    // Scrollt die taskForm-Div nach oben
-    taskForm.scrollTo(0, 0); // Sofort nach oben scrollen
+    taskForm.scrollTo(0, 0);
   }
 }
 
