@@ -73,7 +73,7 @@
 
   .form_area {
     height: calc(100vh - 105px);
-    padding-top: 80px;
+    padding-top: 40px;
   }
 
   .add_task_bottom_section {
@@ -180,7 +180,7 @@
   }
 
   .add_task_h1 {
-    font-size: 45px;
+    font-size: 35px;
   }
 
   .aT_input_labels {
