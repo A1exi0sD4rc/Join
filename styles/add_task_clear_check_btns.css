@@ -199,6 +199,7 @@ li {
 }
 
 .task-message.show {
+  display: flex;
   bottom: 50%;
   opacity: 1;
 }
