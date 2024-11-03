@@ -535,8 +535,8 @@ p {
 
 @media (max-width: 520px) {
   .summary-card {
-    width: 188px;
-    height: 125px;
+    width: 100%;
+    height: 100px;
   }
 
   .summary-card-big {
@@ -600,25 +600,25 @@ p {
 
 @media (max-width: 430px) {
   .summary-card-big {
-    width: 399px;
-    height: 140px;
+    width: 350px;
+    height: 100px;
   }
 
   .summary-card-small {
     width: 90px;
-    height: 100px;
+    height: 80px;
   }
 
   .number-container {
-    font-size: 48px;
+    font-size: 35px;
   }
 
   .summary-title-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 20px;
     gap: 15px;
+    margin-bottom: 10px !important;
   }
 
   .mobile-seperator {
