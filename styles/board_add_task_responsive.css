@@ -14,6 +14,7 @@
   }
 
   .add_task_h1 {
+    margin-left: 0;
     font-size: 48px;
     background-color: unset;
     position: unset;
@@ -46,7 +47,7 @@
   }
 
   .add_task_bottom_overlay {
-    margin-top: 10px;
+    margin-top: 44px;
     width: 344px;
     position: relative;
     flex-direction: column;
@@ -70,11 +71,28 @@
     width: 100px;
   }
   .task-message {
-    bottom: -300px;
+    bottom: -500px;
   }
 
   .aT_subtasks_container_overlay {
     height: 151px;
+  }
+
+  .aT_input_addSubtask {
+    width: 340px;
+  }
+
+  ul {
+    padding-left: 40px;
+  }
+  .edit-input {
+    margin-left: -40px;
+    width: 114%;
+  }
+
+  li {
+    line-height: 32px;
+    width: 23ch;
   }
 }
 
