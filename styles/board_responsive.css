@@ -411,13 +411,3 @@
     width: 929px;
   }
 }
-
-@media (max-width: 1000px) {
-  .task-form.active {
-    display: none;
-  }
-
-  .overlay.active {
-    display: none;
-  }
-}
