@@ -314,8 +314,7 @@
   }
 
   .small_card_row {
-    display: flex;
-    flex-direction: column;
+
     gap: 16px;
   }
 

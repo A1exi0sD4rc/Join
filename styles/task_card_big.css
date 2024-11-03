@@ -13,7 +13,6 @@
 .big_card {
   position: relative;
   width: 525px;
-  height: 83vh;
   border-radius: 30px;
   gap: 24px;
   display: flex;
