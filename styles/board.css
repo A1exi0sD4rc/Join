@@ -203,7 +203,6 @@ body {
 
 .no_tasks_txt {
   height: 19px;
-  font-family: "Open Sans";
   font-size: 16px;
   font-weight: 400;
   color: #a8a8a8;
@@ -370,13 +369,12 @@ body.no-scroll {
 }
 
 .task_content {
-  width: 1208px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   top: 336px;
   left: 232px;
   gap: 26px;
+  margin-left: 64px;
 }
 
 .task_main {

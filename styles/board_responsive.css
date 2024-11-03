@@ -118,11 +118,6 @@
 
 @media (max-height: 900px) {
   .big_card {
-    width: 85% !important;
-    max-height: 70% !important;
-    margin-top: 10%;
-    padding: 10px !important;
-    padding-bottom: 0 !important;
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -179,6 +174,11 @@
     margin-left: -15px;
   }
 
+  .title_big {
+    font-size: 30px;
+    font-weight: 400;
+  }
+
   .board_header {
     padding-top: 96px;
     display: flex;
@@ -209,6 +209,17 @@
 
   .search_task_input {
     width: 200px;
+  }
+
+  .title_span{
+    height: 73px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 40px;
   }
 }
 
@@ -286,7 +297,7 @@
   }
 
   .big_card_art_close {
-    width: 300px;
+    width: 290px;
   }
 
   h1 {
@@ -352,9 +363,19 @@
   }
 
   .big_card {
-    width: 300px;
-    padding: 15px;
+    width: 290px;
+    padding: 10px;
   }
+
+  .title_big,
+  .big_description,
+  .big_due,
+  .big_prio,
+  .big_assigned,
+  .big_subs{
+    width: 290px;
+  }
+
 
   .title_button_container_responsive {
     display: flex;
