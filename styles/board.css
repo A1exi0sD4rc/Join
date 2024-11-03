@@ -375,11 +375,13 @@ body.no-scroll {
   left: 232px;
   gap: 26px;
   margin-left: 64px;
+  overflow-x: hidden;
 }
 
 .task_main {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .task_topic {
