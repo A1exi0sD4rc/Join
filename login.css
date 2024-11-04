@@ -58,7 +58,7 @@ body {
 
 .error-position {
   position: absolute;
-  left: 10px;
+  left: 25px;
   top: 60px;
   color: #ff8190;
   font-size: 12px;

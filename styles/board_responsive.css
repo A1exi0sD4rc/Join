@@ -118,8 +118,9 @@
 
 @media (max-height: 900px) {
   .big_card {
-    overflow-y: auto;
-    overflow-x: hidden;
+    height: 85vh;
+    border-right: 10px solid transparent;
+    border-radius: 0;
   }
 
   .big_card_close {
@@ -211,7 +212,7 @@
     width: 200px;
   }
 
-  .title_span{
+  .title_span {
     height: 73px;
     display: flex;
     justify-content: center;
@@ -255,6 +256,14 @@
 
   .big_card {
     width: 380px;
+  }
+
+  .big_card::-webkit-scrollbar-button:vertical:increment {
+    height: 40px;
+  }
+
+  .big_card::-webkit-scrollbar-button:vertical:decrement {
+    height: 70px;
   }
 
   .add_task_btn_txt {
@@ -314,7 +323,6 @@
   }
 
   .small_card_row {
-
     gap: 16px;
   }
 
@@ -371,10 +379,9 @@
   .big_due,
   .big_prio,
   .big_assigned,
-  .big_subs{
+  .big_subs {
     width: 290px;
   }
-
 
   .title_button_container_responsive {
     display: flex;
