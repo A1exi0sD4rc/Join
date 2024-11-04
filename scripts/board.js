@@ -1,7 +1,9 @@
-const BASE_URL_TASKS = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_TASKS =
+  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let tasks = [];
 
-const BASE_URL_ASSIGNED = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_ASSIGNED =
+  "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let bigassigned = [];
 
 let draggedTo;
@@ -20,6 +22,7 @@ const prios = {
 };
 
 async function initBoardJs() {
+  checkLogin();
   includeHTML();
   awaitGenerateInitials();
   await fetchTasks();
@@ -57,7 +60,8 @@ function updateHtmlTodo() {
   } else {
     for (let index = 0; index < todo.length; index++) {
       const elementToDo = todo[index];
-      document.getElementById("small_card_todo").innerHTML += renderTaskCardToDo(elementToDo);
+      document.getElementById("small_card_todo").innerHTML +=
+        renderTaskCardToDo(elementToDo);
       changeArtBackground(`art_small_${elementToDo.id}`);
       addPrioImg(elementToDo);
     }
@@ -72,11 +76,13 @@ function updateHtmlProgress() {
   let progress = tasks.filter((x) => x["category"] == "progress");
   document.getElementById("small_card_progress").innerHTML = "";
   if (progress.length < 1) {
-    document.getElementById("small_card_progress").innerHTML = renderNoTasksProgress();
+    document.getElementById("small_card_progress").innerHTML =
+      renderNoTasksProgress();
   } else {
     for (let index = 0; index < progress.length; index++) {
       const elementProgress = progress[index];
-      document.getElementById("small_card_progress").innerHTML += renderTaskCardToDo(elementProgress);
+      document.getElementById("small_card_progress").innerHTML +=
+        renderTaskCardToDo(elementProgress);
       changeArtBackground(`art_small_${elementProgress.id}`);
       addPrioImg(elementProgress);
     }
@@ -84,18 +90,20 @@ function updateHtmlProgress() {
 }
 
 /**
- * filters tasks marked as "await" and dynamically updates the section with task cards 
+ * filters tasks marked as "await" and dynamically updates the section with task cards
  * including their background-color and priority img.
  */
 function updateHtmlAwait() {
   let await = tasks.filter((x) => x["category"] == "await");
   document.getElementById("small_card_await").innerHTML = "";
   if (await.length < 1) {
-    document.getElementById("small_card_await").innerHTML = renderNoTasksAwait();
+    document.getElementById("small_card_await").innerHTML =
+      renderNoTasksAwait();
   } else {
     for (let index = 0; index < await.length; index++) {
       const elementAwait = await[index];
-      document.getElementById("small_card_await").innerHTML += renderTaskCardAwait(elementAwait);
+      document.getElementById("small_card_await").innerHTML +=
+        renderTaskCardAwait(elementAwait);
       changeArtBackground(`art_small_${elementAwait.id}`);
       addPrioImg(elementAwait);
     }
@@ -103,7 +111,7 @@ function updateHtmlAwait() {
 }
 
 /**
- * filters tasks marked as "done" and dynamically updates the section with task cards 
+ * filters tasks marked as "done" and dynamically updates the section with task cards
  * including their background-color and priority img.
  */
 function updateHtmlDone() {
@@ -114,7 +122,8 @@ function updateHtmlDone() {
   } else {
     for (let index = 0; index < done.length; index++) {
       const elementDone = done[index];
-      document.getElementById("small_card_done").innerHTML += renderTaskCardAwait(elementDone);
+      document.getElementById("small_card_done").innerHTML +=
+        renderTaskCardAwait(elementDone);
       changeArtBackground(`art_small_${elementDone.id}`);
       addPrioImg(elementDone);
     }
@@ -197,23 +206,58 @@ function clearAndFilterTasks(searchValue) {
   document.getElementById("small_card_progress").innerHTML = "";
   document.getElementById("small_card_await").innerHTML = "";
   document.getElementById("small_card_done").innerHTML = "";
-  tasks
-    .filter(
-      (task) =>
-        task.title.toLowerCase().includes(searchValue) || task.description.toLowerCase().includes(searchValue)
-    )
-    .forEach((task) => {
-      const categoryElement = document.getElementById(`small_card_${task.category}`);
-      if (categoryElement) {
-        categoryElement.innerHTML += renderTaskCardToDo(task);
-        changeArtBackground(`art_small_${task.id}`);
-        addPrioImg(task);
-      }
-    });
+
+  const filteredTasks = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(searchValue) ||
+      task.description.toLowerCase().includes(searchValue)
+  );
+
+  renderFilteredTasks(filteredTasks);
 }
 
 /**
- * this function looks through each task to see if its id matches the 
+ * Renders filtered tasks into their respective category containers.
+ * Adds placeholders for categories without tasks.
+ *
+ * @param {Array<Object>} filteredTasks - The list of tasks to render, filtered by a search value.
+ * @param {string} filteredTasks[].category - The category of the task (e.g., "todo", "progress", "await", "done").
+ * @param {string} filteredTasks[].id - The unique ID of the task used for styling elements.
+ */
+function renderFilteredTasks(filteredTasks) {
+  const taskPresence = {
+    todo: false,
+    progress: false,
+    await: false,
+    done: false,
+  };
+
+  filteredTasks.forEach((task) => {
+    const categoryElement = document.getElementById(
+      `small_card_${task.category}`
+    );
+    if (categoryElement) {
+      categoryElement.innerHTML += renderTaskCardToDo(task);
+      changeArtBackground(`art_small_${task.id}`);
+      addPrioImg(task);
+      taskPresence[task.category] = true;
+    }
+  });
+
+  if (!taskPresence.todo)
+    document.getElementById("small_card_todo").innerHTML = renderNoTasksToDo();
+  if (!taskPresence.progress)
+    document.getElementById("small_card_progress").innerHTML =
+      renderNoTasksProgress();
+  if (!taskPresence.await)
+    document.getElementById("small_card_await").innerHTML =
+      renderNoTasksAwait();
+  if (!taskPresence.done)
+    document.getElementById("small_card_done").innerHTML = renderNoTaskDone();
+}
+
+/**
+ * this function looks through each task to see if its id matches the
  * taskId that was passed in and displays the big task card.
  * @param {*} taskId
  */
@@ -222,7 +266,8 @@ function showBigTask(taskId) {
   if (bigelement) {
     document.getElementById("big_card_bg").classList.remove("d_none");
     document.getElementById("big_card_bg").innerHTML = "";
-    document.getElementById("big_card_bg").innerHTML = renderBigTaskCard(bigelement);
+    document.getElementById("big_card_bg").innerHTML =
+      renderBigTaskCard(bigelement);
     changeArtBackground(`big_art_${bigelement.id}`);
     addPrioBigImg(bigelement);
     document.body.style.overflow = "hidden";
@@ -254,7 +299,8 @@ async function assignedToBigCard(path = "") {
 function bigAssignedTo() {
   for (let index = 0; index < bigassigned.length; index++) {
     const assigned = bigassigned[index];
-    document.getElementById("assigned_big_name").innerHTML += renderBigTaskCard(assigned);
+    document.getElementById("assigned_big_name").innerHTML +=
+      renderBigTaskCard(assigned);
   }
 }
 
@@ -287,15 +333,13 @@ function scrollOnDrag(event) {
 
   if (event.clientY < bounding.top + 500) {
     window.scrollBy(0, -scrollSpeed);
-  }
-  else if (event.clientY > bounding.bottom - 500) {
+  } else if (event.clientY > bounding.bottom - 500) {
     window.scrollBy(0, scrollSpeed);
   }
 
   if (event.clientX < bounding.left + 10) {
     window.scrollBy(-scrollSpeed, 0);
-  }
-  else if (event.clientX > bounding.right - 10) {
+  } else if (event.clientX > bounding.right - 10) {
     window.scrollBy(scrollSpeed, 0);
   }
 }
@@ -308,7 +352,7 @@ document.addEventListener("drag", scrollOnDrag);
  */
 function openForm() {
   clearAll();
-  if (window.innerWidth <= 1000) {
+  if (window.innerWidth <= 400) {
     window.location.href = "./add_task.html";
   } else {
     openOverlay();
@@ -317,6 +361,7 @@ function openForm() {
     taskForm.classList.remove("closing");
     taskForm.classList.add("active");
     document.body.classList.add("no-scroll");
+    taskForm.scrollTo(0, 0);
   }
 }
 
@@ -355,11 +400,11 @@ function closeOverlay() {
   overlay.classList.remove("active");
 }
 
-const mediaQuery = window.matchMedia("(max-width: 1000px)");
+const mediaQuery = window.matchMedia("(max-width: 400px)");
 
 /**
  * Handles changes in the window width and closes the task form
- * if the width is less than or equal to 1000 pixels.
+ * if the width is less than or equal to 400 pixels.
  *
  * @param {MediaQueryListEvent} e - The event object containing the media query's current state.
  */

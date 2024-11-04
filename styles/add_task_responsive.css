@@ -25,7 +25,7 @@
   }
 
   .add_task_form_right {
-    margin-top: 30px;
+    margin-top: 0px;
   }
 
   .add_task_bottom_section {
@@ -73,7 +73,7 @@
 
   .form_area {
     height: calc(100vh - 105px);
-    padding-top: 80px;
+    padding-top: 40px;
   }
 
   .add_task_bottom_section {
@@ -99,7 +99,7 @@
   }
 
   .category_subtasks_container {
-    z-index: 1;
+    z-index: 0;
   }
 
   li {
@@ -180,7 +180,7 @@
   }
 
   .add_task_h1 {
-    font-size: 45px;
+    font-size: 35px;
   }
 
   .aT_input_labels {

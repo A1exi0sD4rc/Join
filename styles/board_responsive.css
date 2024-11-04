@@ -118,13 +118,9 @@
 
 @media (max-height: 900px) {
   .big_card {
-    width: 85% !important;
-    max-height: 70% !important;
-    margin-top: 10%;
-    padding: 10px !important;
-    padding-bottom: 0 !important;
-    overflow-y: auto;
-    overflow-x: hidden;
+    height: 85vh;
+    border-right: 10px solid transparent;
+    border-radius: 0;
   }
 
   .big_card_close {
@@ -179,6 +175,11 @@
     margin-left: -15px;
   }
 
+  .title_big {
+    font-size: 30px;
+    font-weight: 400;
+  }
+
   .board_header {
     padding-top: 96px;
     display: flex;
@@ -209,6 +210,17 @@
 
   .search_task_input {
     width: 200px;
+  }
+
+  .title_span {
+    height: 73px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 40px;
   }
 }
 
@@ -244,6 +256,14 @@
 
   .big_card {
     width: 380px;
+  }
+
+  .big_card::-webkit-scrollbar-button:vertical:increment {
+    height: 40px;
+  }
+
+  .big_card::-webkit-scrollbar-button:vertical:decrement {
+    height: 70px;
   }
 
   .add_task_btn_txt {
@@ -286,7 +306,7 @@
   }
 
   .big_card_art_close {
-    width: 300px;
+    width: 290px;
   }
 
   h1 {
@@ -303,8 +323,6 @@
   }
 
   .small_card_row {
-    display: flex;
-    flex-direction: column;
     gap: 16px;
   }
 
@@ -352,8 +370,17 @@
   }
 
   .big_card {
-    width: 300px;
-    padding: 15px;
+    width: 290px;
+    padding: 10px;
+  }
+
+  .title_big,
+  .big_description,
+  .big_due,
+  .big_prio,
+  .big_assigned,
+  .big_subs {
+    width: 290px;
   }
 
   .title_button_container_responsive {
@@ -409,15 +436,5 @@
 
   .add_task_bottom_overlay {
     width: 929px;
-  }
-}
-
-@media (max-width: 1000px) {
-  .task-form.active {
-    display: none;
-  }
-
-  .overlay.active {
-    display: none;
   }
 }

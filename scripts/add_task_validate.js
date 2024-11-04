@@ -158,11 +158,15 @@ function resetCategoryValidation() {
 function showTaskAddedToBoardMessage() {
   return new Promise((resolve) => {
     const taskMessage = document.getElementById("taskMessage");
-    taskMessage.classList.add("show");
+    taskMessage.style.display = "flex";
+    setTimeout(() => {
+      taskMessage.classList.add("show");
+    }, 10);
     setTimeout(async () => {
       await addTaskToDatabase();
       setTimeout(() => {
         taskMessage.classList.remove("show");
+        taskMessage.style.display = "none";
         resolve();
       }, 500);
     }, 1000);

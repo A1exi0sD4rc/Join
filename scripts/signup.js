@@ -90,6 +90,13 @@ function handleFormSubmit(event) {
   }
 }
 
+/**
+ * Displays an error message and applies error styling to the specified element.
+ *
+ * @param {HTMLElement} element - The HTML element to display the error message for.
+ *                                If it's a checkbox, applies styles directly to the element.
+ * @param {string} message - The error message to display.
+ */
 function setError(element, message) {
   if (element.classList.contains("check-box")) {
     const errorDisplay = document.querySelector(".error-checkbox");
@@ -105,6 +112,12 @@ function setError(element, message) {
   }
 }
 
+/**
+ * Clears the error message and applies success styling to the specified element.
+ *
+ * @param {HTMLElement} element - The HTML element to clear the error message for.
+ *                                If it's a checkbox, removes error styling directly from the element.
+ */
 function setSuccess(element) {
   if (element.classList.contains("check-box")) {
     const errorDisplay = document.querySelector(".error-checkbox");
@@ -131,6 +144,14 @@ function isValidEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+/**
+ * Validates all input fields in the form.
+ *
+ * This function calls individual validation functions for each input field
+ * and returns true if all fields are valid, otherwise returns false.
+ *
+ * @returns {boolean} - Returns true if all inputs are valid, false otherwise.
+ */
 function validateInputs() {
   let isValid = true;
 
@@ -143,6 +164,14 @@ function validateInputs() {
   return isValid;
 }
 
+/**
+ * Validates the name input field.
+ *
+ * Checks if the name field is empty or does not contain both first and last names.
+ * Sets an error message if validation fails and a success message if it passes.
+ *
+ * @returns {boolean} - Returns true if the name is valid, false otherwise.
+ */
 function validateNameField() {
   const nameValue = name.value.trim();
 
@@ -158,6 +187,14 @@ function validateNameField() {
   }
 }
 
+/**
+ * Validates the email input field.
+ *
+ * Checks if the email field is empty or contains an invalid email address.
+ * Sets an error message if validation fails and a success message if it passes.
+ *
+ * @returns {boolean} - Returns true if the email is valid, false otherwise.
+ */
 function validateEmailField() {
   const emailValue = email.value.trim();
 
@@ -173,6 +210,14 @@ function validateEmailField() {
   }
 }
 
+/**
+ * Validates the password input field.
+ *
+ * Checks if the password field is empty or less than 8 characters long.
+ * Sets an error message if validation fails and a success message if it passes.
+ *
+ * @returns {boolean} - Returns true if the password is valid, false otherwise.
+ */
 function validatePasswordField() {
   const passwordValue = password.value.trim();
 
@@ -188,6 +233,14 @@ function validatePasswordField() {
   }
 }
 
+/**
+ * Validates the confirm password input field.
+ *
+ * Checks if the confirm password field is empty or does not match the original password.
+ * Sets an error message if validation fails and a success message if it passes.
+ *
+ * @returns {boolean} - Returns true if the confirm password is valid, false otherwise.
+ */
 function validateConfirmPasswordField() {
   const confirmPasswordValue = confirmPassword.value.trim();
   const passwordValue = password.value.trim();
@@ -204,6 +257,14 @@ function validateConfirmPasswordField() {
   }
 }
 
+/**
+ * Validates the checkbox input field.
+ *
+ * Checks if the privacy policy checkbox is checked.
+ * Sets an error message if validation fails and a success message if it passes.
+ *
+ * @returns {boolean} - Returns true if the checkbox is checked, false otherwise.
+ */
 function validateCheckboxField() {
   const checkboxDiv = document.querySelector(".check-box");
   const isCheckboxChecked = checkboxDiv.dataset.checked === "true";
