@@ -4,7 +4,6 @@ let lastContactCreat;
 let BASE_URL = `https://join-337-userlist-default-rtdb.firebaseio.com/contacts`;
 let selectedContacts = [];
 
-
 /**
  * Initializes the application by performing the necessary setup operations.
  *
@@ -14,12 +13,12 @@ let selectedContacts = [];
  */
 async function init() {
   await getContactData();
+  checkLogin();
   render();
   renderContacts();
   renderContactCreated();
   renderContactEditSucessfull();
 }
-
 
 /**
  * Asynchronously fetches and processes contact data into a sorted list.
@@ -47,7 +46,6 @@ async function getContactData() {
   }
 }
 
-
 /**
  * Asynchronously fetches contacts data from a remote server.
  *
@@ -63,7 +61,6 @@ async function getContacts() {
     console.log(error);
   }
 }
-
 
 /**
  * Organizes contacts into clusters based on the first letter of their names.
@@ -87,7 +84,6 @@ function loadNameCluster() {
   return nameClusters;
 }
 
-
 /**
  * Returns the initials of a given name.
  *
@@ -101,7 +97,6 @@ function getInitials(name) {
     .map((word) => word.charAt(0))
     .join("");
 }
-
 
 /**
  * Toggles CSS classes for contact detail view based on the screen width.
@@ -142,7 +137,6 @@ function toggleDetailClasses(i) {
   }
 }
 
-
 /**
  * Generates a random color from a predefined list of colors.
  *
@@ -150,11 +144,25 @@ function toggleDetailClasses(i) {
  * @returns {string} A randomly selected color from the predefined list.
  */
 function generateColor() {
-  const colors = ["lightcoral", "green", "blueviolet", "lightblue", "darkmagenta", "orangered", "purple", "lightgreen", "indigo", "teal", "peru", "midnightblue", "aquamarine", "chartreuse"];
+  const colors = [
+    "lightcoral",
+    "green",
+    "blueviolet",
+    "lightblue",
+    "darkmagenta",
+    "orangered",
+    "purple",
+    "lightgreen",
+    "indigo",
+    "teal",
+    "peru",
+    "midnightblue",
+    "aquamarine",
+    "chartreuse",
+  ];
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
-
 
 /**
  * Toggles the success indicator for contact creation.
@@ -168,7 +176,6 @@ function contactCreatSuccesfull() {
     .classList.toggle("creation-succesfull");
 }
 
-
 /**
  * Toggles the success indicator for contact editing.
  *
@@ -180,7 +187,6 @@ function contactEditSuccesfull() {
     .getElementById("contact-edited")
     .classList.toggle("creation-succesfull");
 }
-
 
 /**
  * Initializes the process of deleting a contact.
@@ -207,7 +213,6 @@ async function contactDeleteInit(i) {
   await init();
 }
 
-
 /**
  * Deletes a contact from the database.
  *
@@ -225,7 +230,6 @@ async function deleteContact(i) {
   lastSelected = undefined;
   return (responseToJson = await response.json());
 }
-
 
 /**
  * Toggles the visibility of the edit options for a contact.

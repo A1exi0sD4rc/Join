@@ -2,7 +2,7 @@
  * This function initializes the summary html.
  */
 async function summaryInit() {
-  // checkLogin(); // Implemented but don't need for tests or functions, only activate when uploaded on the server!
+  checkLogin();
   includeHTML();
   initPage();
   await fetchTasks();

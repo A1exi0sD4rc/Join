@@ -3,6 +3,7 @@
  *
  */
 async function initAddTask() {
+  checkLogin();
   clearAll();
   includeHTML();
   await getContacts();

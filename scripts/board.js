@@ -22,6 +22,7 @@ const prios = {
 };
 
 async function initBoardJs() {
+  checkLogin();
   includeHTML();
   awaitGenerateInitials();
   await fetchTasks();
