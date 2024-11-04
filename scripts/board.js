@@ -34,7 +34,6 @@ async function initBoardJs() {
 
 /**
  * retrieves data from API , converts them to JSON format and pushs the result to the tasks variable.
- *
  * @param {path} path
  */
 async function fetchTasks(path = "") {
@@ -58,8 +57,7 @@ function updateHtmlTodo() {
   } else {
     for (let index = 0; index < todo.length; index++) {
       const elementToDo = todo[index];
-      document.getElementById("small_card_todo").innerHTML +=
-        renderTaskCardToDo(elementToDo);
+      document.getElementById("small_card_todo").innerHTML += renderTaskCardToDo(elementToDo);
       changeArtBackground(`art_small_${elementToDo.id}`);
       addPrioImg(elementToDo);
     }
@@ -74,13 +72,11 @@ function updateHtmlProgress() {
   let progress = tasks.filter((x) => x["category"] == "progress");
   document.getElementById("small_card_progress").innerHTML = "";
   if (progress.length < 1) {
-    document.getElementById("small_card_progress").innerHTML =
-      renderNoTasksProgress();
+    document.getElementById("small_card_progress").innerHTML = renderNoTasksProgress();
   } else {
     for (let index = 0; index < progress.length; index++) {
       const elementProgress = progress[index];
-      document.getElementById("small_card_progress").innerHTML +=
-        renderTaskCardToDo(elementProgress);
+      document.getElementById("small_card_progress").innerHTML += renderTaskCardToDo(elementProgress);
       changeArtBackground(`art_small_${elementProgress.id}`);
       addPrioImg(elementProgress);
     }
@@ -95,13 +91,11 @@ function updateHtmlAwait() {
   let await = tasks.filter((x) => x["category"] == "await");
   document.getElementById("small_card_await").innerHTML = "";
   if (await.length < 1) {
-    document.getElementById("small_card_await").innerHTML =
-      renderNoTasksAwait();
+    document.getElementById("small_card_await").innerHTML = renderNoTasksAwait();
   } else {
     for (let index = 0; index < await.length; index++) {
       const elementAwait = await[index];
-      document.getElementById("small_card_await").innerHTML +=
-        renderTaskCardAwait(elementAwait);
+      document.getElementById("small_card_await").innerHTML += renderTaskCardAwait(elementAwait);
       changeArtBackground(`art_small_${elementAwait.id}`);
       addPrioImg(elementAwait);
     }
@@ -120,8 +114,7 @@ function updateHtmlDone() {
   } else {
     for (let index = 0; index < done.length; index++) {
       const elementDone = done[index];
-      document.getElementById("small_card_done").innerHTML +=
-        renderTaskCardAwait(elementDone);
+      document.getElementById("small_card_done").innerHTML += renderTaskCardAwait(elementDone);
       changeArtBackground(`art_small_${elementDone.id}`);
       addPrioImg(elementDone);
     }
@@ -130,7 +123,6 @@ function updateHtmlDone() {
 
 /**
  * changes the background-color of a div depending on his catergory/textContent
- *
  * @param {number} id
  */
 function changeArtBackground(id) {
@@ -142,7 +134,6 @@ function changeArtBackground(id) {
 
 /**
  * adds a specific priority Icon/img to the task card.
- *
  * @param {object} tasks -
  */
 function addPrioImg(tasks) {
@@ -155,7 +146,6 @@ function addPrioImg(tasks) {
 
 /**
  * adds a specific priority Icon/img to the big task card.
- *
  * @param {object} tasks -
  */
 function addPrioBigImg(bigelement) {
@@ -170,9 +160,7 @@ function addPrioBigImg(bigelement) {
  * filters tasks based on the search input.
  */
 function filterTasks() {
-  const searchValue = document
-    .querySelector(".search_task_input")
-    .value.toLowerCase();
+  const searchValue = document.querySelector(".search_task_input").value.toLowerCase();
   clearAndFilterTasks(searchValue);
 }
 
@@ -181,8 +169,7 @@ function filterTasks() {
  */
 function filterTasksResponsive() {
   const searchValue = document
-    .querySelector(".search_task_input_responsive")
-    .value.toLowerCase();
+    .querySelector(".search_task_input_responsive").value.toLowerCase();
   clearAndFilterTasks(searchValue);
 }
 
@@ -196,7 +183,6 @@ function emptySearchInput() {
 
 /**
  * updates the task sections after filter function.
- *
  * @param {*} searchValue
  */
 function clearAndFilterTasks(searchValue) {
@@ -207,8 +193,7 @@ function clearAndFilterTasks(searchValue) {
 
   const filteredTasks = tasks.filter(
     (task) =>
-      task.title.toLowerCase().includes(searchValue) ||
-      task.description.toLowerCase().includes(searchValue)
+      task.title.toLowerCase().includes(searchValue) || task.description.toLowerCase().includes(searchValue)
   );
 
   renderFilteredTasks(filteredTasks);
@@ -217,7 +202,6 @@ function clearAndFilterTasks(searchValue) {
 /**
  * Renders filtered tasks into their respective category containers.
  * Adds placeholders for categories without tasks.
- *
  * @param {Array<Object>} filteredTasks - The list of tasks to render, filtered by a search value.
  * @param {string} filteredTasks[].category - The category of the task (e.g., "todo", "progress", "await", "done").
  * @param {string} filteredTasks[].id - The unique ID of the task used for styling elements.
@@ -231,9 +215,7 @@ function renderFilteredTasks(filteredTasks) {
   };
 
   filteredTasks.forEach((task) => {
-    const categoryElement = document.getElementById(
-      `small_card_${task.category}`
-    );
+    const categoryElement = document.getElementById(`small_card_${task.category}`);
     if (categoryElement) {
       categoryElement.innerHTML += renderTaskCardToDo(task);
       changeArtBackground(`art_small_${task.id}`);
@@ -245,11 +227,9 @@ function renderFilteredTasks(filteredTasks) {
   if (!taskPresence.todo)
     document.getElementById("small_card_todo").innerHTML = renderNoTasksToDo();
   if (!taskPresence.progress)
-    document.getElementById("small_card_progress").innerHTML =
-      renderNoTasksProgress();
+    document.getElementById("small_card_progress").innerHTML = renderNoTasksProgress();
   if (!taskPresence.await)
-    document.getElementById("small_card_await").innerHTML =
-      renderNoTasksAwait();
+    document.getElementById("small_card_await").innerHTML = renderNoTasksAwait();
   if (!taskPresence.done)
     document.getElementById("small_card_done").innerHTML = renderNoTaskDone();
 }
@@ -264,8 +244,7 @@ function showBigTask(taskId) {
   if (bigelement) {
     document.getElementById("big_card_bg").classList.remove("d_none");
     document.getElementById("big_card_bg").innerHTML = "";
-    document.getElementById("big_card_bg").innerHTML =
-      renderBigTaskCard(bigelement);
+    document.getElementById("big_card_bg").innerHTML = renderBigTaskCard(bigelement);
     changeArtBackground(`big_art_${bigelement.id}`);
     addPrioBigImg(bigelement);
     document.body.style.overflow = "hidden";
@@ -283,7 +262,6 @@ function hideBigTask() {
 
 /**
  * retrieves data from API , converts them to JSON format and pushs the result to the bigassigned variable.
- *
  * @param {*} path
  */
 async function assignedToBigCard(path = "") {
@@ -297,14 +275,12 @@ async function assignedToBigCard(path = "") {
 function bigAssignedTo() {
   for (let index = 0; index < bigassigned.length; index++) {
     const assigned = bigassigned[index];
-    document.getElementById("assigned_big_name").innerHTML +=
-      renderBigTaskCard(assigned);
+    document.getElementById("assigned_big_name").innerHTML += renderBigTaskCard(assigned);
   }
 }
 
 /**
  * deletes aktive card from board and database.
- *
  */
 async function deleteTask() {
   const taskId = document
@@ -323,7 +299,6 @@ async function deleteTask() {
 
 /**
  * scrolls the window in the direction of the mouse drag when the cursor is near the edges of the viewport.
- *
  * @param {event} event
  */
 function scrollOnDrag(event) {
@@ -344,9 +319,8 @@ function scrollOnDrag(event) {
 
 document.addEventListener("drag", scrollOnDrag);
 
-/**
+/*
  * Opens the task form.
- *
  */
 function openForm() {
   clearAll();
@@ -365,7 +339,6 @@ function openForm() {
 
 /**
  * Closes the task form
- *
  */
 function closeForm() {
   clearAll();
@@ -382,7 +355,6 @@ function closeForm() {
 
 /**
  * Activates the overlay by adding an 'active' class to it.
- *
  */
 function openOverlay() {
   const overlay = document.getElementById("taskOverlay");
@@ -391,7 +363,6 @@ function openOverlay() {
 
 /**
  * Deactivates the overlay by removing the 'active' class from it.
- *
  */
 function closeOverlay() {
   const overlay = document.getElementById("taskOverlay");
@@ -403,7 +374,6 @@ const mediaQuery = window.matchMedia("(max-width: 400px)");
 /**
  * Handles changes in the window width and closes the task form
  * if the width is less than or equal to 400 pixels.
- *
  * @param {MediaQueryListEvent} e - The event object containing the media query's current state.
  */
 function handleWidthChange(e) {
@@ -414,7 +384,5 @@ function handleWidthChange(e) {
     }
   }
 }
-
 mediaQuery.addEventListener("change", handleWidthChange);
-
 handleWidthChange(mediaQuery);
