@@ -205,22 +205,54 @@ function clearAndFilterTasks(searchValue) {
   document.getElementById("small_card_progress").innerHTML = "";
   document.getElementById("small_card_await").innerHTML = "";
   document.getElementById("small_card_done").innerHTML = "";
-  tasks
-    .filter(
-      (task) =>
-        task.title.toLowerCase().includes(searchValue) ||
-        task.description.toLowerCase().includes(searchValue)
-    )
-    .forEach((task) => {
-      const categoryElement = document.getElementById(
-        `small_card_${task.category}`
-      );
-      if (categoryElement) {
-        categoryElement.innerHTML += renderTaskCardToDo(task);
-        changeArtBackground(`art_small_${task.id}`);
-        addPrioImg(task);
-      }
-    });
+
+  const filteredTasks = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(searchValue) ||
+      task.description.toLowerCase().includes(searchValue)
+  );
+
+  renderFilteredTasks(filteredTasks);
+}
+
+/**
+ * Renders filtered tasks into their respective category containers.
+ * Adds placeholders for categories without tasks.
+ *
+ * @param {Array<Object>} filteredTasks - The list of tasks to render, filtered by a search value.
+ * @param {string} filteredTasks[].category - The category of the task (e.g., "todo", "progress", "await", "done").
+ * @param {string} filteredTasks[].id - The unique ID of the task used for styling elements.
+ */
+function renderFilteredTasks(filteredTasks) {
+  const taskPresence = {
+    todo: false,
+    progress: false,
+    await: false,
+    done: false,
+  };
+
+  filteredTasks.forEach((task) => {
+    const categoryElement = document.getElementById(
+      `small_card_${task.category}`
+    );
+    if (categoryElement) {
+      categoryElement.innerHTML += renderTaskCardToDo(task);
+      changeArtBackground(`art_small_${task.id}`);
+      addPrioImg(task);
+      taskPresence[task.category] = true;
+    }
+  });
+
+  if (!taskPresence.todo)
+    document.getElementById("small_card_todo").innerHTML = renderNoTasksToDo();
+  if (!taskPresence.progress)
+    document.getElementById("small_card_progress").innerHTML =
+      renderNoTasksProgress();
+  if (!taskPresence.await)
+    document.getElementById("small_card_await").innerHTML =
+      renderNoTasksAwait();
+  if (!taskPresence.done)
+    document.getElementById("small_card_done").innerHTML = renderNoTaskDone();
 }
 
 /**
