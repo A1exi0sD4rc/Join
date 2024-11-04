@@ -5,21 +5,21 @@
 <head>
 
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="shortcut icon" href="./assets/img/logo_fav.svg" type="image/x-icon" />
-  <link rel="stylesheet" href="./assets/fonts.css" />
-  <link rel="stylesheet" href="styles/add_task.css" />
-  <link rel="stylesheet" href="styles/add_task_clear_check_btns.css" />
-  <link rel="stylesheet" href="styles/add_task_responsive.css" />
-  <link rel="stylesheet" href="styles/add_task_cat_date_prio_subtasks.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="styles/board.css" />
-  <link rel="stylesheet" href="styles/task_card_small.css" />
-  <link rel="stylesheet" href="assets/templates/sidebar_header_style.css" />
-  <link rel="stylesheet" href="styles/ln_pp_hp_style.css" />
-  <link rel="stylesheet" href="styles/task_card_big.css" />
-  <link rel="stylesheet" href="styles/board_responsive.css" />
+  <link rel="shortcut icon" href="./assets/img/logo_fav.svg" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/fonts.css">
+  <link rel="stylesheet" href="styles/add_task.css">
+  <link rel="stylesheet" href="styles/add_task_clear_check_btns.css">
+  <link rel="stylesheet" href="styles/add_task_responsive.css">
+  <link rel="stylesheet" href="styles/add_task_cat_date_prio_subtasks.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/board.css">
+  <link rel="stylesheet" href="styles/task_card_small.css">
+  <link rel="stylesheet" href="assets/templates/sidebar_header_style.css">
+  <link rel="stylesheet" href="styles/ln_pp_hp_style.css">
+  <link rel="stylesheet" href="styles/task_card_big.css">
+  <link rel="stylesheet" href="styles/board_responsive.css">
   <link rel="stylesheet" href="styles/add_task_edit_section.css">
   <link rel="stylesheet" href="styles/board_add_task_responsive.css">
   
@@ -54,7 +54,7 @@
       <div class="addTask_overlay_headline">
         <h1 class="add_task_h1">Add Task</h1>
         <button class="close_overlay_btn" onclick="closeForm()">
-          <img src=".//assets/img/close_addTask_overlay.svg" alt="close addTask" />
+          <img src=".//assets/img/close_addTask_overlay.svg" alt="close addTask">
         </button>
       </div>
       <form id="myForm" class="form_area_overlay">
@@ -69,15 +69,15 @@
             <label class="aT_input_labels" for="aT_description">Description</label>
             <div class="resizable-container">
               <textarea id="aT_description" class="resizable-textarea" placeholder="Enter a Description"></textarea>
-              <img src="./assets/img/resize_description.svg" class="resize-handle" alt="Resize Handle" />
+              <img src="./assets/img/resize_description.svg" class="resize-handle" alt="Resize Handle">
             </div>
 
             <label class="aT_input_labels">Assigned to</label>
             <div class="aT_select_container">
               <input id="aT_select_contacts" class="aT_select_dropdown_fields"
-                placeholder="Select contacts to assign" />
+                placeholder="Select contacts to assign">
               <div id="select_contacts_arrow_container" class="drop_down_arrow_container" tabindex="0">
-                <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
+                <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow">
               </div>
             </div>
             <div id="contact_list" class="contact_list d-none">
@@ -90,19 +90,19 @@
           <div class="add_task_form_right_overlay">
             <label class="aT_input_labels" for="aT_date">Due date<sup>*</sup></label>
             <div class="date_error_container">
-              <input required id="aT_date" class="aT_input_date" type="date" />
+              <input required id="aT_date" class="aT_input_date" type="date">
               <span id="dateError" class="error">This field is required</span>
             </div>
             <div class="aT_input_labels">Prio</div>
             <div class="aT_set_prio_container" id="aT_set_prio">
               <div class="aT_set_prio" id="boxUrgent" onclick="activateBox('boxUrgent', 'urgent_box_active')">
-                <span>Urgent</span><img src="./assets/img/Prio_high.svg" alt="urgent_icon" />
+                <span>Urgent</span><img src="./assets/img/Prio_high.svg" alt="urgent_icon">
               </div>
               <div class="medium_box_active" id="boxMedium" onclick="activateBox('boxMedium', 'medium_box_active')">
-                <span>Medium</span><img src="./assets/img/Prio_med.svg" alt="medium_icon" />
+                <span>Medium</span><img src="./assets/img/Prio_med.svg" alt="medium_icon">
               </div>
               <div class="aT_set_prio" id="boxLow" onclick="activateBox('boxLow', 'low_box_active')">
-                <span>Low</span><img src="./assets/img/Prio_low.svg" alt="low_icon" />
+                <span>Low</span><img src="./assets/img/Prio_low.svg" alt="low_icon">
               </div>
             </div>
             <label class="aT_input_labels">Category<sup>*</sup></label>
@@ -113,7 +113,7 @@
                     Select task category
                   </div>
                   <div id="select_category_arrow_container" class="drop_down_arrow_container">
-                    <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow" />
+                    <img src="./assets/img/arrow_drop_down.svg" alt="drop_down_arrow" class="arrow">
                   </div>
                 </div>
                 <div id="category_list" class="category_list d-none">
