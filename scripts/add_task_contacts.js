@@ -4,6 +4,10 @@ let CONTACTS_URL =
 contactsAddTask = [];
 let selectedContacts = [];
 
+/**
+ * fetches contacts, adds the current user if not included, and renders the contact list.
+ * 
+ */
 async function getContacts() {
   let response = await fetch(CONTACTS_URL + ".json");
   let responseAsJson = await response.json();
@@ -33,6 +37,11 @@ async function getContacts() {
   }
 }
 
+/**
+ * generates initials from a given name.
+ * @param {*} name 
+ * @returns 
+ */
 function getInitials(name) {
   return name
     .split(" ")
@@ -40,6 +49,10 @@ function getInitials(name) {
     .join("");
 }
 
+/**
+ * renders a list of contacts in the contact container, updating their display based on selection status.
+ * 
+ */
 function renderContacts() {
   let contactContainer = document.getElementById("contacts_container");
   contactContainer.innerHTML = "";
@@ -66,6 +79,10 @@ function renderContacts() {
   });
 }
 
+/**
+ * toggles the selection state of a contact and updates the UI accordingly.
+ * @param {*} index 
+ */
 function toggleContact(index) {
   let contact = contactsAddTask[index];
   let contactElement = document.getElementById(`contact_${index}`);
@@ -94,6 +111,10 @@ function toggleContact(index) {
   displaySelectedContacts();
 }
 
+/**
+ * displays the selected contacts by rendering their initials in a designated container.
+ * 
+ */
 function displaySelectedContacts() {
   let selectedContainer = document.getElementById("selected_contacts");
   selectedContainer.innerHTML = "";
@@ -111,14 +132,27 @@ function displaySelectedContacts() {
   }
 }
 
+/**
+ * checks if a contact is selected by verifying its presence in the selectedContacts array.
+ * @param {*} contact 
+ * @returns 
+ */
 function isSelected(contact) {
   return selectedContacts.some((c) => c.name === contact.name);
 }
 
+/**
+ * saves the selected contacts to session storage.
+ * 
+ */
 function saveSelectedContactsToSession() {
   sessionStorage.setItem("selectedContacts", JSON.stringify(selectedContacts));
 }
 
+/**
+ * loads selected contacts from session storage and updates the selection state accordingly.
+ * 
+ */
 function loadSelectedContactsFromSession() {
   let savedContacts = sessionStorage.getItem("selectedContacts");
 
@@ -137,6 +171,10 @@ function loadSelectedContactsFromSession() {
   }
 }
 
+/**
+ * restores the visual state of contacts based on their selection status.
+ * 
+ */
 function restoreContactsState() {
   contactsAddTask.forEach((contact, index) => {
     let contactElement = document.getElementById(`contact_${index}`);
@@ -158,6 +196,10 @@ function restoreContactsState() {
   });
 }
 
+/**
+ * clears the selected contacts and updates the display accordingly.
+ * 
+ */
 function clearSelectedContacts() {
   selectedContacts = [];
   sessionStorage.removeItem("selectedContacts");

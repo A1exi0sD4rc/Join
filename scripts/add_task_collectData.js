@@ -2,6 +2,10 @@ let TASKS_URL = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 
 let taskCategory = "";
 
+/**
+ * 
+ * function collects task data, saves it to the database, navigates to the task board, and clears all input fields.
+ */
 async function addTaskToDatabase() {
   const newTask = collectTaskData();
   await saveTaskToDatabase(newTask);
@@ -9,6 +13,10 @@ async function addTaskToDatabase() {
   clearAll();
 }
 
+/**
+ * function collects task details from input fields and returns them as an object.
+ * @returns 
+ */
 function collectTaskData() {
   const title = getInputValueById("aT_title");
   const description = getInputValueById("aT_description");
@@ -37,6 +45,10 @@ function collectTaskData() {
   };
 }
 
+/**
+ * collects edited task details from input fields and returns them as an object.
+ * @returns 
+ */
 function collectTaskDataEdit() {
   const title = getInputValueById("aT_title_edit");
   const description = getInputValueById("aT_description_edit");
@@ -66,14 +78,27 @@ function collectTaskDataEdit() {
   };
 }
 
+/**
+ * function retrieves the value of an input field by its ID. * 
+ * @param {*} id 
+ * @returns 
+ */
 function getInputValueById(id) {
   return document.getElementById(id).value;
 }
 
+/**
+ * retrieves and trims the inner text of the category selection element.
+ * @returns 
+ */
 function getCategory() {
   return document.getElementById("aT_select_category").innerHTML.trim();
 }
 
+/**
+ * returns the active priority level or defaults to "Medium."
+ * @returns 
+ */
 function getActivePriority() {
   if (
     document.querySelector("#boxUrgent").classList.contains("urgent_box_active")
@@ -92,6 +117,10 @@ function getActivePriority() {
   }
 }
 
+/**
+ * returns the active edited priority level or defaults to "Medium."
+ * @returns 
+ */
 function getActivePriorityEdit() {
   if (
     document
@@ -114,6 +143,10 @@ function getActivePriorityEdit() {
   }
 }
 
+/**
+ * saves a task to the database and logs a success message or an error if the operation fails.
+ * @param {*} task 
+ */
 async function saveTaskToDatabase(task) {
   try {
     const response = await fetch(`${TASKS_URL}.json`, {
@@ -141,10 +174,18 @@ async function refreshTaskBoard() {
   await fetchTasks();
 }
 
+/**
+ * redirects the user to the board page.
+ * 
+ */
 function goToBoard() {
   window.location.href = "board.html";
 }
 
+/**
+ *  clears the content of various task container elements.
+ * 
+ */
 function clearTaskContainers() {
   document.getElementById("small_card_todo").innerHTML = "";
   document.getElementById("small_card_progress").innerHTML = "";

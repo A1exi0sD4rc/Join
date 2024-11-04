@@ -245,6 +245,11 @@ document
     }
   });
 
+/**
+ * handles adding a subtask, focusing on the input field if empty, 
+ * and resetting visibility if the subtask is successfully added.
+ * @returns 
+ */
 function handleClickCheckInputSubtask() {
   const inputField = document.getElementById("aT_add_subtasks");
   const subtaskText = inputField.value.trim();
@@ -405,6 +410,10 @@ categoryOptions.forEach(function (option) {
   option.addEventListener("click", selectCategory);
 });
 
+/**
+ * hides the subtask container if a click occurs outside of it.
+ * @param {*} event 
+ */
 function handleClickOutsideSubtaskContainer(event) {
   const subtaskContainer = document.getElementById(
     "aT_input_subtasks_container"

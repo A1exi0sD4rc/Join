@@ -1,3 +1,7 @@
+/**
+ * Retrieves a task by its ID, fills the form with its details and prepares it for processing.
+ * @param {*} taskId 
+ */
 async function editTask(taskId) {
   try {
     const taskResponse = await fetch(`${TASKS_URL}/${taskId}.json`);
@@ -159,6 +163,10 @@ async function editTask(taskId) {
   }
 }
 
+/**
+ * toggles the visibility of the contacts dropdown based on the input field's active state.
+ * @param {*} event 
+ */
 function toggleDropdownEdit(event) {
   event.stopPropagation();
 
@@ -170,6 +178,10 @@ function toggleDropdownEdit(event) {
   }
 }
 
+/**
+ * activates the contacts input field, displays the dropdown, and renders the contacts list for editing.
+ * 
+ */
 function activateFieldContactsEdit() {
   const inputFieldContacts = document.getElementById("aT_select_contacts_edit");
   const arrowConConImage = document.querySelector(
@@ -186,6 +198,9 @@ function activateFieldContactsEdit() {
   inputFieldContacts.focus();
 }
 
+/**
+ * deactivates the contacts input field, hides the dropdown, and restores the selected contacts display.
+ */
 function deactivateFieldContactsEdit() {
   const inputFieldContacts = document.getElementById("aT_select_contacts_edit");
   const arrowConConImage = document.querySelector(
@@ -202,6 +217,9 @@ function deactivateFieldContactsEdit() {
   inputFieldContacts.blur();
 }
 
+/**
+ * displays contacts in the edit interface, updating their selection state and showing initials and names.
+ */
 function renderContactsEdit() {
   let contactContainer = document.getElementById("contacts_container_edit");
   contactContainer.innerHTML = "";
@@ -228,6 +246,10 @@ function renderContactsEdit() {
   });
 }
 
+/**
+ * toggles a contact's selection state and updates the display and selectedContacts array.
+ * @param {*} index 
+ */
 function toggleContactEdit(index) {
   let contact = contactsAddTask[index];
   let contactElement = document.getElementById(`contact_edit_${index}`);
@@ -257,6 +279,9 @@ function toggleContactEdit(index) {
   updateSelectedContactsDisplayEdit();
 }
 
+/**
+ * clears the display of selected contacts and updates it by adding each contact from the selectedContacts array.
+ */
 function updateSelectedContactsDisplayEdit() {
   let selectedContactsContainer = document.getElementById(
     "selected_contacts_edit"
@@ -267,6 +292,11 @@ function updateSelectedContactsDisplayEdit() {
   });
 }
 
+/**
+ * adds a visual representation of a selected contact to the display, .
+ * showing their initials and background color in a circular SVG format
+ * @param {*} contact 
+ */
 function addSelectedContact(contact) {
   let selectedContactsContainer = document.getElementById(
     "selected_contacts_edit"
@@ -283,6 +313,10 @@ function addSelectedContact(contact) {
   `;
 }
 
+/**
+ * deletes the displayed element of a selected contact from the DOM based on their name.
+ * @param {*} contactName 
+ */
 function removeSelectedContact(contactName) {
   let selectedContactElement = document.getElementById(
     `selected_contact_${contactName}`
@@ -292,12 +326,22 @@ function removeSelectedContact(contactName) {
   }
 }
 
+/**
+ * checks if a given contact is in the selectedContacts array by comparing names.
+ * @param {*} contact 
+ * @returns 
+ */
 function isSelected(contact) {
   return selectedContacts.some(
     (selectedContact) => selectedContact.name === contact.name
   );
 }
 
+/**
+ * creates HTML for displaying assigned contacts with their initials or returns an empty div if none are assigned.
+ * @param {*} assigned 
+ * @returns 
+ */
 function renderSelectedContactsFromDatabase(assigned) {
   if (assigned && assigned.length > 0) {
     let contactsHtml = assigned
@@ -319,6 +363,9 @@ function renderSelectedContactsFromDatabase(assigned) {
   }
 }
 
+/**
+ * 
+ */
 function filterContactsEdit() {
   let inputFieldContacts = document.getElementById("aT_select_contacts_edit");
   let searchQuery = inputFieldContacts.value.toLowerCase();
@@ -328,6 +375,10 @@ function filterContactsEdit() {
   renderFilteredContactsEdit(filteredContacts);
 }
 
+/**
+ * displays filtered contacts with their initials and checkboxes, or shows a "No Contact found" message if none match.
+ * @param {*} filteredContacts 
+ */
 function renderFilteredContactsEdit(filteredContacts) {
   let contactContainer = document.getElementById("contacts_container_edit");
   contactContainer.innerHTML = "";

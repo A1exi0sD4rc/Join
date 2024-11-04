@@ -294,7 +294,7 @@ async function assignedToBigCard(path = "") {
 }
 
 /**
- *
+ *appends rendered task cards for each assigned element in the bigassigned array to the "assigned_big_name" element.
  */
 function bigAssignedTo() {
   for (let index = 0; index < bigassigned.length; index++) {
