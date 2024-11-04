@@ -114,6 +114,15 @@ function handleSuccess(userName) {
   goToSummary();
 }
 
+/**
+ * Validates the email and password input fields asynchronously.
+ *
+ * This function retrieves the values from the email and password fields, validates them using
+ * helper functions, and checks user credentials. Returns true if all validations pass, false otherwise.
+ *
+ * @async
+ * @returns {Promise<boolean>} - Returns a promise that resolves to true if inputs are valid, false otherwise.
+ */
 async function validateInputs() {
   const email = document.getElementById("loginEmail");
   const password = document.getElementById("loginPassword");
@@ -137,6 +146,20 @@ async function validateInputs() {
   return isValid;
 }
 
+/**
+ * Validates the email and user credentials.
+ *
+ * This function checks if the email is valid and, if so, checks the user credentials against
+ * a database or authentication service.
+ *
+ * @async
+ * @param {HTMLElement} email - The email input element.
+ * @param {HTMLElement} password - The password input element.
+ * @param {string} emailValue - The trimmed email value.
+ * @param {string} passwordValue - The trimmed password value.
+ * @param {boolean} isValid - Indicates if the previous validations passed.
+ * @returns {Promise<boolean>} - Returns a promise that resolves to true if credentials are valid, false otherwise.
+ */
 async function validateEmailAndCredentials(
   email,
   password,
@@ -157,6 +180,15 @@ async function validateEmailAndCredentials(
   return isValid;
 }
 
+/**
+ * Validates the email input.
+ *
+ * This function checks if the email is provided and if it has a valid format.
+ *
+ * @param {HTMLElement} emailElement - The email input element.
+ * @param {string} emailValue - The trimmed email value.
+ * @returns {boolean} - Returns true if the email is valid, false otherwise.
+ */
 function validateEmail(emailElement, emailValue) {
   return (
     validateEmailProvided(emailElement, emailValue) &&
@@ -164,6 +196,15 @@ function validateEmail(emailElement, emailValue) {
   );
 }
 
+/**
+ * Validates if the email field is provided.
+ *
+ * Checks if the email value is empty and sets an error message if it is.
+ *
+ * @param {HTMLElement} emailElement - The email input element.
+ * @param {string} emailValue - The trimmed email value.
+ * @returns {boolean} - Returns true if the email is provided, false otherwise.
+ */
 function validateEmailProvided(emailElement, emailValue) {
   if (emailValue === "") {
     setError(emailElement, "Email is required.");
@@ -172,6 +213,15 @@ function validateEmailProvided(emailElement, emailValue) {
   return true;
 }
 
+/**
+ * Validates the format of the email address.
+ *
+ * Checks if the email format is valid and sets success or error messages accordingly.
+ *
+ * @param {HTMLElement} emailElement - The email input element.
+ * @param {string} emailValue - The trimmed email value.
+ * @returns {boolean} - Returns true if the email format is valid, false otherwise.
+ */
 function validateEmailFormat(emailElement, emailValue) {
   if (!isValidEmail(emailValue)) {
     setError(emailElement, "Please provide a valid email address.");
@@ -181,10 +231,30 @@ function validateEmailFormat(emailElement, emailValue) {
   return true;
 }
 
+/**
+ * Validates the password input.
+ *
+ * Checks if the password is provided and calls the corresponding validation function.
+ *
+ * @param {HTMLElement} passwordElement - The password input element.
+ * @param {string} passwordValue - The trimmed password value.
+ * @param {string} emailValue - The trimmed email value.
+ * @returns {boolean} - Returns true if the password is valid, false otherwise.
+ */
 function validatePassword(passwordElement, passwordValue, emailValue) {
   return validatePasswordProvided(passwordElement, passwordValue, emailValue);
 }
 
+/**
+ * Validates if the password field is provided.
+ *
+ * Checks if the password value is empty and sets an error message if it is.
+ *
+ * @param {HTMLElement} passwordElement - The password input element.
+ * @param {string} passwordValue - The trimmed password value.
+ * @param {string} emailValue - The trimmed email value.
+ * @returns {boolean} - Returns true if the password is provided, false otherwise.
+ */
 function validatePasswordProvided(passwordElement, passwordValue, emailValue) {
   if (passwordValue === "") {
     const errorMessage =
@@ -197,6 +267,16 @@ function validatePasswordProvided(passwordElement, passwordValue, emailValue) {
   }
 }
 
+/**
+ * Checks user credentials against a database or authentication service.
+ *
+ * @async
+ * @param {HTMLElement} emailElement - The email input element.
+ * @param {HTMLElement} passwordElement - The password input element.
+ * @param {string} emailValue - The trimmed email value.
+ * @param {string} passwordValue - The trimmed password value.
+ * @returns {Promise<boolean>} - Returns a promise that resolves to true if the credentials are valid, false otherwise.
+ */
 async function checkUserCredentials(
   emailElement,
   passwordElement,
@@ -211,6 +291,16 @@ async function checkUserCredentials(
   );
 }
 
+/**
+ * Validates user credentials with the provided email and password.
+ *
+ * @async
+ * @param {HTMLElement} emailElement - The email input element.
+ * @param {HTMLElement} passwordElement - The password input element.
+ * @param {string} emailValue - The trimmed email value.
+ * @param {string} passwordValue - The trimmed password value.
+ * @returns {Promise<boolean>} - Returns a promise that resolves to true if validation passes, false otherwise.
+ */
 async function validateUserCredentials(
   emailElement,
   passwordElement,
@@ -221,6 +311,18 @@ async function validateUserCredentials(
   return handleValidationResult(emailElement, passwordElement, result);
 }
 
+/**
+ * Handles the validation result of user credentials.
+ *
+ * Sets error messages based on the result of user validation.
+ *
+ * @param {HTMLElement} emailElement - The email input element.
+ * @param {HTMLElement} passwordElement - The password input element.
+ * @param {Object} result - The result object from the user validation process.
+ * @param {boolean} result.exists - Indicates if the user exists.
+ * @param {boolean} result.isAuthenticated - Indicates if the password is correct.
+ * @returns {boolean} - Returns true if validation is successful, false otherwise.
+ */
 function handleValidationResult(emailElement, passwordElement, result) {
   if (!result.exists) {
     setError(emailElement, "User does not exist.");
@@ -232,6 +334,14 @@ function handleValidationResult(emailElement, passwordElement, result) {
   return true;
 }
 
+/**
+ * Sets an error message for the specified element.
+ *
+ * Displays the error message and updates the styles of the parent container.
+ *
+ * @param {HTMLElement} element - The input element to set the error for.
+ * @param {string} message - The error message to display.
+ */
 function setError(element, message) {
   const loginContainer = element.parentElement;
   const errorDisplay = loginContainer.querySelector(".error-position");
@@ -241,6 +351,13 @@ function setError(element, message) {
   loginContainer.classList.remove("success");
 }
 
+/**
+ * Sets a success state for the specified element.
+ *
+ * Clears any error messages and updates the styles of the parent container.
+ *
+ * @param {HTMLElement} element - The input element to set the success for.
+ */
 function setSuccess(element) {
   const loginContainer = element.parentElement;
   const errorDisplay = loginContainer.querySelector(".error-position");
@@ -250,6 +367,12 @@ function setSuccess(element) {
   loginContainer.classList.add("success");
 }
 
+/**
+ * Validates the format of the email address using a regular expression.
+ *
+ * @param {string} email - The email address to validate.
+ * @returns {boolean} - Returns true if the email is valid, false otherwise.
+ */
 function isValidEmail(email) {
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -277,18 +400,32 @@ async function validateLogin() {
   return await validateInputs();
 }
 
+/**
+ * Retrieves the login credentials (email and password) from the input fields.
+ * @returns {{ email: string, password: string }} An object containing the email and password.
+ */
 function getLoginCredentials() {
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value.trim();
   return { email, password };
 }
 
+/**
+ * Handles storing the login credentials if the "Remember Me" option is enabled.
+ * @param {string} email - The user's email address.
+ * @param {string} password - The user's password.
+ */
 function handleRememberMe(email, password) {
   if (localStorage.getItem("rememberMe") === "true") {
     storeCredentials(email, password);
   }
 }
 
+/**
+ * Authenticates the user with the provided email and password.
+ * @param {string} email - The user's email address.
+ * @param {string} password - The user's password.
+ */
 function authenticateUser(email, password) {
   validateUser(email, password)
     .then((result) => handleAuthenticationResult(result))
@@ -297,6 +434,10 @@ function authenticateUser(email, password) {
     );
 }
 
+/**
+ * Handles the result of the authentication attempt.
+ * @param {{ isAuthenticated: boolean, name: string }} result - The result of the authentication attempt.
+ */
 function handleAuthenticationResult(result) {
   if (result.isAuthenticated) {
     handleSuccess(result.name);
@@ -305,6 +446,10 @@ function handleAuthenticationResult(result) {
   }
 }
 
+/**
+ * Displays an error message in the designated error container.
+ * @param {string} message - The error message to display.
+ */
 function showError(message) {
   const errorContainer = document.querySelector(".error-position");
   errorContainer.innerText = message;
@@ -324,6 +469,11 @@ async function validateUser(email, password) {
     .catch(() => handleValidationError());
 }
 
+/**
+ * Fetches users from the specified reference in the database.
+ * @param {Object} usersRef - The reference to the users in the database.
+ * @returns {Promise<Object|null>} A promise that resolves to the users object or null if none exist.
+ */
 function fetchUsers(usersRef) {
   return get(usersRef).then((snapshot) => {
     if (snapshot.exists()) {
@@ -333,6 +483,13 @@ function fetchUsers(usersRef) {
   });
 }
 
+/**
+ * Finds a user by their email address in the provided users object.
+ * @param {Object} users - The users object containing user data.
+ * @param {string} email - The user's email address.
+ * @param {string} password - The user's password.
+ * @returns {{ exists: boolean, isAuthenticated: boolean }} An object indicating whether the user exists and if the password matches.
+ */
 function findUserByEmail(users, email, password) {
   if (!users) return { exists: false, isAuthenticated: false };
 
@@ -345,6 +502,12 @@ function findUserByEmail(users, email, password) {
   return { exists: false, isAuthenticated: false };
 }
 
+/**
+ * Validates whether the provided password matches the user's stored password.
+ * @param {Object} user - The user object containing the stored password.
+ * @param {string} password - The password to validate against the stored password.
+ * @returns {{ exists: boolean, isAuthenticated: boolean, name?: string }} An object indicating whether the user exists and if the password matches.
+ */
 function validatePasswordMatch(user, password) {
   if (user.password === password) {
     return {
@@ -357,6 +520,10 @@ function validatePasswordMatch(user, password) {
   }
 }
 
+/**
+ * Handles a validation error by returning a standardized response indicating that no user exists.
+ * @returns {{ exists: boolean, isAuthenticated: boolean }} An object indicating the user does not exist and is not authenticated.
+ */
 function handleValidationError() {
   return { exists: false, isAuthenticated: false };
 }
