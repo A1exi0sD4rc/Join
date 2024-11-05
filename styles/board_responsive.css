@@ -119,17 +119,16 @@
 @media (max-height: 1150px) {
   .big_card {
     border-right: 10px solid transparent;
-    overflow: hidden;
     height: 750px;
   }
 
   .form_area_edit {
     height: 750px !important;
   }
-}
 
-.add_task_fillIn_section_edit {
-  height: 620px !important;
+  .add_task_fillIn_section_edit {
+    height: 620px !important;
+  }
 }
 
 @media (max-height: 900px) {
