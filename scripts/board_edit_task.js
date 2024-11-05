@@ -1,6 +1,6 @@
 /**
  * Retrieves a task by its ID, fills the form with its details and prepares it for processing.
- * @param {*} taskId 
+ * @param {*} taskId
  */
 async function editTask(taskId) {
   try {
@@ -164,263 +164,9 @@ async function editTask(taskId) {
 }
 
 /**
- * toggles the visibility of the contacts dropdown based on the input field's active state.
- * @param {*} event 
+ * Sets the priority of the task being edited by activating the corresponding priority box.
+ * @param {string} prio - The priority level ("Urgent", "Medium", or "Low").
  */
-function toggleDropdownEdit(event) {
-  event.stopPropagation();
-
-  const inputFieldContacts = document.getElementById("aT_select_contacts_edit");
-  if (inputFieldContacts.classList.contains("active-border")) {
-    deactivateFieldContactsEdit();
-  } else {
-    activateFieldContactsEdit();
-  }
-}
-
-/**
- * activates the contacts input field, displays the dropdown, and renders the contacts list for editing.
- * 
- */
-function activateFieldContactsEdit() {
-  const inputFieldContacts = document.getElementById("aT_select_contacts_edit");
-  const arrowConConImage = document.querySelector(
-    "#select_contacts_arrow_container_edit img"
-  );
-  const dropDowncontacts = document.getElementById("contact_list_edit");
-  const selectedContactsCon = document.getElementById("selected_contacts_edit");
-
-  inputFieldContacts.classList.add("active-border");
-  arrowConConImage.classList.add("rotate");
-  dropDowncontacts.classList.remove("d-none");
-  selectedContactsCon.classList.add("d-none");
-  renderContactsEdit();
-  inputFieldContacts.focus();
-}
-
-/**
- * deactivates the contacts input field, hides the dropdown, and restores the selected contacts display.
- */
-function deactivateFieldContactsEdit() {
-  const inputFieldContacts = document.getElementById("aT_select_contacts_edit");
-  const arrowConConImage = document.querySelector(
-    "#select_contacts_arrow_container_edit img"
-  );
-  const dropDowncontacts = document.getElementById("contact_list_edit");
-  const selectedContactsCon = document.getElementById("selected_contacts_edit");
-
-  inputFieldContacts.classList.remove("active-border");
-  arrowConConImage.classList.remove("rotate");
-  dropDowncontacts.classList.add("d-none");
-  selectedContactsCon.classList.remove("d-none");
-  inputFieldContacts.value = "";
-  inputFieldContacts.blur();
-}
-
-/**
- * displays contacts in the edit interface, updating their selection state and showing initials and names.
- */
-function renderContactsEdit() {
-  let contactContainer = document.getElementById("contacts_container_edit");
-  contactContainer.innerHTML = "";
-
-  contactsAddTask.forEach((contact, i) => {
-    let checked = isSelected(contact);
-    let contactClass = checked ? "contact-selected" : "contact-unselected";
-    let checkboxImage = checked ? "checkbox-checked-white.png" : "checkbox.png";
-    let contactTextColorClass = checked ? "text-white" : "text-black";
-    let initials = getInitials(contact.name.replace(" (You)", ""));
-
-    contactContainer.innerHTML += `
-      <div class="contact_container_element ${contactClass}" id="contact_edit_${i}" onclick="toggleContactEdit(${i})">
-        <div style="display: flex; align-items: center; gap: 20px;" class="${contactTextColorClass}">
-          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
-            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${initials}</text>
-          </svg>
-          <div id="contact_list_name">${contact.name}</div>
-        </div>
-        <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_edit_${i}">
-      </div>
-    `;
-  });
-}
-
-/**
- * toggles a contact's selection state and updates the display and selectedContacts array.
- * @param {*} index 
- */
-function toggleContactEdit(index) {
-  let contact = contactsAddTask[index];
-  let contactElement = document.getElementById(`contact_edit_${index}`);
-  let checkboxImage = document.getElementById(`checkbox_edit_${index}`);
-  let textContainer = contactElement.querySelector("div");
-
-  if (isSelected(contact)) {
-    contactElement.classList.remove("contact-selected");
-    contactElement.classList.add("contact-unselected");
-    textContainer.classList.remove("text-white");
-    textContainer.classList.add("text-black");
-    contactElement.style.backgroundColor = "#FFFFFF";
-    checkboxImage.src = "./assets/img/checkbox.png";
-    selectedContacts = selectedContacts.filter((c) => c.name !== contact.name);
-    removeSelectedContact(contact.name);
-  } else {
-    contactElement.classList.add("contact-selected");
-    contactElement.classList.remove("contact-unselected");
-    textContainer.classList.remove("text-black");
-    textContainer.classList.add("text-white");
-    contactElement.style.backgroundColor = "#2A3647";
-    checkboxImage.src = "./assets/img/checkbox-checked-white.png";
-    selectedContacts.push(contact);
-    addSelectedContact(contact);
-  }
-
-  updateSelectedContactsDisplayEdit();
-}
-
-/**
- * clears the display of selected contacts and updates it by adding each contact from the selectedContacts array.
- */
-function updateSelectedContactsDisplayEdit() {
-  let selectedContactsContainer = document.getElementById(
-    "selected_contacts_edit"
-  );
-  selectedContactsContainer.innerHTML = "";
-  selectedContacts.forEach((contact) => {
-    addSelectedContact(contact);
-  });
-}
-
-/**
- * adds a visual representation of a selected contact to the display, .
- * showing their initials and background color in a circular SVG format
- * @param {*} contact 
- */
-function addSelectedContact(contact) {
-  let selectedContactsContainer = document.getElementById(
-    "selected_contacts_edit"
-  );
-  let initials = getInitials(contact.name.replace(" (You)", ""));
-
-  selectedContactsContainer.innerHTML += `
-    <div class="selected-contact" id="selected_contact_${contact.name}">
-      <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="21" cy="21" r="21" fill="${contact.bgcolor}" stroke="white" stroke-width="3"/>
-        <text x="21" y="27" text-anchor="middle" font-size="15" fill="white">${initials}</text>
-      </svg>
-    </div>
-  `;
-}
-
-/**
- * deletes the displayed element of a selected contact from the DOM based on their name.
- * @param {*} contactName 
- */
-function removeSelectedContact(contactName) {
-  let selectedContactElement = document.getElementById(
-    `selected_contact_${contactName}`
-  );
-  if (selectedContactElement) {
-    selectedContactElement.remove();
-  }
-}
-
-/**
- * checks if a given contact is in the selectedContacts array by comparing names.
- * @param {*} contact 
- * @returns 
- */
-function isSelected(contact) {
-  return selectedContacts.some(
-    (selectedContact) => selectedContact.name === contact.name
-  );
-}
-
-/**
- * creates HTML for displaying assigned contacts with their initials or returns an empty div if none are assigned.
- * @param {*} assigned 
- * @returns 
- */
-function renderSelectedContactsFromDatabase(assigned) {
-  if (assigned && assigned.length > 0) {
-    let contactsHtml = assigned
-      .map((contact) => {
-        let initials = getInitials(contact.name.replace(" (You)", ""));
-        return `
-        <div class="selected-contact" id="selected_contact_edit_${contact.name}">
-        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="21" cy="21" r="21" fill="${contact.bgcolor}" stroke="white" stroke-width="3"/>
-          <text x="21" y="27" text-anchor="middle" font-size="15" fill="white">${initials}</text>
-        </svg>
-      </div>
-      `;
-      })
-      .join("");
-    return contactsHtml;
-  } else {
-    return `<div class="assigned-contact" style="position: relative; display: inline-block;"></div>`;
-  }
-}
-
-/**
- * 
- */
-function filterContactsEdit() {
-  let inputFieldContacts = document.getElementById("aT_select_contacts_edit");
-  let searchQuery = inputFieldContacts.value.toLowerCase();
-  let filteredContacts = contactsAddTask.filter((contact) =>
-    contact.name.toLowerCase().includes(searchQuery)
-  );
-  renderFilteredContactsEdit(filteredContacts);
-}
-
-/**
- * displays filtered contacts with their initials and checkboxes, or shows a "No Contact found" message if none match.
- * @param {*} filteredContacts 
- */
-function renderFilteredContactsEdit(filteredContacts) {
-  let contactContainer = document.getElementById("contacts_container_edit");
-  contactContainer.innerHTML = "";
-
-  if (filteredContacts.length > 0) {
-    filteredContacts.forEach((contact) => {
-      let originalIndex = contactsAddTask.indexOf(contact);
-      let checked = isSelected(contact);
-      let backgroundColor = checked ? "#2A3647" : "#FFFFFF";
-      let checkboxImage = checked
-        ? "checkbox-checked-white.png"
-        : "checkbox.png";
-      let contactTextColorClass = checked ? "text-white" : "text-black";
-      let contactClass = checked ? "contact-selected" : "contact-unselected";
-      let initials = getInitials(contact.name.replace(" (You)", ""));
-
-      contactContainer.innerHTML += `
-      <div class="contact_container_element ${contactClass}" id="contact_edit_${originalIndex}" style="background-color: ${backgroundColor}" onclick="toggleContactEdit(${originalIndex})">
-        <div style="display: flex; align-items: center; gap: 20px;" class="${contactTextColorClass}">
-          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="21" cy="21" r="20" fill="${contact.bgcolor}" stroke="white" stroke-width="2"/>
-            <text x="21" y="24" text-anchor="middle" font-size="12" fill="white">${initials}</text>
-          </svg>
-          <div id="contact_list_name">${contact.name}</div>
-        </div>
-        <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_edit_${originalIndex}">
-      </div>
-    `;
-    });
-  } else {
-    contactContainer.innerHTML += `
-      <div class="contact_container_element" style="background-color: #FFFFFF"> 
-        <div style="display: flex; align-items: center; gap: 20px; color: #000000">
-          <div id="contact_list_name">No Contact found with this name.</div> 
-        </div> 
-      </div>
-    `;
-  }
-}
-
-// START PRIORITY CHANGE ON THE EDIT TASK //
-
 function setPriority(prio) {
   deactivateAllEdit();
   if (prio === "Urgent") {
@@ -432,6 +178,11 @@ function setPriority(prio) {
   }
 }
 
+/**
+ * Activates a specific priority box for editing by adding the active class.
+ * @param {string} boxId - The ID of the priority box element.
+ * @param {string} activeClass - The CSS class name to add to the priority box for active styling.
+ */
 function activateBoxEdit(boxId, activeClass) {
   deactivateAllEdit();
   const box = document.getElementById(boxId);
@@ -439,6 +190,9 @@ function activateBoxEdit(boxId, activeClass) {
   box.classList.add(activeClass);
 }
 
+/**
+ * Deactivates all priority boxes in the edit form by resetting their CSS classes.
+ */
 function deactivateAllEdit() {
   document
     .getElementById("boxUrgentEdit")
@@ -452,6 +206,10 @@ function deactivateAllEdit() {
   document.getElementById("boxLowEdit").classList.add("aT_set_prio");
 }
 
+/**
+ * Toggles the category dropdown visibility in the edit form, based on user interaction.
+ * @param {Event} event - The click event to stop propagation and manage dropdown behavior.
+ */
 function toggleCategoryEdit(event) {
   event.stopPropagation();
 
@@ -472,6 +230,9 @@ function toggleCategoryEdit(event) {
   }
 }
 
+/**
+ * Assigns click event listeners to each category option in the dropdown.
+ */
 function assignCategoryListeners() {
   const categoryOptions = document.querySelectorAll(".categories");
   categoryOptions.forEach(function (option) {
@@ -479,6 +240,10 @@ function assignCategoryListeners() {
   });
 }
 
+/**
+ * Updates the selected category in the edit form based on user selection.
+ * @param {Event} event - The click event from selecting a category option.
+ */
 function selectCategoryEdit(event) {
   const inputFieldCategeoryEdit = document.getElementById(
     "aT_select_category_edit"
@@ -488,6 +253,9 @@ function selectCategoryEdit(event) {
   deactivateFieldCategoryEdit();
 }
 
+/**
+ * Deactivates the category dropdown by hiding it and resetting the arrow icon rotation.
+ */
 function deactivateFieldCategoryEdit() {
   const arrowCatContainerEdit = document.getElementById(
     "select_category_arrow_container_edit"
@@ -502,6 +270,9 @@ function deactivateFieldCategoryEdit() {
   dropDownCategoriesEdit.classList.add("d-none");
 }
 
+/**
+ * Activates the category dropdown by displaying it and rotating the arrow icon.
+ */
 function activateFieldCategoryEdit() {
   const arrowCatContainerEdit = document.getElementById(
     "select_category_arrow_container_edit"
@@ -513,409 +284,10 @@ function activateFieldCategoryEdit() {
   assignCategoryListeners();
 }
 
+/**
+ * Retrieves the currently selected category text from the edit form.
+ * @returns {string} The selected category as a trimmed string.
+ */
 function getCategoryEdit() {
   return document.getElementById("aT_select_category_edit").innerHTML.trim();
-}
-
-// START FUNCTIONS FOR THE SUBTASKS //
-
-let originalSubtasks = {};
-let newSubtasks = {};
-let currentTaskId = null;
-
-async function saveEditedTaskToDatabase(taskId) {
-  const updatedTask = collectTaskDataEdit();
-  updatedTask.assigned = selectedContacts;
-
-  const updatedSubtasks = { ...originalSubtasks, ...newSubtasks };
-
-  const subtasksToDelete = Object.keys(originalSubtasks).filter(
-    (originalId) => !updatedSubtasks[originalId]
-  );
-
-  try {
-    for (const subtaskId in updatedSubtasks) {
-      const original = originalSubtasks[subtaskId];
-      const updated = updatedSubtasks[subtaskId];
-
-      if (
-        !original ||
-        original.title !== updated.title ||
-        original.completed !== updated.completed
-      ) {
-        await updateSubtaskInDatabase(taskId, subtaskId, updated);
-      }
-    }
-
-    for (const subtaskId of subtasksToDelete) {
-      await deleteSubtaskFromDatabase(taskId, subtaskId);
-    }
-
-    updatedTask.subtask = updatedSubtasks;
-    const response = await fetch(`${TASKS_URL}/${taskId}.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedTask),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        `Error updating task: ${errorData.message || "Unknown error"}`
-      );
-    }
-
-    originalSubtasks = { ...updatedSubtasks };
-    newSubtasks = {};
-
-    console.log("Task successfully updated");
-    goToBoard();
-  } catch (error) {
-    console.error("Network error:", error);
-  }
-}
-
-function renderSubtasksEdit(subtasks) {
-  const subtaskContainer = document.getElementById("created_subtasks_edit");
-  subtaskContainer.innerHTML = "";
-
-  Object.entries(subtasks).forEach(([subtaskId, subtask]) => {
-    const subtaskHTML = createSubtaskHTMLEdit(subtask.title, subtaskId);
-    subtaskContainer.innerHTML += subtaskHTML;
-  });
-
-  addSubtaskListeners();
-}
-
-function divFocus() {
-  document.getElementById("aT_add_subtasks_edit").focus();
-}
-
-function divBlur() {
-  document.getElementById("aT_add_subtasks_edit").blur();
-}
-
-/**
- * Saves the edited subtask title and updates the DOM.
- * @param {HTMLImageElement} saveButton - The save button clicked.
- */
-async function saveSubtaskEdit(saveButton) {
-  const taskItem = saveButton.closest(".task-item");
-  const inputElement = getTaskInputElement(taskItem);
-  if (!inputElement || !currentTaskId) return;
-
-  const subtaskId = getSubtaskId(taskItem);
-  const newTitle = inputElement.value.trim();
-
-  if (newTitle) {
-    newSubtasks[subtaskId] = {
-      title: newTitle,
-      completed: newSubtasks[subtaskId]?.completed || false,
-    };
-
-    await updateSubtaskInDatabase(
-      currentTaskId,
-      subtaskId,
-      newSubtasks[subtaskId]
-    );
-    updateDOM(taskItem, newTitle);
-  }
-}
-
-async function updateSubtaskInDatabase(taskId, subtaskId, subtask) {
-  await fetch(`${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(subtask),
-  });
-}
-
-/**
- * Deletes a subtask from the list when the delete button is clicked.
- * @param {HTMLImageElement} deleteButton - The button that triggers the deletion.
- */
-async function deleteSubtaskEdit(deleteButton) {
-  const taskItem = deleteButton.closest(".task-item");
-  const subtaskId = getSubtaskId(taskItem);
-  if (!currentTaskId) return;
-
-  const deletionSuccessful = await deleteSubtaskFromDatabase(
-    currentTaskId,
-    subtaskId
-  );
-
-  if (deletionSuccessful) {
-    taskItem.remove();
-    delete originalSubtasks[subtaskId];
-    delete newSubtasks[subtaskId];
-    console.log(`Subtask ${subtaskId} successfully deleted.`);
-  } else {
-    console.error(`Failed to delete subtask ${subtaskId} from the database.`);
-  }
-}
-
-async function deleteSubtaskFromDatabase(taskId, subtaskId) {
-  try {
-    const response = await fetch(
-      `${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`,
-      {
-        method: "DELETE",
-      }
-    );
-    return response.ok;
-  } catch (error) {
-    console.error(`Error in deleteSubtaskFromDatabase: ${error}`);
-    return false;
-  }
-}
-
-async function reassignSubtaskIds(taskId) {
-  const subtasks = await fetchSubtasksFromDatabase(taskId);
-  if (!subtasks) return;
-
-  const updatedSubtasks = {};
-  let index = 1;
-
-  for (const [oldSubtaskId, subtask] of Object.entries(subtasks)) {
-    const newSubtaskId = `subtask${index}`;
-    updatedSubtasks[newSubtaskId] = subtask;
-    index++;
-  }
-
-  await saveReorderedSubtasksToDatabase(taskId, updatedSubtasks);
-  renderSubtasksEdit(updatedSubtasks);
-}
-
-async function saveReorderedSubtasksToDatabase(taskId, reorderedSubtasks) {
-  try {
-    const response = await fetch(`${TASKS_URL}/${taskId}/subtask.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(reorderedSubtasks),
-    });
-    if (!response.ok) {
-      console.error("Failed to update subtasks order:", response.statusText);
-    }
-  } catch (error) {
-    console.error("Error in saveReorderedSubtasksToDatabase:", error);
-  }
-}
-
-async function fetchSubtasksFromDatabase(taskId) {
-  const response = await fetch(`${TASKS_URL}/${taskId}/subtask.json`);
-  const subtasks = await response.json();
-  if (!subtasks) return {};
-
-  return subtasks;
-}
-
-/**
- * Retrieves the input element from the task item.
- * @param {HTMLElement} taskItem - The task item element.
- * @returns {HTMLInputElement|null} - The input element or null if not found.
- */
-function getTaskInputElement(taskItem) {
-  return taskItem.querySelector("input");
-}
-
-/**
- * Gets the subtask ID from the task item.
- * @param {HTMLElement} taskItem - The task item element.
- * @returns {string} - The subtask ID.
- */
-function getSubtaskId(taskItem) {
-  return taskItem.getAttribute("data-id");
-}
-
-/**
- * Updates the subtask title in the data structure.
- * @param {string} subtaskId - The ID of the subtask.
- * @param {string} newTitle - The new title of the subtask.
- */
-function updateSubtaskTitle(subtaskId, newTitle) {
-  const subtaskIndex = subtasks.findIndex(
-    (subtask) => subtask.id === subtaskId
-  );
-  if (subtaskIndex !== -1) {
-    subtasks[subtaskIndex].title = newTitle;
-  }
-}
-
-/**
- * Updates the DOM for the edited task item.
- * @param {HTMLElement} taskItem - The task item element.
- * @param {string} newTitle - The new title of the subtask.
- */
-function updateDOM(taskItem, newTitle) {
-  const taskTextElement = createTaskTextElement(newTitle);
-  taskItem.querySelector(".task-text").innerText = newTitle;
-}
-
-/**
- * Adds a subtask to the list if the input is valid.
- */
-function addSubtaskToListEdit() {
-  const subtaskContainer = document.getElementById("created_subtasks_edit");
-  const subtaskInput = document.getElementById("aT_add_subtasks_edit");
-  const subtaskTitle = subtaskInput.value.trim();
-
-  if (subtaskTitle !== "") {
-    const maxSubtaskIndex = Math.max(
-      ...Object.keys({ ...originalSubtasks, ...newSubtasks }).map((key) => {
-        const match = key.match(/subtask(\d+)/);
-        return match ? parseInt(match[1], 10) : 0;
-      })
-    );
-
-    const nextSubtaskId = `subtask${maxSubtaskIndex + 1}`;
-
-    const newSubtask = {
-      title: subtaskTitle,
-      completed: false,
-    };
-
-    newSubtasks[nextSubtaskId] = newSubtask;
-
-    const subtaskHTML = createSubtaskHTMLEdit(newSubtask.title, nextSubtaskId);
-    subtaskContainer.innerHTML += subtaskHTML;
-
-    subtaskInput.value = "";
-    resetDivVisibilityEdit();
-  }
-}
-
-function saveSubtasksToDatabase(subtasks) {
-  const subtaskId = getSubtaskId(taskItem);
-  fetch(`${TASKS_URL}/${subtaskId}/subtask.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(subtasks),
-  })
-    .then((response) => {
-      if (response.ok) {
-        console.log("Subtasks saved successfully.");
-      } else {
-        console.error("Failed to save subtasks:", response.statusText);
-      }
-    })
-    .catch((error) => {
-      console.error("Error saving subtasks:", error);
-    });
-}
-
-/**
- * Hides the subtask input field and shows the buttons for canceling and saving.
- */
-function toggleDivVisibilityEdit() {
-  document
-    .getElementById("aktive_input_addSubtask_edit")
-    .classList.add("d-none");
-  document
-    .getElementById("close_and_check_btns_edit")
-    .classList.remove("d-none");
-}
-
-/**
- * Resets the visibility of the subtask input field and hides the buttons for canceling and saving.
- */
-function resetDivVisibilityEdit() {
-  document
-    .getElementById("aktive_input_addSubtask_edit")
-    .classList.remove("d-none");
-  document.getElementById("close_and_check_btns_edit").classList.add("d-none");
-}
-
-/**
- * Creates HTML for a new subtask item.
- * @param {string} subtaskText - The text of the subtask.
- * @param {string} subtaskId - The unique ID of the subtask.
- * @returns {string} - The HTML string for the subtask.
- */
-function createSubtaskHTMLEdit(title, id) {
-  return /*html*/ `
-    <ul class="task-item" data-id="${id}">
-      <li class="task-text" onclick="editSubtaskEdit(this)">${title}</li>
-      <div class="task-controls">
-        <img src="./assets/img/subTask_edit.svg" alt="Edit" class="task-btn edit-btn" onclick="editSubtaskEdit(this)">
-        <div class="separator_subtasks"></div>
-        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn delete-btn" onclick="deleteSubtaskEdit(this)">
-      </div>
-    </ul>`;
-}
-
-/**
- * Updates the task item to show the editing input field.
- * @param {HTMLElement} taskItem - The subtask item element.
- * @param {string} currentText - The current text of the subtask.
- */
-function updateTaskItemForEditingEdit(taskItem, currentText) {
-  taskItem.innerHTML = /*html*/ `
-    <input type="text" maxlength="100" value="${currentText}" class="edit-input">
-    <div class="task-controls">
-      <div class="edit-modus-btns" onclick="deleteSubtaskEdit(this)">
-        <img src="./assets/img/subTask_delete.svg" alt="Delete" class="task-btn-input delete-btn-input">
-      </div>
-      <div class="separator_subtasks"></div>
-      <div class="edit-modus-btns"  onclick="saveSubtaskEdit(this)">
-        <img src="./assets/img/edit_subtask_check.svg" alt="Save" class="task-btn-input save-btn-input">
-      </div>
-    </div>`;
-}
-
-function editSubtaskEdit(editButton) {
-  const taskItem = editButton.closest(".task-item");
-  const taskTextElement = getTaskTextElement(taskItem);
-  const currentText = taskTextElement.textContent;
-  updateTaskItemForEditingEdit(taskItem, currentText);
-  focusAndSetCursorAtEnd(taskItem);
-}
-
-/**
- * Creates an HTML element for the updated subtask text.
- * @param {string} newTitle - The new title of the subtask.
- * @returns {HTMLLIElement} - The task text element.
- */
-function createTaskTextElement(newTitle) {
-  const taskTextElement = document.createElement("li");
-  taskTextElement.className = "task-text";
-  taskTextElement.textContent = newTitle;
-  return taskTextElement;
-}
-
-// Function to add event listeners for edit and delete buttons
-function addSubtaskListeners() {
-  document.querySelectorAll(".edit-subtask-btn").forEach((button) => {
-    button.addEventListener("click", function () {
-      const subtaskId = this.getAttribute("data-id");
-      const subtaskTitleElement = document
-        .getElementById(subtaskId)
-        .querySelector(".task-text");
-      const newTitle = prompt(
-        "Enter new title:",
-        subtaskTitleElement.textContent
-      );
-
-      if (newTitle) {
-        updateSubtaskTitle(subtaskId, newTitle);
-        subtaskTitleElement.textContent = newTitle;
-      }
-    });
-  });
-
-  const subtaskCheckboxes = document.querySelectorAll(".subtask-checkbox");
-  subtaskCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("click", (event) => {
-      const taskId = event.target.dataset.taskId;
-      const subtaskId = event.target.dataset.subtaskId;
-      toggleSubtask(taskId, subtaskId);
-    });
-  });
-
-  document.querySelectorAll(".delete-subtask-btn").forEach((button) => {
-    button.addEventListener("click", function () {
-      const subtaskId = this.getAttribute("data-id");
-      deleteSubtaskEdit(subtaskId);
-      document.getElementById(subtaskId).remove();
-    });
-  });
 }
