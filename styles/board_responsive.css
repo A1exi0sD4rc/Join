@@ -255,7 +255,8 @@
   }
 
   .big_card {
-    width: 380px;
+    width: 80%;
+    border-right: 10px;
   }
 
   .big_card::-webkit-scrollbar-button:vertical:increment {
@@ -358,6 +359,14 @@
 
   .board_header {
     padding-left: 15px;
+  }
+
+  .add_task_form_left_edit {
+    width: 95% !important;
+  }
+
+  .add_task_form_right {
+    width: 95% !important;
   }
 }
 

@@ -162,8 +162,12 @@ body {
   }
 
   .input-fields {
-    width: 364px;
+    width: 290px;
     height: 152px;
+  }
+
+  .checkbox-container {
+    width: 290px !important;
   }
 
   .input-container {
@@ -184,7 +188,7 @@ body {
     top: auto !important;
     right: auto !important;
     position: unset !important;
-    margin-top: 0;
+    margin-top: 80px;
   }
 
   body {
@@ -358,6 +362,7 @@ h1 {
 }
 
 .login-form {
+  width: 300px;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -537,6 +542,10 @@ input[type="password"]::-ms-clear {
 @media (max-height: 870px) {
   body {
     padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .signup-container {
+    margin-top: 0;
   }
 
   .login-window {

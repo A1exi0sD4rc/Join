@@ -13,7 +13,7 @@
   flex-direction: column;
   height: 820px;
   overflow-x: hidden;
-  margin-top: 50px;
+  overflow-y: visible;
   padding-left: 25px;
 }
 
