@@ -264,5 +264,10 @@
   .aT_input_addSubtask {
     font-size: 16px;
     width: 100%;
+    padding-right: 65px;
+  }
+
+  .aT_input_addSubtask::placeholder {
+    font-size: 16px;
   }
 }

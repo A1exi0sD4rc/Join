@@ -116,13 +116,23 @@
   }
 }
 
-@media (max-height: 900px) {
+@media (max-height: 1150px) {
   .big_card {
-    height: 85vh;
     border-right: 10px solid transparent;
-    border-radius: 0;
+    overflow: hidden;
+    height: 750px;
   }
 
+  .form_area_edit {
+    height: 750px !important;
+  }
+}
+
+.add_task_fillIn_section_edit {
+  height: 620px !important;
+}
+
+@media (max-height: 900px) {
   .big_card_close {
     margin-right: 15px !important;
   }
@@ -167,6 +177,38 @@
   .big_card::-webkit-scrollbar-track,
   .big_card::-webkit-scrollbar-track-piece {
     background: transparent;
+  }
+}
+
+@media (max-height: 880px) {
+  .big_card {
+    width: 100% !important;
+    border-radius: 0;
+    height: 90vh !important;
+  }
+
+  .add_task_fillIn_section_edit {
+    height: 85% !important;
+  }
+
+  .edit_button {
+    bottom: 40px !important;
+  }
+}
+
+@media (max-height: 700px) {
+  .edit_button {
+    bottom: 55px !important;
+  }
+
+  .add_task_fillIn_section_edit {
+    height: 80% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .add_task_fillIn_section_edit {
+    height: 70% !important;
   }
 }
 

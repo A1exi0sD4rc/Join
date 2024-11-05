@@ -341,6 +341,7 @@
 .edit_button {
   height: 32px;
   border: 1px;
+  bottom: 25px;
   color: #ffffff;
   background-color: #2a3647;
   border-radius: 10px;

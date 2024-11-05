@@ -93,10 +93,6 @@
     width: 300px;
   }
 
-  .aT_select_dropdown_fields {
-    padding-right: 15px;
-  }
-
   .category_subtasks_container {
     z-index: 0;
   }
@@ -135,8 +131,13 @@
   }
 
   .aT_input_addSubtask {
-    padding-right: 65px;
+    padding-right: 15px;
   }
+
+  .aT_input_addSubtask::placeholder {
+    font-size: 16px;
+  }
+
   .aT_set_prio {
     gap: 8px;
     flex-direction: column;
@@ -144,6 +145,7 @@
     width: 87px;
     height: 60px;
   }
+
   .urgent_box_active {
     gap: 8px;
     flex-direction: column;
@@ -200,6 +202,8 @@
 
   .aT_select_dropdown_fields {
     font-size: 16px;
+    padding-right: 15px;
+    width: 100%;
   }
 
   .aT_select_dropdown_fields::placeholder {
