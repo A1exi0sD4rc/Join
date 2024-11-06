@@ -385,6 +385,19 @@ body.no-scroll {
   padding: 0 8px;
 }
 
+.task_main::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+  height: 10px;
+}
+
+.task_main::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 8px;
+  margin-right: 8px;
+  width: 6px;
+}
+
 .task_topic {
   width: 244px;
   height: 24px;
