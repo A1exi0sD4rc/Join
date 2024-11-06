@@ -246,9 +246,9 @@ document
   });
 
 /**
- * handles adding a subtask, focusing on the input field if empty, 
+ * handles adding a subtask, focusing on the input field if empty,
  * and resetting visibility if the subtask is successfully added.
- * @returns 
+ * @returns
  */
 function handleClickCheckInputSubtask() {
   const inputField = document.getElementById("aT_add_subtasks");
@@ -328,7 +328,6 @@ function scrollToListEnd() {
  */
 function toggleDropdown(event) {
   event.stopPropagation();
-
   if (inputFieldContacts.classList.contains("active-border")) {
     deactivateFieldContacts();
   } else {
@@ -412,7 +411,7 @@ categoryOptions.forEach(function (option) {
 
 /**
  * hides the subtask container if a click occurs outside of it.
- * @param {*} event 
+ * @param {*} event
  */
 function handleClickOutsideSubtaskContainer(event) {
   const subtaskContainer = document.getElementById(

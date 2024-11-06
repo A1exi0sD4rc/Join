@@ -152,23 +152,48 @@ function resetCategoryValidation() {
 }
 
 /**
- * Displays a message indicating that a task has been added to the board.
- * @returns {Promise<void>} A promise that resolves when the task message has been hidden.
+ * Displays a temporary message indicating a task has been added to the board.
+ * Executes a database update and hides the message after completion.
+ * @returns {Promise<void>} Resolves after the message is hidden.
  */
 function showTaskAddedToBoardMessage() {
-  return new Promise((resolve) => {
-    const taskMessage = document.getElementById("taskMessage");
-    taskMessage.style.display = "flex";
-    setTimeout(() => {
-      taskMessage.classList.add("show");
-    }, 10);
-    setTimeout(async () => {
-      await addTaskToDatabase();
-      setTimeout(() => {
-        taskMessage.classList.remove("show");
-        taskMessage.style.display = "none";
-        resolve();
-      }, 500);
-    }, 1000);
+  return new Promise(async (resolve) => {
+    displayTaskMessage();
+    await addTaskToDatabaseWithMessage();
+    hideTaskMessage(resolve);
   });
+}
+
+/**
+ * Displays the task message element with a fade-in effect.
+ */
+function displayTaskMessage() {
+  const taskMessage = document.getElementById("taskMessage");
+  taskMessage.style.display = "flex";
+  setTimeout(() => {
+    taskMessage.classList.add("show");
+  }, 10);
+}
+
+/**
+ * Adds the task to the database after a delay.
+ * Simulates a wait time for the message display before adding the task.
+ * @returns {Promise<void>} Resolves after the database update.
+ */
+async function addTaskToDatabaseWithMessage() {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await addTaskToDatabase();
+}
+
+/**
+ * Hides the task message element with a fade-out effect.
+ * @param {Function} resolve - Callback to resolve the parent promise.
+ */
+function hideTaskMessage(resolve) {
+  const taskMessage = document.getElementById("taskMessage");
+  setTimeout(() => {
+    taskMessage.classList.remove("show");
+    taskMessage.style.display = "none";
+    resolve();
+  }, 500);
 }
