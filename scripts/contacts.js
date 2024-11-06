@@ -31,7 +31,6 @@ async function getContactData() {
   let allContacts = await getContacts();
   if (allContacts !== null) {
     let allKeys = Object.keys(allContacts);
-
     contactKeys = [];
     for (let index = 0; index < allKeys.length; index++) {
       contactKeys.push({
@@ -39,10 +38,8 @@ async function getContactData() {
         name: allContacts[allKeys[index]]["name"],
         email: allContacts[allKeys[index]]["email"],
         number: allContacts[allKeys[index]]["number"],
-        bgcolor: allContacts[allKeys[index]]["bgcolor"],
-      });
-    }
-    contactKeys.sort((a, b) => a.name.localeCompare(b.name));
+        bgcolor: allContacts[allKeys[index]]["bgcolor"]});
+    }contactKeys.sort((a, b) => a.name.localeCompare(b.name));
   }
 }
 
@@ -107,34 +104,18 @@ function getInitials(name) {
 function toggleDetailClasses(i) {
   if (window.innerWidth < 1000) {
     document.getElementById("contacts-div").classList.toggle("d-none");
-    document
-      .getElementById("contacts-h-d-div")
-      .classList.toggle("contacts-h-d-mobil");
+    document.getElementById("contacts-h-d-div").classList.toggle("contacts-h-d-mobil");
   } else {
     if (lastSelected === undefined) {
-      document
-        .getElementById(`${i}`)
-        .classList.toggle("contacts-overview-contact-selected");
-      document
-        .getElementById(`${i}`)
-        .classList.toggle("contacts-overview-contact-unselected");
+      document.getElementById(`${i}`).classList.toggle("contacts-overview-contact-selected");
+      document.getElementById(`${i}`).classList.toggle("contacts-overview-contact-unselected");
       lastSelected = i;
     } else {
-      document
-        .getElementById(`${lastSelected}`)
-        .classList.toggle("contacts-overview-contact-selected");
-      document
-        .getElementById(`${lastSelected}`)
-        .classList.toggle("contacts-overview-contact-unselected");
-      document
-        .getElementById(`${i}`)
-        .classList.toggle("contacts-overview-contact-selected");
-      document
-        .getElementById(`${i}`)
-        .classList.toggle("contacts-overview-contact-unselected");
-      lastSelected = i;
-    }
-  }
+      document.getElementById(`${lastSelected}`).classList.toggle("contacts-overview-contact-selected");
+      document.getElementById(`${lastSelected}`).classList.toggle("contacts-overview-contact-unselected");
+      document.getElementById(`${i}`).classList.toggle("contacts-overview-contact-selected");
+      document.getElementById(`${i}`).classList.toggle("contacts-overview-contact-unselected");
+      lastSelected = i;}}
 }
 
 /**
@@ -144,22 +125,7 @@ function toggleDetailClasses(i) {
  * @returns {string} A randomly selected color from the predefined list.
  */
 function generateColor() {
-  const colors = [
-    "lightcoral",
-    "green",
-    "blueviolet",
-    "lightblue",
-    "darkmagenta",
-    "orangered",
-    "purple",
-    "lightgreen",
-    "indigo",
-    "teal",
-    "peru",
-    "midnightblue",
-    "aquamarine",
-    "chartreuse",
-  ];
+  const colors = ["lightcoral", "green", "blueviolet", "lightblue", "darkmagenta", "orangered", "purple", "lightgreen", "indigo", "teal", "peru", "midnightblue", "aquamarine", "chartreuse"];
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
@@ -171,9 +137,7 @@ function generateColor() {
  * @returns {void} This function does not return a value.
  */
 function contactCreatSuccesfull() {
-  document
-    .getElementById("contact-created")
-    .classList.toggle("creation-succesfull");
+  document.getElementById("contact-created").classList.toggle("creation-succesfull");
 }
 
 /**
@@ -183,9 +147,7 @@ function contactCreatSuccesfull() {
  * @returns {void} This function does not return a value.
  */
 function contactEditSuccesfull() {
-  document
-    .getElementById("contact-edited")
-    .classList.toggle("creation-succesfull");
+  document.getElementById("contact-edited").classList.toggle("creation-succesfull");
 }
 
 /**
