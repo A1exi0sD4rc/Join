@@ -360,6 +360,10 @@
     margin-bottom: 10px;
   }
 
+  .arrow_container {
+    display: flex;
+  }
+
   .small_card_row {
     gap: 16px;
   }

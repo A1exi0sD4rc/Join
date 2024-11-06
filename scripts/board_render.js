@@ -1,8 +1,8 @@
 /**
- * creates and returns HTML for a task card, displaying the task's title, 
+ * creates and returns HTML for a task card, displaying the task's title,
  * truncated description, subtasks, assigned contacts, and priority.
- * @param {*} elementToDo 
- * @returns 
+ * @param {*} elementToDo
+ * @returns
  */
 function renderTaskCardToDo(elementToDo) {
   const subtasks = elementToDo.subtask || {};
@@ -15,6 +15,10 @@ function renderTaskCardToDo(elementToDo) {
          draggable="true" ondragstart="startDrag('${elementToDo["id"]}')">
 
       <div class="task_card_small_content">
+
+      <div class="arrow_container">
+          ${renderArrows(elementToDo["category"], elementToDo["id"])}
+        </div>
 
         <div class="art_task_small">
           <div class="art_small" id="art_small_${elementToDo["id"]}">${
@@ -45,8 +49,8 @@ function renderTaskCardToDo(elementToDo) {
 
 /**
  * creates HTML for a task card, displaying the title, description, subtasks, assigned contacts, and priority.
- * @param {*} elementProgress 
- * @returns 
+ * @param {*} elementProgress
+ * @returns
  */
 function renderTaskCardProgress(elementProgress) {
   const subtasks = elementProgress.subtask || {};
@@ -59,6 +63,10 @@ function renderTaskCardProgress(elementProgress) {
          draggable="true" ondragstart="startDrag('${elementProgress["id"]}')">
 
       <div class="task_card_small_content">
+
+      <div class="arrow_container">
+          ${renderArrows(elementProgress["category"], elementProgress["id"])}
+        </div>
 
         <div class="art_task_small">
           <div class="art_small" id="art_small_${elementProgress["id"]}">${
@@ -88,10 +96,10 @@ function renderTaskCardProgress(elementProgress) {
 }
 
 /**
- * generates HTML for a task card, showing the title, 
+ * generates HTML for a task card, showing the title,
  * a truncated description, subtasks, assigned contacts, and priority.
- * @param {*} elementAwait 
- * @returns 
+ * @param {*} elementAwait
+ * @returns
  */
 function renderTaskCardAwait(elementAwait) {
   const subtasks = elementAwait.subtask || {};
@@ -104,6 +112,10 @@ function renderTaskCardAwait(elementAwait) {
          draggable="true" ondragstart="startDrag('${elementAwait["id"]}')">
 
       <div class="task_card_small_content">
+
+      <div class="arrow_container">
+          ${renderArrows(elementAwait["category"], elementAwait["id"])}
+        </div>
 
         <div class="art_task_small">
           <div class="art_small" id="art_small_${elementAwait["id"]}">${
@@ -133,10 +145,10 @@ function renderTaskCardAwait(elementAwait) {
 }
 
 /**
- * creates HTML for a completed task card, displaying the title, 
+ * creates HTML for a completed task card, displaying the title,
  * a truncated description, subtasks, assigned contacts, and priority.
- * @param {*} elementDone 
- * @returns 
+ * @param {*} elementDone
+ * @returns
  */
 function renderTaskCardDone(elementDone) {
   const subtasks = elementDone.subtask || {};
@@ -149,6 +161,10 @@ function renderTaskCardDone(elementDone) {
          draggable="true" ondragstart="startDrag('${elementDone["id"]}')">
 
       <div class="task_card_small_content">
+
+      <div class="arrow_container">
+          ${renderArrows(elementDone["category"], elementDone["id"])}
+        </div>
 
         <div class="art_task_small">
           <div class="art_small" id="art_small_${elementDone["id"]}">${
@@ -179,19 +195,19 @@ function renderTaskCardDone(elementDone) {
 
 /**
  * shortens a string to a specified maximum length, adding "..." if the text exceeds that length.
- * @param {*} text 
- * @param {*} maxLength 
- * @returns 
+ * @param {*} text
+ * @param {*} maxLength
+ * @returns
  */
 function truncateText(text, maxLength) {
   return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
 }
 
 /**
- * creates HTML for displaying up to three contact initials and shows a "+N" for any additional contacts. 
+ * creates HTML for displaying up to three contact initials and shows a "+N" for any additional contacts.
  * If none are assigned, it returns an empty div.
- * @param {*} assigned 
- * @returns 
+ * @param {*} assigned
+ * @returns
  */
 function renderAssignedContacts(assigned) {
   if (assigned && assigned.length > 0) {
@@ -232,10 +248,10 @@ function renderAssignedContacts(assigned) {
 }
 
 /**
- * generates HTML for a progress bar showing completed subtasks and their total count, 
+ * generates HTML for a progress bar showing completed subtasks and their total count,
  * returning an empty string if there are no subtasks.
- * @param {*} subtasks 
- * @returns 
+ * @param {*} subtasks
+ * @returns
  */
 function generateSubAmountHtml(subtasks) {
   const totalSubtasks = Object.keys(subtasks).length;
@@ -261,8 +277,8 @@ function generateSubAmountHtml(subtasks) {
 
 /**
  * creates HTML for displaying a detailed task card based on the provided task data.
- * @param {*} bigelement 
- * @returns 
+ * @param {*} bigelement
+ * @returns
  */
 function renderBigTaskCard(bigelement) {
   return `
@@ -340,11 +356,11 @@ function renderBigTaskCard(bigelement) {
 }
 
 /**
- * generates HTML for displaying a list of subtasks, including checkboxes to indicate completion, 
+ * generates HTML for displaying a list of subtasks, including checkboxes to indicate completion,
  * based on the provided subtasks object and task ID.
- * @param {*} subtasks 
- * @param {*} taskId 
- * @returns 
+ * @param {*} subtasks
+ * @param {*} taskId
+ * @returns
  */
 function renderSubtasks(subtasks, taskId) {
   if (!subtasks || typeof subtasks !== "object") {
@@ -369,9 +385,9 @@ function renderSubtasks(subtasks, taskId) {
 
 /**
  * toggles a subtask's completion status and updates the UI and database accordingly.
- * @param {*} taskId 
- * @param {*} subtaskKey 
- * @returns 
+ * @param {*} taskId
+ * @param {*} subtaskKey
+ * @returns
  */
 async function toggleSubtask(taskId, subtaskKey) {
   try {
@@ -406,10 +422,10 @@ async function toggleSubtask(taskId, subtaskKey) {
 }
 
 /**
- * updates the progress bar and displayed count of completed 
+ * updates the progress bar and displayed count of completed
  * subtasks for a specific task based on the provided task data.
- * @param {*} taskId 
- * @param {*} taskData 
+ * @param {*} taskId
+ * @param {*} taskData
  */
 function updateSubtasksUI(taskId, taskData) {
   const subtasks = taskData.subtask;
@@ -437,8 +453,8 @@ function updateSubtasksUI(taskId, taskData) {
 
 /**
  * creates HTML for displaying assigned contacts' initials and names or returns an empty element if there are none.
- * @param {*} assigned 
- * @returns 
+ * @param {*} assigned
+ * @returns
  */
 function renderBigAssignedContacts(assigned) {
   if (assigned) {
@@ -467,9 +483,9 @@ function renderBigAssignedContacts(assigned) {
 }
 
 /**
- * 
- * @param {*} dateString 
- * @returns 
+ *
+ * @param {*} dateString
+ * @returns
  */
 function formatDate(dateString) {
   const [year, month, day] = dateString.split("-");
@@ -478,7 +494,7 @@ function formatDate(dateString) {
 
 /**
  * returns HTML indicating that there are no tasks to do.
- * @returns 
+ * @returns
  */
 function renderNoTasksToDo() {
   return `
@@ -488,7 +504,7 @@ function renderNoTasksToDo() {
 
 /**
  * returns HTML that displays a message indicating there are no tasks in progress.
- * @returns 
+ * @returns
  */
 function renderNoTasksProgress() {
   return `
@@ -498,7 +514,7 @@ function renderNoTasksProgress() {
 
 /**
  * returns HTML that shows a message indicating there is no feedback awaited.
- * @returns 
+ * @returns
  */
 function renderNoTasksAwait() {
   return `
@@ -508,7 +524,7 @@ function renderNoTasksAwait() {
 
 /**
  * returns HTML that displays a message stating there are no tasks done.
- * @returns 
+ * @returns
  */
 function renderNoTaskDone() {
   return `

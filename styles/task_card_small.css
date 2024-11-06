@@ -8,6 +8,7 @@
   margin-bottom: 16px;
   cursor: pointer;
   transition: transform 300ms ease-out;
+  position: relative;
 }
 
 .rotate {
@@ -21,6 +22,26 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.arrow_container {
+  position: absolute;
+  right: 0;
+  color: #333;
+  display: none;
+}
+
+.arrow_up:hover,
+.arrow_down:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.arrow_up,
+.arrow_down {
+  height: 30px;
+  transition: transform 0.2s ease-in-out;
 }
 
 .art_small {
