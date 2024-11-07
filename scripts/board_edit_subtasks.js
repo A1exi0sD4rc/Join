@@ -19,8 +19,8 @@ async function saveEditedTaskToDatabase(taskId) {
   );
 
   try {
-    await updateSubtasks(taskId, updatedSubtasks);
-    await deleteSubtasks(taskId, subtasksToDelete);
+    await updateSubtasksEdit(taskId, updatedSubtasks);
+    await deleteSubtasksEdit(taskId, subtasksToDelete);
     await updateMainTask(taskId, updatedTask, updatedSubtasks);
 
     originalSubtasks = { ...updatedSubtasks };
@@ -53,7 +53,7 @@ function findSubtasksToDelete(originalSubtasks, updatedSubtasks) {
  * @param {Object} updatedSubtasks - An object containing updated subtasks with their data.
  * @returns {Promise<void>} - Completes when all necessary subtask updates are done.
  */
-async function updateSubtasks(taskId, updatedSubtasks) {
+async function updateSubtasksEdit(taskId, updatedSubtasks) {
   for (const subtaskId in updatedSubtasks) {
     const original = originalSubtasks[subtaskId];
     const updated = updatedSubtasks[subtaskId];
@@ -76,7 +76,7 @@ async function updateSubtasks(taskId, updatedSubtasks) {
  * @param {string[]} subtasksToDelete - An array of subtask IDs to delete.
  * @returns {Promise<void>} - Completes when all specified subtasks are deleted.
  */
-async function deleteSubtasks(taskId, subtasksToDelete) {
+async function deleteSubtasksEdit(taskId, subtasksToDelete) {
   for (const subtaskId of subtasksToDelete) {
     await deleteSubtaskFromDatabase(taskId, subtaskId);
   }
