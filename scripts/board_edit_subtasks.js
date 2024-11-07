@@ -3,71 +3,127 @@ let newSubtasks = {};
 let currentTaskId = null;
 
 /**
- * Saves the edited task to the database, updating existing data and managing subtasks.
- * Checks for changes to subtasks, updates modified ones, deletes removed ones, and adds new subtasks.
- * Refreshes the task board and displays the updated task in the expanded view.
+ * Saves edited task data, including updates to the main task and its subtasks, to the database.
  *
  * @async
- * @param {string} taskId - The unique identifier for the task being updated.
- * @returns {Promise<void>} - A promise that resolves when the task and subtasks are successfully saved to the database.
- * @throws {Error} - Throws an error if there's a network issue or an error in updating the task.
+ * @param {string} taskId - The unique identifier of the task to be updated.
+ * @returns {Promise<void>} - Completes when the task and subtasks have been updated and UI refreshed.
  */
 async function saveEditedTaskToDatabase(taskId) {
   const updatedTask = collectTaskDataEdit();
   updatedTask.assigned = selectedContacts;
-
   const updatedSubtasks = { ...originalSubtasks, ...newSubtasks };
-
-  const subtasksToDelete = Object.keys(originalSubtasks).filter(
-    (originalId) => !updatedSubtasks[originalId]
+  const subtasksToDelete = findSubtasksToDelete(
+    originalSubtasks,
+    updatedSubtasks
   );
 
   try {
-    for (const subtaskId in updatedSubtasks) {
-      const original = originalSubtasks[subtaskId];
-      const updated = updatedSubtasks[subtaskId];
-
-      if (
-        !original ||
-        original.title !== updated.title ||
-        original.completed !== updated.completed
-      ) {
-        await updateSubtaskInDatabase(taskId, subtaskId, updated);
-      }
-    }
-
-    for (const subtaskId of subtasksToDelete) {
-      await deleteSubtaskFromDatabase(taskId, subtaskId);
-    }
-
-    updatedTask.subtask = updatedSubtasks;
-    const response = await fetch(`${TASKS_URL}/${taskId}.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedTask),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        `Error updating task: ${errorData.message || "Unknown error"}`
-      );
-    }
-
-    const updatedTaskData = await response.json();
-    const taskIndex = tasks.findIndex((task) => task.id === taskId);
-    if (taskIndex !== -1) {
-      tasks[taskIndex] = { id: taskId, ...updatedTaskData };
-    }
+    await updateSubtasks(taskId, updatedSubtasks);
+    await deleteSubtasks(taskId, subtasksToDelete);
+    await updateMainTask(taskId, updatedTask, updatedSubtasks);
 
     originalSubtasks = { ...updatedSubtasks };
     newSubtasks = {};
 
-    await refreshTaskBoard();
-    showBigTask(taskId);
+    await refreshUI(taskId);
   } catch (error) {
     console.error("Network error:", error);
   }
+}
+
+/**
+ * Identifies subtasks that need to be deleted by comparing original and updated subtasks.
+ *
+ * @param {Object} originalSubtasks - The original subtasks of the task.
+ * @param {Object} updatedSubtasks - The updated subtasks after editing.
+ * @returns {string[]} - An array of subtask IDs that should be deleted.
+ */
+function findSubtasksToDelete(originalSubtasks, updatedSubtasks) {
+  return Object.keys(originalSubtasks).filter(
+    (originalId) => !updatedSubtasks[originalId]
+  );
+}
+
+/**
+ * Updates existing and new subtasks in the database.
+ *
+ * @async
+ * @param {string} taskId - The unique identifier of the task whose subtasks are updated.
+ * @param {Object} updatedSubtasks - An object containing updated subtasks with their data.
+ * @returns {Promise<void>} - Completes when all necessary subtask updates are done.
+ */
+async function updateSubtasks(taskId, updatedSubtasks) {
+  for (const subtaskId in updatedSubtasks) {
+    const original = originalSubtasks[subtaskId];
+    const updated = updatedSubtasks[subtaskId];
+
+    if (
+      !original ||
+      original.title !== updated.title ||
+      original.completed !== updated.completed
+    ) {
+      await updateSubtaskInDatabase(taskId, subtaskId, updated);
+    }
+  }
+}
+
+/**
+ * Deletes specified subtasks from the database.
+ *
+ * @async
+ * @param {string} taskId - The unique identifier of the task whose subtasks are deleted.
+ * @param {string[]} subtasksToDelete - An array of subtask IDs to delete.
+ * @returns {Promise<void>} - Completes when all specified subtasks are deleted.
+ */
+async function deleteSubtasks(taskId, subtasksToDelete) {
+  for (const subtaskId of subtasksToDelete) {
+    await deleteSubtaskFromDatabase(taskId, subtaskId);
+  }
+}
+
+/**
+ * Updates the main task information in the database, including its subtasks.
+ *
+ * @async
+ * @param {string} taskId - The unique identifier of the task to update.
+ * @param {Object} updatedTask - The updated task data, including title, description, etc.
+ * @param {Object} updatedSubtasks - An object containing the updated subtasks.
+ * @returns {Promise<void>} - Completes when the main task is updated in the database.
+ * @throws Will throw an error if the database update fails.
+ */
+async function updateMainTask(taskId, updatedTask, updatedSubtasks) {
+  updatedTask.subtask = updatedSubtasks;
+  const response = await fetch(`${TASKS_URL}/${taskId}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedTask),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(
+      `Error updating task: ${errorData.message || "Unknown error"}`
+    );
+  }
+
+  const updatedTaskData = await response.json();
+  const taskIndex = tasks.findIndex((task) => task.id === taskId);
+  if (taskIndex !== -1) {
+    tasks[taskIndex] = { id: taskId, ...updatedTaskData };
+  }
+}
+
+/**
+ * Refreshes the task board and displays the updated task in a detailed view.
+ *
+ * @async
+ * @param {string} taskId - The unique identifier of the task to display.
+ * @returns {Promise<void>} - Completes when the task board is refreshed and the task is displayed.
+ */
+async function refreshUI(taskId) {
+  await refreshTaskBoard();
+  showBigTask(taskId);
 }
 
 /**
