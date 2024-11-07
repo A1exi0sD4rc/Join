@@ -27,7 +27,6 @@ function collectTaskData() {
   const category = getCategory();
   const prio = getActivePriority();
   const contacts = selectedContacts;
-
   let subtasksObject = {};
   subtasks.forEach((subtask, index) => {
     subtasksObject[`subtask${index + 1}`] = {
@@ -35,7 +34,6 @@ function collectTaskData() {
       title: subtask.title,
     };
   });
-
   return {
     art: category,
     assigned: contacts,
@@ -61,7 +59,6 @@ function collectTaskDataEdit() {
   const prio = getActivePriorityEdit();
   const contacts = selectedContacts;
   const category = taskCategory;
-
   let subtasksObject = {};
   subtasks.forEach((subtask, index) => {
     subtasksObject[`subtask${index + 1}`] = {
@@ -69,7 +66,6 @@ function collectTaskDataEdit() {
       title: subtask.title,
     };
   });
-
   return {
     art: categorySelect,
     assigned: contacts,
@@ -165,11 +161,9 @@ async function saveTaskToDatabase(task) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(task),
     });
-
     if (!response.ok) {
       throw new Error("Error adding task");
     }
-
     console.log("Task successfully added");
   } catch (error) {
     console.error("Network error:", error);
