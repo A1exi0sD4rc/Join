@@ -131,13 +131,11 @@ function toggleContact(index) {
   const contactElement = document.getElementById(`contact_${index}`);
   const checkboxImage = document.getElementById(`checkbox_${index}`);
   const textContainer = contactElement.querySelector("div");
-
   if (isSelected(contact)) {
     deselectContact(contact, contactElement, textContainer, checkboxImage);
   } else {
     selectContact(contact, contactElement, textContainer, checkboxImage);
   }
-
   saveSelectedContactsToSession();
   displaySelectedContacts();
 }
@@ -188,7 +186,6 @@ function selectContact(contact, contactElement, textContainer, checkboxImage) {
 function displaySelectedContacts() {
   let selectedContainer = document.getElementById("selected_contacts");
   selectedContainer.innerHTML = "";
-
   for (let contact of selectedContacts) {
     let initials = getInitials(contact.name.replace(" (You)", ""));
     selectedContainer.innerHTML += `
@@ -225,15 +222,12 @@ function saveSelectedContactsToSession() {
  */
 function loadSelectedContactsFromSession() {
   let savedContacts = sessionStorage.getItem("selectedContacts");
-
   if (savedContacts) {
     let tempSelectedContacts = JSON.parse(savedContacts);
     selectedContacts = tempSelectedContacts.filter((contact) =>
       contactsAddTask.some((c) => c.name === contact.name)
     );
-
     saveSelectedContactsToSession();
-
     restoreContactsState();
     displaySelectedContacts();
   } else {
@@ -249,7 +243,6 @@ function restoreContactsState() {
   contactsAddTask.forEach((contact, index) => {
     let contactElement = document.getElementById(`contact_${index}`);
     let checkboxImage = document.getElementById(`checkbox_${index}`);
-
     if (isSelected(contact)) {
       contactElement.classList.add("contact-selected");
       contactElement.classList.remove("contact-unselected");
@@ -284,32 +277,59 @@ function clearSelectedContacts() {
 function renderFilteredContacts(filteredContacts) {
   let contactContainer = document.getElementById("contacts_container");
   contactContainer.innerHTML = "";
-
   if (filteredContacts.length > 0) {
     filteredContacts.forEach((contact) => {
-      const originalIndex = contactsAddTask.indexOf(contact);
-      const checked = isSelected(contact);
-      const backgroundColor = checked ? "#2A3647" : "#FFFFFF";
-      const checkboxImage = checked
-        ? "checkbox-checked-white.png"
-        : "checkbox.png";
-      const contactTextColor = checked ? "#FFFFFF" : "#000000";
-      const contactClass = checked ? "contact-selected" : "contact-unselected";
-      const initials = getInitials(contact.name.replace(" (You)", ""));
-
-      contactContainer.innerHTML += getFilteredContactHTML(
-        originalIndex,
-        contact,
-        contactClass,
-        backgroundColor,
-        contactTextColor,
-        checkboxImage,
-        initials
-      );
+      renderContact(contact, contactContainer);
     });
   } else {
-    contactContainer.innerHTML += getNoContactHTML();
+    renderNoContactsMessage(contactContainer);
   }
+}
+
+/**
+ * Renders a single contact within a specified container.
+ *
+ * @param {Object} contact - The contact object to render.
+ * @param {HTMLElement} container - The DOM element where the contact will be rendered.
+ */
+function renderContact(contact, container) {
+  const originalIndex = contactsAddTask.indexOf(contact);
+  const { backgroundColor, checkboxImage, contactTextColor, contactClass } =
+    getContactStyle(contact);
+  const initials = getInitials(contact.name.replace(" (You)", ""));
+  container.innerHTML += getFilteredContactHTML(
+    originalIndex,
+    contact,
+    contactClass,
+    backgroundColor,
+    contactTextColor,
+    checkboxImage,
+    initials
+  );
+}
+
+/**
+ * Returns style properties for a contact based on selection status.
+ *
+ * @param {Object} contact - The contact object to style.
+ * @returns {Object} Style properties including background color, checkbox image, text color, and CSS class.
+ */
+function getContactStyle(contact) {
+  const checked = isSelected(contact);
+  return {
+    backgroundColor: checked ? "#2A3647" : "#FFFFFF",
+    checkboxImage: checked ? "checkbox-checked-white.png" : "checkbox.png",
+    contactTextColor: checked ? "#FFFFFF" : "#000000",
+    contactClass: checked ? "contact-selected" : "contact-unselected",
+  };
+}
+
+/**
+ * Renders a message indicating no contacts are available.
+ * @param {HTMLElement} container - The HTML container element where the message will be displayed.
+ */
+function renderNoContactsMessage(container) {
+  container.innerHTML += getNoContactHTML();
 }
 
 /**
