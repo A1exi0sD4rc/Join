@@ -1,131 +1,3 @@
-let originalSubtasks = {};
-let newSubtasks = {};
-let currentTaskId = null;
-
-/**
- * Saves edited task data, including updates to the main task and its subtasks, to the database.
- *
- * @async
- * @param {string} taskId - The unique identifier of the task to be updated.
- * @returns {Promise<void>} - Completes when the task and subtasks have been updated and UI refreshed.
- */
-async function saveEditedTaskToDatabase(taskId) {
-  const updatedTask = collectTaskDataEdit();
-  updatedTask.assigned = selectedContacts;
-  const updatedSubtasks = { ...originalSubtasks, ...newSubtasks };
-  const subtasksToDelete = findSubtasksToDelete(
-    originalSubtasks,
-    updatedSubtasks
-  );
-
-  try {
-    await updateSubtasksEdit(taskId, updatedSubtasks);
-    await deleteSubtasksEdit(taskId, subtasksToDelete);
-    await updateMainTask(taskId, updatedTask, updatedSubtasks);
-
-    originalSubtasks = { ...updatedSubtasks };
-    newSubtasks = {};
-
-    await refreshUI(taskId);
-  } catch (error) {
-    console.error("Network error:", error);
-  }
-}
-
-/**
- * Identifies subtasks that need to be deleted by comparing original and updated subtasks.
- *
- * @param {Object} originalSubtasks - The original subtasks of the task.
- * @param {Object} updatedSubtasks - The updated subtasks after editing.
- * @returns {string[]} - An array of subtask IDs that should be deleted.
- */
-function findSubtasksToDelete(originalSubtasks, updatedSubtasks) {
-  return Object.keys(originalSubtasks).filter(
-    (originalId) => !updatedSubtasks[originalId]
-  );
-}
-
-/**
- * Updates existing and new subtasks in the database.
- *
- * @async
- * @param {string} taskId - The unique identifier of the task whose subtasks are updated.
- * @param {Object} updatedSubtasks - An object containing updated subtasks with their data.
- * @returns {Promise<void>} - Completes when all necessary subtask updates are done.
- */
-async function updateSubtasksEdit(taskId, updatedSubtasks) {
-  for (const subtaskId in updatedSubtasks) {
-    const original = originalSubtasks[subtaskId];
-    const updated = updatedSubtasks[subtaskId];
-
-    if (
-      !original ||
-      original.title !== updated.title ||
-      original.completed !== updated.completed
-    ) {
-      await updateSubtaskInDatabase(taskId, subtaskId, updated);
-    }
-  }
-}
-
-/**
- * Deletes specified subtasks from the database.
- *
- * @async
- * @param {string} taskId - The unique identifier of the task whose subtasks are deleted.
- * @param {string[]} subtasksToDelete - An array of subtask IDs to delete.
- * @returns {Promise<void>} - Completes when all specified subtasks are deleted.
- */
-async function deleteSubtasksEdit(taskId, subtasksToDelete) {
-  for (const subtaskId of subtasksToDelete) {
-    await deleteSubtaskFromDatabase(taskId, subtaskId);
-  }
-}
-
-/**
- * Updates the main task information in the database, including its subtasks.
- *
- * @async
- * @param {string} taskId - The unique identifier of the task to update.
- * @param {Object} updatedTask - The updated task data, including title, description, etc.
- * @param {Object} updatedSubtasks - An object containing the updated subtasks.
- * @returns {Promise<void>} - Completes when the main task is updated in the database.
- * @throws Will throw an error if the database update fails.
- */
-async function updateMainTask(taskId, updatedTask, updatedSubtasks) {
-  updatedTask.subtask = updatedSubtasks;
-  const response = await fetch(`${TASKS_URL}/${taskId}.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedTask),
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(
-      `Error updating task: ${errorData.message || "Unknown error"}`
-    );
-  }
-
-  const updatedTaskData = await response.json();
-  const taskIndex = tasks.findIndex((task) => task.id === taskId);
-  if (taskIndex !== -1) {
-    tasks[taskIndex] = { id: taskId, ...updatedTaskData };
-  }
-}
-
-/**
- * Refreshes the task board and displays the updated task in a detailed view.
- *
- * @async
- * @param {string} taskId - The unique identifier of the task to display.
- * @returns {Promise<void>} - Completes when the task board is refreshed and the task is displayed.
- */
-async function refreshUI(taskId) {
-  await refreshTaskBoard();
-  showBigTask(taskId);
-}
-
 /**
  * Renders the subtasks in the edit view by generating HTML for each subtask
  * and displaying it within the 'created_subtasks_edit' container.
@@ -155,50 +27,6 @@ function divBlur() {
 }
 
 /**
- * Saves the edited subtask title and updates the DOM.
- * @param {HTMLImageElement} saveButton - The save button clicked.
- */
-async function saveSubtaskEdit(saveButton) {
-  const taskItem = saveButton.closest(".task-item");
-  const inputElement = getTaskInputElement(taskItem);
-  if (!inputElement || !currentTaskId) return;
-
-  const subtaskId = getSubtaskId(taskItem);
-  const newTitle = inputElement.value.trim();
-
-  if (newTitle) {
-    newSubtasks[subtaskId] = {
-      title: newTitle,
-      completed: newSubtasks[subtaskId]?.completed || false,
-    };
-
-    await updateSubtaskInDatabase(
-      currentTaskId,
-      subtaskId,
-      newSubtasks[subtaskId]
-    );
-    updateDOM(taskItem, newTitle);
-  }
-}
-
-/**
- * Updates a specific subtask in the database with new data.
- *
- * @async
- * @param {string} taskId - The unique identifier of the task containing the subtask.
- * @param {string} subtaskId - The unique identifier of the subtask to update.
- * @param {Object} subtask - The subtask object containing updated data, including `title` and `completed` status.
- * @returns {Promise<void>} - A promise that resolves when the subtask is updated in the database.
- */
-async function updateSubtaskInDatabase(taskId, subtaskId, subtask) {
-  await fetch(`${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(subtask),
-  });
-}
-
-/**
  * Deletes a subtask from the list when the delete button is clicked.
  * @param {HTMLImageElement} deleteButton - The button that triggers the deletion.
  */
@@ -218,29 +46,6 @@ async function deleteSubtaskEdit(deleteButton) {
     delete newSubtasks[subtaskId];
   } else {
     console.error(`Failed to delete subtask ${subtaskId} from the database.`);
-  }
-}
-
-/**
- * Deletes a specific subtask from the database.
- *
- * @async
- * @param {string} taskId - The unique identifier of the task containing the subtask.
- * @param {string} subtaskId - The unique identifier of the subtask to delete.
- * @returns {Promise<boolean>} - A promise that resolves to true if the subtask was deleted successfully, false otherwise.
- */
-async function deleteSubtaskFromDatabase(taskId, subtaskId) {
-  try {
-    const response = await fetch(
-      `${TASKS_URL}/${taskId}/subtask/${subtaskId}.json`,
-      {
-        method: "DELETE",
-      }
-    );
-    return response.ok;
-  } catch (error) {
-    console.error(`Error in deleteSubtaskFromDatabase: ${error}`);
-    return false;
   }
 }
 
@@ -267,44 +72,6 @@ async function reassignSubtaskIds(taskId) {
 
   await saveReorderedSubtasksToDatabase(taskId, updatedSubtasks);
   renderSubtasksEdit(updatedSubtasks);
-}
-
-/**
- * Saves the reordered subtasks to the database for a specified task.
- *
- * @async
- * @param {string} taskId - The unique identifier of the task containing the reordered subtasks.
- * @param {Object} reorderedSubtasks - The object containing reordered subtasks.
- * @returns {Promise<void>} - A promise that resolves when the reordered subtasks are saved to the database.
- */
-async function saveReorderedSubtasksToDatabase(taskId, reorderedSubtasks) {
-  try {
-    const response = await fetch(`${TASKS_URL}/${taskId}/subtask.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(reorderedSubtasks),
-    });
-    if (!response.ok) {
-      console.error("Failed to update subtasks order:", response.statusText);
-    }
-  } catch (error) {
-    console.error("Error in saveReorderedSubtasksToDatabase:", error);
-  }
-}
-
-/**
- * Fetches all subtasks from the database for a specified task.
- *
- * @async
- * @param {string} taskId - The unique identifier of the task to retrieve subtasks for.
- * @returns {Promise<Object>} - A promise that resolves to an object containing subtasks, where each key is a subtask ID.
- */
-async function fetchSubtasksFromDatabase(taskId) {
-  const response = await fetch(`${TASKS_URL}/${taskId}/subtask.json`);
-  const subtasks = await response.json();
-  if (!subtasks) return {};
-
-  return subtasks;
 }
 
 /**
@@ -350,61 +117,73 @@ function updateDOM(taskItem, newTitle) {
 }
 
 /**
- * Adds a new subtask to the list in the edit view, generating a unique ID and HTML for the subtask.
- * Updates the new subtasks object and clears the input field after adding the subtask.
+ * Adds a new subtask to the edit list if the input is valid.
  */
 function addSubtaskToListEdit() {
-  const subtaskContainer = document.getElementById("created_subtasks_edit");
-  const subtaskInput = document.getElementById("aT_add_subtasks_edit");
-  const subtaskTitle = subtaskInput.value.trim();
-
-  if (subtaskTitle !== "") {
-    const maxSubtaskIndex = Math.max(
-      ...Object.keys({ ...originalSubtasks, ...newSubtasks }).map((key) => {
-        const match = key.match(/subtask(\d+)/);
-        return match ? parseInt(match[1], 10) : 0;
-      })
-    );
-
-    const nextSubtaskId = `subtask${maxSubtaskIndex + 1}`;
-
-    const newSubtask = {
-      title: subtaskTitle,
-      completed: false,
-    };
-
-    newSubtasks[nextSubtaskId] = newSubtask;
-
-    const subtaskHTML = createSubtaskHTMLEdit(newSubtask.title, nextSubtaskId);
-    subtaskContainer.innerHTML += subtaskHTML;
-
-    subtaskInput.value = "";
+  const subtaskTitle = getSubtaskInputValue();
+  if (subtaskTitle) {
+    const nextSubtaskId = generateNextSubtaskId();
+    const newSubtask = createNewSubtask(subtaskTitle, nextSubtaskId);
+    addSubtaskToDOM(newSubtask, nextSubtaskId);
+    resetSubtaskInput();
     resetDivVisibilityEdit();
   }
 }
 
 /**
- * Saves the provided subtasks data to the database.
- *
- * @param {Object} subtasks - The object containing subtasks to be saved, where each key is a subtask ID.
+ * Retrieves and trims the value from the subtask input field.
+ * @returns {string} The trimmed subtask title if valid, otherwise an empty string.
  */
-function saveSubtasksToDatabase(subtasks) {
-  const subtaskId = getSubtaskId(taskItem);
-  fetch(`${TASKS_URL}/${subtaskId}/subtask.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(subtasks),
-  })
-    .then((response) => {
-      if (response.ok) {
-        console.log("Subtasks saved successfully.");
-      } else {
-        console.error("Failed to save subtasks:", response.statusText);
-      }
+function getSubtaskInputValue() {
+  const subtaskInput = document.getElementById("aT_add_subtasks_edit");
+  return subtaskInput.value.trim();
+}
+
+/**
+ * Generates the next unique subtask ID based on existing subtasks.
+ * @returns {string} The next subtask ID in the format 'subtaskX'.
+ */
+function generateNextSubtaskId() {
+  const maxSubtaskIndex = Math.max(
+    ...Object.keys({ ...originalSubtasks, ...newSubtasks }).map((key) => {
+      const match = key.match(/subtask(\d+)/);
+      return match ? parseInt(match[1], 10) : 0;
     })
-    .catch((error) => {
-      console.error("Error saving subtasks:", error);
-    });
+  );
+  return `subtask${maxSubtaskIndex + 1}`;
+}
+
+/**
+ * Creates a new subtask object and adds it to the newSubtasks object.
+ * @param {string} title - The title of the new subtask.
+ * @param {string} subtaskId - The unique ID of the new subtask.
+ * @returns {Object} The new subtask object.
+ */
+function createNewSubtask(title, subtaskId) {
+  const newSubtask = {
+    title: title,
+    completed: false,
+  };
+  newSubtasks[subtaskId] = newSubtask;
+  return newSubtask;
+}
+
+/**
+ * Adds the subtask's HTML to the DOM in the subtask container.
+ * @param {Object} subtask - The new subtask object.
+ * @param {string} subtaskId - The ID of the new subtask.
+ */
+function addSubtaskToDOM(subtask, subtaskId) {
+  const subtaskContainer = document.getElementById("created_subtasks_edit");
+  const subtaskHTML = createSubtaskHTMLEdit(subtask.title, subtaskId);
+  subtaskContainer.innerHTML += subtaskHTML;
+}
+
+/**
+ * Resets the subtask input field after adding a subtask.
+ */
+function resetSubtaskInput() {
+  document.getElementById("aT_add_subtasks_edit").value = "";
 }
 
 /**
@@ -496,38 +275,71 @@ function createTaskTextElement(newTitle) {
  * Handles edit, delete, and checkbox click events for managing subtasks.
  */
 function addSubtaskListeners() {
+  addEditSubtaskListeners();
+  addToggleSubtaskListeners();
+  addDeleteSubtaskListeners();
+}
+
+/**
+ * Adds event listeners to all "Edit" buttons for subtasks.
+ */
+function addEditSubtaskListeners() {
   document.querySelectorAll(".edit-subtask-btn").forEach((button) => {
-    button.addEventListener("click", function () {
-      const subtaskId = this.getAttribute("data-id");
-      const subtaskTitleElement = document
-        .getElementById(subtaskId)
-        .querySelector(".task-text");
-      const newTitle = prompt(
-        "Enter new title:",
-        subtaskTitleElement.textContent
-      );
-
-      if (newTitle) {
-        updateSubtaskTitle(subtaskId, newTitle);
-        subtaskTitleElement.textContent = newTitle;
-      }
-    });
+    button.addEventListener("click", handleEditSubtask);
   });
+}
 
-  const subtaskCheckboxes = document.querySelectorAll(".subtask-checkbox");
-  subtaskCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("click", (event) => {
-      const taskId = event.target.dataset.taskId;
-      const subtaskId = event.target.dataset.subtaskId;
-      toggleSubtask(taskId, subtaskId);
-    });
+/**
+ * Handles the editing of a subtask's title.
+ * @this {HTMLElement} The "Edit" button clicked.
+ */
+function handleEditSubtask() {
+  const subtaskId = this.getAttribute("data-id");
+  const subtaskTitleElement = document
+    .getElementById(subtaskId)
+    .querySelector(".task-text");
+  const newTitle = prompt("Enter new title:", subtaskTitleElement.textContent);
+
+  if (newTitle) {
+    updateSubtaskTitle(subtaskId, newTitle);
+    subtaskTitleElement.textContent = newTitle;
+  }
+}
+
+/**
+ * Adds event listeners to all subtask checkboxes to toggle completion state.
+ */
+function addToggleSubtaskListeners() {
+  document.querySelectorAll(".subtask-checkbox").forEach((checkbox) => {
+    checkbox.addEventListener("click", handleToggleSubtask);
   });
+}
 
+/**
+ * Toggles the completion state of a subtask.
+ * @param {Event} event - The click event from the checkbox.
+ */
+function handleToggleSubtask(event) {
+  const taskId = event.target.dataset.taskId;
+  const subtaskId = event.target.dataset.subtaskId;
+  toggleSubtask(taskId, subtaskId);
+}
+
+/**
+ * Adds event listeners to all "Delete" buttons for subtasks.
+ */
+function addDeleteSubtaskListeners() {
   document.querySelectorAll(".delete-subtask-btn").forEach((button) => {
-    button.addEventListener("click", function () {
-      const subtaskId = this.getAttribute("data-id");
-      deleteSubtaskEdit(subtaskId);
-      document.getElementById(subtaskId).remove();
-    });
+    button.addEventListener("click", handleDeleteSubtask);
   });
+}
+
+/**
+ * Handles the deletion of a subtask.
+ * @this {HTMLElement} The "Delete" button clicked.
+ */
+function handleDeleteSubtask() {
+  const subtaskId = this.getAttribute("data-id");
+  deleteSubtaskEdit(subtaskId);
+  document.getElementById(subtaskId).remove();
 }
