@@ -50,20 +50,20 @@ function getInitials(name) {
 }
 
 /**
- * renders a list of contacts in the contact container, updating their display based on selection status.
+ * Renders the list of contacts inside the "contacts_container" element.
+ * Clears any existing content in the container, iterates over each contact,
+ * and appends the contact's HTML representation with the appropriate styles
+ * based on the contact's selected status.
  *
+ * @function
+ * @global
  */
 function renderContacts() {
   let contactContainer = document.getElementById("contacts_container");
   contactContainer.innerHTML = "";
-
   contactsAddTask.forEach((contact, i) => {
-    let checked = isSelected(contact);
-    let contactClass = checked ? "contact-selected" : "contact-unselected";
-    let checkboxImage = checked ? "checkbox-checked-white.png" : "checkbox.png";
-    let contactTextColorClass = checked ? "text-white" : "text-black";
-    let initials = getInitials(contact.name.replace(" (You)", ""));
-
+    let { contactClass, checkboxImage, contactTextColorClass, initials } =
+      getContactStyles(contact);
     contactContainer.innerHTML += getContactHTML(
       contact,
       i,
@@ -73,6 +73,21 @@ function renderContacts() {
       initials
     );
   });
+}
+
+/**
+ * Generates style attributes for a contact based on selection status.
+ *
+ * @param {Object} contact - The contact object containing details for styling.
+ * @returns {Object} - An object with style attributes: `contactClass`, `checkboxImage`, `contactTextColorClass`, and `initials`.
+ */
+function getContactStyles(contact) {
+  let checked = isSelected(contact);
+  let contactClass = checked ? "contact-selected" : "contact-unselected";
+  let checkboxImage = checked ? "checkbox-checked-white.png" : "checkbox.png";
+  let contactTextColorClass = checked ? "text-white" : "text-black";
+  let initials = getInitials(contact.name.replace(" (You)", ""));
+  return { contactClass, checkboxImage, contactTextColorClass, initials };
 }
 
 /**
