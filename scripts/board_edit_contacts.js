@@ -68,7 +68,36 @@ function renderContactsEdit() {
     let contactTextColorClass = checked ? "text-white" : "text-black";
     let initials = getInitials(contact.name.replace(" (You)", ""));
 
-    contactContainer.innerHTML += `
+    contactContainer.innerHTML += getContactEditHTML(
+      contact,
+      i,
+      contactClass,
+      checkboxImage,
+      contactTextColorClass,
+      initials
+    );
+  });
+}
+
+/**
+ * Generates the HTML for a contact element.
+ * @param {Object} contact - The contact object containing name and background color.
+ * @param {number} index - The index of the contact in the contacts list.
+ * @param {string} contactClass - The CSS class to apply for selected/unselected state.
+ * @param {string} checkboxImage - The file name of the checkbox image.
+ * @param {string} contactTextColorClass - The CSS class to apply for text color.
+ * @param {string} initials - The initials to display in the contact's avatar.
+ * @returns {string} The HTML string for the contact element.
+ */
+function getContactEditHTML(
+  contact,
+  i,
+  contactClass,
+  checkboxImage,
+  contactTextColorClass,
+  initials
+) {
+  return `
         <div class="contact_container_element ${contactClass}" id="contact_edit_${i}" onclick="toggleContactEdit(${i})">
           <div style="display: flex; align-items: center; gap: 20px;" class="${contactTextColorClass}">
             <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +109,6 @@ function renderContactsEdit() {
           <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_edit_${i}">
         </div>
       `;
-  });
 }
 
 /**
@@ -94,23 +122,9 @@ function toggleContactEdit(index) {
   let textContainer = contactElement.querySelector("div");
 
   if (isSelected(contact)) {
-    contactElement.classList.remove("contact-selected");
-    contactElement.classList.add("contact-unselected");
-    textContainer.classList.remove("text-white");
-    textContainer.classList.add("text-black");
-    contactElement.style.backgroundColor = "#FFFFFF";
-    checkboxImage.src = "./assets/img/checkbox.png";
-    selectedContacts = selectedContacts.filter((c) => c.name !== contact.name);
-    removeSelectedContact(contact.name);
+    deselectContact(contact, contactElement, textContainer, checkboxImage);
   } else {
-    contactElement.classList.add("contact-selected");
-    contactElement.classList.remove("contact-unselected");
-    textContainer.classList.remove("text-black");
-    textContainer.classList.add("text-white");
-    contactElement.style.backgroundColor = "#2A3647";
-    checkboxImage.src = "./assets/img/checkbox-checked-white.png";
-    selectedContacts.push(contact);
-    addSelectedContact(contact);
+    selectContact(contact, contactElement, textContainer, checkboxImage);
   }
 
   updateSelectedContactsDisplayEdit();
@@ -233,7 +247,42 @@ function renderFilteredContactsEdit(filteredContacts) {
       let contactClass = checked ? "contact-selected" : "contact-unselected";
       let initials = getInitials(contact.name.replace(" (You)", ""));
 
-      contactContainer.innerHTML += `
+      contactContainer.innerHTML += getFilteredContactEditHTML(
+        originalIndex,
+        contact,
+        contactClass,
+        backgroundColor,
+        contactTextColorClass,
+        checkboxImage,
+        initials
+      );
+    });
+  } else {
+    contactContainer.innerHTML += getNoContactEditHTML();
+  }
+}
+
+/**
+ * Generates the HTML for a contact element.
+ * @param {number} index - The index of the contact in the contacts list.
+ * @param {Object} contact - The contact object containing name and background color.
+ * @param {string} contactClass - The CSS class for selected/unselected state.
+ * @param {string} backgroundColor - The background color for the contact element.
+ * @param {string} textColor - The color for the contact text.
+ * @param {string} checkboxImage - The file name of the checkbox image.
+ * @param {string} initials - The initials to display in the contact's avatar.
+ * @returns {string} The HTML string for the contact element.
+ */
+function getFilteredContactEditHTML(
+  originalIndex,
+  contact,
+  contactClass,
+  backgroundColor,
+  contactTextColorClass,
+  checkboxImage,
+  initials
+) {
+  return `
         <div class="contact_container_element ${contactClass}" id="contact_edit_${originalIndex}" style="background-color: ${backgroundColor}" onclick="toggleContactEdit(${originalIndex})">
           <div style="display: flex; align-items: center; gap: 20px;" class="${contactTextColorClass}">
             <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -245,14 +294,18 @@ function renderFilteredContactsEdit(filteredContacts) {
           <img src="./assets/img/${checkboxImage}" class="checkbox-img" id="checkbox_edit_${originalIndex}">
         </div>
       `;
-    });
-  } else {
-    contactContainer.innerHTML += `
+}
+
+/**
+ * Generates the HTML for the "No Contact found" message.
+ * @returns {string} The HTML string for the no-contact message element.
+ */
+function getNoContactEditHTML() {
+  return `
         <div class="contact_container_element" style="background-color: #FFFFFF"> 
           <div style="display: flex; align-items: center; gap: 20px; color: #000000">
-            <div id="contact_list_name">No Contact found with this name.</div> 
+            <div id="contact_list_name">No Contact found.</div> 
           </div> 
         </div>
       `;
-  }
 }
