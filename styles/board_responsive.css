@@ -178,7 +178,6 @@
 @media (max-height: 880px) {
   .big_card {
     width: 100% !important;
-    border-radius: 0;
     height: 90vh !important;
   }
 
@@ -420,7 +419,8 @@
   }
 
   .big_card {
-    width: 290px;
+    width: 340px !important;
+    height: 85vh !important;
     padding: 10px;
   }
 
