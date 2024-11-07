@@ -38,15 +38,12 @@ function allowDrop(ev) {
 async function moveTo(newCategory) {
   const taskId = draggedTaskId;
   let task = tasks.find((t) => t.id === taskId);
-
   if (task) {
     const currentTaskData = await fetch(`${TASKS_URL}/${taskId}.json`);
     const updatedTaskData = await currentTaskData.json();
-
     if (updatedTaskData && updatedTaskData.subtask) {
       task.subtask = updatedTaskData.subtask;
     }
-
     task.category = newCategory;
     updateHtmlTodo();
     updateHtmlProgress();
