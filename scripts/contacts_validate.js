@@ -101,7 +101,6 @@ function validateContactName() {
 function validateContactEmail() {
   const contactEmail = document.getElementById("contacts-user-email");
   const emailValue = contactEmail.value.trim();
-
   if (emailValue === "") {
     setContactError(contactEmail, "Email is required.");
     return false;

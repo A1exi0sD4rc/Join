@@ -138,26 +138,16 @@ async function editSaveInit(i) {
  * @returns {Promise<Object>} A promise that resolves to the response data as a JSON object.
  */
 async function saveEdit(i) {
-  let changeUserName = capitalizeName(
-    document.getElementById("contacts-user-name").value
-  );
+  let changeUserName = capitalizeName(document.getElementById("contacts-user-name").value);
   let changeUserEmail = document.getElementById("contacts-user-email").value;
   let changeUserNumber = document.getElementById("contacts-user-number").value;
-  const response = await fetch(
-    BASE_URL + `/${contactKeys[i]["id"]}` + ".json",
-    {
+  const response = await fetch(BASE_URL + `/${contactKeys[i]["id"]}` + ".json",
+    { 
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(
-        (data = {
-          name: `${changeUserName}`,
-          email: `${changeUserEmail}`,
-          number: `${changeUserNumber}`,
-          bgcolor: contactKeys[i]["bgcolor"],
-        })
-      ),
-    }
-  );
+        (data = {name: `${changeUserName}`, email: `${changeUserEmail}`, number: `${changeUserNumber}`, bgcolor: contactKeys[i]["bgcolor"]})),
+    });
   lastSelected = undefined;
   return (responseToJson = await response.json());
 }

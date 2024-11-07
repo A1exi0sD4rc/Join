@@ -3,8 +3,10 @@ let TASKS_URL = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
 let taskCategory = "";
 
 /**
- * 
- * function collects task data, saves it to the database, navigates to the task board, and clears all input fields.
+ * Adds a new task to the database, redirects to the board view, and clears input fields.
+ * @async
+ * @function addTaskToDatabase
+ * @returns {Promise<void>}
  */
 async function addTaskToDatabase() {
   const newTask = collectTaskData();
@@ -14,8 +16,9 @@ async function addTaskToDatabase() {
 }
 
 /**
- * function collects task details from input fields and returns them as an object.
- * @returns 
+ * Collects task details from input fields and returns them as an object.
+ * @function collectTaskData
+ * @returns {Object} Task data including title, description, due date, category, priority, assigned contacts, and subtasks.
  */
 function collectTaskData() {
   const title = getInputValueById("aT_title");
@@ -46,8 +49,9 @@ function collectTaskData() {
 }
 
 /**
- * collects edited task details from input fields and returns them as an object.
- * @returns 
+ * Collects edited task details from input fields and returns them as an object.
+ * @function collectTaskDataEdit
+ * @returns {Object} Edited task data including title, description, due date, category, priority, assigned contacts, and subtasks.
  */
 function collectTaskDataEdit() {
   const title = getInputValueById("aT_title_edit");
@@ -79,25 +83,28 @@ function collectTaskDataEdit() {
 }
 
 /**
- * function retrieves the value of an input field by its ID. * 
- * @param {*} id 
- * @returns 
+ * Retrieves the value of an input field by its ID.
+ * @function getInputValueById
+ * @param {string} id - The ID of the input element.
+ * @returns {string} The value of the input field.
  */
 function getInputValueById(id) {
   return document.getElementById(id).value;
 }
 
 /**
- * retrieves and trims the inner text of the category selection element.
- * @returns 
+ * Retrieves and trims the inner text of the category selection element.
+ * @function getCategory
+ * @returns {string} The selected category as a string.
  */
 function getCategory() {
   return document.getElementById("aT_select_category").innerHTML.trim();
 }
 
 /**
- * returns the active priority level or defaults to "Medium."
- * @returns 
+ * Returns the active priority level or defaults to "Medium."
+ * @function getActivePriority
+ * @returns {string} The priority level: "Urgent", "Medium", or "Low".
  */
 function getActivePriority() {
   if (
@@ -118,8 +125,9 @@ function getActivePriority() {
 }
 
 /**
- * returns the active edited priority level or defaults to "Medium."
- * @returns 
+ * Returns the active edited priority level or defaults to "Medium."
+ * @function getActivePriorityEdit
+ * @returns {string} The edited priority level: "Urgent", "Medium", or "Low".
  */
 function getActivePriorityEdit() {
   if (
@@ -144,8 +152,11 @@ function getActivePriorityEdit() {
 }
 
 /**
- * saves a task to the database and logs a success message or an error if the operation fails.
- * @param {*} task 
+ * Saves a task to the database and logs a success message or an error if the operation fails.
+ * @async
+ * @function saveTaskToDatabase
+ * @param {Object} task - The task data to be saved.
+ * @returns {Promise<void>}
  */
 async function saveTaskToDatabase(task) {
   try {
@@ -165,6 +176,12 @@ async function saveTaskToDatabase(task) {
   }
 }
 
+/**
+ * Refreshes the task board by clearing and updating task containers and fetching tasks.
+ * @async
+ * @function refreshTaskBoard
+ * @returns {Promise<void>}
+ */
 async function refreshTaskBoard() {
   clearTaskContainers();
   updateHtmlTodo();
@@ -175,16 +192,16 @@ async function refreshTaskBoard() {
 }
 
 /**
- * redirects the user to the board page.
- * 
+ * Redirects the user to the board page.
+ * @function goToBoard
  */
 function goToBoard() {
   window.location.href = "board.html";
 }
 
 /**
- *  clears the content of various task container elements.
- * 
+ * Clears the content of various task container elements.
+ * @function clearTaskContainers
  */
 function clearTaskContainers() {
   document.getElementById("small_card_todo").innerHTML = "";
