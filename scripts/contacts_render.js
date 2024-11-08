@@ -7,7 +7,6 @@
  */
 addCloseFunctionToDetails();
 
-
 /**
  * Adds an event listener to the window that triggers the specified function
  * whenever the window is resized.
@@ -17,7 +16,6 @@ addCloseFunctionToDetails();
  * @param {Function} addCloseFunctionToDetails - The function to execute when the event occurs.
  */
 window.addEventListener("resize", addCloseFunctionToDetails);
-
 
 /**
  * Renders the contact management interface.
@@ -59,7 +57,6 @@ function render() {
         <button class="contacts-add-contact-mobil" onclick="contactAddEditInit('add')"></button>
     `;
 }
-
 
 /**
  * Renders the list of contacts grouped by initial letters.
@@ -114,7 +111,6 @@ function renderContacts() {
   }
 }
 
-
 /**
  * Renders the details of a specific contact.
  *
@@ -162,7 +158,6 @@ function renderContactDetails(i) {
     `;
 }
 
-
 /**
  * Renders a message indicating that a contact has been successfully created.
  *
@@ -177,7 +172,6 @@ function renderContactCreated() {
     `;
 }
 
-
 /**
  * Renders a message indicating that a contact has been successfully edited.
  *
@@ -191,7 +185,6 @@ function renderContactEditSucessfull() {
         </div>  
     `;
 }
-
 
 /**
  * Renders the edit contact interface for a specific contact.
@@ -258,7 +251,6 @@ function renderEditContact(i) {
   );
 }
 
-
 /**
  * Renders the interface for adding a new contact.
  *
@@ -314,7 +306,6 @@ function renderAddNewContact() {
   }
 }
 
-
 /**
  * Updates the `onclick` attribute of the contacts div based on the current window width.
  * If the window width is less than 1000 pixels, it sets the `onclick` attribute to call
@@ -325,12 +316,13 @@ function renderAddNewContact() {
  */
 function addCloseFunctionToDetails() {
   const contactsDiv = document.getElementById("contacts-h-d-div");
-  let attributeSet = false;
-  if (window.innerWidth < 1000) {
-    contactsDiv.setAttribute("onclick", "contactShowEditOption()");
-    attributeSet = true;
-  }
-  if (window.innerWidth > 1000 && attributeSet == true) {
-    contactsDiv.setAttribute("onclick", "");
+  if (contactsDiv) {
+    let attributeSet = false;
+    if (window.innerWidth < 1000) {
+      contactsDiv.setAttribute("onclick", "contactShowEditOption()");
+      attributeSet = true;
+    } else if (attributeSet) {
+      contactsDiv.setAttribute("onclick", "");
+    }
   }
 }
