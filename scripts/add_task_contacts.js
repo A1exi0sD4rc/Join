@@ -1,5 +1,4 @@
-let CONTACTS_URL =
-  "https://join-337-userlist-default-rtdb.firebaseio.com/contacts";
+let CONTACTS_URL = "https://join337-40cd8-default-rtdb.europe-west1.firebasedatabase.app/contacts";
 
 contactsAddTask = [];
 let selectedContacts = [];

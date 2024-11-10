@@ -1,7 +1,7 @@
-const BASE_URL_TASKS = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_TASKS = "https://join337-40cd8-default-rtdb.europe-west1.firebasedatabase.app/tasks";
 let tasks = [];
 
-const BASE_URL_ASSIGNED = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+const BASE_URL_ASSIGNED = "https://join337-40cd8-default-rtdb.europe-west1.firebasedatabase.app/tasks";
 let bigassigned = [];
 
 let draggedTo;

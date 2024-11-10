@@ -16,7 +16,7 @@ const firebaseConfig = {
   storageBucket: "join-337-userlist.appspot.com",
   messagingSenderId: "742031210353",
   appId: "1:742031210353:web:0829ecb28f78c0971868d0",
-  databaseURL: "https://join-337-userlist-default-rtdb.firebaseio.com/",
+  databaseURL: "https://join337-40cd8-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 const app = initializeApp(firebaseConfig);

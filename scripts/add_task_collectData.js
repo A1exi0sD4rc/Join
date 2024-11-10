@@ -1,4 +1,4 @@
-let TASKS_URL = "https://join-337-userlist-default-rtdb.firebaseio.com/tasks";
+let TASKS_URL = "https://join337-40cd8-default-rtdb.europe-west1.firebasedatabase.app/tasks";
 
 let taskCategory = "";
 
